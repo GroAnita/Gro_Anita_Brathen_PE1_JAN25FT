@@ -1,0 +1,48 @@
+:root {
+    --primary-color: #707070;
+    --secondary-color: #EDDCED;
+    --font-color: #707070;
+    --background-color: #f5f5f5;
+
+
+
+    /*font sizes*/
+    --font-size-xxxsmall: 10px; /*text on small buttons*/
+    --font-size-xxsmall: 14px; /*input text*/
+    --font-size-xsmall: 16px; /*labels*/
+    --font-size-small: 18px;
+    --font-size-medium: 20px;
+    --font-size-large: 24px; /*headers and main links*/
+    --font-size-xlarge: 64px; /*header logo font size*/
+
+    
+    /*Main Button colors*/
+    --button-background-color: var(--secondary-color);
+    --button-text-color: var(--font-color);
+    --button-border-color: var(--font-color);
+    --button-hover-background-color: #E1ACDD;
+    --button-click-background-color: #E187E4;
+
+    /*special Button colors*/
+    /*delete button*/
+    --delete-button-background-color: #FF0000;
+    --delete-button-text-color: #FFFFFF;
+    --delete-button-border-color: #707070;
+    --delete-button-hover-background-color: #F54505;
+    --delete-button-click-background-color: #E80000;
+
+    /*edit and add button*/
+    --edit-add-button-background-color: #04C721;
+    --edit-add-button-text-color: #FFFFFF;
+    --edit-add-button-border-color: #707070;
+    --edit-add-button-hover-background-color: #03B615;
+    --edit-add-button-click-background-color: #029A12;
+
+    /*input field colors*/
+    --input-background-color: #f5f5f5;
+    --input-text-color: #707070;
+    --input-border-color: #707070;
+    --input-focus-border-color: #EDDCED;
+    --input-error-border-color: #FF0000;
+    --input-placeholder-color: #A9A9A9;
+}
