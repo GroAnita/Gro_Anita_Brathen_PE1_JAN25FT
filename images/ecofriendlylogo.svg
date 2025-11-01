@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 160 160">
+  <!-- Generator: Adobe Illustrator 30.0.0, SVG Export Plug-In . SVG Version: 2.1.1 Build 123)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #fff;
+        font-family: MyriadPro-Regular, 'Myriad Pro';
+      }
+
+      .st0, .st1 {
+        font-size: 21px;
+      }
+
+      .st2 {
+        fill: #00c600;
+      }
+
+      .st1 {
+        font-family: Montserrat-Bold, Montserrat;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <path class="st2" d="M24.69,49.98h31.4v20.04c0,8.28-6.72,15-15,15H9.69v-20.04c0-8.28,6.72-15,15-15Z"/>
+  <text class="st0" transform="translate(15.37 74.75)"><tspan x="0" y="0">ECO</tspan></text>
+  <text class="st1" transform="translate(59.15 75.08)"><tspan x="0" y="0">Friendly</tspan></text>
+</svg>

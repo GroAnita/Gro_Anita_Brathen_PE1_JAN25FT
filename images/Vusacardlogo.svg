@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 160 160">
+  <!-- Generator: Adobe Illustrator 30.0.0, SVG Export Plug-In . SVG Version: 2.1.1 Build 123)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #fff;
+        font-family: Montserrat-Bold, Montserrat;
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .st1 {
+        fill: #001974;
+      }
+    </style>
+  </defs>
+  <rect class="st1" x="29.44" y="41.06" width="92.8" height="56.82" rx="8" ry="8"/>
+  <text class="st0" transform="translate(40.75 77.25)"><tspan x="0" y="0">VUSA</tspan></text>
+</svg>
