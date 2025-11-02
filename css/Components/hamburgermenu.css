@@ -1,0 +1,99 @@
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 90vh;
+    background-color: var(--background-color);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: pink;
+    overflow: hidden;
+    visibility: hidden;
+    position: fixed;
+    top: 0px;
+    right: -400px;
+    border: 5px solid var(--button-hover-background-color);
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+    transition: right 0.3s ease;
+    z-index: 1000;
+}
+
+.hamburger-menu .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 40px;
+    cursor: pointer;
+    color: var(--important-color);
+}
+.hamburger-menu .close-btn:hover {
+    color: var(--delete-button-hover-background-color);
+}
+
+.show-hamburger-menu.hamburger-menu {
+    right: 0;
+    visibility: visible;
+}
+
+/* Separate overlay element */
+.hamburger-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.hamburger-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Hamburger menu content styles */
+
+.hamburger-menu__links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px; 
+    width: 100%;
+    gap: 20px;
+
+}
+
+.hamburger-menu__links a {
+    text-decoration: none;
+    color: var(--font-color);
+    font-size: var(--font-size-medium);
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+.hamburger-menu__links a:hover {
+    background-color: var(--button-hover-background-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    
+}
+
+.hamburger-menu__h5 {
+    font-size: var(--font-size-small);
+    margin-bottom: 10px;
+    text-align: center
+}
+
+.hamburger-menu__logo {
+    width: 150px;
+    height: auto;
+    margin: auto
+
+}
