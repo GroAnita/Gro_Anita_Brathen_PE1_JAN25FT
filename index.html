@@ -11,6 +11,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/Components/shoppingbag.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/Components/hamburgermenu.css">
+    <link rel="stylesheet" href="css/Components/footer.css">
     <title>The Second Hand Company</title>
 </head>
 <body>
@@ -28,23 +32,73 @@
                 <div class="header-content__center__text">2025</div>
                 </div>
                 <div class="header-content__right">Company</div>
+                <i class="fa-solid fa-bars" id="hamburgerMenuIcon"></i>
             </div>
             <div class="header-content__nav">
                 <div class="header-content__nav__left"></div>
                 <nav>
                     <ul class="header-content__nav__links">
-                        <li><a href="#">Fashion</a></li>
-                        <li><a href="#">Electronics</a></li>
-                        <li><a href="#">Health & beauty</a></li>
+                        <li><a href="#" data-category="all">All Products</a></li>
+                        <li><a href="#" data-category="fashion">Fashion</a></li>
+                        <li><a href="#" data-category="electronics">Electronics</a></li>
+                        <li><a href="#" data-category="health and beauty">Health & beauty</a></li>
                     </ul>
                 </nav>
                 <div class="header-content__nav__right">
                     <i class="fas fa-search"></i>
                     <i class="fas fa-user"></i>
-                    <i class="fa-solid fa-bag-shopping"></i>
+                    <div class="header-content__nav__shoppingbag">
+                    <i class="fa-solid fa-bag-shopping" id="shoppingBagIcon"><span class="header-content__nav__right__cart-count">0</span></i>
+                    </div>
                 </div>
             </div>
         </header>
+
+        <!--hamburger menu -->
+        <div class="hamburger-menu" id="hamburgerMenu">
+            <button class="close-btn" id="closeHamburgerMenu" onclick="closeHamburgerMenu()">&times;</button>
+            <nav>
+                <ul class="hamburger-menu__links">
+                    <li><a href="#" data-category="fashion">Fashion</a></li>
+                    <li><a href="#" data-category="electronics">Electronics</a></li>
+                    <li><a href="#" data-category="health and beauty">Health & beauty</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Why choose pre-owned?</a></li>
+                    <li><a href="#">Member Login</a></li>
+                </ul>
+                <div class="hamburger-menu__logo">
+                    <img src="images/horseheadlogo.svg" alt="Logo" class="logo">
+                </div>
+                <a href="/pages/admindashboard.html"><h5 class="hamburger-menu__h5">Admin login</h5></a>
+            </nav>
+        </div>
+    
+
+        <!--Shopping bag sidebar-->
+            <div class="shopping_cart" id="shoppingCart">
+                <div class="cart-header">
+                    <h2>Your Shopping Bag</h2>
+                    <button class="close-btn" onclick="closeShoppingCart()">&times;</button>
+                </div>
+                <hr class="shoppingbag-hr">
+                <div class="cart-items" id="shoppingCartItems">
+                    <!-- Cart items will be added here by JavaScript -->
+                </div>
+                <div class="cart-footer">
+                    <div class="cart-numbers">
+                    <div class="shipping">
+                        <p>Shipping: Free</p>
+                    </div>
+                    <div class="cart-total">
+                        <strong>Total: $<span id="shoppingCartTotal">0.00</span></strong>
+                    </div>
+                    </div>
+                    <button onClick="checkout()" class="checkout-btn main-btn">Checkout</button>
+                </div>
+             </div>
 
         <!-- Product Grid Section -->
         <section class="image-grid">
@@ -70,14 +124,18 @@
                         <li><a href="#">Contact</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Why choose pre-owned?</a></li>
+                        
                     </ul>
                 </div>
                 <span class="vr"></span>
                 <div class="footer-content__centerb">  <h4>Shop</h4>
                        <ul>
-                        <li><a href="#">Fashion</a></li>
-                        <li><a href="#">Electronics</a></li>
-                        <li><a href="#">Health & Beauty</a></li>
+                        <li><a href="#" data-category="fashion">Fashion</a></li>
+                        <li><a href="#" data-category="electronics">Electronics</a></li>
+                        <li><a href="#" data-category="health and beauty">Health & Beauty</a></li>
                     </ul></div>
                     <span class="vr"></span>
                 <div class="footer-content__right"><h4>Connect</h4>
@@ -114,6 +172,8 @@
             
         </footer>
         <script src="JS/index.js"></script>
+        <script src="JS/components/shoppingcart.js"></script>
+        <script src="JS/components/hamburgermenuoverlay.js"></script>
     </div>   
 </body>
 </html>

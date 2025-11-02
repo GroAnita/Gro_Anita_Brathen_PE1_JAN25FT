@@ -3,6 +3,7 @@
     --secondary-color: #EDDCED;
     --font-color: #707070;
     --background-color: #f5f5f5;
+    --important-color: #000000;
 
 
 
@@ -12,10 +13,12 @@
     --font-size-xsmall: 16px; /*labels*/
     --font-size-small: 18px;
     --font-size-medium: 20px;
-    --font-size-large: 24px; /*headers and main links*/
+    --font-size-large: 24px; /*headers and main 
+    links*/
+    --font-size-largeplus: 32px; /*section headers*/
     --font-size-xlarge: 64px; /*header logo font size*/
 
-    
+
     /*Main Button colors*/
     --button-background-color: var(--secondary-color);
     --button-text-color: var(--font-color);
