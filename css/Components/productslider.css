@@ -2,9 +2,12 @@
 .slider-container {
     position: relative; /* MUST have this */
     width: 100%;
-    height: 400px; /* Set a height */
+    height: 350px; /* Set a height */
     overflow: hidden;
-    background-color: var(--input-placeholder-color)
+    margin-top: 20px;
+    border: 5px solid var(--button-border-color);
+    background-color: rgb(255, 242, 255);
+    border-radius: 8px;
 }
 
 .slide.active {
@@ -17,7 +20,7 @@
     transition: transform 0.3s ease;
     opacity: 1;
     position: absolute;
-    top: 190px;
+    top: 170px;
     left: 10px;
 }
 
@@ -55,8 +58,7 @@
     top: 0px;
     left: 10px;
     cursor: pointer;
-    border-radius: 8px;
-    background-color: rgba(from var(--secondary-color) r g b / 0.2);
+
 }
 
 
@@ -71,8 +73,8 @@
 }
 
 .prev-btn, .next-btn {
-    background-color: var(--secondary-color);
-    color: var(--button-click-background-color);
+    background-color: var(--button-click-background-color);
+    color: var(--background-color);
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
