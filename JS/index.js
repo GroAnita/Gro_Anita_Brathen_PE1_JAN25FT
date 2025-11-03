@@ -1,3 +1,5 @@
+import { setupPagination, getPaginatedProducts, resetPagination } from './components/pagination.js';
+
 const API_URL = 'https://v2.api.noroff.dev/online-shop';
 const productsToDisplay = 12;
 let allProducts = [];
@@ -48,10 +50,23 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const category = e.target.getAttribute('data-category');
+            resetPagination(); // Reset to page 1 when changing categories
+            
             if (category === 'all') {
-                renderProducts(allProducts);
+                setupPagination(allProducts.length, (page) => {
+                    const paginatedProducts = getPaginatedProducts(allProducts);
+                    renderProducts(paginatedProducts);
+                });
+                const paginatedProducts = getPaginatedProducts(allProducts);
+                renderProducts(paginatedProducts);
             } else {
-                renderProducts(allProducts, category);
+                const filteredProducts = allProducts.filter(product => isInCategory(product.id, category));
+                setupPagination(filteredProducts.length, (page) => {
+                    const paginatedProducts = getPaginatedProducts(filteredProducts);
+                    renderProducts(paginatedProducts);
+                });
+                const paginatedProducts = getPaginatedProducts(filteredProducts);
+                renderProducts(paginatedProducts);
             }
         });
     });
@@ -65,25 +80,26 @@ async function fetchProducts() {
         const response = await fetch('https://v2.api.noroff.dev/online-shop');
         const data = await response.json();
         allProducts = data.data;
-        // I wanted to show only 12 products on the homepage
-        const limitedProducts = data.data.slice(0, productsToDisplay);
-        renderProducts(limitedProducts);
+        // Setup pagination for all products
+        setupPagination(allProducts.length, (page) => {
+            const paginatedProducts = getPaginatedProducts(allProducts);
+            renderProducts(paginatedProducts);
+        });
+        // Show first page
+        const paginatedProducts = getPaginatedProducts(allProducts);
+        renderProducts(paginatedProducts);
     } catch (error) {
         console.error('Error fetching products:', error);
     }
 }
 
-function renderProducts(products, categoryFilter = null) {
+function renderProducts(products) {
     const container = document.getElementById('products-container');
     
     // Clear existing products first!
     container.innerHTML = '';
     
     products.forEach(product => {
-        if (categoryFilter && !isInCategory(product.id, categoryFilter)) {
-            return; // Skip products not in the selected category
-        }
-
         // This is creating the product card element
         const productCard = document.createElement('div');
         productCard.className = 'product-card';

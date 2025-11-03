@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/Components/hamburgermenu.css">
     <link rel="stylesheet" href="css/Components/footer.css">
     <link rel="stylesheet" href="css/Components/productslider.css">
+    <link rel="stylesheet" href="css/Components/pagination.css">
     <title>The Second Hand Company</title>
 </head>
 <body>
@@ -85,7 +86,7 @@
             <div class="shopping_cart" id="shoppingCart">
                 <div class="cart-header">
                     <h2>Your Shopping Bag</h2>
-                    <button class="close-btn" onclick="closeShoppingCart()">&times;</button>
+                    <button class="close-btn" id="closeShoppingCartBtn">&times;</button>
                 </div>
                 <hr class="shoppingbag-hr">
                 <div class="cart-items" id="shoppingCartItems">
@@ -119,6 +120,9 @@
         </div>
         </section>
 
+        <div class="pagination" id="paginationContainer">
+        </div>
+            
 
         <footer>
             <div class="footer-content__top">
@@ -154,11 +158,9 @@
                         <i class="fa-brands fa-tiktok"></i>
                         <i class="fab fa-instagram"></i>
                     </div>
-                    <form>
-                        <label for="email">Join our Newsletter</label>
-                        <input type="email" placeholder="Enter your email">
+                        <label>Join our Newsletter</label>
+                        <input type="email" name="email" placeholder="Enter your email" autocomplete="on">
                         <button class="main-btn" type="submit">Subscribe</button>
-                    </form>
                 </div>
             </div>
             <div class="footer-content__bottom">
@@ -181,10 +183,11 @@
                 </div>
             
         </footer>
-        <script src="JS/index.js"></script>
-        <script src="JS/components/shoppingcart.js"></script>
-        <script src="JS/components/hamburgermenuoverlay.js"></script>
-        <script src="JS/components/productslider.js"></script>
-    </div>   
+        <script type="module" src="JS/index.js"></script>
+        <script type="module" src="JS/components/shoppingcart.js"></script>
+        <script type="module" src="JS/components/hamburgermenuoverlay.js"></script>
+        <script type="module" src="JS/components/productslider.js"></script>
+        <script type="module" src="JS/components/pagination.js"></script>
+    </div>
 </body>
 </html>

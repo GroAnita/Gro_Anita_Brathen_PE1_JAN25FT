@@ -71,11 +71,11 @@
 }
 
 .prev-btn, .next-btn {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
+    background-color: var(--secondary-color);
+    color: var(--button-click-background-color);
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
-    font-size: 18px;
+    font-size: var(--font-size-medium);
     cursor: pointer;
 }

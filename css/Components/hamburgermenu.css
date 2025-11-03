@@ -81,13 +81,16 @@
     background-color: var(--button-hover-background-color);
     padding: 10px 20px;
     border-radius: 5px;
-    
 }
 
 .hamburger-menu__h5 {
     font-size: var(--font-size-small);
     margin-bottom: 10px;
     text-align: center
+}
+
+.hamburger-menu__h5:hover {
+    text-decoration: underline 2px var(--button-hover-background-color);
 }
 
 .hamburger-menu__logo {

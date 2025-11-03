@@ -1,10 +1,18 @@
 const shoppingBagIcon = document.getElementById('shoppingBagIcon');
 const shoppingBagOverlay = document.getElementById('shoppingCart');
+const closeShoppingCartBtn = document.getElementById('closeShoppingCartBtn');
 
 //open shopping cart
 shoppingBagIcon.addEventListener('click', () => {
     document.body.classList.add('show-cart');
 });
+
+//close shopping cart with close button
+if (closeShoppingCartBtn) {
+    closeShoppingCartBtn.addEventListener('click', () => {
+        document.body.classList.remove('show-cart');
+    });
+}
 
 //close shopping cart when clicking outside the cart content
 shoppingBagOverlay.addEventListener('click', (event) => {
