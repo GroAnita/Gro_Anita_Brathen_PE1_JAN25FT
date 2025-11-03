@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/Components/hamburgermenu.css">
     <link rel="stylesheet" href="css/Components/footer.css">
+    <link rel="stylesheet" href="css/Components/productslider.css">
     <title>The Second Hand Company</title>
 </head>
 <body>
@@ -56,7 +57,7 @@
 
         <!--hamburger menu -->
         <div class="hamburger-menu" id="hamburgerMenu">
-            <button class="close-btn" id="closeHamburgerMenu" onclick="closeHamburgerMenu()">&times;</button>
+            <button class="close-btn" id="closeHamburgerMenu">&times;</button>
             <nav>
                 <ul class="hamburger-menu__links">
                     <li><a href="#" data-category="fashion">Fashion</a></li>
@@ -67,7 +68,7 @@
                     <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Terms of Service</a></li>
                     <li><a href="#">Why choose pre-owned?</a></li>
-                    <li><a href="#">Member Login</a></li>
+                    <li><a href="#" id="loginModalTrigger">Member Login</a></li>
                 </ul>
                 <div class="hamburger-menu__logo">
                     <img src="images/horseheadlogo.svg" alt="Logo" class="logo">
@@ -75,6 +76,9 @@
                 <a href="/pages/admindashboard.html"><h5 class="hamburger-menu__h5">Admin login</h5></a>
             </nav>
         </div>
+        
+        <!-- Hamburger overlay for dark background -->
+        <div class="hamburger-overlay" id="hamburgerOverlay"></div>
     
 
         <!--Shopping bag sidebar-->
@@ -99,6 +103,12 @@
                     <button onClick="checkout()" class="checkout-btn main-btn">Checkout</button>
                 </div>
              </div>
+
+        <!-- Product slider Section -->
+        <div class="slider-container">
+            <!-- Slider content will be dynamically inserted here -->
+        </div>
+         
 
         <!-- Product Grid Section -->
         <section class="image-grid">
@@ -174,6 +184,7 @@
         <script src="JS/index.js"></script>
         <script src="JS/components/shoppingcart.js"></script>
         <script src="JS/components/hamburgermenuoverlay.js"></script>
+        <script src="JS/components/productslider.js"></script>
     </div>   
 </body>
 </html>

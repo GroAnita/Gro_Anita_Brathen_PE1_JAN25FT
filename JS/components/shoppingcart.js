@@ -13,9 +13,6 @@ shoppingBagOverlay.addEventListener('click', (event) => {
     }
 });
 
-closeShoppingCart.addEventListener('click', () => {
-    document.body.classList.remove('show-cart');
-});
 
 function openShoppingCart() {
     document.body.classList.add('show-cart');

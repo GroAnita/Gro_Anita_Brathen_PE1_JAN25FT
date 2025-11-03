@@ -1,21 +1,49 @@
-const hamburgerMenuIcon = document.getElementById('hamburgerMenuIcon');
-const hamburgerMenuOverlay = document.getElementById('hamburgerMenu');
-const closeHamburgerMenuBtn = document.getElementById('closeHamburgerMenu');
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburgerMenuIcon = document.getElementById('hamburgerMenuIcon');
+    const hamburgerMenuOverlay = document.getElementById('hamburgerMenu');
+    const hamburgerOverlay = document.getElementById('hamburgerOverlay');
+    const closeHamburgerMenuBtn = document.getElementById('closeHamburgerMenu');
+    
+    if (!hamburgerMenuIcon) {
+        return;
+    }
+    
+    hamburgerMenuIcon.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        if (hamburgerMenuOverlay) {
+            hamburgerMenuOverlay.classList.add('show-hamburger-menu');
+        }
+        
+        if (hamburgerOverlay) {
+            hamburgerOverlay.classList.add('show');
+        }
+    });
 
-closeHamburgerMenuBtn.addEventListener('click', () => {
-    hamburgerMenuOverlay.classList.remove('show-hamburger-menu');
+    // Add event listener to close button
+    if (closeHamburgerMenuBtn) {
+        closeHamburgerMenuBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            if (hamburgerMenuOverlay) {
+                hamburgerMenuOverlay.classList.remove('show-hamburger-menu');
+            }
+            
+            if (hamburgerOverlay) {
+                hamburgerOverlay.classList.remove('show');
+            }
+        });
+    }
 });
 
-hamburgerMenuIcon.addEventListener('click', () => {
-    hamburgerMenuOverlay.classList.add('show-hamburger-menu');
+const menuLinks = document.querySelectorAll('.hamburger-menu__links a');
+menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        const hamburgerMenuOverlay = document.getElementById('hamburgerMenu');
+        const hamburgerOverlay = document.getElementById('hamburgerOverlay');
+        
+        // Close the menu when any link is clicked
+        hamburgerMenuOverlay?.classList.remove('show-hamburger-menu');
+        hamburgerOverlay?.classList.remove('show');
+    });
 });
-
-
-function closeHamburgerMenu() {
-    hamburgerMenuOverlay.classList.remove('show-hamburger-menu');
-}
-
-function openHamburgerMenu() {
-    hamburgerMenuOverlay.classList.add('show-hamburger-menu');
-}
-
