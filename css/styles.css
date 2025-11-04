@@ -36,6 +36,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: "playfair-display-tshcs", sans-serif;background-color: var(--background-color);
+  color: var(--font-color)
 }
 
 .container {
@@ -43,15 +44,22 @@ body {
   margin: 0 auto;
 }
 
- 
+ .header-topbar {
+    background-color: var(--font-color);
+    height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+ }
 
 .header-content {
     display:flex;
     justify-content: space-evenly;
     align-items: center;
     padding: 20px;
-     background-color: #EDDCED;
-    height: 280px;
+    background-color: #EDDCED;
+    height: 250px;
+    border-bottom: 1px solid var(--font-color);
 }
 
 .header-content__center {
@@ -83,7 +91,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 
 }
 
@@ -92,12 +100,11 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
-    margin: 10px 15px;
+    margin: 10px 225px;
     font-size: var(--font-size-large);
-    gap: 10px;
     font-family: "playfair-display-tshc", sans-serif;
     text-decoration: none;
-    width: 800px;
+    width: 1400px;
 }
 
 .header-content__nav__links a:hover {
@@ -106,7 +113,7 @@ body {
 
 .header-content__nav__links a{
     text-decoration: none;
-    color: #707070;
+    color: var(--font-color);
     text-align: center;
 }
 
@@ -122,13 +129,19 @@ body {
 
 .header-content__nav__right i{
     cursor: pointer;
-    color: #707070;
+    color: var(--background-color);
 }
 
 .header-content__nav__left{
     width: 500px;
+    color: var(--background-color)
 }
 
+.header-content__nav__left p{
+    font-size: var(--font-size-small);
+    letter-spacing: 0.5em;
+    margin-left: 60px;
+}
 .header-content i{
     font-size: var(--font-size-largeplus);
     color: #000000 ;
@@ -159,9 +172,23 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 10px;
+    font-size: var(--font-size-xxsmall);
 }
 
+.header-underline {
+    text-align: center;
+    background-color: var(--secondary-color);
+    margin: 0;
+    padding-bottom: 50px ;
+    padding-top: 50px;
+}
 
+.header-underline h2 {
+    margin: 0;
+    padding: 0;
+    font-size: var(--font-size-large);
+    letter-spacing: 0.25em;
+}
 /*Product grid section*/
 
 .products-grid {
@@ -181,7 +208,6 @@ body {
     border-radius: 8px;
     padding: 15px;
     text-align: center;
-    
 }
 
 .product-card img {

@@ -1,28 +1,3 @@
-/*const slides = document.querySelectorAll('.slide');
-const nextButton = document.querySelector('.slider-controls .next-btn');
-const prevButton = document.querySelector('.slider-controls .prev-btn');
-let currentSlide = 0;
-
-
-function showSlide(index) {
-    slides.forEach((slide, i) => {
-        if (i === index) {
-            slide.classList.add('active');
-        } else {
-            slide.classList.remove('active');
-        }
-    });
-}
-nextButton?.addEventListener('click', () => {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-});
-prevButton?.addEventListener('click', () => {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
-});
-// Initialize the slider by showing the first slide
-showSlide(currentSlide);*/
 
 async function getRandomProductsForSlider(count = 3) {
     try {
@@ -40,14 +15,14 @@ async function getRandomProductsForSlider(count = 3) {
 
 async function createSliderWithAPIProducts() {
     const products = await getRandomProductsForSlider(3);
-    const sliderContainer = document.querySelector('.slider-container');
+    const sliderTrack = document.querySelector('.slider-track'); 
     
-    // Clear existing slides
-    sliderContainer.innerHTML = '';
+    // Clears existing slides
+    sliderTrack.innerHTML = '';
     
     products.forEach((product, index) => {
         const slide = document.createElement('div');
-        slide.className = index === 0 ? 'slide active' : 'slide';
+        slide.className = 'slide'; 
         
     slide.innerHTML = `
         <div class="image-box">
@@ -64,7 +39,7 @@ async function createSliderWithAPIProducts() {
         </div>
     `;
         
-        sliderContainer.appendChild(slide);
+        sliderTrack.appendChild(slide);
         
         // Make the image clickable to go to product page
         const productImage = slide.querySelector('img');
@@ -74,28 +49,32 @@ async function createSliderWithAPIProducts() {
         });
     });
     
-    // Add slider controls
-    sliderContainer.innerHTML += `
-        <div class="slider-controls">
-            <button class="prev-btn">❮</button>
-            <button class="next-btn">❯</button>
-        </div>
-    `;
+    const sliderContainer = document.querySelector('.slider-container');
+    const existingControls = sliderContainer.querySelector('.slider-controls');
+    if (!existingControls) {
+        sliderContainer.innerHTML += `
+            <div class="slider-controls">
+                <button class="prev-btn">❮</button>
+                <button class="next-btn">❯</button>
+            </div>
+        `;
+    }
     
-    // Reinitialize slider functionality
+
     initializeSlider();
 }
 
 async function initializeSlider() {
     const slides = document.querySelectorAll('.slide');
+    const sliderTrack = document.querySelector('.slider-track');
     const nextButton = document.querySelector('.slider-controls .next-btn');
     const prevButton = document.querySelector('.slider-controls .prev-btn');
     let currentSlide = 0;
 
     function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === index);
-        });
+        // Move the track to show the correct slide
+        const translateX = -(index * 33.3333); // Each slide is 33.3333% wide
+        sliderTrack.style.transform = `translateX(${translateX}%)`;
     }
 
     nextButton?.addEventListener('click', () => {
@@ -107,6 +86,9 @@ async function initializeSlider() {
         currentSlide = (currentSlide - 1 + slides.length) % slides.length;
         showSlide(currentSlide);
     });
+    
+    // Initialize to show first slide
+    showSlide(0);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
