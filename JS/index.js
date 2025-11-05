@@ -124,6 +124,13 @@ function renderProducts(products) {
             // sending the product ID to the product page
             window.location.href = `pages/productpage.html?id=${product.id}`;
         });
+        //wanted to put an on sale banner here on the product card to show it's on sale
+        if (product.discountedPrice && product.discountedPrice < product.price) {
+            const saleBanner = document.createElement('div');
+            saleBanner.className = 'sale-banner';
+            saleBanner.innerText = 'ON SALE';
+            productCard.appendChild(saleBanner);
+        }
     });
 }
 

@@ -24,6 +24,25 @@
     justify-content: center;
 }
 
+.image-box {
+    position: relative;
+    overflow: hidden;
+}
+
+.sale-banner {
+    position: absolute;
+    top: 15px;
+    right: -30px;
+    background: #ff0000;
+    color: white;
+    padding: 5px 40px;
+    transform: rotate(45deg);
+    font-weight: bold;
+    font-size: 12px;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
 .slide-content {
     display: flex;
     flex-direction: column;

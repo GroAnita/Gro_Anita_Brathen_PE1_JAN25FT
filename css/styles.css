@@ -105,16 +105,12 @@ body {
     font-family: "playfair-display-tshc", sans-serif;
     text-decoration: none;
     width: 1400px;
+    color: var(--font-color)
 }
 
-.header-content__nav__links a:hover {
-    text-decoration: underline;
-}
-
-.header-content__nav__links a{
-    text-decoration: none;
-    color: var(--font-color);
-    text-align: center;
+.header-content__nav__links :hover {
+    color: var(--button-hover-background-color);
+    transform: scale(1.05);
 }
 
 .header-content__nav__right {
@@ -161,17 +157,18 @@ body {
 
 .header-content__nav__right__cart-count{
     position: absolute;
-    top: 0px;
-    right: -8px;
-    background-color: var(--delete-button-click-background-color);
+    top: -8px;
+    right: -15px;
+    background-color: var(--edit-add-button-background-color);
     color: white;
     border-radius: 50%;
-    width: 15px;
-    height: 15px;
+    width: 10px;
+    height: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
+    padding: 5px;
+    font-size: 6px;
     font-size: var(--font-size-xxsmall);
 }
 
@@ -201,8 +198,24 @@ body {
     margin-bottom: 40px;
 }
 
+.sale-banner {
+    position: absolute;
+    top: 15px;
+    right: -30px;
+    background: #ff0000;
+    color: white;
+    padding: 5px 40px;
+    transform: rotate(45deg);
+    font-weight: bold;
+    font-size: 12px;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
 
 .product-card {
+    position: relative;
+    overflow: hidden;
     border: 1px solid #ddd;
     background-color: #eee;
     border-radius: 8px;
@@ -217,7 +230,7 @@ body {
 }
 
 .discounted-price {
-    color: red;
+    color: var(--delete-button-click-background-color);
     font-weight: bold;
 }
 

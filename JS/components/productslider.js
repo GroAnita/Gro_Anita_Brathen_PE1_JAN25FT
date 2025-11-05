@@ -41,12 +41,21 @@ async function createSliderWithAPIProducts() {
         
         sliderTrack.appendChild(slide);
         
+        
         // Make the image clickable to go to product page
         const productImage = slide.querySelector('img');
         productImage.addEventListener('click', () => {
             // sending the product ID to the product page
             window.location.href = `pages/productpage.html?id=${product.id}`;
         });
+        //wanted to put an on sale banner here aswell
+               if (product.discountedPrice && product.discountedPrice < product.price) {
+            const saleBanner = document.createElement('div');
+            saleBanner.className = 'sale-banner';
+            saleBanner.textContent = 'ON SALE';
+            const imageBox = slide.querySelector('.image-box');
+            imageBox.appendChild(saleBanner);
+        }
     });
     
     const sliderContainer = document.querySelector('.slider-container');
@@ -59,6 +68,7 @@ async function createSliderWithAPIProducts() {
             </div>
         `;
     }
+    
     
 
     initializeSlider();

@@ -10,13 +10,12 @@
     padding: 0;
     color: pink;
     overflow: hidden;
-    visibility: hidden;
     position: fixed;
     top: 0px;
-    right: -400px; /* Start off-screen */
+    right: -450px;
     border: 5px solid var(--button-hover-background-color);
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
-    transition: right 0.3s ease;
+    transition: right 0.5s ease;
     z-index: 1000;
 }
 
@@ -29,6 +28,7 @@
     font-size: 40px;
     cursor: pointer;
     color: var(--important-color);
+    transition: background-color 0.2s, color 0.2s;
 }
 .hamburger-menu .close-btn:hover {
     color: var(--delete-button-hover-background-color);
@@ -50,7 +50,6 @@
     z-index: 999;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .hamburger-overlay.show {
