@@ -295,12 +295,12 @@ body {
 }
 
 .header-content__logo__mobile img {
-    width: 150px;
+    width: 80px;
     height: auto;
 }
 
 .header-content-mobile__text {
-    font-size: 3.5rem;
+    font-size: 1.5rem;
     font-family: "playfair-display-tshcs", serif;
     display: block;
     margin-bottom: 10px;
@@ -409,6 +409,15 @@ body {
         font-size: 8px;
         color: var(--font-color);
     }
+    .header-content-mobile__text {
+    font-size: 1.5rem;
+    font-family: "playfair-display-tshcs", serif;
+    display: block;
+    margin-bottom: 10px;
+    color: var(--font-color);
+    text-align: center;
+    font-weight: bold;
+}
 }
 
 @media (max-width: 480px) {
@@ -428,9 +437,11 @@ body {
         font-size: var(--font-size-xxxsmall);
         flex-direction: row;
         gap: 10px;
+        font-weight: bold;
     }
      .header-content__nav__links a{
          font-size: var(--font-size-xxsmall);
+         font-weight: bold;
      }
 
      .header-content__nav__right i{
@@ -449,12 +460,13 @@ body {
          font-size: var(--font-size-xxxsmall);
     }
 
-    .header-content__nav__links a{
+    .header-content__nav__links{
          font-size: var(--font-size-xxsmall);
+         font-weight: bold;
      }
 
      .header-content-mobile__text {
-        font-size: 2rem;
+        font-size: 1.5rem;
      }
 
      .header-underline h2 {
@@ -477,4 +489,13 @@ body {
         .header-content__nav__right i{
          font-size: var(--font-size-xsmall);
      }
+     .header-content-mobile__text {
+    font-size: 1.5rem;
+    font-family: "playfair-display-tshcs", serif;
+    display: block;
+    margin-bottom: 10px;
+    color: var(--font-color);
+    text-align: center;
+    font-weight: bold;
+}
 }
