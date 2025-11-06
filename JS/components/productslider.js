@@ -69,17 +69,42 @@ async function createSliderWithAPIProducts() {
         `;
     }
 
+    // Create carousel dots
+    const carouselDotsContainer = document.getElementById('carouselDots');
+    carouselDotsContainer.innerHTML = '';
+    products.forEach((_, index) => {
+        const dot = document.createElement('span');
+        dot.className = 'carousel-dot';
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => {
+            const sliderTrack = document.querySelector('.slider-track');
+            const targetTranslate = -(index * 33.3333);
+            sliderTrack.style.transform = `translateX(${targetTranslate}%)`;
+            
+            document.querySelectorAll('.carousel-dot').forEach(d => d.classList.remove('active'));
+            dot.classList.add('active');
+        });
+        carouselDotsContainer.appendChild(dot);
+    });
+
     // Detect if device supports touch
     const isMobileSize = window.innerWidth <= 1024;
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    if (isTouchDevice) {
-        // Hide arrows, enable touch/drag
+    if (isMobileSize) {
+        // On mobile screens, enable touch and hide arrows
         document.querySelector('.slider-controls').style.display = 'none';
         addTouchControls();
     } else {
         // Keep arrows for desktop
         initializeSlider(); // Your current arrow-based navigation
     }
+}
+
+// Helper function to update active dot
+function updateActiveDot(slideIndex) {
+    document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === slideIndex);
+    });
 }
 
 async function initializeSlider() {
@@ -98,11 +123,13 @@ async function initializeSlider() {
     nextButton?.addEventListener('click', () => {
         currentSlide = (currentSlide + 1) % slides.length;
         showSlide(currentSlide);
+        updateActiveDot(currentSlide);
     });
 
     prevButton?.addEventListener('click', () => {
         currentSlide = (currentSlide - 1 + slides.length) % slides.length;
         showSlide(currentSlide);
+        updateActiveDot(currentSlide);
     });
     
     // Initialize to show first slide
@@ -192,7 +219,9 @@ function addTouchControls() {
 
         const slideWidth = sliderTrack.offsetWidth / slides.length;
         prevTranslate = -(currentSlide * slideWidth);
-
+        
+        // Update active dot
+        updateActiveDot(currentSlide);
     }
 
     function getPositionX(event) {

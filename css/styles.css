@@ -35,8 +35,9 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "playfair-display-tshcs", sans-serif;background-color: var(--background-color);
-  color: var(--font-color)
+  font-family: "playfair-display-tshcs", sans-serif;
+  background-color: var(--background-color);
+  color: var(--font-color);
 }
 
 .container {
@@ -100,12 +101,13 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     font-size: var(--font-size-large);
     font-family: "playfair-display-tshc", sans-serif;
     text-decoration: none;
     width: 100%;
-    color: var(--font-color)
+    color: var(--font-color);
+    gap: 30px;
 }
 
 .header-content__nav__links :hover {
@@ -178,7 +180,7 @@ body {
     top: -8px;
     right: -15px;
     background-color: var(--edit-add-button-background-color);
-    color: white;
+    color: var(--font-color);
     border-radius: 50%;
     width: 10px;
     height: 10px;
@@ -187,7 +189,7 @@ body {
     justify-content: center;
     padding: 5px;
     font-size: 6px;
-    font-size: var(--font-size-xxsmall);
+    font-size: var(--font-size-xxxsmall);
 }
 
 .header-underline {
@@ -336,8 +338,8 @@ body {
         max-width: 100%;
     }
     .header-content__nav__links {
-
         width: 100%;
+        justify-content: center;
     }
     .shopping_cart {
         height: 70vh;
@@ -387,6 +389,26 @@ body {
     margin-left: 20px;
     font-size: var(--font-size-large);
     }
+    .header-content__nav__links {
+        font-size: var(--font-size-small);
+        justify-content: center;
+        align-items: center;
+    }
+    .product-card p{
+        font-size: var(--font-size-xxsmall);
+    }
+    .price.strikethrough {
+        font-size: var(--font-size-xxsmall);
+}
+    .load-more-btn {
+        max-width: 150px;
+        font-size: var(--font-size-xxsmall);
+        margin: auto;
+    }
+    .header-content__nav__right__cart-count {
+        font-size: 8px;
+        color: var(--font-color);
+    }
 }
 
 @media (max-width: 480px) {
@@ -402,8 +424,13 @@ body {
          font-size: var(--font-size-xxxsmall);
 
     }
+    .header-content__nav__links {
+        font-size: var(--font-size-xxxsmall);
+        flex-direction: row;
+        gap: 10px;
+    }
      .header-content__nav__links a{
-         font-size: var(--font-size-small);
+         font-size: var(--font-size-xxsmall);
      }
 
      .header-content__nav__right i{

@@ -76,6 +76,24 @@
     margin-bottom: 15px;
 }
 
+#carouselDots {
+    text-align: center;
+    margin-top: 15px;
+}
+.carousel-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    background-color: var(--input-border-color);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.carousel-dot.active {
+    background-color: var(--edit-add-button-hover-background-color);
+}
+
 
 /* Slider Control buttons */
 .slider-controls {
@@ -139,8 +157,10 @@
     }
     .sale-banner {
     font-size: 8px;
-
-}
+    }
+    .slider-controls {
+        display: none;
+    }
 }
 
 @media (max-width: 480px) {
@@ -201,11 +221,11 @@
     }
 
     .price.strikethrough{
-        font-size: var(--font-size-xxxsmall);
+        font-size: var(--font-size-xxsmall);
     }
 
     .discounted-price{
-        font-size: var(--font-size-xxxsmall);
+        font-size: var(--font-size-xxsmall);
     }
 
 }
