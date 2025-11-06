@@ -46,6 +46,7 @@ body {
 
  .header-topbar {
     position: sticky;
+    touch-action: manipulation;
     top: 0;
     background-color: var(--font-color);
     height: 40px;
@@ -353,7 +354,12 @@ body {
     .header-content__leftemptyforbalance i{
     display:block;
     margin-left: 20px;
-}
+    font-size: var(--font-size-large);
+    }
+
+    .header-content i{
+        display:none;
+    }
 }
 
 @media (max-width: 768px) {

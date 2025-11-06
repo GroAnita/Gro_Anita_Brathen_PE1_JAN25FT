@@ -71,8 +71,7 @@ async function createSliderWithAPIProducts() {
 
     // Detect if device supports touch
     const isMobileSize = window.innerWidth <= 1024;
-    const isTouchDevice = ('ontouchstart' in window || navigator.maxTouchPoints > 0) && isMobileSize;
-
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     if (isTouchDevice) {
         // Hide arrows, enable touch/drag
         document.querySelector('.slider-controls').style.display = 'none';

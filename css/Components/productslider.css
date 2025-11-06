@@ -5,14 +5,25 @@
     height: 350px; /* Set a height */
     overflow: hidden;
    background: linear-gradient(to bottom, var(--secondary-color), var(--background-color));
-    color: var(--font-color)
-    
+    color: var(--font-color);
+    z-index: 9;
 }
 
 .slider-track {
     display: flex;
     transition: transform 0.6s ease-in-out;
     width: 300%; /* 3 slides = 300% width */
+    cursor: grab;
+    user-select: none;
+    touch-action: pan-x;
+}
+
+.slider-track:active {
+    cursor: grabbing;
+}
+
+.slider-track img {
+    pointer-events: none;
 }
 
 .slide {
@@ -74,6 +85,7 @@
     width: 90%;
     display: flex;
     justify-content: space-between;
+    z-index: 10;
 }
 
 .prev-btn, .next-btn {
@@ -86,19 +98,7 @@
     cursor: pointer;
 }
 
-.slider-track {
-    cursor: grab;
-    user-select: none;
-    touch-action: pan-y;
-}
 
-.slider-track:active {
-    cursor: grabbing;
-}
-
-.slider-track img {
-    pointer-events: none;
-}
 
 @media (max-width: 1024px) {
   
@@ -132,7 +132,15 @@
 }
 
 @media (max-width: 768px) {
+    .slide-content {
+        width: 300px;
+        margin-left: 0;
+        font-size: var(--font-size-xxxsmall);
+    }
+    .sale-banner {
+    font-size: 8px;
 
+}
 }
 
 @media (max-width: 480px) {
@@ -152,6 +160,12 @@
     }
     .slider-controls {
         display: none;
+    }
+    .slide-content h2 {
+        font-size: var(--font-size-xxsmall);
+    }
+    .slide-content p {
+        font-size: var(--font-size-xxxsmall);
     }
 }
 
@@ -175,23 +189,23 @@
     }
 
     .slide-content h2 {
-        font-size: var(--font-size-small);
+        font-size: var(--font-size-xxsmall);
     }
 
     .slide-content p {
-        font-size: var(--font-size-xxsmall);
+        font-size: var(--font-size-xxxsmall);
     }
 
     .price{
-        font-size: var(--font-size-xxsmall);
+        font-size: var(--font-size-xxxsmall);
     }
 
     .price.strikethrough{
-        font-size: var(--font-size-xxsmall);
+        font-size: var(--font-size-xxxsmall);
     }
 
     .discounted-price{
-        font-size: var(--font-size-xxsmall);
+        font-size: var(--font-size-xxxsmall);
     }
 
 }
