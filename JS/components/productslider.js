@@ -87,17 +87,8 @@ async function createSliderWithAPIProducts() {
         carouselDotsContainer.appendChild(dot);
     });
 
-    // Detect if device supports touch
-    const isMobileSize = window.innerWidth <= 1024;
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    if (isMobileSize) {
-        // On mobile screens, enable touch and hide arrows
-        document.querySelector('.slider-controls').style.display = 'none';
-        addTouchControls();
-    } else {
-        // Keep arrows for desktop
-        initializeSlider(); // Your current arrow-based navigation
-    }
+    // Initialize slider controls based on screen size
+    initializeSliderControls();
 }
 
 // Helper function to update active dot
@@ -243,7 +234,53 @@ function addTouchControls() {
 
 }
 
+// Function to initialize slider controls based on screen size
+function initializeSliderControls() {
+    const isMobileSize = window.innerWidth <= 1024;
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
+    // Reset any existing event listeners and styles
+    const sliderTrack = document.querySelector('.slider-track');
+    const sliderControls = document.querySelector('.slider-controls');
+    
+    if (!sliderTrack) return; // Exit if slider doesn't exist yet
+    
+    // Remove all existing event listeners by cloning the element
+    const newSliderTrack = sliderTrack.cloneNode(true);
+    sliderTrack.parentNode.replaceChild(newSliderTrack, sliderTrack);
+    
+    // Reset styles
+    if (sliderControls) {
+        sliderControls.style.display = ''; // Reset to visible
+    }
+    
+    // Apply the appropriate control logic
+    if (isMobileSize && isTouchDevice) {
+        // On mobile screens, enable touch and hide arrows
+        if (sliderControls) sliderControls.style.display = 'none';
+        addTouchControls();
+    }
+    else if (isMobileSize) {
+        // On mobile size but no touch, hide arrows and use initializeSlider
+        if (sliderControls) sliderControls.style.display = 'none';
+        initializeSlider();
+    }
+    else {
+        // Keep arrows for desktop
+        initializeSlider();
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     createSliderWithAPIProducts();
+});
+
+// Add resize event listener to handle screen size changes
+window.addEventListener('resize', () => {
+    // Debounce the resize event to avoid too many calls
+    clearTimeout(window.sliderResizeTimeout);
+    window.sliderResizeTimeout = setTimeout(() => {
+        initializeSliderControls();
+    }, 250); // Wait 250ms after resize stops
 });
 
