@@ -113,9 +113,14 @@ body.show-cart::before {
 }
 
 @media (max-width: 768px) {
-
+    .shopping_cart {
+        width: 90%;
+    }
 }
 
 @media (max-width: 480px) {
-
+    .shopping_cart {
+        width: 89%;
+        height: 94vh;
+    }
 }

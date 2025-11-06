@@ -45,12 +45,16 @@ body {
 }
 
  .header-topbar {
+    position: sticky;
+    top: 0;
     background-color: var(--font-color);
     height: 40px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
- }
+    color: var(--background-color);
+    z-index: 1000;
+}
 
 .header-content {
     display:flex;
@@ -127,12 +131,29 @@ body {
     color: var(--background-color);
 }
 
+.header-content__leftemptyforbalance {
+    flex-grow: 1;
+}
 
+.header-content__leftemptyforbalance i{
+    display:none;
+}
+
+
+.header-content__nav__left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 400px;
+    gap: 15px;
+    font-size: 20px;
+
+}
 
 .header-content__nav__left p{
     font-size: var(--font-size-small);
     letter-spacing: 0.5em;
-    margin-left: 60px;
+    
 }
 .header-content i{
     font-size: var(--font-size-largeplus);
@@ -323,6 +344,16 @@ body {
     .container {
         max-width: 1024px;
     }
+      .header-content__nav__left p{
+        font-size: var(--font-size-xxsmall);
+        letter-spacing: 0.3em;
+        flex: 1;
+        text-align: end;
+    }
+    .header-content__leftemptyforbalance i{
+    display:block;
+    margin-left: 20px;
+}
 }
 
 @media (max-width: 768px) {
@@ -338,6 +369,12 @@ body {
     }
     nav {
         max-width: 1000px;
+    }
+    .header-content__nav__left p{
+        font-size: var(--font-size-xxsmall);
+        letter-spacing: 0.3em;
+        width: 100%;
+       
     }
 }
 
@@ -357,5 +394,49 @@ body {
      .header-content__nav__links a{
          font-size: var(--font-size-small);
      }
+
+     .header-content__nav__right i{
+         font-size: var(--font-size-small);
+     }
+
+
+     .header-underline h2 {
+        font-size: var(--font-size-xxsmall);
+     }
   
+}
+
+@media (max-width: 375px) {
+    .header-content__nav__left p{
+         font-size: var(--font-size-xxxsmall);
+    }
+
+    .header-content__nav__links a{
+         font-size: var(--font-size-xxsmall);
+     }
+
+     .header-content-mobile__text {
+        font-size: 2rem;
+     }
+
+     .header-underline h2 {
+        font-size: var(--font-size-xxxsmall);
+     }
+
+     .product-card img {
+        height: 200px;
+        width: 100%;
+     }
+
+     .header-content {
+        max-width: 374px;
+     }
+
+     .vr {
+        max-width: 374px;
+     }
+
+        .header-content__nav__right i{
+         font-size: var(--font-size-xsmall);
+     }
 }

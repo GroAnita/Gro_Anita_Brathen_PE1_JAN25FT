@@ -97,3 +97,9 @@
     height: auto;
     margin: auto
 }
+
+@media (max-width: 480px) {
+    .hamburger-menu {
+        width: 97%;
+    }
+}

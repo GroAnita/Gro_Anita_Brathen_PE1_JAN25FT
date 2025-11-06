@@ -154,3 +154,44 @@
         display: none;
     }
 }
+
+@media (max-width: 375px) {
+
+      .slide {
+        flex-direction: row;
+    }
+
+    .slide-content {
+        margin-left: 0;
+        max-width: 25%;
+    }
+
+    .slider-image {
+        width: 100px;
+        height: 100px;
+    }
+    .slider-controls {
+        display: none;
+    }
+
+    .slide-content h2 {
+        font-size: var(--font-size-small);
+    }
+
+    .slide-content p {
+        font-size: var(--font-size-xxsmall);
+    }
+
+    .price{
+        font-size: var(--font-size-xxsmall);
+    }
+
+    .price.strikethrough{
+        font-size: var(--font-size-xxsmall);
+    }
+
+    .discounted-price{
+        font-size: var(--font-size-xxsmall);
+    }
+
+}

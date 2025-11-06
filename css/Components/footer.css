@@ -212,3 +212,96 @@ footer li{
     }
 
 }
+
+@media (max-width: 768px) {
+
+    .footer-content__top {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .footer-content__right {
+        width: 300px;
+        margin: auto;
+        padding: 10px;
+    }
+    .footer-content__right__title h4{
+        margin: 5px;
+    }
+
+    .footer-content__right__icons {
+        margin-bottom: 10px;
+    }
+
+    .footer-content__right i {
+        font-size: var(--font-size-small);
+        margin: 18px;
+    }
+    .vr {
+        width: 100%;
+        height: 1px;
+    }
+    .footer-content__left {
+        text-align: center;
+        max-width: 300px;
+    }
+    .footer-content__bottom__top {
+        flex-direction: row;
+    }
+    .footer-content__bottom__top__strawberry, .footer-content__bottom__top__visa,.footer-content__bottom__top__eco img{
+    width: 50px;
+    height: auto;
+    margin-left: 20px;
+    }
+
+    .footer-content__bottom__top__mestercard, .footer-content__bottom__top__mestercard img{
+        width: 50px;
+        height: auto;
+        margin-right: 20px;
+    }
+
+}
+
+
+@media (max-width: 375px) {
+
+     .vr {
+        max-width: 374px;
+     }
+
+     .footer-content__top p{
+        max-width: 354px;
+        font-size: var(--font-size-xxxsmall);  
+        margin: auto;
+     }  
+
+     .footer-content__centera, .footer-content__centerb {
+        width: 354px;
+        font-size: var(--font-size-xxxsmall);
+     }
+
+     .footer-content__right {
+        width: 354px;
+        font-size: var(--font-size-xxxsmall);
+     }
+     .container {
+        max-width: 375px;
+        margin: auto;
+     }
+
+    .footer-content__bottom__top__strawberry, .footer-content__bottom__top__visa,.footer-content__bottom__top__eco img{
+    width: 50px;
+    height: auto;
+    margin-left: 20px;
+    }
+
+    .footer-content__bottom__top__mestercard, .footer-content__bottom__top__mestercard img{
+        width: 50px;
+        height: auto;
+        margin-right: 20px;
+    }
+    .footer-content__bottom__top {
+        gap: 10px;
+        flex-direction: row;
+    }
+}
