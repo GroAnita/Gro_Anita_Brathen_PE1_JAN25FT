@@ -354,7 +354,7 @@ body {
     .header-content__leftemptyforbalance i{
     display:block;
     margin-left: 20px;
-    font-size: var(--font-size-large);
+    font-size: var(--font-size-largeplus);
     }
 
     .header-content i{
@@ -381,6 +381,11 @@ body {
         letter-spacing: 0.3em;
         width: 100%;
        
+    }
+       .header-content__leftemptyforbalance i{
+    display:block;
+    margin-left: 20px;
+    font-size: var(--font-size-large);
     }
 }
 
