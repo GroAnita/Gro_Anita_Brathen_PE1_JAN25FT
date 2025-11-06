@@ -52,20 +52,25 @@ document.addEventListener('DOMContentLoaded', () => {
             const category = e.target.getAttribute('data-category');
             resetPagination(); // Reset to page 1 when changing categories
             
+            let productsToShow;
             if (category === 'all') {
-                setupPagination(allProducts.length, (page) => {
-                    const paginatedProducts = getPaginatedProducts(allProducts);
-                    renderProducts(paginatedProducts);
-                });
-                const paginatedProducts = getPaginatedProducts(allProducts);
-                renderProducts(paginatedProducts);
+                productsToShow = allProducts;
             } else {
-                const filteredProducts = allProducts.filter(product => isInCategory(product.id, category));
-                setupPagination(filteredProducts.length, (page) => {
-                    const paginatedProducts = getPaginatedProducts(filteredProducts);
+                productsToShow = allProducts.filter(product => isInCategory(product.id, category));
+            }
+            
+            // Use different approach based on screen size
+            if (window.innerWidth <= 768) {
+                // Mobile: Use load more approach
+                displayedProducts = 0; // Reset displayed count
+                renderProductsWithLoadMore(productsToShow);
+            } else {
+                // Desktop: Use pagination approach
+                setupPagination(productsToShow.length, (page) => {
+                    const paginatedProducts = getPaginatedProducts(productsToShow);
                     renderProducts(paginatedProducts);
                 });
-                const paginatedProducts = getPaginatedProducts(filteredProducts);
+                const paginatedProducts = getPaginatedProducts(productsToShow);
                 renderProducts(paginatedProducts);
             }
         });
@@ -75,21 +80,126 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchProducts();
 });
 
+// Handle window resize to switch between mobile/desktop approaches
+window.addEventListener('resize', () => {
+    // Remove existing load more button if it exists
+    const existingBtn = document.getElementById('loadMoreBtn');
+    if (existingBtn) {
+        existingBtn.remove();
+    }
+    
+    // Reset displayed products count
+    displayedProducts = 0;
+    
+    // Re-fetch and display products with appropriate approach
+    fetchProducts();
+});
+
+function getProductsPerPage() {
+    return window.innerWidth <= 768 ? 6 : 12;
+}
+
 async function fetchProducts() {
     try {
         const response = await fetch('https://v2.api.noroff.dev/online-shop');
         const data = await response.json();
         allProducts = data.data;
-        // Setup pagination for all products
-        setupPagination(allProducts.length, (page) => {
+        
+        // Use different approach based on screen size
+        if (window.innerWidth <= 768) {
+            // Mobile: Use load more approach
+            renderProductsWithLoadMore(allProducts);
+        } else {
+            // Desktop: Use pagination approach
+            setupPagination(allProducts.length, (page) => {
+                const paginatedProducts = getPaginatedProducts(allProducts);
+                renderProducts(paginatedProducts);
+            });
             const paginatedProducts = getPaginatedProducts(allProducts);
             renderProducts(paginatedProducts);
-        });
-        // Show first page
-        const paginatedProducts = getPaginatedProducts(allProducts);
-        renderProducts(paginatedProducts);
+        }
     } catch (error) {
         console.error('Error fetching products:', error);
+    }
+}
+
+let displayedProducts = 0;
+const mobileProductsPerLoad = 6;
+const desktopProductsPerLoad = 12;
+
+function getProductsPerLoad() {
+    return window.innerWidth <= 768 ? mobileProductsPerLoad : desktopProductsPerLoad;
+}
+
+function renderProductsWithLoadMore(products, isLoadMore = false) {
+    const container = document.getElementById('products-container');
+    const productsPerLoad = getProductsPerLoad();
+
+    if (!isLoadMore) {
+        container.innerHTML = '';
+        displayedProducts = 0;
+    }
+
+    const productsToShow = products.slice(displayedProducts, displayedProducts + productsPerLoad);
+
+    productsToShow.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+
+        productCard.innerHTML = `
+            <img src="${product.image.url}" alt="${product.title}" class="product-image">
+            <h3>${product.title}</h3>
+            ${product.discountedPrice && product.discountedPrice < product.price ? 
+                `<p class="price strikethrough">$${product.price}</p>
+                 <p class="discounted-price">$${product.discountedPrice}</p>` :
+                `<p class="price">$${product.price}</p>`
+            }
+        `;
+
+        container.appendChild(productCard);
+
+        const productImage = productCard.querySelector('.product-image');
+        productImage.addEventListener('click', () => {
+            window.location.href = `pages/productpage.html?id=${product.id}`;
+        });
+
+        // Add sale banner if product has discount
+        if (product.discountedPrice && product.discountedPrice < product.price) {
+            const saleBanner = document.createElement('div');
+            saleBanner.className = 'sale-banner';
+            saleBanner.textContent = 'ON SALE';
+            productCard.appendChild(saleBanner);
+        }
+    });
+
+    // Update count AFTER the loop
+    displayedProducts += productsToShow.length;
+    
+    // Call updateLoadMoreButton ONCE after all products are added
+    updateLoadMoreButton(products.length);
+}
+
+function updateLoadMoreButton(totalProducts) {
+    let loadMoreBtn = document.getElementById('loadMoreBtn');
+    
+    // Create button if it doesn't exist
+    if (!loadMoreBtn) {
+        loadMoreBtn = document.createElement('button');
+        loadMoreBtn.id = 'loadMoreBtn';
+        loadMoreBtn.textContent = 'Load More';
+        loadMoreBtn.className = 'load-more-btn';
+        document.getElementById('products-container').after(loadMoreBtn);
+        
+        loadMoreBtn.addEventListener('click', () => {
+            renderProductsWithLoadMore(allProducts, true);
+        });
+    }
+    
+    // Show/hide button based on conditions
+    if (displayedProducts >= totalProducts) {
+        loadMoreBtn.style.display = 'none';
+    } else {
+        loadMoreBtn.style.display = window.innerWidth <= 768 ? 'block' : 'none';
     }
 }
 
@@ -133,6 +243,8 @@ function renderProducts(products) {
         }
     });
 }
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#loginModalTrigger').addEventListener('click', (e) => {

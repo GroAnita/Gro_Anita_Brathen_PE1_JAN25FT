@@ -34,6 +34,22 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+    
+    // Close hamburger menu when clicking outside
+    document.addEventListener('click', (event) => {
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const hamburgerIcon = document.getElementById('hamburgerMenuIcon');
+        
+        // Check if menu is open and click is outside menu and not on the icon
+        if (hamburgerMenu && hamburgerMenu.classList.contains('show-hamburger-menu')) {
+            if (!hamburgerMenu.contains(event.target) && !hamburgerIcon.contains(event.target)) {
+                hamburgerMenu.classList.remove('show-hamburger-menu');
+                if (hamburgerOverlay) {
+                    hamburgerOverlay.classList.remove('show');
+                }
+            }
+        }
+    });
 });
 
 const menuLinks = document.querySelectorAll('.hamburger-menu__links a');

@@ -100,3 +100,22 @@ body.show-cart::before {
     margin: 0;
     overflow-y: auto;
 }
+
+
+
+
+
+@media (max-width: 1024px) {
+  
+    .shopping_cart {
+        height: 95vh;
+    }
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 480px) {
+
+}

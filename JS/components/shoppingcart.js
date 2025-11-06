@@ -15,9 +15,15 @@ if (closeShoppingCartBtn) {
 }
 
 //close shopping cart when clicking outside the cart content
-shoppingBagOverlay.addEventListener('click', (event) => {
-    if (event.target === shoppingBagOverlay) {
-        document.body.classList.remove('show-cart');
+document.addEventListener('click', (event) => {
+    const shoppingCart = document.getElementById('shoppingCart');
+    const shoppingBagIcon = document.getElementById('shoppingBagIcon');
+    
+    // Check if cart is open and click is outside cart and not on the icon
+    if (document.body.classList.contains('show-cart')) {
+        if (!shoppingCart.contains(event.target) && !shoppingBagIcon.contains(event.target)) {
+            document.body.classList.remove('show-cart');
+        }
     }
 });
 

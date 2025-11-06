@@ -174,3 +174,41 @@ footer li a:hover{
 footer li{
     margin-bottom: 8px;
 }
+
+@media (max-width: 480px) {
+
+    .footer-content__top {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .footer-content__right {
+        width: 450px;
+        margin: auto;
+        padding: 10px;
+    }
+    .footer-content__right__title h4{
+        margin: 5px;
+    }
+
+    .footer-content__right__icons {
+        margin-bottom: 10px;
+    }
+
+    .footer-content__right i {
+        font-size: var(--font-size-small);
+        margin: 18px;
+    }
+    .vr {
+        width: 100%;
+        height: 1px;
+    }
+    .footer-content__left {
+        text-align: center;
+        max-width: 400px;
+    }
+    .footer-content__bottom__top {
+        flex-direction: column;
+    }
+
+}
