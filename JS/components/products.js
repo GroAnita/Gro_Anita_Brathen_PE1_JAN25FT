@@ -37,3 +37,20 @@ function isInCategory(productId, category) {
     const categories = getProductCategories(productId);
     return categories.includes(category);
 }
+
+
+//making images in to links to product.html with product id as parameter
+
+let imagelinks = document.getElementsByTagName("img");
+for (let i = 0; i < imagelinks.length; i++) {
+    let img = imagelinks[i];
+    let productId = img.getAttribute("data-product-id");
+    if (productId) {
+        let link = document.createElement("a");
+        link.href = `product.html?id=${productId}`;
+        img.parentNode.insertBefore(link, img);
+        link.appendChild(img);
+    }
+}
+
+export { isInCategory };

@@ -219,11 +219,14 @@ function renderProducts(products) {
         productCard.innerHTML = `
             <img src="${product.image.url}" alt="${product.title}" class="product-image">
             <h3>${product.title}</h3>
+            <div class="price-container">
             ${product.discountedPrice && product.discountedPrice < product.price ? 
                 `<p class="price strikethrough">$${product.price}</p>
                  <p class="discounted-price">$${product.discountedPrice}</p>` :
                 `<p class="price">$${product.price}</p>`
             }
+            </div>
+            <button class="add-to-cart-btn">Add to Cart</button>
         `;
         
         container.appendChild(productCard);
@@ -234,7 +237,7 @@ function renderProducts(products) {
             // sending the product ID to the product page
             window.location.href = `pages/productpage.html?id=${product.id}`;
         });
-        //wanted to put an on sale banner here on the product card to show it's on sale
+        //My sales banner
         if (product.discountedPrice && product.discountedPrice < product.price) {
             const saleBanner = document.createElement('div');
             saleBanner.className = 'sale-banner';

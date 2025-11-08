@@ -12,10 +12,10 @@
     overflow: hidden;
     position: fixed;
     top: 0px;
-    right: -450px;
+    left: -450px;
     border: 5px solid var(--button-hover-background-color);
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
-    transition: right 0.5s ease;
+    transition: left 0.5s ease;
     z-index: 1000;
 }
 
@@ -35,7 +35,7 @@
 }
 
 .show-hamburger-menu.hamburger-menu {
-    right: 0;
+    left: 0;
     visibility: visible;
 }
 
