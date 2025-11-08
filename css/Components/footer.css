@@ -52,8 +52,8 @@
 }
 
 .footer-content__right label {
-    font-size: var(--font-size-medium);
-    margin-bottom: 5px;
+    font-size: var(--font-size-small);
+    margin: 15px auto;
     color: var(--font-color);
     font-style: italic;
     font-weight: bold;

@@ -1,3 +1,5 @@
+import { formatProductPrice, hasDiscount, createSalesBanner } from '../utils.js';
+
 
 async function getRandomProductsForSlider(count = 3) {
     try {
@@ -31,11 +33,7 @@ async function createSliderWithAPIProducts() {
         <div class="slide-content">
             <h2>${product.title}</h2>
             <p>${product.description || 'Featured product'}</p>
-            ${product.discountedPrice && product.discountedPrice < product.price ? 
-                `<p class="price strikethrough">$${product.price}</p>
-                <p class="discounted-price">$${product.discountedPrice}</p>` :
-                `<p class="price">$${product.price}</p>`
-            }
+            ${formatProductPrice(product)}
         </div>
     `;
         
@@ -48,11 +46,8 @@ async function createSliderWithAPIProducts() {
             // sending the product ID to the product page
             window.location.href = `pages/productpage.html?id=${product.id}`;
         });
-        //wanted to put an on sale banner here aswell
-               if (product.discountedPrice && product.discountedPrice < product.price) {
-            const saleBanner = document.createElement('div');
-            saleBanner.className = 'sale-banner';
-            saleBanner.textContent = 'ON SALE';
+            if (hasDiscount(product)) {
+            const saleBanner = createSalesBanner();
             const imageBox = slide.querySelector('.image-box');
             imageBox.appendChild(saleBanner);
         }
