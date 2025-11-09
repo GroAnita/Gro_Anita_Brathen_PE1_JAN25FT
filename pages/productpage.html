@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="../css/Components/productslider.css">
     <link rel="stylesheet" href="../css/Components/pagination.css">
     <link rel="stylesheet" href="../css/productpage.css">
+    <link rel="icon" type="image/svg+xml" href="../images/horseheadlogo.svg">
     <title>Pre-loved Products</title>
 </head>
 <body>
@@ -38,7 +39,7 @@
             <!-- Mobile Header -->
             <div class="header-content-mobile">
                 <div class="header-content__logo__mobile">
-                    <img src="../images/horseheadlogo.svg" alt="Logo" class="logo--mobile">
+                    <a href="index.html"><img src="../images/horseheadlogo.svg" alt="Logo" class="logo--mobile"></a>
                 </div>
                 <span class="header-content-mobile__text">The Second Hand Company</span>
             </div>  
@@ -50,7 +51,7 @@
                 </div>
                 <div class="header-content__center">
                 <div class="header-content__center__logo">
-                    <img src="../images/horseheadlogo.svg" alt="Logo" class="logo">
+                   <a href="../index.html"><img src="../images/horseheadlogo.svg" alt="Logo" class="logo"></a>
                 </div>
                 <div class="header-content__center__text">2025</div>
                 </div>
@@ -81,7 +82,7 @@
                     <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Terms of Service</a></li>
                     <li><a href="#">Why choose pre-owned?</a></li>
-                    <li><a href="#" id="loginModalTrigger">Member Login</a></li>
+                    <li><a href="#" id="loginModalTrigger"><i class="fa-regular fa-user"></i> Member Login</a></li>
                 </ul>
                 <div class="hamburger-menu__logo">
                     <img src="../images/horseheadlogo.svg" alt="Logo" class="logo">
@@ -152,7 +153,7 @@
                         <i class="fa-brands fa-tiktok"></i>
                         <i class="fab fa-instagram"></i>
                     </div>
-                        <label>Join our Newsletter</label>
+                        <h5>Join our Newsletter</h5>
                         <input type="email" name="email" placeholder="Enter your email" autocomplete="on">
                         <button class="main-btn" type="submit">Subscribe</button>
                 </div>
@@ -177,10 +178,12 @@
                 </div>
             
         </footer>
+        <script type="module" src="../JS/components/cart.js"></script>
         <script type="module" src="../JS/productpage.js"></script>
         <script type="module" src="../JS/components/shoppingcart.js"></script>
         <script type="module" src="../JS/components/hamburgermenuoverlay.js"></script>
           <script type="module" src="../JS/components/products.js"></script>
+        <script type="module" src="../JS/components/loginusermodal.js"></script>  
     </div>
 </body>
 </html>

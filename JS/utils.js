@@ -166,3 +166,52 @@ function shareButtonSetup(imageContainerSelector, urlToShare, productTitle = 'Ch
 }
 
 export { shareButtonSetup };
+
+// Member Login Modal Module
+
+const memberLoginModal = (() => {
+    // Get modal element
+    const modal = document.getElementById('loginModal');
+    
+    // Check if modal exists before proceeding
+    if (!modal) {
+        return {
+            open: () => console.warn('Login modal not available'),
+            close: () => console.warn('Login modal not available')
+        };
+    }
+    
+    const closeBtn = modal.querySelector('.close-btn');
+
+    // Function to open the modal
+    function openModal() {
+        modal.style.display = 'block';
+    }
+
+    // Function to close the modal
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+
+    // Event listener for close button (only if it exists)
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
+
+    // Event listener for clicks outside the modal content
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    return {
+        open: openModal,
+        close: closeModal
+    };
+})();
+
+// Example usage: memberLoginModal.open(); to open the modal
+// memberLoginModal.close(); to close the modal
+
+export default memberLoginModal;

@@ -1,4 +1,7 @@
 import { setupPagination, getPaginatedProducts, resetPagination } from './components/pagination.js';
+import { showLoginModal } from './components/loginusermodal.js';
+import { addToCart } from './components/cart.js';
+
 
 const API_URL = 'https://v2.api.noroff.dev/online-shop';
 const productsToDisplay = 12;
@@ -162,6 +165,17 @@ function renderProductsWithLoadMore(products, isLoadMore = false) {
         productImage.addEventListener('click', () => {
             window.location.href = `pages/productpage.html?id=${product.id}`;
         });
+        
+        // Add event listener for add to cart button (mobile version too)
+        const addToCartBtn = productCard.querySelector('.add-to-cart-btn');
+        if (addToCartBtn) {
+            addToCartBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Adding to cart from mobile load more:', product.id);
+                addToCart(product);
+            });
+        }
 
         // Add sale banner if product has discount
         if (product.discountedPrice && product.discountedPrice < product.price) {
@@ -237,6 +251,18 @@ function renderProducts(products) {
             // sending the product ID to the product page
             window.location.href = `pages/productpage.html?id=${product.id}`;
         });
+        
+        // Add event listener for add to cart button
+        const addToCartBtn = productCard.querySelector('.add-to-cart-btn');
+        if (addToCartBtn) {
+            addToCartBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation(); // Prevent triggering the image click
+                console.log('Adding to cart from homepage:', product.id);
+                addToCart(product);
+            });
+        }
+        
         //My sales banner
         if (product.discountedPrice && product.discountedPrice < product.price) {
             const saleBanner = document.createElement('div');
@@ -250,8 +276,27 @@ function renderProducts(products) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('#loginModalTrigger').addEventListener('click', (e) => {
-        e.preventDefault();
-        showLoginModal();
-    });
+    const loginTrigger = document.querySelector('#loginModalTrigger');
+    
+    if (loginTrigger) {
+        loginTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Open the login modal
+            showLoginModal();
+            
+            // Close the hamburger menu after opening modal
+            const hamburgerMenuOverlay = document.getElementById('hamburgerMenu');
+            const hamburgerOverlay = document.getElementById('hamburgerOverlay');
+            
+            if (hamburgerMenuOverlay) {
+                hamburgerMenuOverlay.classList.remove('show-hamburger-menu');
+            }
+            if (hamburgerOverlay) {
+                hamburgerOverlay.classList.remove('show');
+            }
+        });
+    } else {
+        console.error('Login trigger not found!');
+    }
 });

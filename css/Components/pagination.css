@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0;
+    margin: var(--margin-medium) 0;
 }
 
 .pagination-button {
@@ -12,15 +12,15 @@
     padding: 5px 10px;
     margin: 0 5px;
     cursor: pointer;
-    color: white;
+    color: var(--font-color);
     transition: background-color 0.3s;
 }
 
 .pagination-button:hover {
-    background-color: #3b3a3a;
+    background-color: var(--button-hover-background-color);
 }
 
 .pagination-button.active {
     background-color: var(--button-click-background-color);
-    color: white;
+    color: var(--font-color);
 }

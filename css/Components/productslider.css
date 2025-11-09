@@ -1,8 +1,8 @@
 
 .slider-container {
-    position: relative; /* MUST have this */
+    position: relative; 
     width: 100%;
-    height: 350px; /* Set a height */
+    height: 350px; 
     overflow: hidden;
    background: linear-gradient(to bottom, var(--secondary-color), var(--background-color));
     color: var(--font-color);
@@ -60,31 +60,31 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 20px;
+    padding: var(--section-padding-medium);
     color: var(--font-color);
     margin-left: 150px;
     max-width: 500px;
 }
 
 .slider-image {
-    width: 250px;
-    height: 250px;
+    width: var(--image-small);
+    height: var(--image-small);
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: var(--border-radius-medium);
     border: 3px solid var(--font-color);
     cursor: pointer;
-    margin-bottom: 15px;
+    margin-bottom: var(--margin-medium);
 }
 
 #carouselDots {
     text-align: center;
-    margin-top: 15px;
+    margin-top: var(--margin-medium);
 }
 .carousel-dot {
     display: inline-block;
     width: 12px;
     height: 12px;
-    margin: 0 5px;
+    margin: 0 4px;
     background-color: var(--input-border-color);
     border-radius: 50%;
     cursor: pointer;
@@ -111,7 +111,7 @@
     color: var(--background-color);
     border: none;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: var(--border-radius-small);
     font-size: var(--font-size-medium);
     cursor: pointer;
 }

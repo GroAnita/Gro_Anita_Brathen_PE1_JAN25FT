@@ -48,4 +48,27 @@
     --input-focus-border-color: #EDDCED;
     --input-error-border-color: #FF0000;
     --input-placeholder-color: #A9A9A9;
+
+    /*margin and padding sizes*/
+    --section-margin: 40px;
+    --section-padding: 16px;
+    --section-padding-medium: 20px;
+    --section-padding-large: 32px;
+    --margin-xsmall: 4px;
+    --margin-small: 8px;
+    --margin-medium: 16px;
+    --margin-large: 24px;
+    --margin-xlarge: 32px;
+
+
+    /*image sizes*/
+    --image-small: 250px;
+    --image-medium: 300px;
+    --image-large: 400px;
+
+    /*border-radius*/
+    --border-radius-small: 4px;
+    --border-radius-medium: 8px;
+    --border-radius-large: 12px;
+    --border-radius-round: 50%;
 }

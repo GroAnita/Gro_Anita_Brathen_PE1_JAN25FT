@@ -55,10 +55,15 @@ document.addEventListener('DOMContentLoaded', () => {
 const menuLinks = document.querySelectorAll('.hamburger-menu__links a');
 menuLinks.forEach(link => {
     link.addEventListener('click', () => {
+        // Don't close menu for login modal trigger - let it handle itself
+        if (link.id === 'loginModalTrigger') {
+            return;
+        }
+        
         const hamburgerMenuOverlay = document.getElementById('hamburgerMenu');
         const hamburgerOverlay = document.getElementById('hamburgerOverlay');
         
-        // Close the menu when any link is clicked
+        // Close the menu when any link is clicked (except login)
         hamburgerMenuOverlay?.classList.remove('show-hamburger-menu');
         hamburgerOverlay?.classList.remove('show');
     });

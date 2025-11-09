@@ -68,6 +68,7 @@
     font-size: var(--font-size-xsmall);
     border: 1px solid var(--input-border-color);
     border-radius: 4px;
+    background-color: rgba(255, 229, 197, 0.25);
 }
 
 .footer-content__right input:invalid {
@@ -75,8 +76,8 @@
 }
 
 .footer-content__right input:focus {
-    border-color: var(--input-focus-border-color);
-    outline: none;
+    border-color: var(--edit-add-button-click-background-color);
+    
 }
 
 .footer-content__right input::placeholder {
@@ -88,12 +89,9 @@
 }
 
 
-
-
-
 .footer-content__right i{
     font-size: var(--font-size-large);
-    color: var( --button-click-background-color);
+    color: var( --font-color);
     margin: 8px;
 }
 

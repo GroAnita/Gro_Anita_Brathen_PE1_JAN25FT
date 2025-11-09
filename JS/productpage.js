@@ -1,4 +1,6 @@
 import { formatProductPrice, hasDiscount, createSalesBanner, magnifyProductImage, shareButtonSetup } from './utils.js';
+import { showLoginModal } from './components/loginusermodal.js';
+import { addToCart } from './components/cart.js';
 
 let currentProductId = null;
 const urlParams = new URLSearchParams(window.location.search);
@@ -99,6 +101,9 @@ async function displayProductDetails() {
     
     // Setup share icon inside image container (next to magnify icon)
     shareButtonSetup('.image-wrapper', window.location.href, productData.title);
+    
+    // Setup add to cart button
+    setupAddToCartButton(productData);
 };
 
 
@@ -237,6 +242,23 @@ function displayReviews(reviews) {
     });
 }
 
+// Setup add to cart button functionality
+function setupAddToCartButton(productData) {
+    const addToCartBtn = document.querySelector('.add-to-cart-btn');
+    
+    if (addToCartBtn) {
+        addToCartBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log('Add to cart clicked for product:', productData.id);
+            
+            // Add product to cart
+            addToCart(productData);
+        });
+    } else {
+        console.error('Add to cart button not found!');
+    }
+}
+
 function initializeTabs() {
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
@@ -259,4 +281,31 @@ function initializeTabs() {
 document.addEventListener('DOMContentLoaded', () => {
     displayProductDetails();
     initializeTabs();
+    
+    // Setup login modal trigger for hamburger menu
+    const loginTrigger = document.querySelector('#loginModalTrigger');
+    console.log('Login trigger element found:', loginTrigger);
+    
+    if (loginTrigger) {
+        loginTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log('Login trigger clicked!');
+            
+            // Open the login modal
+            showLoginModal();
+            
+            // Close the hamburger menu after opening modal
+            const hamburgerMenuOverlay = document.getElementById('hamburgerMenu');
+            const hamburgerOverlay = document.getElementById('hamburgerOverlay');
+            
+            if (hamburgerMenuOverlay) {
+                hamburgerMenuOverlay.classList.remove('show-hamburger-menu');
+            }
+            if (hamburgerOverlay) {
+                hamburgerOverlay.classList.remove('show');
+            }
+        });
+    } else {
+        console.error('Login trigger not found!');
+    }
 });
