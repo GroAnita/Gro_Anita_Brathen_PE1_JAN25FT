@@ -101,16 +101,16 @@ function displayShoppingCartItems() {
 
         cartItem.innerHTML = `
             <img src="${item.image.url}" alt="${item.title}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
-            <div class="cart-item-details" style="flex: 1; display: flex; flex-direction: column; gap: 5px;">
-                <div class="cart-item-title" style="font-size: 14px; font-weight: 500;">${item.title}${item.size ? ` - Size: ${item.size}` : ''}</div>
-                <div class="cart-item-price" style="color: #666; font-size: 12px;">$${item.price.toFixed(2)}</div>
+            <div class="cart-item-details">
+                <div class="cart-item-title">${item.title}${item.size ? ` - Size: ${item.size}` : ''}</div>
+                <div class="cart-item-price">$${item.price.toFixed(2)}</div>
             </div>
-            <div class="cart-item-quantity" style="display: flex; align-items: center; gap: 8px;">
-                <button class="quantity-btn decrease-btn" data-id="${item.id}" data-size="${item.size || ''}" style="width: 25px; height: 25px; border: 1px solid #ddd; background: #f9f9f9; border-radius: 3px; cursor: pointer;">−</button>
-                <span class="quantity-display" style="font-size: 14px; font-weight: 500; min-width: 20px; text-align: center;">${item.quantity}</span>
-                <button class="quantity-btn increase-btn" data-id="${item.id}" data-size="${item.size || ''}" style="width: 25px; height: 25px; border: 1px solid #ddd; background: #f9f9f9; border-radius: 3px; cursor: pointer;">+</button>
+            <div class="cart-item-quantity">
+                <button class="quantity-btn decrease-btn" data-id="${item.id}" data-size="${item.size || ''}">−</button>
+                <span class="quantity-display">${item.quantity}</span>
+                <button class="quantity-btn increase-btn" data-id="${item.id}" data-size="${item.size || ''}">+</button>
             </div>
-            <span class="remove-item" data-id="${item.id}" data-size="${item.size || ''}" style="cursor: pointer; font-size: 20px; color: #999; padding: 5px; margin-left: 10px;">&times;</span>
+            <span class="remove-item" data-id="${item.id}" data-size="${item.size || ''}">&times;</span>
         `;
         cartItemsContainer.appendChild(cartItem);
     });
@@ -122,7 +122,7 @@ function displayShoppingCartItems() {
 function addShoppingCartEventListeners() {
     // Decrease quantity buttons
     document.querySelectorAll('#shoppingCartItems .decrease-btn').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function(e) {
             const id = this.getAttribute('data-id');
             const size = this.getAttribute('data-size') || '';
             const itemIndex = cart.findIndex(item => item.id === id && (item.size || '') === size);
@@ -132,13 +132,15 @@ function addShoppingCartEventListeners() {
                 displayShoppingCartItems();
                 updateShoppingCartTotal();
                 saveCartToStorage();
+                e.preventDefault();
+                e.stopPropagation();
             }
         });
     });
     
     // Increase quantity buttons
     document.querySelectorAll('#shoppingCartItems .increase-btn').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function(e) {
             const id = this.getAttribute('data-id');
             const size = this.getAttribute('data-size') || '';
             const itemIndex = cart.findIndex(item => item.id === id && (item.size || '') === size);
@@ -148,18 +150,22 @@ function addShoppingCartEventListeners() {
                 displayShoppingCartItems();
                 updateShoppingCartTotal();
                 saveCartToStorage();
+                e.preventDefault();
+                e.stopPropagation();
             }
         });
     });
     
     // Remove item buttons
     document.querySelectorAll('#shoppingCartItems .remove-item').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function(e) {
             const id = this.getAttribute('data-id');
             const size = this.getAttribute('data-size') || '';
             removeFromCart(id, size);
             displayShoppingCartItems();
             updateShoppingCartTotal();
+            e.preventDefault();
+            e.stopPropagation();
         });
     });
 }

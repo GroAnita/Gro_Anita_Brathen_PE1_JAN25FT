@@ -175,7 +175,6 @@ body {
     align-items: center;
     justify-content: flex-end;
     margin-right: 10px;
-    width: 30px;
 }
 
 .header-content__nav__right__cart-count{
@@ -240,15 +239,18 @@ body {
 .discounted-price {
     color: var(--delete-button-click-background-color);
     font-weight: bold;
+    font-family: "Inter", sans-serif;
 }
 
 .price {
     font-weight: bold;
+    font-family: "Inter", sans-serif;
 }
 
 .price.strikethrough {
     text-decoration: line-through 2px var(--delete-button-click-background-color);
     color: var(--button-text-color);
+    font-family: "Inter", sans-serif;
 }
 
 .product-image {

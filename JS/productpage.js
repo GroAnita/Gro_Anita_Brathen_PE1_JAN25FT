@@ -34,15 +34,10 @@ async function displayProductDetails() {
         return;
     }
     
-    // Debug: Log the product structure to see what we're working with
-    console.log('Product data:', product);
     
     // Extract the actual product data from the API response
     const productData = product.data;
     
-    // Reviews are included in the product data
-    console.log('Product data with reviews:', productData);
-    console.log('Reviews found:', productData.reviews || []);
     
     const productPageBox = document.querySelector('.productpage-box');
     if (productPageBox) {
@@ -284,7 +279,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Setup login modal trigger for hamburger menu
     const loginTrigger = document.querySelector('#loginModalTrigger');
-    console.log('Login trigger element found:', loginTrigger);
     
     if (loginTrigger) {
         loginTrigger.addEventListener('click', (e) => {

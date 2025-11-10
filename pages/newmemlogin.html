@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/Components/shoppingbag.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/Components/hamburgermenu.css">
+    <link rel="stylesheet" href="../css/Components/footer.css">
+    <link rel="stylesheet" href="../css/Components/memberloginmodal.css">
+    <link rel="stylesheet" href="../css/newmemlogin.css">
+    <link rel="icon" type="image/svg+xml" href="../images/horseheadlogo.svg">
+
+    <title>Become a member</title>
+</head>
+<body>
+    <div class="container">
+          <div class="header-topbar">
+                <div class="header-content__leftemptyforbalance"> <!--mobile hamburgermenu--><i class="fa-solid fa-bars" id="hamburgerMenuIcon"></i></div>
+                <div class="header-content__nav__left"><p>We <i class="fa-solid fa-heart"></i>pre-owned</p></div>
+                <div class="header-content__nav__right">
+                    <i class="fas fa-search"></i>
+                    <i class="fas fa-user"></i>
+                    <div class="header-content__nav__shoppingbag">
+                    <i class="fa-solid fa-bag-shopping" id="shoppingBagIcon"><span class="header-content__nav__right__cart-count">0</span></i>
+                    </div>
+                </div>
+            </div>
+        <header>
+          
+            <!-- Mobile Header -->
+            <div class="header-content-mobile">
+                <div class="header-content__logo__mobile">
+                    <a href="index.html"><img src="../images/horseheadlogo.svg" alt="Logo" class="logo--mobile"></a>
+                </div>
+                <span class="header-content-mobile__text">The Second Hand Company</span>
+            </div>  
+            <!-- Desktop Header -->
+            <div class="header-content">
+                <div class="header-content__left">
+                        <div class="header-content__left__top">The</div>
+                        <div class="header-content__left__bottom">Second Hand</div>
+                </div>
+                <div class="header-content__center">
+                <div class="header-content__center__logo">
+                   <a href="../index.html"><img src="../images/horseheadlogo.svg" alt="Logo" class="logo"></a>
+                </div>
+                <div class="header-content__center__text">2025</div>
+                </div>
+                <div class="header-content__right">Company</div>
+              
+            </div> 
+        </header>
+
+        <div class="membership-content">
+            <div class="membership-content__whyjoin">
+                <h2 class="membership-content__h2">Why Join Our Membership Program?</h2>
+                 <div class="membership-content__whyjoing-ul">
+                    <ul>
+                        <li>Free shipping on all orders over $50</li>
+                        <li>30-day return policy for members</li>
+                        <li>Eco-friendly packaging</li>
+                        <li>Secure payment options</li>
+                    </ul>
+                </div>
+                <h3 class="membership-content__h3">Why choose pre-loved</h3>
+                <div class="membership-content__text">
+                    <p>Choosing pre-loved items is a simple way to make a meaningful impact. By giving clothing and products a second life, we reduce waste, save resources, and help slow the fast-fashion cycle. Every pre-loved purchase prevents usable items from ending up in landfill and reduces the demand for new production, which in turn lowers pollution and water consumption.
+
+                    Pre-loved shopping is also a great way to discover unique, high-quality pieces at more affordable prices. Instead of following trends that come and go, it encourages personal style and thoughtful buying. Each item has a story, and choosing it continues that story with care rather than disposal.
+
+                    Buying pre-loved is not just an economical choice — it’s a responsible one. It supports a sustainable future, promotes mindful consumption, and helps create a circular economy where products are valued for longer. It’s better for your wardrobe, better for your budget, and better for the planet.</p>
+                </div>
+             
+            </div>
+            <div class="membership-content__divider">
+            <div class="membership-content__headers">
+                 <h1 class="membership-content__h1">Become a Member</h1>
+            <p class="membership-content__p">Join our community of sustainable shoppers and enjoy exclusive benefits!</p>
+            </div>
+            <div class="membership-content__form">
+            <form class="membership-content__form" id="membershipForm">
+                <div class="dob-field">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+
+                <div>
+                    <label for="firstname">First Name:</label>
+                    <input type="text" id="firstname" name="firstname" required>
+                </div>
+
+                <div>
+                    <label for="lastname">Last Name:</label>
+                    <input type="text" id="lastname" name="lastname" required>
+                </div>
+
+                <div class="address-field">
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+
+                <div class="address-row">
+                    <div class="form-group">
+                        <label for="zip">Zip Code:</label>
+                        <input type="text" id="zip" name="zip" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City:</label>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+                </div>
+                <div>
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div>
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div>
+                    <label for="password">Password:</label>
+                <div class="password-container">
+                    <input  type="password" 
+                            id="password" 
+                            name="password" 
+                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                            title="Password requirements not met"
+                            required>
+                    <i class="fa-solid fa-eye-slash password-toggle" id="passwordToggle"></i>
+                </div>
+                <div class="password-requirements" id="passwordRequirements" style="display: none;">
+                    <p>Password must contain:</p>
+                    <ul>
+                        <li id="length" class="invalid">At least 8 characters</li>
+                        <li id="uppercase" class="invalid">An uppercase letter (A-Z)</li>
+                        <li id="lowercase" class="invalid">A lowercase letter (a-z)</li>
+                        <li id="number" class="invalid">A number (0-9)</li>
+                        <li id="special" class="invalid">A special character (@$!%*?&)</li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+                <label for="checkbox" class="checkbox-label">
+                    <input type="checkbox" id="checkbox" name="checkbox" required>
+                    I agree to the <a href="#"> Terms and Conditions </a> and <a href="#"> Privacy Policy </a>.
+                </label>
+                <button type="submit" class="main-btn">Sign Up</button>
+            </form>
+            </div>
+        </div>
+        <!--hamburger menu -->
+        <div class="hamburger-menu" id="hamburgerMenu">
+            <button class="close-btn" id="closeHamburgerMenu">&times;</button>
+            <nav>
+                <ul class="hamburger-menu__links">
+                    <li><a href="#" data-category="fashion">Fashion</a></li>
+                    <li><a href="#" data-category="electronics">Electronics</a></li>
+                    <li><a href="#" data-category="health and beauty">Health & beauty</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Why choose pre-owned?</a></li>
+                    <li><a href="newmemlogin.html">Become a member</a></li>
+                    <li><a href="#" id="loginModalTrigger"><i class="fa-regular fa-user"></i> Member Login</a></li>
+                </ul>
+                <div class="hamburger-menu__logo">
+                    <img src="../images/horseheadlogo.svg" alt="Logo" class="logo">
+                </div>
+                <a href="/pages/admindashboard.html"><h5 class="hamburger-menu__h5">Admin login</h5></a>
+            </nav>
+        </div>
+        
+        <!-- Hamburger overlay for dark background -->
+        <div class="hamburger-overlay" id="hamburgerOverlay"></div>
+        
+
+        <!--Shopping bag sidebar-->
+            <div class="shopping_cart" id="shoppingCart">
+                <div class="cart-header">
+                    <h2>Your Shopping Bag</h2>
+                    <button class="close-btn" id="closeShoppingCartBtn">&times;</button>
+                </div>
+                <hr class="shoppingbag-hr">
+                <div class="cart-items" id="shoppingCartItems">
+                    <!-- Cart items will be added here by JavaScript -->
+                </div>
+                <div class="cart-footer">
+                    <div class="cart-numbers">
+                    <div class="shipping">
+                        <p>Shipping: Free</p>
+                    </div>
+                    <div class="cart-total">
+                        <strong>Total: $<span id="shoppingCartTotal">0.00</span></strong>
+                    </div>
+                    </div>
+                    <button onClick="checkout()" class="checkout-btn main-btn">Checkout</button>
+                </div>
+             </div>
+
+                   <footer>
+            <div class="footer-content__top">
+                <div class="footer-content__left">
+                    <h4>About Us</h4>
+                    <p>The Second Hand Company is dedicated to promoting sustainable shopping by offering a wide range of high-quality second-hand products. Our mission is to reduce waste and encourage eco-friendly consumption.</p>
+                </div>
+                <span class="vr"></span>
+                <div class="footer-content__centera">
+                    <h4>Customer Service</h4>
+                       <ul>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Why choose pre-owned?</a></li>
+                        
+                    </ul>
+                </div>
+                <span class="vr"></span>
+                <div class="footer-content__centerb">  <h4>Shop</h4>
+                       <ul>
+                        <li><a href="#" data-category="fashion">Fashion</a></li>
+                        <li><a href="#" data-category="electronics">Electronics</a></li>
+                        <li><a href="#" data-category="health and beauty">Health & Beauty</a></li>
+                    </ul></div>
+                    <span class="vr"></span>
+                <div class="footer-content__right">
+                    <span class="footer-content__right__title"><h4>Connect</h4></span>
+                    <div class="footer-content__right__icons">
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fa-brands fa-tiktok"></i>
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                        <h5>Join our Newsletter</h5>
+                        <input type="email" name="email" placeholder="Enter your email" autocomplete="on">
+                        <button class="main-btn" type="submit">Subscribe</button>
+                </div>
+            </div>
+            <div class="footer-content__bottom">
+                <div class="footer-content__bottom__top">
+                    <div class="footer-content__bottom__top__strawberry">
+                    <img src="../images/Strawberrypaylogo.svg" alt="Strawberry Pay Logo" class="footer-logo">
+                    </div>
+                    <div class="footer-content__bottom__top__mestercard">
+                    <img src="../images/Mestercardlogo.svg" alt="Mestercard Logo" class="footer-logo">
+                    </div>
+                    <div class="footer-content__bottom__top__visa">
+                    <img src="../images/Vusacardlogo.svg" alt="Vusa Logo" class="footer-logo">
+                    </div>
+                    <div class="footer-content__bottom__top__eco">
+                    <img src="../images/ecofriendlylogo.svg" alt="Eco Logo" class="footer-logo">
+                    </div>
+                </div>
+                <div class="footer-content__bottom__bottom">
+                    <p>&copy; 2025 The Second Hand Company. All rights reserved.</p>
+                </div>
+            
+        </footer>
+        <script type="module" src="../JS/newmemlogin.js"></script>
+        <script type="module" src="../JS/components/cart.js"></script>
+        <script type="module" src="../JS/components/shoppingcart.js"></script>
+        <script type="module" src="../JS/components/hamburgermenuoverlay.js"></script>
+        <script type="module" src="../JS/components/loginusermodal.js"></script>
+    </div>
+</body>
+</html>
