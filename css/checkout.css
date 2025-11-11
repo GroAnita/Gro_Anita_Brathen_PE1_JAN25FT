@@ -270,9 +270,19 @@
 }
 
 .checkout-product__remove-container i{
-    font-size: var(--font-size-xsmall);
-    color: var(--delete-button-background-color);
-    padding: 5px;  
+    background: none;
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px;
+    padding: 6px 8px;
+    margin: 0 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--font-color);
+}
+
+.checkout-product__remove-container i:hover {
+    background-color: var(--delete-button-background-color);
+    color: var(--background-color);
 }
 
 .checkout-product__remove-container p{

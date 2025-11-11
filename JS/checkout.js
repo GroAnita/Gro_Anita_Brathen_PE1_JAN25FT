@@ -54,26 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
-    // If you want single accordion behavior, uncomment and modify the event listener:
-    /*
-    accordionCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-            if (this.checked) {
-                closeOtherAccordions(this);
-            }
-            
-            const header = this.nextElementSibling;
-            const content = header.nextElementSibling;
-            
-            if (this.checked) {
-                openAccordion(content);
-            } else {
-                closeAccordion(content);
-            }
-        });
-    });
-    */
+
 });
 
 function formatCardNumber(input) {
@@ -134,7 +115,6 @@ function displayCheckoutItems() {
             </div>
             <div class="checkout-product__remove-container">
                 <button class="remove-item" data-id="${item.id}" data-size="${item.size || ''}"><i class="fa-solid fa-trash"></i></button>
-                <p>Remove</p>
             </div>
         `;
         CheckoutItemsContainer.appendChild(checkoutItem);
@@ -234,9 +214,123 @@ document.getElementById('proceedToPaymentBtn').addEventListener('click', functio
 });
 
 
-// Call displayCheckoutItems when page loads
+// Auto-fill shipping information for logged-in users
+function autoFillShippingInfo() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const userProfile = localStorage.getItem('userProfile');
+    const userEmail = localStorage.getItem('userEmail');
+    const userName = localStorage.getItem('userName');
+    
+    if (isLoggedIn) {
+        if (userProfile) {
+            // If we have saved profile data, use it
+            try {
+                const profile = JSON.parse(userProfile);
+                fillShippingForm(profile);
+                console.log('Shipping information auto-filled from saved profile');
+            } catch (error) {
+                console.error('Error parsing saved profile:', error);
+            }
+        } else if (userEmail && userName) {
+            // If no saved profile but user is logged in, fill what we can
+            const basicProfile = createBasicProfileFromLogin(userEmail, userName);
+            fillShippingForm(basicProfile);
+            console.log('Basic shipping information filled from login data');
+            
+            // Add save profile functionality
+            addSaveProfileButton();
+        }
+    }
+}
+
+function fillShippingForm(profile) {
+    const firstnameField = document.getElementById('firstname');
+    const lastnameField = document.getElementById('lastname');
+    const emailField = document.getElementById('email');
+    const phoneField = document.getElementById('phone');
+    const addressField = document.getElementById('address');
+    const cityField = document.getElementById('city');
+    const zipField = document.getElementById('zip');
+    
+    if (firstnameField && profile.firstname) firstnameField.value = profile.firstname;
+    if (lastnameField && profile.lastname) lastnameField.value = profile.lastname;
+    if (emailField && profile.email) emailField.value = profile.email;
+    if (phoneField && profile.phone) phoneField.value = profile.phone;
+    if (addressField && profile.address) addressField.value = profile.address;
+    if (cityField && profile.city) cityField.value = profile.city;
+    if (zipField && profile.zip) zipField.value = profile.zip;
+}
+
+function createBasicProfileFromLogin(userEmail, userName) {
+    // Convert userName back to first/last name (reverse the underscore replacement)
+    const nameParts = userName.replace(/_/g, ' ').split(' ');
+    
+    return {
+        firstname: nameParts[0] || '',
+        lastname: nameParts.slice(1).join(' ') || '',
+        email: userEmail,
+        phone: '',
+        address: '',
+        city: '',
+        zip: ''
+    };
+}
+
+function addSaveProfileButton() {
+    // Check if button already exists
+    if (document.getElementById('saveProfileBtn')) return;
+    
+    // Find the shipping form
+    const shippingForm = document.getElementById('checkoutForm');
+    if (shippingForm) {
+        // Create save profile button
+        const saveButton = document.createElement('button');
+        saveButton.type = 'button';
+        saveButton.id = 'saveProfileBtn';
+        saveButton.className = 'main-btn';
+        saveButton.style.marginTop = '10px';
+        saveButton.textContent = 'Save This Information';
+        
+        // Add click handler
+        saveButton.addEventListener('click', () => {
+            saveCurrentFormDataAsProfile();
+        });
+        
+        // Insert button after the "Go to shipping" button
+        const goToShippingBtn = shippingForm.querySelector('button[type="submit"]');
+        if (goToShippingBtn) {
+            goToShippingBtn.parentNode.insertBefore(saveButton, goToShippingBtn.nextSibling);
+        }
+    }
+}
+
+function saveCurrentFormDataAsProfile() {
+    const formData = new FormData(document.getElementById('checkoutForm'));
+    
+    const userProfile = {
+        firstname: formData.get('firstname') || '',
+        lastname: formData.get('lastname') || '',
+        email: formData.get('email') || '',
+        phone: formData.get('phone') || '',
+        address: formData.get('address') || '',
+        city: formData.get('city') || '',
+        zip: formData.get('zip') || ''
+    };
+    
+    localStorage.setItem('userProfile', JSON.stringify(userProfile));
+    alert('Your information has been saved for future checkouts!');
+    
+    // Remove the save button since profile is now saved
+    const saveBtn = document.getElementById('saveProfileBtn');
+    if (saveBtn) saveBtn.remove();
+    
+    console.log('User profile saved from checkout form');
+}
+
+// Call displayCheckoutItems and auto-fill when page loads
 window.addEventListener('load', () => {
     displayCheckoutItems();
+    autoFillShippingInfo();
 });
 
 
