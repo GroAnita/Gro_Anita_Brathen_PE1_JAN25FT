@@ -21,14 +21,14 @@ async function createSliderWithAPIProducts() {
     
     // Clears existing slides
     sliderTrack.innerHTML = '';
-    
+
     products.forEach((product, index) => {
         const slide = document.createElement('div');
         slide.className = 'slide'; 
         
     slide.innerHTML = `
         <div class="image-box">
-        <img src="${product.image.url}" alt="${product.title}" class="slider-image">
+        <img src="${product.image.url}" alt="${product.title}" class="slider-image" data-product-id="${product.id}">
         </div>
         <div class="slide-content">
             <h2>${product.title}</h2>
@@ -38,14 +38,6 @@ async function createSliderWithAPIProducts() {
     `;
         
         sliderTrack.appendChild(slide);
-        
-        
-        // Make the image clickable to go to product page
-        const productImage = slide.querySelector('img');
-        productImage.addEventListener('click', () => {
-            // sending the product ID to the product page
-            window.location.href = `pages/productpage.html?id=${product.id}`;
-        });
             if (hasDiscount(product)) {
             const saleBanner = createSalesBanner();
             const imageBox = slide.querySelector('.image-box');
@@ -82,8 +74,16 @@ async function createSliderWithAPIProducts() {
         carouselDotsContainer.appendChild(dot);
     });
 
+    // Make slider images clickable with direct click events
+    setupImageClickHandlers();
+
     // Initialize slider controls based on screen size
     initializeSliderControls();
+    
+    // Add a slight delay to ensure all slider controls are set up, then re-add our click handlers
+    setTimeout(() => {
+        setupImageClickHandlers();
+    }, 100);
 }
 
 // Helper function to update active dot
@@ -144,6 +144,11 @@ function addTouchControls() {
     sliderTrack.addEventListener('touchend', dragEnd);
 
     function dragStart(event) {
+        // Check if click target is an image with product ID - if so, don't start dragging
+        if (event.target.tagName === 'IMG' && event.target.hasAttribute('data-product-id')) {
+            return;
+        }
+        
         isDragging = true;
         startPosition = getPositionX(event);
         startTime = Date.now();
@@ -153,7 +158,11 @@ function addTouchControls() {
 
     function dragMove(event) {
         if (!isDragging) return;
-        event.preventDefault();
+        
+        // Don't prevent default if target is an image with product ID
+        if (!(event.target.tagName === 'IMG' && event.target.hasAttribute('data-product-id'))) {
+            event.preventDefault();
+        }
 
         const currentPosition = getPositionX(event);
         const diff = currentPosition - startPosition;
@@ -278,4 +287,44 @@ window.addEventListener('resize', () => {
         initializeSliderControls();
     }, 250); // Wait 250ms after resize stops
 });
+
+function setupImageClickHandlers() {
+    const sliderImages = document.querySelectorAll('.slider-image[data-product-id]');
+    
+    sliderImages.forEach((img) => {
+        const productId = img.getAttribute("data-product-id");
+        if (productId) {
+            // Remove any existing event listeners by cloning the elements
+            const newImg = img.cloneNode(true);
+            img.parentNode.replaceChild(newImg, img);
+            
+            // Add visual feedback and ensure pointer events work
+            newImg.style.cursor = 'pointer';
+            newImg.style.pointerEvents = 'auto';
+            
+            const imageBox = newImg.closest('.image-box');
+            if (imageBox) {
+                imageBox.style.cursor = 'pointer';
+                imageBox.style.pointerEvents = 'auto';
+            }
+            
+            // Create navigation function
+            function navigateToProduct(e) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                window.location.href = `pages/productpage.html?id=${productId}`;
+                return false;
+            }
+            
+            // Add click handlers
+            newImg.onclick = navigateToProduct;
+            newImg.addEventListener('click', navigateToProduct, true);
+            
+            if (imageBox) {
+                imageBox.onclick = navigateToProduct;
+                imageBox.addEventListener('click', navigateToProduct, true);
+            }
+        }
+    });
+}
 
