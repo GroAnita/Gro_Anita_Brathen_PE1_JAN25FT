@@ -13,7 +13,7 @@ const loginModalTemplate = `
                 <button type="submit" class="main-btn">Login</button>
             </form>
             <p><a href="#" id="forgotPasswordLink">Forgot Password?</a></p>
-            <p><a href="#" id="registerLink">Want to become a member?</a></p>
+            <p><a href="../pages/newmemlogin.html" id="registerLink">Want to become a member?</a></p>
         </div>
     </div>
 `;

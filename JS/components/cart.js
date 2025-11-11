@@ -247,6 +247,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // Make checkout globally available for HTML onclick
 window.checkout = checkout;
 
+// Make checkout function available globally for onClick
+window.checkout = checkout;
+
 // Export functions for use in other files
 export { 
     addToCart, 

@@ -3,7 +3,6 @@ import {initializeSuccessModal, showSuccessModal} from './components/successmoda
 
 document.addEventListener('DOMContentLoaded', function() {
     initializeSuccessModal();
-    showSuccessModal();
 
     // Get all accordion checkboxes
     const accordionCheckboxes = document.querySelectorAll('.accordion-checkbox');
@@ -30,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Get the actual height of the content
         const contentHeight = content.scrollHeight;
-        const contentWidth = content.scrollWidth;
         
         // Set max-height to the actual content height + extra space
         content.style.maxHeight = (contentHeight + 300) + 'px';
@@ -241,3 +239,37 @@ window.addEventListener('load', () => {
     displayCheckoutItems();
 });
 
+
+
+function processOrder() {
+    // Here you would normally process the order, e.g., send data to server
+    // For this example, we'll just show the success modal
+    initializeSuccessModal();
+    
+    // Generate a random order ID and delivery date
+    const orderId = '#' + Math.random().toString(36).substr(2, 6).toUpperCase();
+    const deliveryDate = '7-10 business days';
+    
+    showSuccessModal(orderId, deliveryDate);
+}
+
+// Add event listeners ONLY to Pay Now buttons inside accordion payment sections
+// AND only if we're on the checkout page
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if we're specifically on the checkout.html page
+    const isCheckoutPage = window.location.pathname.includes('checkout.html');
+    
+    if (!isCheckoutPage) {
+        return; // Exit early if not on checkout page
+    }
+
+    
+    // Target only Pay Now buttons with the specific class
+    const payNowButtons = document.querySelectorAll('.pay-now-btn');
+    payNowButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            processOrder();
+        });   
+    });
+});

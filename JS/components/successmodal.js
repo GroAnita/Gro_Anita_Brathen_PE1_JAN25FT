@@ -35,6 +35,11 @@ function showSuccessModal(orderId, deliveryDate) {
 }
 
 function initializeSuccessModal() {
+    // Add the modal HTML to the page if it doesn't exist
+    if (!document.getElementById('purchaseSuccessModal')) {
+        document.body.insertAdjacentHTML('beforeend', successModalHTML);
+    }
+    
     const modal = document.getElementById('purchaseSuccessModal');
     const closeBtn = document.querySelector('.success-close');
     const okBtn = document.getElementById('successOkBtn');
@@ -42,7 +47,7 @@ function initializeSuccessModal() {
     function closeModal() {
         modal.style.display = 'none';
         // Redirect to home page
-        window.location.href = 'index.html';
+        window.location.href = '../index.html';
     }
     
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
