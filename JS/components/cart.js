@@ -1,7 +1,26 @@
 // Global cart management system
+/** 
+ * @typedef {Object} CartItem
+ * @property {string} id - The product ID.
+ * @property {string} title - The product title.
+ * @property {number} price - The price (discounted or regular).
+ * @property {Object} image - The product image object.
+ * @property {string|null} size - Selected size (if applicable).
+ * @property {number} quantity - How many of this item is in the cart.
+ */
+
+/**
+ * The shopping cart array.
+ * Stores all items the user has added to the cart.
+ * Each item contains product data such as id, title, price, size, and quantity.
+ * @type {Array<Object>}
+ */
 let cart = [];
 
-// Load cart from localStorage on page load
+/**
+ * Loads the cart from localStorage into memory.
+ * Restores cart count and total price.
+ */
 function loadCartFromStorage() {
     const savedCart = localStorage.getItem('shoppingCart');
     if (savedCart) {
@@ -11,27 +30,33 @@ function loadCartFromStorage() {
     }
 }
 
-// Save cart to localStorage
+/**
+ * Saves the current cart state to localStorage.
+ */
 function saveCartToStorage() {
     localStorage.setItem('shoppingCart', JSON.stringify(cart));
 }
 
-// Add item to cart
+/**
+ * Adds a product to the cart. 
+ * If item already exists (same id + size), quantity is increased.
+ *
+ * @param {Object} product - The product to add.
+ * @param {string|null} [size=null] - Optional size variant.
+ * @param {number} [quantity=1] - Quantity to add.
+ */
 function addToCart(product, size = null, quantity = 1) {
-    // Check if item already exists in cart (same ID and size)
     const existingItemIndex = cart.findIndex(item => 
         item.id === product.id && (item.size || '') === (size || '')
     );
     
     if (existingItemIndex > -1) {
-        // Item exists, increase quantity
         cart[existingItemIndex].quantity += quantity;
     } else {
-        // Add new item to cart
         const cartItem = {
             id: product.id,
             title: product.title,
-            price: product.discountedPrice || product.price, // Use discounted price if available
+            price: product.discountedPrice || product.price,
             image: product.image,
             size: size,
             quantity: quantity
@@ -41,15 +66,17 @@ function addToCart(product, size = null, quantity = 1) {
     
     updateCartCounter();
     saveCartToStorage();
-    
-    // Show a success message (optional)
+
     console.log(`Added ${product.title} to cart!`);
-    
-    // You could add a toast notification here
     showAddToCartNotification(product.title);
 }
 
-// Remove item from cart
+/**
+ * Removes a specific item (id + size) from the cart.
+ * 
+ * @param {string} productId - The ID of the product to remove.
+ * @param {string|null} [size=''] - Size variant to remove.
+ */
 function removeFromCart(productId, size = '') {
     cart = cart.filter(item => !(item.id === productId && (item.size || '') === size));
     updateCartCounter();
@@ -57,7 +84,9 @@ function removeFromCart(productId, size = '') {
     updateShoppingCartTotal();
 }
 
-// Update cart counter in header
+/**
+ * Updates the cart item count displayed in the header.
+ */
 function updateCartCounter() {
     const cartCountElement = document.querySelector('.header-content__nav__right__cart-count');
     if (cartCountElement) {
@@ -66,7 +95,9 @@ function updateCartCounter() {
     }
 }
 
-// Update shopping cart total
+/**
+ * Calculates and updates the cart total price shown in the checkout sidebar.
+ */
 function updateShoppingCartTotal() {
     const cartTotalElement = document.getElementById('shoppingCartTotal');
     if (cartTotalElement) {
@@ -75,12 +106,14 @@ function updateShoppingCartTotal() {
     }
 }
 
-// Display cart items in sidebar
+/**
+ * Renders all cart items in the shopping cart sidebar.
+ * Clears previous items and attaches event listeners to buttons.
+ */
 function displayShoppingCartItems() {
     const cartItemsContainer = document.getElementById('shoppingCartItems');
     if (!cartItemsContainer) return;
 
-    // Clear existing items
     cartItemsContainer.innerHTML = '';
 
     if (cart.length === 0) {
@@ -118,9 +151,13 @@ function displayShoppingCartItems() {
     addShoppingCartEventListeners();
 }
 
-// Add event listeners for cart item buttons
+/**
+ * Adds event listeners to all cart buttons:
+ * - Increase quantity
+ * - Decrease quantity
+ * - Remove item
+ */
 function addShoppingCartEventListeners() {
-    // Decrease quantity buttons
     document.querySelectorAll('#shoppingCartItems .decrease-btn').forEach(button => {
         button.addEventListener('click', function(e) {
             const id = this.getAttribute('data-id');
@@ -135,10 +172,10 @@ function addShoppingCartEventListeners() {
                 e.preventDefault();
                 e.stopPropagation();
             }
+            
         });
     });
     
-    // Increase quantity buttons
     document.querySelectorAll('#shoppingCartItems .increase-btn').forEach(button => {
         button.addEventListener('click', function(e) {
             const id = this.getAttribute('data-id');
@@ -156,7 +193,6 @@ function addShoppingCartEventListeners() {
         });
     });
     
-    // Remove item buttons
     document.querySelectorAll('#shoppingCartItems .remove-item').forEach(button => {
         button.addEventListener('click', function(e) {
             const id = this.getAttribute('data-id');
@@ -170,9 +206,12 @@ function addShoppingCartEventListeners() {
     });
 }
 
-// Show add to cart notification (optional)
+/**
+ * Shows a temporary green toast-style notification after adding a product.
+ * 
+ * @param {string} productTitle - The product title to show in the message.
+ */
 function showAddToCartNotification(productTitle) {
-    // Create and show a simple notification
     const notification = document.createElement('div');
     notification.style.cssText = `
         position: fixed;
@@ -191,51 +230,41 @@ function showAddToCartNotification(productTitle) {
     
     document.body.appendChild(notification);
     
-    // Fade in
     setTimeout(() => notification.style.opacity = '1', 100);
     
-    // Remove after 3 seconds
     setTimeout(() => {
         notification.style.opacity = '0';
         setTimeout(() => notification.remove(), 300);
     }, 3000);
 }
 
-
+/**
+ * Redirects user to checkout page.
+ * Handles paths for root or /pages/ structures.
+ */
 function checkout() {
     if (cart.length === 0) {
         alert('Your cart is empty!');
         return;
     }
-    
-    // Check if we're already on the checkout page
+
     if (window.location.pathname.includes('checkout.html')) {
-     
         console.log('Already on checkout page');
         return;
     }
-    
-    // Determine correct path based on current location
+
     const currentPath = window.location.pathname;
-    let checkoutPath;
-    
-    if (currentPath.includes('/pages/')) {
-        
-        checkoutPath = 'checkout.html';
-    } else {
-       
-        checkoutPath = 'pages/checkout.html';
-    }
-    
-    // Redirect to checkout page
+    let checkoutPath = currentPath.includes('/pages/')
+        ? 'checkout.html'
+        : 'pages/checkout.html';
+
     window.location.href = checkoutPath;
 }
 
-// Initialize cart on page load
+// Initialize cart when page loads
 document.addEventListener('DOMContentLoaded', () => {
     loadCartFromStorage();
-    
-    // Update shopping cart display when cart is opened
+
     const shoppingBagIcon = document.getElementById('shoppingBagIcon');
     if (shoppingBagIcon) {
         shoppingBagIcon.addEventListener('click', () => {
@@ -244,13 +273,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Make checkout globally available for HTML onclick
+// Make checkout globally accessible
 window.checkout = checkout;
 
-// Make checkout function available globally for onClick
-window.checkout = checkout;
-
-// Export functions for use in other files
 export { 
     addToCart, 
     removeFromCart, 

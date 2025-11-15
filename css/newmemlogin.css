@@ -1,3 +1,15 @@
+html, body {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
 .membership-content {
     max-width: 1400px;
     margin: 0 auto;
@@ -15,7 +27,8 @@
     border: 1px solid var(--border-color);
     border-radius: 8px;
     margin-right: 20px;
-    width: 600px;
+    width: 100%;
+    max-width: 600px;
     text-align: center;
     color: white;
 }
@@ -35,7 +48,8 @@
     align-items: center;
     flex-direction: column;
     margin: 40px auto;
-    width: 350px;
+    width: 100%;
+    max-width: 350px;
     padding: 30px 20px;
     background-color: var(--background-color);
     border: 1px solid black;
@@ -78,18 +92,33 @@
     margin: 0 auto;
 }
 
+
+
 .membership-content__divider {
-    width: 600px;
+    width: 100%;
+    max-width: 600px;
     flex: 1;
 }
 
 .membership-content__form {
     flex: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 20px 20px;
-    width: 600px;
-    max-width: 800px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.membership-form {
+    max-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
 }
 
 .membership-content__h1 {
@@ -115,7 +144,8 @@
 }
 
 .membership-content__form input {
-    width: 300px;  
+    width: 100%;
+    max-width: 300px;
     padding: 8px;
     font-size: var(--font-size-xxsmall);
     border: 1px solid var(--input-border-color);
@@ -123,8 +153,14 @@
     background-color: rgba(255, 229, 197, 0.25);
 }
 
-.membership-content__form .main-btn {
+.form-div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--margin-medium);
+}
 
+/* Restore original main button styling */
+.membership-content__form .main-btn {
     cursor: pointer;
     align-self: center;
 }
@@ -154,8 +190,6 @@
 
 .checkbox-label input[type="checkbox"] {
     appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     width: 18px;
     height: 18px;
     border: 2px solid var(--input-border-color);
@@ -211,7 +245,7 @@
 
 .password-toggle {
     position: absolute;
-    right: 12px;
+    right: 180px;
     cursor: pointer;
     color: var(--input-border-color);
     font-size: 16px;
@@ -250,9 +284,11 @@
 /* Side-by-side zip and city */
 .address-row {
     display: flex;
+    flex-direction: row;
     gap: 15px;
     grid-column: span 2;
     align-items: end;
+    margin-top: 8px;
 }
 
 .address-row .form-group {
@@ -284,31 +320,104 @@
 }
 
 /* Mobile responsiveness */
+
+
+@media (max-width: 1024px) {
+.password-toggle {
+        right: 190px;
+    }
+   
+    .membership-content__divider button {
+        margin-left: 0;
+    }
+
+
+
+}
+
 @media (max-width: 768px) {
-    .membership-content__form {
-        grid-template-columns: 1fr;
-        width: 100%;
-    }
     
-    .dob-field,
-    .address-field,
-    .checkbox-label,
-    .main-btn,
-    .password-requirements,
-    .membership-content__h1,
-    .membership-content__p {
-        grid-column: span 1;
+    .membership-content {
+        flex-direction: column-reverse;
     }
-    
-    .address-row {
-        grid-column: span 1;
-        flex-direction: column;
-        gap: 12px;
+
+    .membership-content__form .main-btn {
+        align-self: center;
+        box-sizing: border-box;
     }
-    
-    .address-row #zip,
-    .address-row #city {
-        flex: none;
+
+    .password-toggle {
+        right: 30px;
+    }
+
+    .checkbox-label {
+        justify-content: center;
+        align-items: center;
+        font-size: var(--font-size-xxxsmall);
+    }
+
+    .checkbox-label a p{
+        font-size: var(--font-size-xxxsmall);
     }
 }
 
+@media (max-width: 468px) {
+    .membership-content {
+        flex-direction: column-reverse;
+        padding: 8px;
+    }
+
+    .membership-content__form,
+    .membership-content__headers {
+        width: 100%;
+        max-width: 100%;
+        padding: 8px 0;
+        box-sizing: border-box;
+    }
+
+    .membership-form {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .membership-content__whyjoin {
+        width: 100%;
+        max-width: 100%;
+        margin-right: 0;
+        padding: 12px;
+    }
+
+    .membership-content__whyjoin h2 {
+        font-size: var(--font-size-small);
+    }
+
+    .membership-content__whyjoing-ul {
+        width: 100%;
+        max-width: 100%;
+        padding: 12px 0;
+        font-size: var(--font-size-xxxsmall);
+    }
+
+    .membership-content__whyjoing-ul li {
+       font-size: var(--font-size-xxxsmall);
+    }
+
+    .membership-content__whyjoin p {
+       font-size: var(--font-size-xxxsmall);
+    }
+
+    .membership-content__divider {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .membership-content__form input {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .form-div {
+        margin-bottom: 12px;
+    }
+}

@@ -50,7 +50,7 @@ body {
     touch-action: manipulation;
     top: 0;
     background-color: var(--font-color);
-    height: 40px;
+    height: 44px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -138,11 +138,15 @@ body {
     flex-grow: 1;
 }
 
-.header-content__leftemptyforbalance i{
+.header-content__leftemptyforbalance button{
     display:block;
     margin-left: 20px;
     font-size: var(--font-size-largeplus);
     cursor: pointer;
+    background-color: var(--font-color);
+    color: var(--background-color);
+    border: none;
+    padding: none;
 }
 
 
@@ -184,14 +188,14 @@ body {
     background-color: var(--edit-add-button-background-color);
     color: var(--font-color);
     border-radius: 50%;
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 5px;
-    font-size: 6px;
-    font-size: var(--font-size-xxxsmall);
+    font-size: var(--font-size-xxsmall);
+    font-family: "inter-tshc", sans-serif;
 }
 
 .header-underline {
@@ -461,6 +465,14 @@ body {
         display: block;
         width: 100%;
         max-width: 300px;
+    }
+
+       .header-content__nav__right__cart-count {
+        right: -12px;    
+        top:-8px;
+        font-size: var(--font-size-xxsmall);
+        width: auto;
+        height: auto;
     }
 }
 /* media queries*/

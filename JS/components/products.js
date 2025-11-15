@@ -1,3 +1,11 @@
+
+/**
+* A mapping between product IDs and their assigned categories.
+* Each product ID corresponds to an array of category names.
+*
+* @constant
+* @type {Object.<string, string[]>}
+*/
 const productCategories = {
     //Fashion
     "3b43b2e4-62b0-4c02-9166-dffa46a0388c": ["fashion"],
@@ -29,19 +37,41 @@ const productCategories = {
 
 };
 
+/**
+* Retrieves all categories assigned to a given product ID.
+*
+* @function getProductCategories
+* @param {string} productId - The unique ID of the product.
+* @returns {string[]} An array of category names. Returns an empty array if none exist.
+*/
 function getProductCategories(productId) {
     return productCategories[productId] || [];
 }
 
+/**
+* Determines whether a product belongs to a specific category.
+*
+* @function isInCategory
+* @param {string} productId - The product ID to check.
+* @param {string} category - The category to test against.
+* @returns {boolean} True if the product is in the category, otherwise false.
+*/
 function isInCategory(productId, category) {
     const categories = getProductCategories(productId);
     return categories.includes(category);
 }
 
 
-//making images in to links to product.html with product id as parameter
-
-let imagelinks = document.getElementsByTagName("img");
+/**
+* Converts any image elements with a `data-product-id` attribute
+* into clickable links pointing to the corresponding product page.
+*
+* This mutation happens on page load and wraps the image inside an anchor tag.
+*
+* @function wrapImagesWithProductLinks
+*/
+function wrapImagesWithProductLinks() {
+const imagelinks = document.getElementsByTagName("img");
 for (let i = 0; i < imagelinks.length; i++) {
     let img = imagelinks[i];
     let productId = img.getAttribute("data-product-id");
@@ -53,4 +83,7 @@ for (let i = 0; i < imagelinks.length; i++) {
     }
 }
 
-export { isInCategory };
+}
+
+export { isInCategory, wrapImagesWithProductLinks, getProductCategories };
+

@@ -2,13 +2,40 @@ import { setupPagination, getPaginatedProducts, resetPagination } from './compon
 import { showLoginModal } from './components/loginusermodal.js';
 import { addToCart } from './components/cart.js';
 
-
+/**
+ * Base API URL for fetching products.
+ * @type {string}
+ */
 const API_URL = 'https://v2.api.noroff.dev/online-shop';
-const productsToDisplay = 12;
+
+/**
+ * Stores all fetched products from the API.
+ * @type {Product[]}
+ */
 let allProducts = [];
 
+/**
+ * @typedef {Object} ProductImage
+ * @property {string} url - URL of the product image.
+ * @property {string} alt - Alternative text for the image.
+ */
+
+/**
+ * @typedef {Object} Product
+ * @property {string} id - Product ID.
+ * @property {string} title - Product title.
+ * @property {string} description - Product description.
+ * @property {number} price - Original price.
+ * @property {number} discountedPrice - Discounted price (if available).
+ * @property {ProductImage} image - Product image object.
+ */
+
+/**
+ * Mapping of product IDs to their category group(s).
+ * @type {Record<string, string[]>}
+ */
 const productCategories = {
-        //Fashion
+    //Fashion
     "3b43b2e4-62b0-4c02-9166-dffa46a0388c": ["fashion"],
     "5391e16f-d88b-4747-a989-f17fb178459d": ["fashion"],
     "f7bdd538-3914-409d-bd71-8ef962a9a9dd": ["fashion"],
@@ -30,110 +57,116 @@ const productCategories = {
     "f5d453d1-e811-4225-81ac-cee54ef0384b": ["electronics"],
     "f6712e3b-8050-4841-bd64-f332a48f7566": ["electronics"],
     "fbf07ebe-9f9a-4895-8a16-567acbbeef4e": ["electronics"],
-    //health and beauty
+    //Health & Beauty
     "109566af-c5c2-4f87-86cb-76f36fb8d378": ["health and beauty"],
     "414f5b60-c574-4a2f-a77b-3956b983495b": ["health and beauty"],
     "9be4812e-16b2-44e6-bc55-b3aef9db2b82": ["health and beauty"],
     "c0d245f1-58fa-4b15-aa0c-a704772a122b": ["health and beauty"],
-
 };
 
+/**
+ * Returns the categories for a given product ID.
+ * @param {string} productId
+ * @returns {string[]} Categories associated with the product.
+ */
 function getProductCategories(productId) {
     return productCategories[productId] || [];
 }
 
+/**
+ * Checks if a product belongs to a given category.
+ * @param {string} productId - ID of the product.
+ * @param {string} category - Category name to check.
+ * @returns {boolean} Whether the product is in the category.
+ */
 function isInCategory(productId, category) {
     const categories = getProductCategories(productId);
     return categories.includes(category);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Set up category filter event listeners
     document.querySelectorAll('[data-category]').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const category = e.target.getAttribute('data-category');
-            resetPagination(); // Reset to page 1 when changing categories
-            
-            let productsToShow;
-            if (category === 'all') {
-                productsToShow = allProducts;
-            } else {
-                productsToShow = allProducts.filter(product => isInCategory(product.id, category));
-            }
-            
-            // Use different approach based on screen size
+            resetPagination();
+
+            let productsToShow =
+                category === 'all'
+                    ? allProducts
+                    : allProducts.filter(product => isInCategory(product.id, category));
+
             if (window.innerWidth <= 768) {
-                // Mobile: Use load more approach
-                displayedProducts = 0; // Reset displayed count
+                displayedProducts = 0;
                 renderProductsWithLoadMore(productsToShow);
             } else {
-                // Desktop: Use pagination approach
-                setupPagination(productsToShow.length, (page) => {
-                    const paginatedProducts = getPaginatedProducts(productsToShow);
-                    renderProducts(paginatedProducts);
+                setupPagination(productsToShow.length, () => {
+                    renderProducts(getPaginatedProducts(productsToShow));
                 });
-                const paginatedProducts = getPaginatedProducts(productsToShow);
-                renderProducts(paginatedProducts);
+                renderProducts(getPaginatedProducts(productsToShow));
             }
         });
     });
-    
-    // Fetch products after setting up listeners
+
     fetchProducts();
 });
 
-// Handle window resize to switch between mobile/desktop approaches
 window.addEventListener('resize', () => {
-    // Remove existing load more button if it exists
     const existingBtn = document.getElementById('loadMoreBtn');
-    if (existingBtn) {
-        existingBtn.remove();
-    }
-    
-    // Reset displayed products count
+    if (existingBtn) existingBtn.remove();
+
     displayedProducts = 0;
-    
-    // Re-fetch and display products with appropriate approach
     fetchProducts();
 });
 
-function getProductsPerPage() {
-    return window.innerWidth <= 768 ? 6 : 12;
-}
-
+/**
+ * Fetches products from the API and renders them depending on screen size.
+ * @returns {Promise<void>}
+ */
 async function fetchProducts() {
     try {
-        const response = await fetch('https://v2.api.noroff.dev/online-shop');
+        const response = await fetch(API_URL);
         const data = await response.json();
         allProducts = data.data;
-        
-        // Use different approach based on screen size
+
         if (window.innerWidth <= 768) {
-            // Mobile: Use load more approach
             renderProductsWithLoadMore(allProducts);
         } else {
-            // Desktop: Use pagination approach
-            setupPagination(allProducts.length, (page) => {
-                const paginatedProducts = getPaginatedProducts(allProducts);
-                renderProducts(paginatedProducts);
+            setupPagination(allProducts.length, () => {
+                renderProducts(getPaginatedProducts(allProducts));
             });
-            const paginatedProducts = getPaginatedProducts(allProducts);
-            renderProducts(paginatedProducts);
+            renderProducts(getPaginatedProducts(allProducts));
         }
     } catch (error) {
         console.error('Error fetching products:', error);
     }
 }
 
+/**
+ * Tracks the number of products currently displayed in mobile mode.
+ * @type {number}
+ */
 let displayedProducts = 0;
+
+/** @type {number} */
 const mobileProductsPerLoad = 6;
+
+/** @type {number} */
 const desktopProductsPerLoad = 12;
 
+/**
+ * Determines how many products to load depending on screen size.
+ * @returns {number}
+ */
 function getProductsPerLoad() {
     return window.innerWidth <= 768 ? mobileProductsPerLoad : desktopProductsPerLoad;
 }
 
+/**
+ * Renders products with a "Load More" button strategy (mobile).
+ * @param {Product[]} products - Products to show.
+ * @param {boolean} [isLoadMore=false] - True if loading additional items rather than resetting.
+ */
 function renderProductsWithLoadMore(products, isLoadMore = false) {
     const container = document.getElementById('products-container');
     const productsPerLoad = getProductsPerLoad();
@@ -152,32 +185,28 @@ function renderProductsWithLoadMore(products, isLoadMore = false) {
         productCard.innerHTML = `
             <img src="${product.image.url}" alt="${product.title}" class="product-image">
             <h3>${product.title}</h3>
-            ${product.discountedPrice && product.discountedPrice < product.price ? 
-                `<p class="price strikethrough">$${product.price}</p>
-                 <p class="discounted-price">$${product.discountedPrice}</p>` :
-                `<p class="price">$${product.price}</p>`
+            ${product.discountedPrice && product.discountedPrice < product.price
+                ? `<p class="price strikethrough">$${product.price}</p>
+                   <p class="discounted-price">$${product.discountedPrice}</p>`
+                : `<p class="price">$${product.price}</p>`
             }
         `;
 
         container.appendChild(productCard);
 
-        const productImage = productCard.querySelector('.product-image');
-        productImage.addEventListener('click', () => {
+        productCard.querySelector('.product-image').addEventListener('click', () => {
             window.location.href = `pages/productpage.html?id=${product.id}`;
         });
-        
-        // Add event listener for add to cart button (mobile version too)
+
         const addToCartBtn = productCard.querySelector('.add-to-cart-btn');
         if (addToCartBtn) {
             addToCartBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log('Adding to cart from mobile load more:', product.id);
                 addToCart(product);
             });
         }
 
-        // Add sale banner if product has discount
         if (product.discountedPrice && product.discountedPrice < product.price) {
             const saleBanner = document.createElement('div');
             saleBanner.className = 'sale-banner';
@@ -186,84 +215,76 @@ function renderProductsWithLoadMore(products, isLoadMore = false) {
         }
     });
 
-    // Update count AFTER the loop
     displayedProducts += productsToShow.length;
-    
-    // Call updateLoadMoreButton ONCE after all products are added
     updateLoadMoreButton(products.length);
 }
 
+/**
+ * Creates or updates the "Load More" button.
+ * @param {number} totalProducts - Total number of items available.
+ */
 function updateLoadMoreButton(totalProducts) {
     let loadMoreBtn = document.getElementById('loadMoreBtn');
-    
-    // Create button if it doesn't exist
+
     if (!loadMoreBtn) {
         loadMoreBtn = document.createElement('button');
         loadMoreBtn.id = 'loadMoreBtn';
         loadMoreBtn.textContent = 'Load More';
         loadMoreBtn.className = 'load-more-btn';
+
         document.getElementById('products-container').after(loadMoreBtn);
-        
+
         loadMoreBtn.addEventListener('click', () => {
             renderProductsWithLoadMore(allProducts, true);
         });
     }
-    
-    // Show/hide button based on conditions
-    if (displayedProducts >= totalProducts) {
-        loadMoreBtn.style.display = 'none';
-    } else {
-        loadMoreBtn.style.display = window.innerWidth <= 768 ? 'block' : 'none';
-    }
+
+    loadMoreBtn.style.display =
+        displayedProducts >= totalProducts
+            ? 'none'
+            : window.innerWidth <= 768
+                ? 'block'
+                : 'none';
 }
 
+/**
+ * Renders product cards (desktop version with pagination).
+ * @param {Product[]} products - Products to render.
+ */
 function renderProducts(products) {
     const container = document.getElementById('products-container');
-    
-    // Clear existing products first!
     container.innerHTML = '';
-    
+
     products.forEach(product => {
-        // This is creating the product card element
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
-        
 
-        // This is the inner HTML for the product-card
         productCard.innerHTML = `
             <img src="${product.image.url}" alt="${product.title}" class="product-image">
             <h3>${product.title}</h3>
             <div class="price-container">
-            ${product.discountedPrice && product.discountedPrice < product.price ? 
-                `<p class="price strikethrough">$${product.price}</p>
-                 <p class="discounted-price">$${product.discountedPrice}</p>` :
-                `<p class="price">$${product.price}</p>`
-            }
+                ${product.discountedPrice && product.discountedPrice < product.price
+                    ? `<p class="price strikethrough">$${product.price}</p>
+                       <p class="discounted-price">$${product.discountedPrice}</p>`
+                    : `<p class="price">$${product.price}</p>`
+                }
             </div>
             <button class="add-to-cart-btn">Add to Cart</button>
         `;
-        
+
         container.appendChild(productCard);
-        
-        // Adding the click event to the image
-        const productImage = productCard.querySelector('.product-image');
-        productImage.addEventListener('click', () => {
-            // sending the product ID to the product page
+
+        productCard.querySelector('.product-image').addEventListener('click', () => {
             window.location.href = `pages/productpage.html?id=${product.id}`;
         });
-        
-        // Add event listener for add to cart button
+
         const addToCartBtn = productCard.querySelector('.add-to-cart-btn');
-        if (addToCartBtn) {
-            addToCartBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation(); // Prevent triggering the image click
-                console.log('Adding to cart from homepage:', product.id);
-                addToCart(product);
-            });
-        }
-        
-        //My sales banner
+        addToCartBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            addToCart(product);
+        });
+
         if (product.discountedPrice && product.discountedPrice < product.price) {
             const saleBanner = document.createElement('div');
             saleBanner.className = 'sale-banner';
@@ -273,30 +294,25 @@ function renderProducts(products) {
     });
 }
 
-
-
+/**
+ * Sets up login modal trigger and closes hamburger on activation.
+ */
 document.addEventListener('DOMContentLoaded', () => {
     const loginTrigger = document.querySelector('#loginModalTrigger');
-    
+
     if (loginTrigger) {
         loginTrigger.addEventListener('click', (e) => {
             e.preventDefault();
-            
-            // Open the login modal
             showLoginModal();
-            
-            // Close the hamburger menu after opening modal
+
             const hamburgerMenuOverlay = document.getElementById('hamburgerMenu');
             const hamburgerOverlay = document.getElementById('hamburgerOverlay');
-            
-            if (hamburgerMenuOverlay) {
-                hamburgerMenuOverlay.classList.remove('show-hamburger-menu');
-            }
-            if (hamburgerOverlay) {
-                hamburgerOverlay.classList.remove('show');
-            }
+
+            if (hamburgerMenuOverlay) hamburgerMenuOverlay.classList.remove('show-hamburger-menu');
+            if (hamburgerOverlay) hamburgerOverlay.classList.remove('show');
         });
     } else {
         console.error('Login trigger not found!');
     }
 });
+

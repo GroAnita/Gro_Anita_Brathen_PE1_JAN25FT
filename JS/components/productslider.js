@@ -1,6 +1,12 @@
 import { formatProductPrice, hasDiscount, createSalesBanner } from '../utils.js';
 
-
+/**
+* Fetches a random subset of products from the API.
+* @async
+* @function getRandomProductsForSlider
+* @param {number} [count=3] - Number of random products to return.
+* @returns {Promise<Array<Object>>} A promise resolving to an array of product objects.
+*/
 async function getRandomProductsForSlider(count = 3) {
     try {
         const response = await fetch('https://v2.api.noroff.dev/online-shop');
@@ -15,6 +21,13 @@ async function getRandomProductsForSlider(count = 3) {
     }
 }
 
+/**
+* Builds the slider UI using products fetched from the API.
+* Generates slides, controls, dots, and registers interaction handlers.
+* @async
+* @function createSliderWithAPIProducts
+* @returns {Promise<void>}
+*/
 async function createSliderWithAPIProducts() {
     const products = await getRandomProductsForSlider(3);
     const sliderTrack = document.querySelector('.slider-track'); 
@@ -50,8 +63,8 @@ async function createSliderWithAPIProducts() {
     if (!existingControls) {
         sliderContainer.innerHTML += `
             <div class="slider-controls">
-                <button class="prev-btn">❮</button>
-                <button class="next-btn">❯</button>
+                <button class="prev-btn" aria-label="Previous slide">❮</button>
+                <button class="next-btn" aria-label="Next slide">❯</button>
             </div>
         `;
     }
@@ -63,6 +76,10 @@ async function createSliderWithAPIProducts() {
         const dot = document.createElement('span');
         dot.className = 'carousel-dot';
         if (index === 0) dot.classList.add('active');
+        dot.setAttribute("role", "tab");
+        dot.setAttribute("aria-selected", index === 0 ? "true" : "false");
+        dot.setAttribute("tabindex", index === 0 ? "0" : "-1");
+
         dot.addEventListener('click', () => {
             const sliderTrack = document.querySelector('.slider-track');
             const targetTranslate = -(index * 33.3333);
@@ -86,13 +103,23 @@ async function createSliderWithAPIProducts() {
     }, 100);
 }
 
-// Helper function to update active dot
+/**
+* Updates active carousel dot.
+* @function updateActiveDot
+* @param {number} slideIndex - The index of the active slide.
+*/
 function updateActiveDot(slideIndex) {
     document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
         dot.classList.toggle('active', index === slideIndex);
     });
 }
 
+/**
+* Initializes basic slider functionality for desktop (arrow navigation).
+* @async
+* @function initializeSlider
+* @returns {Promise<void>}
+*/
 async function initializeSlider() {
     const slides = document.querySelectorAll('.slide');
     const sliderTrack = document.querySelector('.slider-track');
@@ -100,6 +127,10 @@ async function initializeSlider() {
     const prevButton = document.querySelector('.slider-controls .prev-btn');
     let currentSlide = 0;
 
+    /**
+    * Moves slider to a specific slide.
+    * @param {number} index - The slide index to show.
+    */
     function showSlide(index) {
         // Move the track to show the correct slide
         const translateX = -(index * 33.3333); // Each slide is 33.3333% wide
@@ -122,6 +153,11 @@ async function initializeSlider() {
     showSlide(0);
 }
 
+/**
+* Enables touch & drag controls for mobile devices.
+* Supports swiping between slides.
+* @function addTouchControls
+*/
 function addTouchControls() {
    const sliderTrack = document.querySelector('.slider-track');
    const slides = document.querySelectorAll('.slide');
@@ -143,6 +179,7 @@ function addTouchControls() {
     sliderTrack.addEventListener('touchmove', dragMove, { passive: false });
     sliderTrack.addEventListener('touchend', dragEnd);
 
+    /** @param {MouseEvent|TouchEvent} event */
     function dragStart(event) {
         // Check if click target is an image with product ID - if so, don't start dragging
         if (event.target.tagName === 'IMG' && event.target.hasAttribute('data-product-id')) {
@@ -156,6 +193,7 @@ function addTouchControls() {
         sliderTrack.style.cursor = 'grabbing';
     }
 
+    /** @param {MouseEvent|TouchEvent} event */
     function dragMove(event) {
         if (!isDragging) return;
         
@@ -171,6 +209,7 @@ function addTouchControls() {
         sliderTrack.style.transform = `translateX(${currentTranslate}px)`;
     }
 
+    /** @param {MouseEvent|TouchEvent} event */
     function dragEnd(event) {
         if (!isDragging) return;
         isDragging = false;
@@ -207,6 +246,10 @@ function addTouchControls() {
         snapToSlide(currentSlide);
     }
 
+    /**
+    * Snaps slider to a specific index.
+    * @param {number} slideIndex
+    */
     function snapToSlide(slideIndex) {
         currentSlide = slideIndex;
         const targetTranslate = -(currentSlide * 33.3333);
@@ -219,6 +262,7 @@ function addTouchControls() {
         updateActiveDot(currentSlide);
     }
 
+    /** @param {MouseEvent|TouchEvent} event */
     function getPositionX(event) {
         if (event.type.includes('mouse')) {
             return event.clientX;
@@ -238,7 +282,13 @@ function addTouchControls() {
 
 }
 
-// Function to initialize slider controls based on screen size
+/**
+* Determines and applies the correct slider control mode based on screen size and device type.
+* - Desktop: Arrow buttons
+* - Mobile touch devices: Swipe
+* - Mobile non-touch: Auto slide
+* @function initializeSliderControls
+*/
 function initializeSliderControls() {
     const isMobileSize = window.innerWidth <= 1024;
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
@@ -288,6 +338,10 @@ window.addEventListener('resize', () => {
     }, 250); // Wait 250ms after resize stops
 });
 
+/**
+ * Attaches click handlers to slider images to navigate directly to product pages.
+ * @function setupImageClickHandlers
+ */
 function setupImageClickHandlers() {
     const sliderImages = document.querySelectorAll('.slider-image[data-product-id]');
     
@@ -308,7 +362,10 @@ function setupImageClickHandlers() {
                 imageBox.style.pointerEvents = 'auto';
             }
             
-            // Create navigation function
+            /**
+             * Naviates user to the product page
+             * @param {MouseEvent} e
+             */
             function navigateToProduct(e) {
                 e.preventDefault();
                 e.stopImmediatePropagation();

@@ -1,8 +1,9 @@
- 
-
- 
- 
- const successModalHTML = `
+/**
+ * HTML template for the purchase success modal.
+ * Injected into the DOM when initializeSuccessModal() runs.
+ * @type {string}
+ */
+const successModalHTML = `
     <div id="purchaseSuccessModal" class="alert-modal">
         <div class="alert-modal-content success-modal">
             <span class="success-close">&times;</span>
@@ -21,40 +22,55 @@
     </div>
 `;
 
+/**
+ * Displays the success modal and injects dynamic order information.
+ *
+ * @param {string} orderId - The generated order ID to display.
+ * @param {string} deliveryDate - Estimated delivery text to show.
+ */
 function showSuccessModal(orderId, deliveryDate) {
     const modal = document.getElementById('purchaseSuccessModal');
     const orderIdSpan = document.getElementById('purchaseId');
     const deliveryDateSpan = document.getElementById('deliveryDate');
-    
+
     if (orderIdSpan) orderIdSpan.textContent = orderId;
     if (deliveryDateSpan) deliveryDateSpan.textContent = deliveryDate;
-    
+
     if (modal) {
         modal.style.display = 'block';
     }
 }
 
+/**
+ * Ensures the success modal exists in the DOM, initializes close buttons,
+ * and sets up redirect behavior.
+ */
 function initializeSuccessModal() {
-    // Add the modal HTML to the page if it doesn't exist
+    // Inject modal HTML once
     if (!document.getElementById('purchaseSuccessModal')) {
         document.body.insertAdjacentHTML('beforeend', successModalHTML);
     }
-    
+
     const modal = document.getElementById('purchaseSuccessModal');
     const closeBtn = document.querySelector('.success-close');
     const okBtn = document.getElementById('successOkBtn');
-    
+
+    /**
+     * Closes the modal and redirects the user back to the home page.
+     */
     function closeModal() {
         modal.style.display = 'none';
-        // Redirect to home page
         window.location.href = '../index.html';
     }
-    
+
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
     if (okBtn) okBtn.addEventListener('click', closeModal);
 }
 
+// Automatically initialize modal on page load
+/**
+ * Initializes the success modal after the DOM is fully loaded.
+ */
 document.addEventListener('DOMContentLoaded', initializeSuccessModal);
-
 
 export { showSuccessModal, initializeSuccessModal };

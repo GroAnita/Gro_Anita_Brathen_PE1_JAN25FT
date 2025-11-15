@@ -1,5 +1,10 @@
 import memberLoginModal from "../utils.js";
 
+/**
+ * HTML template for the login modal.
+ * Injected into the DOM when the modal is created.
+ * @type {string}
+ */
 const loginModalTemplate = `
     <div class="login-modal" id="loginModal" style="display: none;">
         <div class="modal-content">
@@ -18,6 +23,9 @@ const loginModalTemplate = `
     </div>
 `;
 
+/**
+ * Creates the login modal and appends it to the DOM if it does not already exist.
+ */
 function createLoginModal() {
     // Checking if modal already should exist
     if (document.getElementById('loginModal')) return;
@@ -29,6 +37,12 @@ function createLoginModal() {
     setupLoginModalEventListeners();
 }
 
+/**
+ * Assigns event listeners to login modal elements:
+ * - Close button
+ * - Outside click closing
+ * - Form submission (login API)
+ */
 function setupLoginModalEventListeners() {
     const modal = document.getElementById('loginModal');
     if (!modal) return;
@@ -104,12 +118,20 @@ function setupLoginModalEventListeners() {
     }
 }
 
+/**
+ * Opens the login modal. Creates the modal if it does not exist.
+ */
 function showLoginModal() {
     createLoginModal(); // Creates if doesn't exist
     document.getElementById('loginModal').style.display = 'block';
 }
 
-// Login state management functions
+/**
+ * Updates the UI depending on login status.
+ *
+ * @param {boolean} isLoggedIn - Whether the user is logged in.
+ * @param {string} [userName=''] - The user’s name to display in the UI.
+ */
 function updateLoginState(isLoggedIn, userName = '') {
     const headerUserIcon = document.querySelector('.header-content__nav__right .fas.fa-user');
     const loginTriggers = document.querySelectorAll('#loginModalTrigger');
@@ -168,6 +190,10 @@ function updateLoginState(isLoggedIn, userName = '') {
     }
 }
 
+/**
+ * Opens a confirmation dialog asking the user if they want to log out.
+ * Calls `logout()` if confirmed.
+ */
 function showLogoutOptions() {
     const confirmLogout = confirm('Are you sure you want to logout?');
     if (confirmLogout) {
@@ -175,6 +201,9 @@ function showLogoutOptions() {
     }
 }
 
+/**
+ * Logs out the user by removing saved session data and updating the UI.
+ */
 function logout() {
     // Clear all login data from localStorage
     localStorage.removeItem('isLoggedIn');
@@ -189,6 +218,9 @@ function logout() {
     console.log('User logged out');
 }
 
+/**
+ * Checks localStorage to determine if the user is logged in and restores UI state accordingly.
+ */
 function checkLoginState() {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     const userName = localStorage.getItem('userName') || '';

@@ -24,7 +24,16 @@
 <body>
     <div class="container">
           <div class="header-topbar">
-                <div class="header-content__leftemptyforbalance"> <!--mobile hamburgermenu--><i class="fa-solid fa-bars" id="hamburgerMenuIcon"></i></div>
+                <div class="header-content__leftemptyforbalance"> 
+                    <button 
+                        id="hamburgerMenuIcon"
+                        class="hamburger-btn"
+                        aria-controls="hamburgerMenu"
+                        aria-expanded="false"
+                        aria-label="Open menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
                 <div class="header-content__nav__left"><p>We <i class="fa-solid fa-heart"></i>pre-owned</p></div>
                 <div class="header-content__nav__right">
                     <i class="fas fa-search"></i>
@@ -39,9 +48,9 @@
             <!-- Mobile Header -->
             <div class="header-content-mobile">
                 <div class="header-content__logo__mobile">
-                    <img src="images/horseheadlogo.svg" alt="Logo" class="logo--mobile">
+                    <img src="images/horseheadlogo.svg" alt="The Second Hand Company Logo" class="logo--mobile">
                 </div>
-                <span class="header-content-mobile__text">The Second Hand Company</span>
+                <span class="header-content-mobile__text">The Second Hand Company Logo</span>
             </div>  
             <!-- Desktop Header -->
             <div class="header-content">
@@ -63,9 +72,9 @@
         <div class="header-underline"><h2>Check out our new pre-owned arrivals</h2></div>
 
         <!--hamburger menu -->
-        <div class="hamburger-menu" id="hamburgerMenu">
+        <div class="hamburger-menu" id="hamburgerMenu" aria-modal="true" role="dialog" aria-hidden="true">
             <button class="close-btn" id="closeHamburgerMenu">&times;</button>
-            <nav>
+            <nav aria-label="Primary Navigation">
                 <ul class="hamburger-menu__links">
                     <li><a href="#" data-category="fashion">Fashion</a></li>
                     <li><a href="#" data-category="electronics">Electronics</a></li>
@@ -86,11 +95,11 @@
         </div>
         
         <!-- Hamburger overlay for dark background -->
-        <div class="hamburger-overlay" id="hamburgerOverlay"></div>
+        <div class="hamburger-overlay" id="hamburgerOverlay" aria-hidden="true"></div>
     
 
         <!--Shopping cart sidebar-->
-            <div class="shopping_cart" id="shoppingCart">
+            <div class="shopping_cart" id="shoppingCart" aria-modal="true" role="dialog" aria-hidden="true">
                 <div class="cart-header">
                     <h2>Your Shopping Bag</h2>
                     <button class="close-btn" id="closeShoppingCartBtn">&times;</button>
@@ -113,11 +122,11 @@
              </div>
 
         <!-- Product slider Section -->
-        <div class="slider-container">
+        <div class="slider-container" aria-label="Featured Products Slider" role="region">
             <div class="slider-track" id="productSlider">
             <!-- Slider content will be dynamically inserted here -->
             </div>
-            <div id="carouselDots"></div>
+            <div id="carouselDots" role="tablist"></div>
         </div>
           <div class="header-content__nav">
                 <nav>
@@ -132,7 +141,7 @@
             </div>
 
         <!-- Product Grid Section -->
-        <section class="image-grid">
+        <section class="image-grid" aria-label="Product lisings">
         <div class="container">
             <div id="products-container" class="products-grid">
                 <!-- Products should be dynamically inserted here -->
@@ -177,7 +186,7 @@
                     <span class="vr"></span>
                 <div class="footer-content__right">
                     <span class="footer-content__right__title"><h4>Connect</h4></span>
-                    <div class="footer-content__right__icons">
+                    <div class="footer-content__right__icons" aria-label="Social media links">
                         <i class="fab fa-facebook-f"></i>
                         <i class="fa-brands fa-tiktok"></i>
                         <i class="fab fa-instagram"></i>

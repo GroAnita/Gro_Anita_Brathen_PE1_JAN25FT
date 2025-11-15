@@ -1,3 +1,12 @@
+/**
+ * Returns formatted HTML for a product price.
+ * Includes a discounted and original price if a discount exists.
+ *
+ * @param {Object} product - The product object.
+ * @param {number} product.price - The original price.
+ * @param {number} [product.discountedPrice] - The discounted price (if any).
+ * @returns {string} HTML string representing the price block.
+ */
 function formatProductPrice(product) {
     if (product.discountedPrice && product.discountedPrice < product.price) {
         return `
@@ -13,12 +22,25 @@ function formatProductPrice(product) {
 
 export { formatProductPrice };
 
+/**
+ * Checks whether a product has a valid discount.
+ *
+ * @param {Object} product - The product object.
+ * @param {number} product.price - Original price.
+ * @param {number} [product.discountedPrice] - Discounted price.
+ * @returns {boolean} True if the product is discounted.
+ */
 function hasDiscount(product) {
     return product.discountedPrice && product.discountedPrice < product.price;
 }
 
 export { hasDiscount }; 
 
+/**
+ * Creates and returns a DOM element representing a sales banner.
+ *
+ * @returns {HTMLDivElement} A "SALE" banner element.
+ */
 function createSalesBanner() {
     const saleBanner = document.createElement('div');
     saleBanner.className = 'sale-banner';
@@ -28,58 +50,68 @@ function createSalesBanner() {
 
 export { createSalesBanner };
 
+/**
+ * Adds a magnifying zoom effect to a product image.
+ *
+ * @param {string} imageSelector - CSS selector for the product image.
+ * @param {number} [zoomLevel=2] - How much the image should scale.
+ * @returns {Object} Controls for zoom behavior.
+ * @returns {Function} return.zoom - Programmatically toggle zoom.
+ * @returns {Function} return.destroy - Remove zoom behavior & icon.
+ */
 function magnifyProductImage(imageSelector, zoomLevel = 2) {
     const productImage = document.querySelector(imageSelector);
     if (!productImage) return;
     
     let isZoomed = false;
     
-    // Create magnify icon
+    // Magnify icon
     const magnifyIcon = document.createElement('i');
     magnifyIcon.className = 'fas fa-magnifying-glass magnify-icon';
     magnifyIcon.title = 'Click to zoom';
     
     // Add icon to image container
     const imageContainer = productImage.parentElement;
-    productImage.style.position = 'relative'; // Ensure positioning context
+    productImage.style.position = 'relative';
     productImage.appendChild(magnifyIcon);
     
-    // Set up image styles for zooming
+    // Enable zooming
     productImage.style.transition = 'transform 0.3s ease';
     productImage.style.transformOrigin = 'center';
     
-    // Toggle zoom function
+    /**
+     * Zooms in/out on click.
+     */
     function toggleZoom() {
         if (!isZoomed) {
-            // Zoom in
             productImage.style.transform = `scale(${zoomLevel})`;
-            magnifyIcon.style.opacity = '0.7'; // Visual feedback when zoomed
+            magnifyIcon.style.opacity = '0.7';
             magnifyIcon.title = 'Click to zoom out';
             isZoomed = true;
-            // Add click-outside listener when zoomed in
             document.addEventListener('click', handleClickOutside);
         } else {
-            // Zoom out
             productImage.style.transform = 'scale(1)';
-            magnifyIcon.style.opacity = '1'; // Back to normal opacity
+            magnifyIcon.style.opacity = '1';
             magnifyIcon.title = 'Click to zoom';
             isZoomed = false;
-            // Remove click-outside listener when zoomed out
             document.removeEventListener('click', handleClickOutside);
         }
     }
     
-    // Handle clicks outside the image
+    /**
+     * Closes zoom when clicking outside the image.
+     *
+     * @param {MouseEvent} event 
+     */
     function handleClickOutside(event) {
-        // Check if click is outside the image container
         if (!productImage.contains(event.target) && isZoomed) {
-            toggleZoom(); // Zoom out
+            toggleZoom();
         }
     }
     
-    // Add click event to icon
+    // Add click to icon
     magnifyIcon.addEventListener('click', (event) => {
-        event.stopPropagation(); // Prevent triggering click-outside
+        event.stopPropagation();
         toggleZoom();
     });
     
@@ -94,7 +126,14 @@ function magnifyProductImage(imageSelector, zoomLevel = 2) {
 
 export { magnifyProductImage };
 
-
+/**
+ * Adds a share button to an image container and supports Web Share API + fallbacks.
+ *
+ * @param {string} imageContainerSelector - CSS selector of the container.
+ * @param {string} urlToShare - The URL to share or copy.
+ * @param {string} [productTitle='Check out this product'] - The message included in share.
+ * @returns {Object|undefined} Returns control object if setup succeeded.
+ */
 function shareButtonSetup(imageContainerSelector, urlToShare, productTitle = 'Check out this product') {
     const imageContainer = document.querySelector(imageContainerSelector);
     if (!imageContainer) {
@@ -106,22 +145,37 @@ function shareButtonSetup(imageContainerSelector, urlToShare, productTitle = 'Ch
     shareIcon.className = 'fa-solid fa-share share-icon';
     shareIcon.title = 'Click to share';
 
-
-    // Add hover effect
+    // Hover visuals
     shareIcon.addEventListener('mouseenter', () => {
         shareIcon.style.background = 'rgba(0, 0, 0, 0.9)';
     });
-    
     shareIcon.addEventListener('mouseleave', () => {
         shareIcon.style.background = 'rgba(0, 0, 0, 0.7)';
     });
 
-    // Add icon to image container
     imageContainer.appendChild(shareIcon);
     
+    /**
+     * Fallback if Web Share API is not available.
+     *
+     * @param {string} url - The URL to share or copy.
+     */
+    function fallbackShare(url) {
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(url).then(() => {
+                alert('Link copied to clipboard!');
+            }).catch(() => {
+                prompt('Copy this link to share:', url);
+            });
+        } else {
+            prompt('Copy this link to share:', url);
+        }
+    }
+
+    // Share click handler
     shareIcon.addEventListener('click', async (event) => {
         event.preventDefault();
-        event.stopPropagation(); // Prevent triggering other click events
+        event.stopPropagation();
         
         if (navigator.share) {
             try {
@@ -130,34 +184,16 @@ function shareButtonSetup(imageContainerSelector, urlToShare, productTitle = 'Ch
                     text: `Check out this amazing product: ${productTitle}`,
                     url: urlToShare
                 });
-                console.log('Product shared successfully');
             } catch (error) {
                 if (error.name !== 'AbortError') {
-                    console.error('Error sharing the product:', error);
-                    // Fallback to clipboard
+                    console.error('Error sharing product:', error);
                     fallbackShare(urlToShare);
                 }
             }
         } else {
-            // Fallback for browsers that do not support the Web Share API
             fallbackShare(urlToShare);
         }
     });
-    
-    function fallbackShare(url) {
-        if (navigator.clipboard && window.isSecureContext) {
-            // Use clipboard API if available
-            navigator.clipboard.writeText(url).then(() => {
-                alert('Link copied to clipboard!');
-            }).catch(() => {
-                // Final fallback
-                prompt('Copy this link to share:', url);
-            });
-        } else {
-            // Final fallback
-            prompt('Copy this link to share:', url);
-        }
-    }
     
     return {
         shareIcon: shareIcon,
@@ -167,13 +203,22 @@ function shareButtonSetup(imageContainerSelector, urlToShare, productTitle = 'Ch
 
 export { shareButtonSetup };
 
+// ---------------------------
 // Member Login Modal Module
+// ---------------------------
 
+/**
+ * Module for controlling the member login modal.
+ *
+ * @namespace memberLoginModal
+ * @property {Function} open - Opens the modal.
+ * @property {Function} close - Closes the modal.
+ */
 const memberLoginModal = (() => {
-    // Get modal element
+
     const modal = document.getElementById('loginModal');
     
-    // Check if modal exists before proceeding
+    // Handle missing modal gracefully
     if (!modal) {
         return {
             open: () => console.warn('Login modal not available'),
@@ -183,22 +228,26 @@ const memberLoginModal = (() => {
     
     const closeBtn = modal.querySelector('.close-btn');
 
-    // Function to open the modal
+    /** Opens the login modal. */
     function openModal() {
         modal.style.display = 'block';
     }
 
-    // Function to close the modal
+    /** Closes the login modal. */
     function closeModal() {
         modal.style.display = 'none';
     }
 
-    // Event listener for close button (only if it exists)
+    // Close button
     if (closeBtn) {
         closeBtn.addEventListener('click', closeModal);
     }
 
-    // Event listener for clicks outside the modal content
+    /**
+     * Closes modal if clicking outside the modal content.
+     *
+     * @param {MouseEvent} event
+     */
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
             closeModal();
@@ -210,8 +259,5 @@ const memberLoginModal = (() => {
         close: closeModal
     };
 })();
-
-// Example usage: memberLoginModal.open(); to open the modal
-// memberLoginModal.close(); to close the modal
 
 export default memberLoginModal;

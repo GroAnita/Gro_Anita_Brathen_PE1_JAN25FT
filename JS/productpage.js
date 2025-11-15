@@ -1,3 +1,4 @@
+// JSDoc-enhanced Product Page Script
 import { formatProductPrice, hasDiscount, createSalesBanner, magnifyProductImage, shareButtonSetup } from './utils.js';
 import { showLoginModal } from './components/loginusermodal.js';
 import { addToCart } from './components/cart.js';
@@ -6,6 +7,12 @@ let currentProductId = null;
 const urlParams = new URLSearchParams(window.location.search);
 currentProductId = urlParams.get('id');
 
+/**
+ * Fetch detailed data for a single product.
+ * @async
+ * @param {string} productId - The ID of the product to fetch.
+ * @returns {Promise<Object|null>} The full product response object, or null if the request fails.
+ */
 async function fetchProductDetails(productId) {
     try {
         const response = await fetch(`https://v2.api.noroff.dev/online-shop/${productId}`);
@@ -20,8 +27,12 @@ async function fetchProductDetails(productId) {
     }
 }
 
-
-
+/**
+ * Display product details on the product page.
+ * Fetches, inserts HTML, updates DOM, and initializes features.
+ * @async
+ * @returns {Promise<void>}
+ */
 async function displayProductDetails() {
     if (!currentProductId) {
         console.error('No product ID found in URL');
@@ -33,22 +44,17 @@ async function displayProductDetails() {
         console.error('Failed to load product details');
         return;
     }
-    
-    
-    // Extract the actual product data from the API response
+
+    /** @type {Object} */
     const productData = product.data;
-    
-    
+
     const productPageBox = document.querySelector('.productpage-box');
     if (productPageBox) {
-        // Safely access image URL with fallback - now using productData
-        const imageUrl = productData.image && productData.image.url ? productData.image.url : '/images/placeholder-product.jpg';
+        const imageUrl = productData.image?.url || '/images/placeholder-product.jpg';
         const productTitle = productData.title || 'Product Title';
         const productDesc = productData.description || 'No description available';
-        
-        // Use imported function for price formatting
         const priceHTML = formatProductPrice(productData);
-        
+
         productPageBox.innerHTML = `
             <div class="productpage-image">
                 <div class="image-wrapper">
@@ -60,8 +66,8 @@ async function displayProductDetails() {
                 ${priceHTML}
                 <p class="product-description">${productDesc}</p>
                 <div class="productpage-actions">
-                <button class="add-to-cart-btn">Add to Cart</button>
-            </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
             </div>
         `;
 
@@ -69,204 +75,178 @@ async function displayProductDetails() {
 
         if (hasDiscount(productData)) {
             const imageContainer = document.querySelector('.image-wrapper');
-            const salesBanner = createSalesBanner(); // This returns a DOM element
-            imageContainer.appendChild(salesBanner);    
+            const salesBanner = createSalesBanner();
+            imageContainer.appendChild(salesBanner);
         }
     }
-    
-    // Select existing elements and update them safely
+
+    // Update DOM safely
     const titleEl = document.querySelector('.product-title');
     const priceEl = document.querySelector('.product-price');
     const descEl = document.querySelector('.product-description');
     const imageEl = document.querySelector('.product-image');
-    
+
     if (titleEl) titleEl.textContent = productData.title;
     if (priceEl) priceEl.textContent = `$${productData.price.toFixed(2)}`;
     if (descEl) descEl.textContent = productData.description;
-    if (imageEl && productData.image && productData.image.url) {
+    if (imageEl && productData.image?.url) {
         imageEl.src = productData.image.url;
         imageEl.alt = productData.title;
     }
 
-    // For testing - create fake reviews if none exist
-    let reviewsToDisplay = productData.reviews || [];
-    
-    // Display reviews from product data
+    const reviewsToDisplay = productData.reviews || [];
     displayReviews(reviewsToDisplay);
-    
-    // Setup share icon inside image container (next to magnify icon)
+
     shareButtonSetup('.image-wrapper', window.location.href, productData.title);
-    
-    // Setup add to cart button
     setupAddToCartButton(productData);
-};
-
-
-const productPageOtherInfoBox = document.querySelector('.productpage-otherinfo-box');
-
-productPageOtherInfoBox.innerHTML = `
-  <div class="product-tabs">
-        <div class="tab-buttons">
-            <button class="tab-btn active" data-tab="reviews">Reviews</button>
-            <button class="tab-btn" data-tab="shipping">Shipping Info</button>
-            <button class="tab-btn" data-tab="care">Care Instructions</button>
-        </div>
-        <div class="tab-content">
-            <div id="reviews" class="tab-pane active">
-                <div class="reviews-section">
-                    <h3>Customer Reviews</h3>
-                    <div id="reviewsList">
-                       <div class="product-rating">
-                <span id="productRating">★★★★☆</span>
-                <span id="reviewCount">(0 reviews)</span>
-            </div>
-                    </div>
-                </div>
-            </div>
-            <div id="shipping" class="tab-pane">
-                <h3>Shipping Information</h3>
-                <p>Free shipping on orders over $100. Standard delivery 3-5 business days.</p>
-            </div>
-            <div id="care" class="tab-pane">
-                <h3>Care Instructions</h3>
-                <p>Machine wash cold, tumble dry low. Do not bleach.</p>
-            </div>
-        </div>
-    </div>
-    <div class="productpage-otherinfo-infobox">
-                    <ul>
-                        <li>Free shipping on all orders over $50</li>
-                        <li>30-day return policy for members</li>
-                        <li>Eco-friendly packaging</li>
-                        <li>Secure payment options</li>
-                    </ul>
-                </div>
-   
-`;
-
-// Function to calculate average rating from reviews
-function calculateAverageRating(reviews) {
-    if (!reviews || reviews.length === 0) {
-        return 0;
-    }
-    
-    const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
-    return (totalRating / reviews.length).toFixed(1);
 }
 
-// Function to create star display
+// Insert static info/tabs section
+const productPageOtherInfoBox = document.querySelector('.productpage-otherinfo-box');
+productPageOtherInfoBox.innerHTML = `
+  <div class="product-tabs">
+    <div class="tab-buttons">
+      <button class="tab-btn active" data-tab="reviews">Reviews</button>
+      <button class="tab-btn" data-tab="shipping">Shipping Info</button>
+      <button class="tab-btn" data-tab="care">Care Instructions</button>
+    </div>
+    <div class="tab-content">
+      <div id="reviews" class="tab-pane active">
+        <div class="reviews-section">
+          <h3>Customer Reviews</h3>
+          <div id="reviewsList">
+             <div class="product-rating">
+                <span id="productRating">★★★★☆</span>
+                <span id="reviewCount">(0 reviews)</span>
+             </div>
+          </div>
+        </div>
+      </div>
+      <div id="shipping" class="tab-pane">
+        <h3>Shipping Information</h3>
+        <p>Free shipping on orders over $100. Standard delivery 3–5 business days.</p>
+      </div>
+      <div id="care" class="tab-pane">
+        <h3>Care Instructions</h3>
+        <p>Machine wash cold, tumble dry low. Do not bleach.</p>
+      </div>
+    </div>
+  </div>
+  <div class="productpage-otherinfo-infobox">
+    <ul>
+      <li>Free shipping on all orders over $50</li>
+      <li>30-day return policy for members</li>
+      <li>Eco-friendly packaging</li>
+      <li>Secure payment options</li>
+    </ul>
+  </div>
+`;
+
+/**
+ * Calculate the average rating from an array of reviews.
+ * @param {Array<{rating: number}>} reviews - List of review objects.
+ * @returns {number} The average rating with one decimal.
+ */
+function calculateAverageRating(reviews) {
+    if (!reviews || reviews.length === 0) return 0;
+    const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
+    return Number((totalRating / reviews.length).toFixed(1));
+}
+
+/**
+ * Create HTML for a star rating.
+ * @param {number} rating - Rating from 0–5.
+ * @param {boolean} [showDecimal=false] - Whether to show numeric rating.
+ * @returns {string} HTML string representing star icons.
+ */
 function createStarRating(rating, showDecimal = false) {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 >= 0.5;
     const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-    
+
     let starHTML = '';
-    
-    // Full stars
-    for (let i = 0; i < fullStars; i++) {
-        starHTML += '<i class="fas fa-star"></i>';
-    }
-    
-    // Half star
-    if (hasHalfStar) {
-        starHTML += '<i class="fas fa-star-half-alt"></i>';
-    }
-    
-    // Empty stars
-    for (let i = 0; i < emptyStars; i++) {
-        starHTML += '<i class="far fa-star"></i>';
-    }
-    
-    if (showDecimal) {
-        starHTML += ` <span class="rating-number">(${rating})</span>`;
-    }
-    
+    for (let i = 0; i < fullStars; i++) starHTML += '<i class="fas fa-star"></i>';
+    if (hasHalfStar) starHTML += '<i class="fas fa-star-half-alt"></i>';
+    for (let i = 0; i < emptyStars; i++) starHTML += '<i class="far fa-star"></i>';
+
+    if (showDecimal) starHTML += ` <span class="rating-number">(${rating})</span>`;
     return starHTML;
 }
 
-// Function to display reviews in the reviews tab
+/**
+ * Render the reviews inside the Reviews tab.
+ * @param {Array<Object>} reviews - List of review objects from API.
+ */
 function displayReviews(reviews) {
     const reviewsList = document.getElementById('reviewsList');
     const productRating = document.getElementById('productRating');
     const reviewCount = document.getElementById('reviewCount');
-    
     if (!reviewsList) return;
-    
-    // Calculate and display average rating
-    const averageRating = calculateAverageRating(reviews);
-    
-    if (productRating) {
-        productRating.innerHTML = createStarRating(averageRating, true);
-    }
-    
-    if (reviewCount) {
-        reviewCount.textContent = `(${reviews.length} review${reviews.length !== 1 ? 's' : ''})`;
-    }
-    
-    // Clear existing reviews (keep the rating section)
-    const existingReviews = reviewsList.querySelectorAll('.review-item');
-    existingReviews.forEach(review => review.remove());
-    
-    // Display individual reviews
+
+    const avgRating = calculateAverageRating(reviews);
+    if (productRating) productRating.innerHTML = createStarRating(avgRating, true);
+    if (reviewCount) reviewCount.textContent = `(${reviews.length} review${reviews.length !== 1 ? 's' : ''})`;
+
+    reviewsList.querySelectorAll('.review-item').forEach(r => r.remove());
+
     if (reviews.length === 0) {
-        const noReviewsMessage = document.createElement('div');
-        noReviewsMessage.className = 'no-reviews';
-        noReviewsMessage.innerHTML = '<p>No reviews yet. Be the first to review this product!</p>';
-        reviewsList.appendChild(noReviewsMessage);
+        const noReviews = document.createElement('div');
+        noReviews.className = 'no-reviews';
+        noReviews.innerHTML = '<p>No reviews yet. Be the first to review this product!</p>';
+        reviewsList.appendChild(noReviews);
         return;
     }
-    
+
     reviews.forEach(review => {
-        const reviewItem = document.createElement('div');
-        reviewItem.className = 'review-item';
-        
-        reviewItem.innerHTML = `
+        const item = document.createElement('div');
+        item.className = 'review-item';
+        item.innerHTML = `
             <div class="review-header">
                 <div class="review-author">
                     <strong>${review.username}</strong>
                     <div class="review-rating">${createStarRating(review.rating)}</div>
                 </div>
-              
             </div>
             <div class="review-content">
                 <p>${review.description}</p>
             </div>
         `;
-        
-        reviewsList.appendChild(reviewItem);
+        reviewsList.appendChild(item);
     });
 }
 
-// Setup add to cart button functionality
+/**
+ * Attach "Add to Cart" functionality to the button.
+ * @param {Object} productData - The product object used for cart storage.
+ */
 function setupAddToCartButton(productData) {
     const addToCartBtn = document.querySelector('.add-to-cart-btn');
-    
-    if (addToCartBtn) {
-        addToCartBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            console.log('Add to cart clicked for product:', productData.id);
-            
-            // Add product to cart
-            addToCart(productData);
-        });
-    } else {
+    if (!addToCartBtn) {
         console.error('Add to cart button not found!');
+        return;
     }
+
+    addToCartBtn.addEventListener('click', e => {
+        e.preventDefault();
+        console.log('Add to cart clicked for product:', productData.id);
+        addToCart(productData);
+    });
 }
 
+/**
+ * Enable tab-switching functionality for the product info section.
+ */
 function initializeTabs() {
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
-    
+
     tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const targetTab = this.getAttribute('data-tab');
-            
-            // Remove active class from all buttons and panes
+
             tabButtons.forEach(btn => btn.classList.remove('active'));
             tabPanes.forEach(pane => pane.classList.remove('active'));
-            
-            // Add active class to clicked button and corresponding pane
+
             this.classList.add('active');
             document.getElementById(targetTab).classList.add('active');
         });
@@ -276,28 +256,18 @@ function initializeTabs() {
 document.addEventListener('DOMContentLoaded', () => {
     displayProductDetails();
     initializeTabs();
-    
-    // Setup login modal trigger for hamburger menu
+
     const loginTrigger = document.querySelector('#loginModalTrigger');
-    
     if (loginTrigger) {
-        loginTrigger.addEventListener('click', (e) => {
+        loginTrigger.addEventListener('click', e => {
             e.preventDefault();
             console.log('Login trigger clicked!');
-            
-            // Open the login modal
             showLoginModal();
-            
-            // Close the hamburger menu after opening modal
-            const hamburgerMenuOverlay = document.getElementById('hamburgerMenu');
-            const hamburgerOverlay = document.getElementById('hamburgerOverlay');
-            
-            if (hamburgerMenuOverlay) {
-                hamburgerMenuOverlay.classList.remove('show-hamburger-menu');
-            }
-            if (hamburgerOverlay) {
-                hamburgerOverlay.classList.remove('show');
-            }
+
+            const menu = document.getElementById('hamburgerMenu');
+            const overlay = document.getElementById('hamburgerOverlay');
+            if (menu) menu.classList.remove('show-hamburger-menu');
+            if (overlay) overlay.classList.remove('show');
         });
     } else {
         console.error('Login trigger not found!');
