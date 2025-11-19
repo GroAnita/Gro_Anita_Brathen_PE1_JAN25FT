@@ -11,12 +11,12 @@ function formatProductPrice(product) {
     if (product.discountedPrice && product.discountedPrice < product.price) {
         return `
             <div class="price-container">
-            <p class="price strikethrough">$${product.price.toFixed(2)}</p>
-            <p class="discounted-price">$${product.discountedPrice.toFixed(2)}</p>
+            <p class="price strikethrough" aria-label="Original price">$${product.price.toFixed(2)}</p>
+            <p class="discounted-price" aria-label="Discounted price">$${product.discountedPrice.toFixed(2)}</p>
             </div>
         `;
     } else {
-        return `<p class="price">$${product.price.toFixed(2)}</p>`;
+        return `<p class="price" aria-label="Price">$${product.price.toFixed(2)}</p>`;
     }
 }
 
@@ -38,12 +38,13 @@ export { hasDiscount };
 
 /**
  * Creates and returns a DOM element representing a sales banner.
- *
+ * Aria-hidden set to true for accessibility so that they dont hear on sale for every product
  * @returns {HTMLDivElement} A "SALE" banner element.
  */
 function createSalesBanner() {
     const saleBanner = document.createElement('div');
     saleBanner.className = 'sale-banner';
+    saleBanner.setAttribute('aria-hidden', 'true');
     saleBanner.textContent = 'ON SALE';
     return saleBanner;
 }
@@ -261,3 +262,28 @@ const memberLoginModal = (() => {
 })();
 
 export default memberLoginModal;
+
+
+function backToTop() {
+    const backToTopBtn = document.createElement('button');
+    backToTopBtn.id = 'backToTopBtn';
+    backToTopBtn.className = 'back-to-top-btn';
+    backToTopBtn.title = 'Back to Top';
+    backToTopBtn.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+
+    window.addEventListener('scroll', () => {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.body.appendChild(backToTopBtn);
+}
+
+export { backToTop };

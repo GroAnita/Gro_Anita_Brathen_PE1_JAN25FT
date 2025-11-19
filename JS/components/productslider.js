@@ -66,7 +66,7 @@ async function createSliderWithAPIProducts() {
     products.forEach(product => {
         const slide = document.createElement('div');
         slide.className = 'slide';
-        slide._product = product; // store product on element
+        slide._product = product;
 
         slide.innerHTML = `
             <div class="image-box">
@@ -95,16 +95,30 @@ async function createSliderWithAPIProducts() {
         }
     });
 
+    // Build dots BEFORE initializing slider
     createDots(products.length);
+
+    // Reattach click handlers for new images
     setupImageClickHandlers();
+
+    // --- IMPORTANT: Run controls FIRST (shows/hides buttons)
     initializeSliderControls();
 
+    // --- IMPORTANT: Slider must initialize AFTER layout is stable
+    requestAnimationFrame(() => {
+        initializeSlider();
+    });
+
+    // Re-attach click handlers for layout changes
     setTimeout(() => setupImageClickHandlers(), 100);
 
+    // Recalculate slider on resize
     window.addEventListener('resize', debounce(() => {
         initializeSliderControls();
+        initializeSlider();
     }, 250));
 }
+
 
 /**
  * Creates clickable navigation dots for the slider.
@@ -143,19 +157,15 @@ function createDots(count) {
  * @function initializeSlider
  */
 function initializeSlider() {
-    const slides = document.querySelectorAll('.slide');
     const track = document.querySelector('.slider-track');
+    if (!track) return; // prevent crash
+
+    const slides = track.querySelectorAll('.slide');
     const next = document.querySelector('.next-btn');
     const prev = document.querySelector('.prev-btn');
 
     let current = 0;
 
-
-    /**
-     * Moves slider to given index.
-     *
-     * @param {number} i - Slide index to show.
-     */
     function showSlide(i) {
         track.style.transform = `translateX(-${i * 33.3333}%)`;
         updateActiveDot(i);
@@ -173,6 +183,7 @@ function initializeSlider() {
 
     showSlide(0);
 }
+
 
 /**
  * Adds swipe gesture support for mobile devices.
@@ -272,31 +283,35 @@ function initializeSliderControls() {
     const track = document.querySelector('.slider-track');
     const controls = document.querySelector('.slider-controls');
 
-    if (!track) return;
+    if (!track) return; // Slider not found → stop.
 
-   // Clone AND restore _product on each slide
-const newTrack = track.cloneNode(true);
-const oldSlides = track.querySelectorAll('.slide');
-const newSlides = newTrack.querySelectorAll('.slide');
+    const isTouchDevice = ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    const isSmallScreen = window.innerWidth <= 1024;
 
-newSlides.forEach((slide, i) => {
-    slide._product = oldSlides[i]._product;   // << restore product reference
-});
-
-// Replace old track
-track.parentNode.replaceChild(newTrack, track);
-
-
-    if (window.innerWidth <= 1024 && ('ontouchstart' in window || navigator.maxTouchPoints)) {
-        if (controls) controls.style.display = 'none';
-        addTouchControls();
-    } else if (window.innerWidth <= 1024) {
-        if (controls) controls.style.display = 'none';
-        initializeSlider();
-    } else {
-        if (controls) controls.style.display = '';
-        initializeSlider();
+    // -------------------------------
+    // DESKTOP MODE (buttons visible)
+    // -------------------------------
+    if (!isSmallScreen) {
+        if (controls) controls.style.display = 'flex';  // Ensure visible
+      ; // Your desktop slider logic
+        return;
     }
+
+    // -------------------------------
+    // MOBILE/TABLET TOUCH MODE
+    // -------------------------------
+    if (isTouchDevice) {
+        if (controls) controls.style.display = 'none'; // Hide arrow buttons
+        addTouchControls(); // Your touch swipe logic
+        return;
+    }
+
+    // -------------------------------
+    // SMALL SCREEN NON-TOUCH LAPTOPS
+    // (like small windows or Chromebooks)
+    // -------------------------------
+    if (controls) controls.style.display = 'flex';
+    
 }
 
 /**

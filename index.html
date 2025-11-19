@@ -121,13 +121,20 @@
                 </div>
              </div>
 
-        <!-- Product slider Section -->
-        <div class="slider-container" id="sliderContainer" aria-label="Featured Products Slider" role="region">
-            <div class="slider-track" id="productSlider">
-            <!-- Slider content will be dynamically inserted here -->
-            </div>
-            <div id="carouselDots" role="tablist"></div>
+
+      <!-- Product slider Section -->
+    <div class="slider-container" id="sliderContainer" aria-label="Featured Products Slider" role="region">
+        <div class="slider-controls">
+            <button class="prev-btn" aria-label="Previous slide"><i class="fa-solid fa-angle-left"></i></button>
+            <button class="next-btn" aria-label="Next slide"><i class="fa-solid fa-angle-right"></i></button>
         </div>
+        <div class="slider-track" id="productSlider">
+        </div>
+
+        <div id="carouselDots" role="tablist"></div>
+    </div>
+
+
           <div class="header-content__nav">
                 <nav>
                     <ul class="header-content__nav__links">
@@ -151,6 +158,7 @@
         <!-- Pagination Section -->
         <div class="pagination" id="paginationContainer">
         </div>
+        <button id="backToTopBtn" class="back-to-top-btn" aria-label="Scroll back to top">'<i class="fa-solid fa-arrow-up"></i></button>
 
         <!-- member login modal -->
         <!-- Modal will be dynamically created by JavaScript -->
@@ -224,6 +232,7 @@
         <script type="module" src="JS/components/pagination.js"></script>
         <script type="module" src="JS/components/products.js"></script>
         <script type="module" src="JS/components/loginusermodal.js"></script>
+        <script type="module" src="JS/utils.js"></script>
     </div>
 </body>
 </html>

@@ -261,6 +261,10 @@ footer li{
 
 @media (max-width: 375px) {
 
+    footer {
+        width: 374px;
+    }
+
      .vr {
         max-width: 374px;
      }
@@ -297,7 +301,11 @@ footer li{
         margin-right: 20px;
     }
     .footer-content__bottom__top {
-        gap: 10px;
+        max-width: 374px;
         flex-direction: row;
+    }
+
+    .footer-content__bottom__bottom p {
+        font-size: var(--font-size-xxxsmall);
     }
 }

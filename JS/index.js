@@ -1,7 +1,7 @@
 import { setupPagination, getPaginatedProducts, resetPagination } from './components/pagination.js';
 import { showLoginModal } from './components/loginusermodal.js';
 import { addToCart } from './components/cart.js';
-
+import { backToTop } from './utils.js';
 /**
  * Base API URL for fetching products.
  * @type {string}
