@@ -12,7 +12,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    background-color: #D9D9D9;
+    background-color: var(--tertiary-color);
 }
 
 .footer-content__left {
@@ -53,7 +53,7 @@
 
 .footer-content__right label {
     font-size: var(--font-size-small);
-    margin: 15px auto;
+    margin: 15 0 auto;
     color: var(--font-color);
     font-style: italic;
     font-weight: bold;
@@ -62,13 +62,13 @@
 .footer-content__right input{
     width: 250px;
     height: 30px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 5px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding: 4px;
     font-size: var(--font-size-xsmall);
     border: 1px solid var(--input-border-color);
     border-radius: 4px;
-    background-color: rgba(255, 229, 197, 0.25);
+    background-color: var(--background-color);
 }
 
 .footer-content__right input:invalid {
@@ -97,7 +97,7 @@
 
 .footer-content__centera {
     width:360px;
-    padding: 10px;
+    padding: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -108,19 +108,19 @@
 
 .footer-content__centerb {
     width:360px;
-    padding: 10px;
+    padding: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .footer-content__bottom {
-    background-color: #D9D9D9;
+    background-color: var(--tertiary-color);
     border-top: 1px solid #f5f5f5;
 }
 
 .footer-content__bottom__top {
-    background-color: #D9D9D9;
+    background-color: var(--tertiary-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -139,7 +139,7 @@
 }
 
 .footer-content__bottom__bottom {
-    background-color: #D9D9D9;
+    background-color: var(--tertiary-color);
     font-size: var(--font-size-xxsmall);
 }
 
@@ -151,7 +151,7 @@
 .vr {
     display: inline-block;
     width: 1px;
-    height: 250px; /* adjust as needed */
+    height: 250px;
     background-color: #F5F5F5;
     margin: 20px 10px;
 }
@@ -160,7 +160,7 @@ footer li a{
     text-decoration: none;
     color: var(--font-color);
     transition: transform 0.3s ease;
-    display: inline-block; /* Add this for transform to work */
+    display: inline-block; 
 }
 
 footer li a:hover{
@@ -257,9 +257,7 @@ footer li{
         height: auto;
         margin-right: 20px;
     }
-
 }
-
 
 @media (max-width: 375px) {
 

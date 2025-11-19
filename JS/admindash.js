@@ -127,6 +127,11 @@ function createProductRow(product) {
         </div>
     `;
 
+     const cells = row.querySelectorAll('.grid-cell');
+    cells.forEach((cell, index) => {
+        cell.classList.add(`cell-${index + 1}`);
+    });
+
     return row;
 }
 
@@ -187,7 +192,7 @@ function displayError(message) {
     if (gridBody) {
         gridBody.innerHTML = `
             <div class="grid-row">
-                <div class="grid-cell" style="grid-column: 1 / -1; padding: 20px; text-align: center; color: #dc3545;">
+                <div class="grid-cell" style="grid-column: 1 / -1; padding: 20px; text-align: center; color: #E80000;">
                     <i class="fas fa-exclamation-triangle"></i> ${message}
                 </div>
             </div>
@@ -406,6 +411,52 @@ function initializePriceCalculation() {
         this.setAttribute('readonly', 'true');
     });
 }
+
+const customSelect = document.querySelector('.custom-select');
+const options = customSelect.querySelector('.custom-select__options');
+const selected = customSelect.querySelector('.custom-select__selected');
+const hiddenInput = document.getElementById('productCategoryMobile');
+const cancelBtn = document.getElementById('cancelAddProductMobile');
+const addProductModalMobile = document.getElementById('addProductModalMobile');
+const addProductFormMobile = document.getElementById('addProductFormMobile');
+const addProductBtnMobile = document.querySelector('.add-product-btn');
+
+// Cancel button closes modal
+cancelBtn.addEventListener('click', () => {
+  addProductModalMobile.classList.remove('active');
+  addProductModalMobile.style.display = 'none';
+  if (addProductFormMobile) addProductFormMobile.reset();
+  document.body.style.overflow = '';
+});
+
+// Add New Product button opens modal
+if (addProductBtnMobile && addProductModalMobile) {
+  addProductBtnMobile.addEventListener('click', () => {
+    addProductModalMobile.classList.add('active');
+    addProductModalMobile.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  });
+}
+
+// Custom select dropdown behavior
+customSelect.addEventListener('click', () => {
+  options.hidden = !options.hidden;
+});
+
+options.addEventListener('click', (e) => {
+  if (e.target.tagName === 'LI') {
+    selected.textContent = e.target.textContent;
+    hiddenInput.value = e.target.dataset.value;
+    options.hidden = true;
+  }
+});
+
+// Optional: close dropdown on outside click
+document.addEventListener('click', (e) => {
+  if (!customSelect.contains(e.target)) {
+    options.hidden = true;
+  }
+});
 
 // Global button functions
 window.editProduct = editProduct;

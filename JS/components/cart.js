@@ -16,6 +16,10 @@
  * @type {Array<Object>}
  */
 let cart = [];
+// Expose cart globally for debugging
+if (typeof window !== 'undefined') {
+    window.cart = cart;
+}
 
 /**
  * Loads the cart from localStorage into memory.
@@ -64,11 +68,13 @@ function addToCart(product, size = null, quantity = 1) {
         cart.push(cartItem);
     }
     
-    updateCartCounter();
-    saveCartToStorage();
-
-    console.log(`Added ${product.title} to cart!`);
-    showAddToCartNotification(product.title);
+        updateCartCounter();
+        saveCartToStorage();
+        if (typeof window !== 'undefined') {
+            window.cart = cart;
+        }
+        console.log(`Added ${product.title} to cart!`);
+        showAddToCartNotification(product.title);
 }
 
 /**
@@ -132,8 +138,18 @@ function displayShoppingCartItems() {
             gap: 10px;
         `;
 
+        // Defensive: handle missing or malformed image object
+        let imageUrl = '';
+        if (item.image && typeof item.image === 'object' && 'url' in item.image) {
+            imageUrl = item.image.url;
+        } else if (typeof item.image === 'string') {
+            imageUrl = item.image;
+        } else {
+            imageUrl = 'images/placeholder.png'; // fallback image
+        }
+
         cartItem.innerHTML = `
-            <img src="${item.image.url}" alt="${item.title}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+            <img src="${imageUrl}" alt="${item.title}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
             <div class="cart-item-details">
                 <div class="cart-item-title">${item.title}${item.size ? ` - Size: ${item.size}` : ''}</div>
                 <div class="cart-item-price">$${item.price.toFixed(2)}</div>
@@ -283,6 +299,7 @@ export {
     displayShoppingCartItems, 
     updateShoppingCartTotal,
     saveCartToStorage,
+    loadCartFromStorage,
     cart,
     checkout
 };

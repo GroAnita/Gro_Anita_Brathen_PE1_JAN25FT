@@ -1,20 +1,48 @@
+/**
+ * @fileoverview Product Slider component:
+ *  - Fetches random products from API
+ *  - Builds slider UI (desktop + mobile)
+ *  - Supports swipe on touch devices
+ *  - Supports navigation dots + arrows
+ *  - Provides global Add-to-Cart handler that survives cloning
+ */
 import { formatProductPrice, hasDiscount, createSalesBanner } from '../utils.js';
+import { addToCart } from './cart.js';
 
 /**
-* Fetches a random subset of products from the API.
-* @async
-* @function getRandomProductsForSlider
-* @param {number} [count=3] - Number of random products to return.
-* @returns {Promise<Array<Object>>} A promise resolving to an array of product objects.
-*/
+ * Global event listener for Add-to-Cart buttons.
+ * Works even if slider elements are replaced, cloned or rebuilt.
+ *
+ * @event document#click
+ * @param {MouseEvent} e
+ */
+document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".add-to-cart-btn");
+    if (!btn) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    const slide = btn.closest(".slide");
+    if (!slide || !slide._product) return;
+
+    addToCart(slide._product);
+});
+
+/**
+ * Fetches a random subset of products from the API.
+ *
+ * @async
+ * @function getRandomProductsForSlider
+ * @param {number} count - Number of products to return.
+ * @returns {Promise<Array<Object>>} A list of product objects.
+ */
 async function getRandomProductsForSlider(count = 3) {
     try {
         const response = await fetch('https://v2.api.noroff.dev/online-shop');
         const data = await response.json();
-        
-        // Get random products
         const shuffled = data.data.sort(() => 0.5 - Math.random());
-        return shuffled.slice(0, count); // Return first 3 after shuffle
+        return shuffled.slice(0, count);
     } catch (error) {
         console.error('Error fetching slider products:', error);
         return [];
@@ -22,366 +50,305 @@ async function getRandomProductsForSlider(count = 3) {
 }
 
 /**
-* Builds the slider UI using products fetched from the API.
-* Generates slides, controls, dots, and registers interaction handlers.
-* @async
-* @function createSliderWithAPIProducts
-* @returns {Promise<void>}
-*/
+ * Creates the product slider by fetching products, building slides,
+ * attaching product data to slide nodes, and initializing controls.
+ *
+ * @async
+ * @function createSliderWithAPIProducts
+ * @returns {Promise<void>}
+ */
 async function createSliderWithAPIProducts() {
     const products = await getRandomProductsForSlider(3);
-    const sliderTrack = document.querySelector('.slider-track'); 
-    
-    // Clears existing slides
+    const sliderTrack = document.querySelector('.slider-track');
+
     sliderTrack.innerHTML = '';
 
-    products.forEach((product, index) => {
+    products.forEach(product => {
         const slide = document.createElement('div');
-        slide.className = 'slide'; 
-        
-    slide.innerHTML = `
-        <div class="image-box">
-        <img src="${product.image.url}" alt="${product.title}" class="slider-image" data-product-id="${product.id}">
-        </div>
-        <div class="slide-content">
-            <h2>${product.title}</h2>
-            <p>${product.description || 'Featured product'}</p>
-            ${formatProductPrice(product)}
-        </div>
-    `;
-        
-        sliderTrack.appendChild(slide);
-            if (hasDiscount(product)) {
-            const saleBanner = createSalesBanner();
-            const imageBox = slide.querySelector('.image-box');
-            imageBox.appendChild(saleBanner);
-        }
-    });
-    
-    const sliderContainer = document.querySelector('.slider-container');
-    const existingControls = sliderContainer.querySelector('.slider-controls');
-    if (!existingControls) {
-        sliderContainer.innerHTML += `
-            <div class="slider-controls">
-                <button class="prev-btn" aria-label="Previous slide">❮</button>
-                <button class="next-btn" aria-label="Next slide">❯</button>
+        slide.className = 'slide';
+        slide._product = product; // store product on element
+
+        slide.innerHTML = `
+            <div class="image-box">
+                <img 
+                    src="${product.image.url}" 
+                    alt="${product.title}" 
+                    class="slider-image"
+                    data-product-id="${product.id}"
+                >
+            </div>
+            <div class="slide-content">
+                <h2>${product.title}</h2>
+                <p>${product.description || 'Featured product'}</p>
+                ${formatProductPrice(product)}
+                <button class="add-to-cart-btn" data-product-id="${product.id}">
+                    Add to Cart
+                </button>
             </div>
         `;
-    }
 
-    // Create carousel dots
-    const carouselDotsContainer = document.getElementById('carouselDots');
-    carouselDotsContainer.innerHTML = '';
-    products.forEach((_, index) => {
+        sliderTrack.appendChild(slide);
+
+        if (hasDiscount(product)) {
+            const saleBanner = createSalesBanner();
+            slide.querySelector('.image-box').appendChild(saleBanner);
+        }
+    });
+
+    createDots(products.length);
+    setupImageClickHandlers();
+    initializeSliderControls();
+
+    setTimeout(() => setupImageClickHandlers(), 100);
+
+    window.addEventListener('resize', debounce(() => {
+        initializeSliderControls();
+    }, 250));
+}
+
+/**
+ * Creates clickable navigation dots for the slider.
+ *
+ * @function createDots
+ * @param {number} count - Number of slides/dots.
+ */
+function createDots(count) {
+    const container = document.getElementById('carouselDots');
+    container.innerHTML = '';
+
+    for (let i = 0; i < count; i++) {
         const dot = document.createElement('span');
         dot.className = 'carousel-dot';
-        if (index === 0) dot.classList.add('active');
+        if (i === 0) dot.classList.add('active');
+
         dot.setAttribute("role", "tab");
-        dot.setAttribute("aria-selected", index === 0 ? "true" : "false");
-        dot.setAttribute("tabindex", index === 0 ? "0" : "-1");
+        dot.setAttribute("aria-selected", i === 0 ? "true" : "false");
+        dot.setAttribute("tabindex", i === 0 ? "0" : "-1");
 
         dot.addEventListener('click', () => {
-            const sliderTrack = document.querySelector('.slider-track');
-            const targetTranslate = -(index * 33.3333);
-            sliderTrack.style.transform = `translateX(${targetTranslate}%)`;
-            
-            document.querySelectorAll('.carousel-dot').forEach(d => d.classList.remove('active'));
+            document.querySelector('.slider-track').style.transform = `translateX(-${i * 33.3333}%)`;
+
+            document.querySelectorAll('.carousel-dot')
+                .forEach(d => d.classList.remove('active'));
             dot.classList.add('active');
         });
-        carouselDotsContainer.appendChild(dot);
-    });
 
-    // Make slider images clickable with direct click events
-    setupImageClickHandlers();
-
-    // Initialize slider controls based on screen size
-    initializeSliderControls();
-    
-    // Add a slight delay to ensure all slider controls are set up, then re-add our click handlers
-    setTimeout(() => {
-        setupImageClickHandlers();
-    }, 100);
+        container.appendChild(dot);
+    }
 }
 
 /**
-* Updates active carousel dot.
-* @function updateActiveDot
-* @param {number} slideIndex - The index of the active slide.
-*/
-function updateActiveDot(slideIndex) {
-    document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
-        dot.classList.toggle('active', index === slideIndex);
-    });
-}
-
-/**
-* Initializes basic slider functionality for desktop (arrow navigation).
-* @async
-* @function initializeSlider
-* @returns {Promise<void>}
-*/
-async function initializeSlider() {
+ * Enables left/right arrow button slider navigation for desktop.
+ *
+ * @function initializeSlider
+ */
+function initializeSlider() {
     const slides = document.querySelectorAll('.slide');
-    const sliderTrack = document.querySelector('.slider-track');
-    const nextButton = document.querySelector('.slider-controls .next-btn');
-    const prevButton = document.querySelector('.slider-controls .prev-btn');
-    let currentSlide = 0;
+    const track = document.querySelector('.slider-track');
+    const next = document.querySelector('.next-btn');
+    const prev = document.querySelector('.prev-btn');
+
+    let current = 0;
+
 
     /**
-    * Moves slider to a specific slide.
-    * @param {number} index - The slide index to show.
-    */
-    function showSlide(index) {
-        // Move the track to show the correct slide
-        const translateX = -(index * 33.3333); // Each slide is 33.3333% wide
-        sliderTrack.style.transform = `translateX(${translateX}%)`;
+     * Moves slider to given index.
+     *
+     * @param {number} i - Slide index to show.
+     */
+    function showSlide(i) {
+        track.style.transform = `translateX(-${i * 33.3333}%)`;
+        updateActiveDot(i);
     }
 
-    nextButton?.addEventListener('click', () => {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-        updateActiveDot(currentSlide);
+    next?.addEventListener('click', () => {
+        current = (current + 1) % slides.length;
+        showSlide(current);
     });
 
-    prevButton?.addEventListener('click', () => {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(currentSlide);
-        updateActiveDot(currentSlide);
+    prev?.addEventListener('click', () => {
+        current = (current - 1 + slides.length) % slides.length;
+        showSlide(current);
     });
-    
-    // Initialize to show first slide
+
     showSlide(0);
 }
 
 /**
-* Enables touch & drag controls for mobile devices.
-* Supports swiping between slides.
-* @function addTouchControls
-*/
+ * Adds swipe gesture support for mobile devices.
+ *
+ * @function addTouchControls
+ */
 function addTouchControls() {
-   const sliderTrack = document.querySelector('.slider-track');
-   const slides = document.querySelectorAll('.slide');
-   let isDragging = false;
-   let startPosition = 0;
-   let currentTranslate = 0;
-   let currentSlide = 0;
-   let startTime = 0;
-   let prevTranslate = 0;
+    const track = document.querySelector('.slider-track');
+    const slides = document.querySelectorAll('.slide');
 
-   sliderTrack.addEventListener('dragstart', (e) => e.preventDefault());
+    let isDragging = false;
+    let startX = 0;
+    let current = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let startTime = 0;
 
-   sliderTrack.addEventListener('mousedown', dragStart);
-   sliderTrack.addEventListener('mousemove', dragMove);
-    sliderTrack.addEventListener('mouseup', dragEnd);
-    sliderTrack.addEventListener('mouseleave', dragEnd);
+    track.addEventListener('touchstart', dragStart, { passive: false });
+    track.addEventListener('touchmove', dragMove, { passive: false });
+    track.addEventListener('touchend', dragEnd);
 
-    sliderTrack.addEventListener('touchstart', dragStart, { passive: false });
-    sliderTrack.addEventListener('touchmove', dragMove, { passive: false });
-    sliderTrack.addEventListener('touchend', dragEnd);
+     /**
+     * Handles start of swipe interaction.
+     *
+     * @param {TouchEvent} e
+     */
+    function dragStart(e) {
+        if (e.target.closest('.add-to-cart-btn')) return;
+        if (e.target.tagName === 'IMG' && e.target.hasAttribute('data-product-id')) return;
 
-    /** @param {MouseEvent|TouchEvent} event */
-    function dragStart(event) {
-        // Check if click target is an image with product ID - if so, don't start dragging
-        if (event.target.tagName === 'IMG' && event.target.hasAttribute('data-product-id')) {
-            return;
-        }
-        
         isDragging = true;
-        startPosition = getPositionX(event);
+        startX = e.touches[0].clientX;
         startTime = Date.now();
-        sliderTrack.style.transition = 'none';
-        sliderTrack.style.cursor = 'grabbing';
+        track.style.transition = 'none';
     }
 
-    /** @param {MouseEvent|TouchEvent} event */
-    function dragMove(event) {
+        /**
+     * Handles dragging movement.
+     *
+     * @param {TouchEvent} e
+     */
+    function dragMove(e) {
         if (!isDragging) return;
-        
-        // Don't prevent default if target is an image with product ID
-        if (!(event.target.tagName === 'IMG' && event.target.hasAttribute('data-product-id'))) {
-            event.preventDefault();
-        }
 
-        const currentPosition = getPositionX(event);
-        const diff = currentPosition - startPosition;
+        e.preventDefault();
+
+        const diff = e.touches[0].clientX - startX;
         currentTranslate = prevTranslate + diff;
-
-        sliderTrack.style.transform = `translateX(${currentTranslate}px)`;
+        track.style.transform = `translateX(${currentTranslate}px)`;
     }
 
-    /** @param {MouseEvent|TouchEvent} event */
-    function dragEnd(event) {
+        /**
+     * Handles swipe end and determines slide direction.
+     *
+     * @param {TouchEvent} e
+     */
+    function dragEnd(e) {
         if (!isDragging) return;
         isDragging = false;
 
-        const endTime = Date.now();
-        const timeDiff = endTime - startTime;
-        
-        // For touch events, we can't get position on touchend, so use the last known position
-        let endPosition;
-        if (event.type === 'touchend') {
-            // Use the current translate value to calculate distance
-            endPosition = startPosition + (currentTranslate - prevTranslate);
-        } else {
-            endPosition = getPositionX(event);
-        }
-        
-        const distance = endPosition - startPosition;
-        const velocity = Math.abs(distance) / timeDiff;
+        const diff = currentTranslate - prevTranslate;
 
-        sliderTrack.style.transition = 'transform 0.3s ease';
-        sliderTrack.style.cursor = 'grab';
+        // If small movement → let click happen
+        if (Math.abs(diff) < 5) return;
 
-        const threshold = 50; // Minimum distance to consider as a swipe
-        const velocityThreshold = 0.3; // Minimum velocity to consider as a swipe
+        // Swipe detection
+        if (diff < 0) current = Math.min(slides.length - 1, current + 1);
+        else current = Math.max(0, current - 1);
 
-        if(Math.abs(distance) > threshold || velocity > velocityThreshold) {
-            if (distance > 0) {
-                currentSlide = Math.max(0, currentSlide - 1);
-            } else {
-                currentSlide = Math.min(slides.length - 1, currentSlide + 1);
-            }
-        }
-
-        snapToSlide(currentSlide);
+        snap();
     }
-
+ 
     /**
-    * Snaps slider to a specific index.
-    * @param {number} slideIndex
-    */
-    function snapToSlide(slideIndex) {
-        currentSlide = slideIndex;
-        const targetTranslate = -(currentSlide * 33.3333);
-        sliderTrack.style.transform = `translateX(${targetTranslate}%)`;
+     * Snaps slider to current index.
+     */
+    function snap() {
+        const percentage = -(current * 33.3333);
+        track.style.transition = 'transform 0.3s ease';
+        track.style.transform = `translateX(${percentage}%)`;
 
-        const slideWidth = sliderTrack.offsetWidth / slides.length;
-        prevTranslate = -(currentSlide * slideWidth);
-        
-        // Update active dot
-        updateActiveDot(currentSlide);
+        const slideWidth = track.offsetWidth / slides.length;
+        prevTranslate = -(current * slideWidth);
+
+        updateActiveDot(current);
     }
 
-    /** @param {MouseEvent|TouchEvent} event */
-    function getPositionX(event) {
-        if (event.type.includes('mouse')) {
-            return event.clientX;
-        } else if (event.touches && event.touches.length > 0) {
-            return event.touches[0].clientX;
-        } else if (event.changedTouches && event.changedTouches.length > 0) {
-            return event.changedTouches[0].clientX;
-        }
-        return 0; // fallback
-    }
-
-    snapToSlide(0); // Start at first slide
-
-    sliderTrack.style.cursor = 'grab';
-    sliderTrack.style.userSelect = 'none';
-    sliderTrack.style.touchAction = 'pan-y';
-
+    snap();
 }
 
 /**
-* Determines and applies the correct slider control mode based on screen size and device type.
-* - Desktop: Arrow buttons
-* - Mobile touch devices: Swipe
-* - Mobile non-touch: Auto slide
-* @function initializeSliderControls
-*/
+ * Determines which slider control mode to apply (desktop, mobile swipe, etc)
+ * Also restores `_product` after cloning elements.
+ *
+ * @function initializeSliderControls
+ */
 function initializeSliderControls() {
-    const isMobileSize = window.innerWidth <= 1024;
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    
-    // Reset any existing event listeners and styles
-    const sliderTrack = document.querySelector('.slider-track');
-    const sliderControls = document.querySelector('.slider-controls');
-    
-    if (!sliderTrack) return; // Exit if slider doesn't exist yet
-    
-    // Remove all existing event listeners by cloning the element
-    const newSliderTrack = sliderTrack.cloneNode(true);
-    sliderTrack.parentNode.replaceChild(newSliderTrack, sliderTrack);
-    
-    // Reset styles
-    if (sliderControls) {
-        sliderControls.style.display = ''; // Reset to visible
-    }
-    
-    // Apply the appropriate control logic
-    if (isMobileSize && isTouchDevice) {
-        // On mobile screens, enable touch and hide arrows
-        if (sliderControls) sliderControls.style.display = 'none';
+    const track = document.querySelector('.slider-track');
+    const controls = document.querySelector('.slider-controls');
+
+    if (!track) return;
+
+   // Clone AND restore _product on each slide
+const newTrack = track.cloneNode(true);
+const oldSlides = track.querySelectorAll('.slide');
+const newSlides = newTrack.querySelectorAll('.slide');
+
+newSlides.forEach((slide, i) => {
+    slide._product = oldSlides[i]._product;   // << restore product reference
+});
+
+// Replace old track
+track.parentNode.replaceChild(newTrack, track);
+
+
+    if (window.innerWidth <= 1024 && ('ontouchstart' in window || navigator.maxTouchPoints)) {
+        if (controls) controls.style.display = 'none';
         addTouchControls();
-    }
-    else if (isMobileSize) {
-        // On mobile size but no touch, hide arrows and use initializeSlider
-        if (sliderControls) sliderControls.style.display = 'none';
+    } else if (window.innerWidth <= 1024) {
+        if (controls) controls.style.display = 'none';
         initializeSlider();
-    }
-    else {
-        // Keep arrows for desktop
+    } else {
+        if (controls) controls.style.display = '';
         initializeSlider();
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    createSliderWithAPIProducts();
-});
-
-// Add resize event listener to handle screen size changes
-window.addEventListener('resize', () => {
-    // Debounce the resize event to avoid too many calls
-    clearTimeout(window.sliderResizeTimeout);
-    window.sliderResizeTimeout = setTimeout(() => {
-        initializeSliderControls();
-    }, 250); // Wait 250ms after resize stops
-});
+/**
+ * Updates visual state of navigation dots.
+ *
+ * @function updateActiveDot
+ * @param {number} index - Active slide index.
+ */
+function updateActiveDot(index) {
+    document.querySelectorAll('.carousel-dot')
+        .forEach((dot, i) => dot.classList.toggle('active', i === index));
+}
 
 /**
- * Attaches click handlers to slider images to navigate directly to product pages.
+ * Makes slider images clickable navigation to product page.
+ *
  * @function setupImageClickHandlers
  */
 function setupImageClickHandlers() {
-    const sliderImages = document.querySelectorAll('.slider-image[data-product-id]');
-    
-    sliderImages.forEach((img) => {
-        const productId = img.getAttribute("data-product-id");
-        if (productId) {
-            // Remove any existing event listeners by cloning the elements
-            const newImg = img.cloneNode(true);
-            img.parentNode.replaceChild(newImg, img);
-            
-            // Add visual feedback and ensure pointer events work
-            newImg.style.cursor = 'pointer';
-            newImg.style.pointerEvents = 'auto';
-            
-            const imageBox = newImg.closest('.image-box');
-            if (imageBox) {
-                imageBox.style.cursor = 'pointer';
-                imageBox.style.pointerEvents = 'auto';
-            }
-            
-            /**
-             * Naviates user to the product page
-             * @param {MouseEvent} e
-             */
-            function navigateToProduct(e) {
-                e.preventDefault();
-                e.stopImmediatePropagation();
-                window.location.href = `pages/productpage.html?id=${productId}`;
-                return false;
-            }
-            
-            // Add click handlers
-            newImg.onclick = navigateToProduct;
-            newImg.addEventListener('click', navigateToProduct, true);
-            
-            if (imageBox) {
-                imageBox.onclick = navigateToProduct;
-                imageBox.addEventListener('click', navigateToProduct, true);
-            }
-        }
+    document.querySelectorAll('.slider-image[data-product-id]').forEach(img => {
+        const newImg = img.cloneNode(true);
+        img.replaceWith(newImg);
+
+        const id = newImg.getAttribute('data-product-id');
+
+        newImg.style.cursor = 'pointer';
+        newImg.onclick = () => {
+            window.location.href = `pages/productpage.html?id=${id}`;
+        };
     });
 }
+/**
+ * Returns a function that delays execution until after `delay` ms
+ * have passed without new calls.
+ *
+ * @function debounce
+ * @param {Function} fn - Function to call.
+ * @param {number} delay - Milliseconds to wait.
+ * @returns {Function}
+ */
+function debounce(fn, delay) {
+    let timer;
+    return function () {
+        clearTimeout(timer);
+        timer = setTimeout(fn, delay);
+    };
+}
+
+/**
+ * Initializes slider on DOMContentLoaded.
+ *
+ * @event document#DOMContentLoaded
+ */
+document.addEventListener('DOMContentLoaded', createSliderWithAPIProducts);
 

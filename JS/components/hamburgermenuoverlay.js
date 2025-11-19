@@ -1,7 +1,7 @@
 /**
  * @typedef {Object} HamburgerMenuElements
  * @property {HTMLElement|null} hamburgerMenuIcon - The button that opens the hamburger menu.
- * @property {HTMLElement|null} hamburgerMenuOverlay - The actual slide-in menu container.
+ * @property {HTMLElement|null} hamburgerMenuOverlay - The slide-in menu container.
  * @property {HTMLElement|null} hamburgerOverlay - The dark overlay behind the menu.
  * @property {HTMLElement|null} closeHamburgerMenuBtn - The X/close icon inside the menu.
  */
@@ -111,3 +111,28 @@ menuLinks.forEach(link => {
         hamburgerOverlay?.classList.remove('show');
     });
 });
+
+function trapFocus(container)   {
+    const focusableSelectors = 'a, button, input, textarea, select, details,[tabindex]:not([tabindex="-1"])';
+
+    const focusable = Array.from(container.querySelectorAll(focusableSelectors));
+    const firstFocusable = focusable[0];
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    container.addEventListener('keydown',  (e) => {
+        if (e.key !== 'Tab') return;
+
+        if (e.shiftKey) {
+            if (document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            }
+        } else {
+            if (document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }       
+        }
+    });
+}

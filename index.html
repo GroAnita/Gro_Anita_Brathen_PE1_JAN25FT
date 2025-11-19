@@ -72,8 +72,8 @@
         <div class="header-underline"><h2>Check out our new pre-owned arrivals</h2></div>
 
         <!--hamburger menu -->
-        <div class="hamburger-menu" id="hamburgerMenu" aria-modal="true" role="dialog" aria-hidden="true">
-            <button class="close-btn" id="closeHamburgerMenu">&times;</button>
+        <div class="hamburger-menu" id="hamburgerMenu" aria-modal="true" role="dialog" aria-hidden="true" tabindex="-1">
+            <button class="close-btn" id="closeHamburgerMenu" aria-label="Close menu">&times;</button>
             <nav aria-label="Primary Navigation">
                 <ul class="hamburger-menu__links">
                     <li><a href="#" data-category="fashion">Fashion</a></li>
@@ -90,7 +90,7 @@
                 <div class="hamburger-menu__logo">
                     <img src="images/horseheadlogo.svg" alt="Logo" class="logo">
                 </div>
-                <a href="/pages/admindashboard.html"><h5 class="hamburger-menu__h5">Admin login</h5></a>
+                <a class="hamburger-menu__h5" href="/pages/admindashboard.html">Admin login</a>
             </nav>
         </div>
         
@@ -122,7 +122,7 @@
              </div>
 
         <!-- Product slider Section -->
-        <div class="slider-container" aria-label="Featured Products Slider" role="region">
+        <div class="slider-container" id="sliderContainer" aria-label="Featured Products Slider" role="region">
             <div class="slider-track" id="productSlider">
             <!-- Slider content will be dynamically inserted here -->
             </div>

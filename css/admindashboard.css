@@ -1,7 +1,7 @@
 /* Admin Dashboard Layout */
 .admin-dashboard {
     padding: 20px 0;
-    background-color: #f8f9fa;
+    background-color: var(--background-color);
     min-height: calc(100vh - 200px);
 }
 
@@ -16,7 +16,7 @@
 
 /* Admin Sidebar */
 .admin-sidebar {
-    background: var(--background-color);
+    background: var(--background-color-alt);
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     height: fit-content;
@@ -32,7 +32,7 @@
 
 .admin-sidebar__header h3 {
     margin: 0;
-    color: var(--importand-color);
+    color: var(--important-color);
     font-family: "Playfair Display", serif;
 }
 
@@ -103,7 +103,7 @@
 .grid-header {
     display: grid;
     grid-template-columns: 80px 2fr 1fr 1fr 80px 100px 120px;
-    background-color: var(--importand-color);
+    background-color: var(--font-color);
     color: var(--background-color);
 }
 
@@ -200,9 +200,9 @@
 }
 
 .edit-btn:hover {
-    background-color: #007bff;
+    background-color: var(--button-hover-background-color);
     color: white;
-    border-color: #007bff;
+    border-color: var(--input-border-color);
 }
 
 .delete-btn:hover {
@@ -210,57 +210,27 @@
     color: white;
     border-color: #dc3545;
 }
+/* Modal Mobile Styling  */
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .admin-layout {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .admin-sidebar {
-        position: static;
-    }
-    
-    .admin-menu ul {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    
-    .admin-menu__item {
-        flex: 1;
-        min-width: 120px;
-        text-align: center;
-        border-right: 1px solid #eee;
-        border-bottom: none;
-    }
+#addProductModalMobile {
+    display: none !important;
 }
 
-@media (max-width: 768px) {
-    .grid-header,
-    .grid-row {
-        grid-template-columns: 60px 1.5fr 80px 80px 60px 80px 100px;
-        font-size: var(--font-size-xxxsmall);
-    }
-    
-    .grid-header__item,
-    .grid-cell {
-        padding: 8px 5px;
-    }
-    
-    .admin-product-img {
-        width: 40px;
-        height: 40px;
-    }
-    
-    .admin-header {
-        flex-direction: column;
-        gap: 10px;
-        align-items: stretch;
-    }
+#addProductModalMobile .modal-content {
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 10px;
 }
 
-/* Add Product Modal Styles */
+/* Image grid base */
+#addProductModalMobile .image-upload-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -279,7 +249,7 @@
 }
 
 .admin-modal {
-    background: white;
+    background: var(--background-color);
     border-radius: 8px;
     width: 95%;
     max-width: 1000px;
@@ -306,7 +276,7 @@
 .modal-close {
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: var(--font-size-large);
     cursor: pointer;
     color: var(--font-color);
     padding: 0;
@@ -327,12 +297,10 @@
     padding: 20px;
 }
 
-/* Admin Form Styles */
 .admin-form {
     display: flex;
     flex-direction: column;
     gap: 16px;
-
 }
 
 .form-group {
@@ -350,7 +318,7 @@
 .form-group label {
     font-weight: 600;
     color: var(--font-color);
-    font-size: 14px;
+    font-size: var(--font-size-xxsmall);
 }
 
 .form-group input,
@@ -359,7 +327,7 @@
     padding: 12px;
     border: 1px solid var(--input-border-color);
     border-radius: 4px;
-    font-size: 14px;
+    font-size: var(--font-size-xxsmall);
     font-family: inherit;
     background-color: var(--input-bg-color);
     color: var(--font-color);
@@ -370,7 +338,7 @@
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--accent-color);
+    border-color: var(--input-focus-border-color);
     box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.1);
 }
 
@@ -395,13 +363,13 @@
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: var(--font-size-xxsmall);
     transition: all 0.2s ease;
 }
 
 .btn-secondary:hover {
-    background-color: #f8f9fa;
-    border-color: #adb5bd;
+    background-color: var(--background-color);
+    border-color: var(--input-border-color);
 }
 
 /* Image Upload Grid */
@@ -432,17 +400,18 @@
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    background-color: #f8f9fa;
+    background-color: var(--background-color);
+    width: 50%;
 }
 
 .image-upload-box:hover {
-    border-color: var(--accent-color);
-    background-color: rgba(var(--accent-color-rgb), 0.05);
+    border-color: var(--input-focus-border-color);
+    background-color: rgba(var(--input-focus-border-color-rgb), 0.05);
 }
 
 .image-upload-box.has-image {
     border-style: solid;
-    border-color: var(--accent-color);
+    border-color: var(--input-focus-border-color);
 }
 
 .image-input {
@@ -460,13 +429,13 @@
     flex-direction: column;
     align-items: center;
     gap: 4px;
-    color: #6c757d;
+    color: var(--input-focus-border-color);
     font-size: 12px;
     text-align: center;
 }
 
 .upload-placeholder i {
-    font-size: 18px;
+    font-size: var(--font-size-small);
     margin-bottom: 2px;
 }
 
@@ -496,10 +465,9 @@
 }
 
 .remove-image:hover {
-    background: #c82333;
+    background: var(--delete-button-click-background-color);
 }
 
-/* Two Column Form Grid */
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -529,8 +497,60 @@
     grid-column: 1 / -1;
 }
 
-/* Mobile Responsive */
+@media (max-width: 1024px) {
+    .admin-layout {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .admin-sidebar {
+        position: static;
+    }
+    
+    .admin-menu ul {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .admin-menu__item {
+        flex: 1;
+        min-width: 120px;
+        text-align: center;
+        border-right: 1px solid #eee;
+        border-bottom: none;
+    }
+}
+
 @media (max-width: 768px) {
+     #addProductModalMobile .modal-content {
+        width: 95%;
+        max-width: 450px;
+        padding: 10px;
+        margin: auto 0 1px;
+    }
+
+    #addProductModalMobile .image-upload-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    #addProductModalMobile input,
+    #addProductModalMobile select,
+    #addProductModalMobile textarea {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    #addProductModalMobile h3 {
+        font-size: 18px;
+    }
+
+
+    #addProductModal {
+        display: none;
+
+    }
+
     .admin-modal {
         width: 95%;
         margin: 20px;
@@ -563,10 +583,201 @@
     .modal-body {
         padding: 15px;
     }
+
+    .admin-layout {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .admin-sidebar {
+        position: static;
+    }
+
+    .admin-form {
+        gap: 4px;
+    }
+
+    .admin-form label, select, input, option{
+        font-size: 12px;
+        margin: 0;
+       
+    }
+
+    .modal-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        margin: 0;
+    }
+    
+    .admin-menu ul {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .admin-menu__item {
+        flex: 1;
+        min-width: 120px;
+        text-align: center;
+        border-right: 1px solid #eee;
+        border-bottom: none;
+    }
+
+    .admin-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+
+    .grid-header,
+    .grid-row {
+        grid-template-columns: 60px 1.5fr 1fr 1fr;
+        font-size: var(--font-size-xxxsmall);
+    }
+
+    .grid-header__item,
+    .grid-cell {
+        padding: 8px 5px;
+    }
+
+    .admin-product-img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .grid-row .cell-3,
+    .grid-row .cell-4,
+    .grid-row .cell-5,
+    .grid-row .cell-6 {
+        display: none !important;
+    }
+
+    .grid-header__item:nth-child(3),
+    .grid-header__item:nth-child(4),
+    .grid-header__item:nth-child(5),
+    .grid-header__item:nth-child(6) {
+        display: none;
+    }
+
+    .admin-product-grid,
+    .admin-main,
+    .admin-dashboard,
+    .admin-layout,
+    .admin-sidebar {
+        width: 95%;
+        max-width: 100%;
+    }
+
+    .custom-select-wrapper {
+    position: relative;
+    width: 100%;
+    }
+    .custom-select__selected {
+    position: relative;
+    display: block;
+    padding-right: 24px; 
+    }
+
+    .custom-select__selected::after {
+    content: '';
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #888; 
+    transform: translateY(-50%);
+    }
+
+    .custom-select__options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--background-color);
+    border: 1px solid #ccc;
+    border-top: none;
+    z-index: 100;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    }
+
+    .custom-select__options li {
+    padding: 8px;
+    cursor: pointer;
+    }
+
+    .custom-select__options li:hover,
+    .custom-select__options li[aria-selected="true"] {
+    background: var(--input-border-color);
+    }
+
 }
 
 @media (max-width: 480px) {
+
+    .image-upload-box {
+        width: 75px;
+        height: 75px;
+        margin-top: 100px;
+    }
+
+    form {
+        margin: auto;
+    }
+
+    #addProductModalMobile .modal-content {
+        width: 100%;
+        max-width: 370px;
+        padding: 8px;
+        border-radius: 8px;
+    }
+
+    #addProductModalMobile .image-upload-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+    }
+
+    #addProductModalMobile input,
+    #addProductModalMobile select,
+    #addProductModalMobile textarea {
+        font-size: var(--font-size-xxsmall);
+        padding: 8px;
+    }
+
+    #addProductModalMobile h3 {
+        font-size: var(--font-size-xsmall);
+    }
+
     .image-upload-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .grid-header,
+    .grid-row {
+        grid-template-columns: 60px 1fr;
+    }
+
+    .grid-row .cell-3,
+    .grid-row .cell-4,
+    .grid-row .cell-5,
+    .grid-row .cell-6 {
+        display: none;
+    }
+
+    .grid-header__item:nth-child(3),
+    .grid-header__item:nth-child(4),
+    .grid-header__item:nth-child(5),
+    .grid-header__item:nth-child(6),
+    .grid-header__item:nth-child(7) {
+        display: none;
+    }
+
+    #addProductModalMobile {
+        display: block;
+}
 }

@@ -57,4 +57,4 @@ function closeShoppingCart() {
     document.body.classList.remove('show-cart');
 }
 
-// Cart functions are now handled by cart.js
+// Cart functions are handled by cart.js
