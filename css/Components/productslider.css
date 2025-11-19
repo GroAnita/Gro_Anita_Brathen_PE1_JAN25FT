@@ -42,7 +42,7 @@
     position: absolute;
     top: 15px;
     right: -30px;
-    background: var(--edit-add-button-hover-background-color);
+    background: var(--edit-add-button-click-background-color);
     color: var(--background-color);
     padding: 5px 40px;
     transform: rotate(45deg);
