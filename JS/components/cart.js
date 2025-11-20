@@ -73,7 +73,6 @@ function addToCart(product, size = null, quantity = 1) {
         if (typeof window !== 'undefined') {
             window.cart = cart;
         }
-        console.log(`Added ${product.title} to cart!`);
         showAddToCartNotification(product.title);
 }
 
@@ -278,11 +277,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (shoppingBagIcon) {
         shoppingBagIcon.addEventListener('click', () => {
             displayShoppingCartItems();
+            updateShoppingCartTotal();
         });
     }
 });
 
-// Make checkout globally accessible
 window.checkout = checkout;
 
 export { 

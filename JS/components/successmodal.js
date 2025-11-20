@@ -1,7 +1,5 @@
 /**
- * HTML template for the purchase success modal.
- * Injected into the DOM when initializeSuccessModal() runs.
- * @type {string}
+ * Success Modal HTML Template
  */
 const successModalHTML = `
     <div id="purchaseSuccessModal" class="alert-modal">
@@ -23,54 +21,56 @@ const successModalHTML = `
 `;
 
 /**
- * Displays the success modal and injects dynamic order information.
- *
- * @param {string} orderId - The generated order ID to display.
- * @param {string} deliveryDate - Estimated delivery text to show.
+ * Injects the modal into the DOM & initializes functionality.
  */
-function showSuccessModal(orderId, deliveryDate) {
-    const modal = document.getElementById('purchaseSuccessModal');
-    const orderIdSpan = document.getElementById('purchaseId');
-    const deliveryDateSpan = document.getElementById('deliveryDate');
-
-    if (orderIdSpan) orderIdSpan.textContent = orderId;
-    if (deliveryDateSpan) deliveryDateSpan.textContent = deliveryDate;
-
-    if (modal) {
-        modal.style.display = 'block';
-    }
-}
-
-/**
- * Ensures the success modal exists in the DOM, initializes close buttons,
- * and sets up redirect behavior.
- */
-function initializeSuccessModal() {
-    // Inject modal HTML once
+export function initializeSuccessModal() {
+    // 1. Inject ONLY once
     if (!document.getElementById('purchaseSuccessModal')) {
         document.body.insertAdjacentHTML('beforeend', successModalHTML);
     }
 
     const modal = document.getElementById('purchaseSuccessModal');
-    const closeBtn = document.querySelector('.success-close');
-    const okBtn = document.getElementById('successOkBtn');
+    const closeBtn = modal.querySelector('.success-close');
+    const okBtn = modal.querySelector('#successOkBtn');
 
-    /**
-     * Closes the modal and redirects the user back to the home page.
-     */
-    function closeModal() {
-        modal.style.display = 'none';
-        window.location.href = '../index.html';
+    /** Redirect Home based on current path */
+    function redirectToHome() {
+        if (window.location.pathname.includes('/pages/')) {
+            window.location.href = '../index.html';
+        } else {
+            window.location.href = './index.html';
+        }
     }
 
-    if (closeBtn) closeBtn.addEventListener('click', closeModal);
-    if (okBtn) okBtn.addEventListener('click', closeModal);
+    /** Close the modal */
+    function closeModal() {
+        modal.style.display = 'none';
+        redirectToHome();
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    okBtn.addEventListener('click', closeModal);
+
+    // Optional: click outside to close
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
 }
 
-// Automatically initialize modal on page load
 /**
- * Initializes the success modal after the DOM is fully loaded.
+ * Displays success modal with the given order data.
+ * @param {string} orderId
+ * @param {string} deliveryDate
  */
-document.addEventListener('DOMContentLoaded', initializeSuccessModal);
+export function showSuccessModal(orderId, deliveryDate) {
+    const modal = document.getElementById('purchaseSuccessModal');
+    const orderIdSpan = document.getElementById('purchaseId');
+    const deliveryDateSpan = document.getElementById('deliveryDate');
 
-export { showSuccessModal, initializeSuccessModal };
+    if (!modal) return;
+
+    orderIdSpan.textContent = orderId;
+    deliveryDateSpan.textContent = deliveryDate;
+
+    modal.style.display = 'block';
+}
