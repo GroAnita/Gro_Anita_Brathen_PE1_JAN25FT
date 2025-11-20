@@ -366,6 +366,7 @@ body {
 }
 
 .back-to-top-btn {
+    position: fixed;
     padding: 12px 12px;
     background-color: var(--button-background-color);
     color: var(--button-text-color);
@@ -375,7 +376,7 @@ body {
     font-size: var(--font-size-medium);
     position: fixed;
     bottom: 30px;
-    right: 30px;
+    right: 230px;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -388,7 +389,7 @@ body {
 .toast {
     position: fixed;
     bottom: 150px;
-    right: 5%;
+    right: 8%;
     transform: translateX(-50%);
     background-color: var(--edit-add-button-background-color);
     color: var(--font-color);
