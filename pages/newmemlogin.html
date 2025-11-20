@@ -263,9 +263,12 @@
                         <i class="fa-brands fa-tiktok" aria-label="TikTok"></i>
                         <i class="fab fa-instagram" aria-label="Instagram"></i>
                     </div>
-                        <h5>Join our Newsletter</h5>
-                        <input type="email" name="email" placeholder="Enter your email" aria-label="Email address for newsletter signup" autocomplete="on">
-                        <button class="main-btn" type="submit">Subscribe</button>
+                    <form id="newsletterForm">
+                        <label>Join our Newsletter</label>
+                        <input type="email" name="email" placeholder="Enter your email" autocomplete="on" id="newsletterEmail">
+                        <button class="main-btn" id="subscribeBtn" type="submit">Subscribe</button>
+                        <div id="toast" class="toast" role="status" aria-live="polite" ></div>
+                    </form>
                 </div>
             </div>
             <div class="footer-content__bottom">

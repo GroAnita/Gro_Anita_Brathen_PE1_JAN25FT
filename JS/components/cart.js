@@ -128,6 +128,9 @@ function displayShoppingCartItems() {
     }
 
     cart.forEach(item => {
+        const imageUrl = item.image?.url ||
+        (typeof item.image === "string" ? item.image : "../images/placeholder.jpg");
+
         const cartItem = document.createElement('div');
         cartItem.className = 'cart-item';
         cartItem.style.cssText = `

@@ -99,7 +99,7 @@
     
 
         <!--Shopping cart sidebar-->
-            <div class="shopping_cart" id="shoppingCart" aria-modal="true" role="dialog" aria-hidden="true">
+            <div class="shopping_cart" id="shoppingCart" aria-modal="true" role="dialog" >
                 <div class="cart-header">
                     <h2>Your Shopping Bag</h2>
                     <button class="close-btn" id="closeShoppingCartBtn">&times;</button>
@@ -199,9 +199,12 @@
                         <i class="fa-brands fa-tiktok"></i>
                         <i class="fab fa-instagram"></i>
                     </div>
+                    <form id="newsletterForm">
                         <label>Join our Newsletter</label>
-                        <input type="email" name="email" placeholder="Enter your email" autocomplete="on">
-                        <button class="main-btn" type="submit">Subscribe</button>
+                        <input type="email" name="email" placeholder="Enter your email" autocomplete="on" id="newsletterEmail">
+                        <button class="main-btn" id="subscribeBtn" type="submit">Subscribe</button>
+                        <div id="toast" class="toast" role="status" aria-live="polite" ></div>
+                    </form>
                 </div>
             </div>
             <div class="footer-content__bottom">

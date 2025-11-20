@@ -161,9 +161,15 @@
                         <i class="fa-brands fa-tiktok"></i>
                         <i class="fab fa-instagram"></i>
                     </div>
-                        <h5>Join our Newsletter</h5>
+                         <form id="newsletterForm">
+                        <label>Join our Newsletter</label>
                         <input type="email" name="email" placeholder="Enter your email" autocomplete="on">
-                        <button class="main-btn" type="submit">Subscribe</button>
+                        <button class="main-btn" id="subscribeBtn" type="submit">Subscribe</button>
+                    </form>
+                    
+                    <!-- Toast message container -->
+                    <div id="toast" class="toast" role="status" aria-live="polite" ></div>
+
                 </div>
             </div>
             <div class="footer-content__bottom">
@@ -193,7 +199,8 @@
           <script type="module" src="../JS/components/products.js"></script>
         <script type="module" src="../JS/components/loginusermodal.js"></script>  
         <script type="module" src="../JS/utils.js"></script>
-         <script type="module" src="../JS/stockManager.js"></script>
+        
+        
     </div>
 </body>
 </html>

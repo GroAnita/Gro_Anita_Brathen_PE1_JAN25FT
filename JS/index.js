@@ -1,7 +1,7 @@
 import { setupPagination, getPaginatedProducts, resetPagination } from './components/pagination.js';
 import { showLoginModal } from './components/loginusermodal.js';
 import { addToCart } from './components/cart.js';
-import { backToTop } from './utils.js';
+import { backToTop, showToastMsg, initializeNewsletterForm  } from './utils.js';
 //import { getStock } from './components/stockManager.js';
 
 /**
@@ -318,3 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+
+backToTop();
+initializeNewsletterForm();
+showToastMsg();

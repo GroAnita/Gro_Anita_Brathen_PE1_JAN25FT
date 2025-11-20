@@ -287,3 +287,71 @@ function backToTop() {
 }
 
 export { backToTop };
+
+export function showToastMsg(message) {
+
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+}
+
+
+
+
+export function initializeNewsletterForm() {
+
+    document.addEventListener("DOMContentLoaded", () => {
+    const toast = document.getElementById("toast");
+    if (toast) toast.classList.remove("show");
+});
+
+    const form = document.getElementById('newsletterForm');
+    if (!form) return; 
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const emailInput = form.querySelector('input[name="email"]');
+        const email = emailInput?.value.trim() || "";
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailPattern.test(email)) {
+            showToastMsg("Please enter a valid email!", "error");
+            return;
+        }
+
+        showToastMsg("Thank you for subscribing to our Newsletter!", "success");
+        emailInput.value = "";
+    });
+}
+
+
+export function tagIdFromApi(apiTag) {
+    return apiTag.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+}
+export function tagNameFromId(tagId) {
+    return tagId.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
+}   
+
+/**
+ * Get tags from a product.
+ * Returns an empty array if no tags exist.
+ * 
+ * @param {Object} product - The product object from API.
+ * @returns {Array<string>} - A clean array of tags.
+ */
+export function getProductTags(product) {
+    if (!product || !Array.isArray(product.tags)) {
+        return [];
+    }
+
+    return product.tags
+        .filter(tag => typeof tag === "string" && tag.trim() !== "")
+        .map(tag => tag.trim());
+}

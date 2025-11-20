@@ -1,12 +1,14 @@
 // JSDoc-enhanced Product Page Script
-import { formatProductPrice, hasDiscount, createSalesBanner, magnifyProductImage, shareButtonSetup } from './utils.js';
+import { formatProductPrice, hasDiscount, createSalesBanner, magnifyProductImage, shareButtonSetup, getProductTags } from './utils.js';
+import { backToTop, showToastMsg, initializeNewsletterForm  } from './utils.js';
 import { showLoginModal } from './components/loginusermodal.js';
 import { addToCart } from './components/cart.js';
-import { getStock, reserveStock } from '../stockManager.js';
+//import { getStock, reserveStock } from '../stockManager.js';
 
 let currentProductId = null;
 const urlParams = new URLSearchParams(window.location.search);
 currentProductId = urlParams.get('id');
+
 
 /**
  * Fetch detailed data for a single product.
@@ -55,11 +57,16 @@ async function displayProductDetails() {
         const productTitle = productData.title || 'Product Title';
         const productDesc = productData.description || 'No description available';
         const priceHTML = formatProductPrice(productData);
+        const tags = getProductTags(productData);
+
 
         productPageBox.innerHTML = `
             <div class="productpage-image">
                 <div class="image-wrapper">
                     <img class="product-image" src="${imageUrl}" alt="${productTitle}">
+                </div>
+                <div class="product-tags">
+                    ${tags.map(tag => `<span class="tag"> - ${tag}</span>`).join('')}
                 </div>
             </div>
             <div class="productpage-details">
@@ -109,7 +116,6 @@ productPageOtherInfoBox.innerHTML = `
     <div class="tab-buttons">
       <button class="tab-btn active" data-tab="reviews">Reviews</button>
       <button class="tab-btn" data-tab="shipping">Shipping Info</button>
-      <button class="tab-btn" data-tab="care">Care Instructions</button>
     </div>
     <div class="tab-content">
       <div id="reviews" class="tab-pane active">
@@ -123,19 +129,18 @@ productPageOtherInfoBox.innerHTML = `
           </div>
         </div>
       </div>
-      <div id="shipping" class="tab-pane">
+        <div id="shipping" class="tab-pane">
         <h3>Shipping Information</h3>
-        <p>Free shipping on orders over $100. Standard delivery 3–5 business days.</p>
-      </div>
-      <div id="care" class="tab-pane">
-        <h3>Care Instructions</h3>
-        <p>Machine wash cold, tumble dry low. Do not bleach.</p>
-      </div>
+            <h4>Standard Shipping</h4>
+            <p>Free shipping on orders over $100. Standard delivery 3–5 business days.</p>
+            <h4>Express Shipping</h4>
+            <p>Delivery in 2-3 business days. Additional $10.00 charge.<br> Free for purchases over $500.</p>
+        </div>
     </div>
   </div>
   <div class="productpage-otherinfo-infobox">
     <ul>
-      <li>Free shipping on all orders over $50</li>
+      <li>Free shipping on all orders over $100</li>
       <li>30-day return policy for members</li>
       <li>Eco-friendly packaging</li>
       <li>Secure payment options</li>
@@ -274,3 +279,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Login trigger not found!');
     }
 });
+
+backToTop();
+initializeNewsletterForm();
