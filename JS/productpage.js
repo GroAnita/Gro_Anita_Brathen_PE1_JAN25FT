@@ -2,6 +2,7 @@
 import { formatProductPrice, hasDiscount, createSalesBanner, magnifyProductImage, shareButtonSetup } from './utils.js';
 import { showLoginModal } from './components/loginusermodal.js';
 import { addToCart } from './components/cart.js';
+import { getStock, reserveStock } from '../stockManager.js';
 
 let currentProductId = null;
 const urlParams = new URLSearchParams(window.location.search);

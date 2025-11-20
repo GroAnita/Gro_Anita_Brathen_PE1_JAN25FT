@@ -1,4 +1,4 @@
-// Global cart management system
+//import { getAvailableStock, updateReservedStock } from '../components/stockManager.js';
 /** 
  * @typedef {Object} CartItem
  * @property {string} id - The product ID.
@@ -102,7 +102,7 @@ function updateCartCounter() {
 }
 
 /**
- * Calculates and updates the cart total price shown in the checkout sidebar.
+ * Calculates and updates the cart total price that is in the shoppingcart.
  */
 function updateShoppingCartTotal() {
     const cartTotalElement = document.getElementById('shoppingCartTotal');
@@ -114,7 +114,7 @@ function updateShoppingCartTotal() {
 
 /**
  * Renders all cart items in the shopping cart sidebar.
- * Clears previous items and attaches event listeners to buttons.
+ * Clears previous items and put event listeners to buttons.
  */
 function displayShoppingCartItems() {
     const cartItemsContainer = document.getElementById('shoppingCartItems');
@@ -137,16 +137,6 @@ function displayShoppingCartItems() {
             border-bottom: 1px solid #eee;
             gap: 10px;
         `;
-
-        // Defensive: handle missing or malformed image object
-        let imageUrl = '';
-        if (item.image && typeof item.image === 'object' && 'url' in item.image) {
-            imageUrl = item.image.url;
-        } else if (typeof item.image === 'string') {
-            imageUrl = item.image;
-        } else {
-            imageUrl = 'images/placeholder.png'; // fallback image
-        }
 
         cartItem.innerHTML = `
             <img src="${imageUrl}" alt="${item.title}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
