@@ -140,7 +140,7 @@ html, body {
 .membership-content__form label {
     font-size: var(--font-size-xxsmall);
     color: var(--font-color);
-    font-family: Arial, sans-serif;
+    font-family: "inter", sans-serif;
 }
 
 .membership-content__form input {

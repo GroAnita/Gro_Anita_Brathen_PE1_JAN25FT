@@ -257,7 +257,6 @@ function checkout() {
     }
 
     if (window.location.pathname.includes('checkout.html')) {
-        console.log('Already on checkout page');
         return;
     }
 

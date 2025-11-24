@@ -1,11 +1,30 @@
 // Import login functions to auto-login after registration
 import { updateLoginState } from './components/loginusermodal.js';
+import { initSearchComponent } from './components/searchComponent.js';
+
+let allProducts = [];
+
+async function fetchAllProducts() {
+    try {
+        const response = await fetch("https://v2.api.noroff.dev/online-shop");
+        const data = await response.json();
+        allProducts = data.data;
+    } catch (error) {
+        console.error("Search component: failed to fetch products", error);
+    }
+}
 
 /**
  * Initializes event listeners and handles registration logic.
  * Sets up password visibility toggle and form submission.
  */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+
+    await fetchAllProducts();
+    if (allProducts.length > 0) {
+        initSearchComponent(allProducts);
+    }
+    
     /** @type {HTMLButtonElement|null} */
     const passwordToggle = document.getElementById('passwordToggle');
     /** @type {HTMLInputElement|null} */

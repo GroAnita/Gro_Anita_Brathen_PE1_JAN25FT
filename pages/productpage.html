@@ -24,7 +24,7 @@
 <body>
     <div class="container">
           <div class="header-topbar">
-                <div class="header-content__leftemptyforbalance">   <button 
+                <div class="header-content__left-hamburger">   <button 
                         id="hamburgerMenuIcon"
                         class="hamburger-btn"
                         aria-controls="hamburgerMenu"
@@ -32,9 +32,8 @@
                         aria-label="Open menu">
                         <i class="fa-solid fa-bars"></i>
                     </button></div>
-                <div class="header-content__nav__left"><p>We <i class="fa-solid fa-heart"></i>pre-owned</p></div>
+                <div class="header-content__nav-center"><p>We <i class="fa-solid fa-heart"></i>pre-owned</p></div>
                 <div class="header-content__nav__right">
-                    <i class="fas fa-search"></i>
                     <i class="fas fa-user"></i>
                     <div class="header-content__nav__shoppingbag">
                     <i class="fa-solid fa-bag-shopping" id="shoppingBagIcon"><span class="header-content__nav__right__cart-count">0</span></i>
@@ -74,7 +73,40 @@
         <hr class="productpage-hr">
         <section class="productpage-otherinfo">
             <div class="productpage-otherinfo-box">
-                <!-- Additional product info will be injected here -->
+                  <div class="product-tabs">
+    <div class="tab-buttons">
+      <button class="tab-btn active" data-tab="reviews">Reviews</button>
+      <button class="tab-btn" data-tab="shipping">Shipping Info</button>
+    </div>
+    <div class="tab-content">
+      <div id="reviews" class="tab-pane active">
+        <div class="reviews-section">
+          <h3>Customer Reviews</h3>
+          <div id="reviewsList">
+             <div class="product-rating">
+                <span id="productRating">★★★★☆</span>
+                <span id="reviewCount">(0 reviews)</span>
+             </div>
+          </div>
+        </div>
+      </div>
+        <div id="shipping" class="tab-pane">
+        <h3>Shipping Information</h3>
+            <h4>Standard Shipping</h4>
+            <p>Free shipping on orders over $100. Standard delivery 3–5 business days.</p>
+            <h4>Express Shipping</h4>
+            <p>Delivery in 2-3 business days. Additional $10.00 charge.<br> Free for purchases over $500.</p>
+        </div>
+    </div>
+  </div>
+  <div class="productpage-otherinfo-infobox">
+    <ul>
+      <li>Free shipping on all orders over $100</li>
+      <li>30-day return policy for members</li>
+      <li>Eco-friendly packaging</li>
+      <li>Secure payment options</li>
+    </ul>
+  </div>
             </div>
         <!--hamburger menu -->
         <div class="hamburger-menu" id="hamburgerMenu">
@@ -166,7 +198,7 @@
                         <input type="email" name="email" placeholder="Enter your email" autocomplete="on">
                         <button class="main-btn" id="subscribeBtn" type="submit">Subscribe</button>
                     </form>
-                    
+
                     <!-- Toast message container -->
                     <div id="toast" class="toast" role="status" aria-live="polite" ></div>
 
@@ -199,6 +231,7 @@
           <script type="module" src="../JS/components/products.js"></script>
         <script type="module" src="../JS/components/loginusermodal.js"></script>  
         <script type="module" src="../JS/utils.js"></script>
+        <script type="module" src="../JS/global.js"></script>
         
         
     </div>

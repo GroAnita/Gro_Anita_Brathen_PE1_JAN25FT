@@ -29,8 +29,7 @@ const stockDatabase = {
     "c0d245f1-58fa-4b15-aa0c-a704772a122b": { stock: 10, reserved: 0 },
 };
 
-
-export function getAvailableStock(productId) {
+ function getAvailableStock(productId) {
     const item = stockDatabase[productId];
     if (!item) return 0;
     return item.stock - item.reserved;
@@ -88,7 +87,15 @@ function updateStock(productId, newStock) {
 }
 
 
-
+export {
+    getAvailableStock,
+    canAddToCart,
+    reserveStock,
+    unreserveStock,
+    confirmPurchase,
+    cancelReservation,
+    updateStock 
+}
 
 
 /*

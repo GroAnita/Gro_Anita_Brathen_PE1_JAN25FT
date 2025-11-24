@@ -355,3 +355,12 @@ export function getProductTags(product) {
         .filter(tag => typeof tag === "string" && tag.trim() !== "")
         .map(tag => tag.trim());
 }
+
+
+
+
+
+
+
+
+
