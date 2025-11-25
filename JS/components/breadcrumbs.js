@@ -44,6 +44,41 @@ export function renderBreadcrumb() {
         });
     }
 
+     if (path.includes("wcpreowned.html")) {
+        crumbs.push({
+            label: "Why choose pre-owned?",
+            href: "#"
+        });
+    }
+
+     if (path.includes("privacypolicy.html")) {
+        crumbs.push({
+            label: "Privacy Policy",
+            href: "#"
+        });
+    }
+
+     if (path.includes("tos.html")) {
+        crumbs.push({
+            label: "Terms of Service",
+            href: "#"
+        });
+    }
+
+     if (path.includes("shippingpolicy.html")) {
+        crumbs.push({
+            label: "Shipping Policy",
+            href: "#"
+        });
+    }
+
+     if (path.includes("faq.html")) {
+        crumbs.push({
+            label: "FAQ",
+            href: "#"
+        });
+    }
+
     container.innerHTML = crumbs
         .map((c, i) => {
             if (i === crumbs.length - 1) {

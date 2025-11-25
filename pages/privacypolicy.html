@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/Components/shoppingbag.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/Components/hamburgermenu.css">
+    <link rel="stylesheet" href="../css/Components/footer.css">
+    <link rel="stylesheet" href="../css/Components/memberloginmodal.css">
+    <link rel="stylesheet" href="../css/contactus.css">
+    <link rel="stylesheet" href="../css/documentpages.css">
+    <link rel="icon" type="image/svg+xml" href="../images/horseheadlogo.svg">
+    <title>The Second Hand Company</title>
+</head>
+<body>
+    <div class="container">
+          <div class="header-topbar">
+                <div class="header-content__left-hamburger"> 
+                    <button 
+                        id="hamburgerMenuIcon"
+                        class="hamburger-btn"
+                        aria-controls="hamburgerMenu"
+                        aria-expanded="false"
+                        aria-label="Open menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+                <div class="header-content__nav-center"><p>We <i class="fa-solid fa-heart"></i>pre-owned</p></div>
+                <div class="header-content__nav__right">
+                    <i class="fas fa-user"></i>
+                    <div class="header-content__nav__shoppingbag">
+                    <i class="fa-solid fa-bag-shopping" id="shoppingBagIcon"><span class="header-content__nav__right__cart-count">0</span></i>
+                    </div>
+                </div>
+            </div>
+        <header>
+          
+            <!-- Mobile Header -->
+            <div class="header-content-mobile">
+                <div class="header-content__logo__mobile">
+                    <img src="../images/horseheadlogo.svg" alt="The Second Hand Company Logo" class="logo--mobile">
+                </div>
+                <span class="header-content-mobile__text">The Second Hand Company</span>
+            </div>  
+            <!-- Desktop Header -->
+            <div class="header-content">
+                <div class="header-content__left">
+                        <div class="header-content__left__top">The</div>
+                        <div class="header-content__left__bottom">Second Hand</div>
+                </div>
+                <div class="header-content__center">
+                <div class="header-content__center__logo">
+                    <img src="../images/horseheadlogo.svg" alt="Logo" class="logo">
+                </div>
+                <div class="header-content__center__text">2025</div>
+                </div>
+                <div class="header-content__right">Company</div>
+              
+            </div> 
+        </header>
+
+        <!--hamburger menu -->
+        <div class="hamburger-menu" id="hamburgerMenu" aria-modal="true" role="dialog" aria-hidden="true" tabindex="-1">
+            <button class="close-btn" id="closeHamburgerMenu" aria-label="Close menu">&times;</button>
+            <nav aria-label="Primary Navigation">
+                <ul class="hamburger-menu__links">
+                    <li><a href="#" data-category="home">Home</a></li>
+                    <li><a href="#" data-category="fashion">Fashion</a></li>
+                    <li><a href="#" data-category="electronics">Electronics</a></li>
+                    <li><a href="#" data-category="health and beauty">Health & beauty</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="contactus.html">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="tos.html">Terms of Service</a></li>
+                    <li><a href="#">Why choose pre-owned?</a></li>
+                    <li><a href="../pages/newmemlogin.html">Become a member</a></li>
+                    <li><a href="#" id="loginModalTrigger">Member Login</a></li>
+                </ul>
+                <div class="hamburger-menu__logo">
+                    <img src="../images/horseheadlogo.svg" alt="Logo" class="logo">
+                </div>
+                <a class="hamburger-menu__h5" href="/pages/admindashboard.html">Admin login</a>
+            </nav>
+        </div>
+        
+        <!-- Hamburger overlay for dark background -->
+        <div class="hamburger-overlay" id="hamburgerOverlay" aria-hidden="true"></div>
+    
+
+        <!--Shopping cart sidebar-->
+            <div class="shopping_cart" id="shoppingCart" aria-modal="true" role="dialog" >
+                <div class="cart-header">
+                    <h2>Your Shopping Bag</h2>
+                    <button class="close-btn" id="closeShoppingCartBtn">&times;</button>
+                </div>
+                <hr class="shoppingbag-hr">
+                <div class="cart-items" id="shoppingCartItems">
+                    <!-- Cart items will be added here by JavaScript -->
+                </div>
+                <div class="cart-footer">
+                    <div class="cart-numbers">
+                    <div class="shipping">
+                        <p>Shipping: Free</p>
+                    </div>
+                    <div class="cart-total">
+                        <strong>Total: $<span id="shoppingCartTotal">0.00</span></strong>
+                    </div>
+                    </div>
+                    <button onClick="checkout()" class="checkout-btn main-btn" id="checkoutButton">Checkout</button>
+                </div>
+             </div>
+
+<nav class="breadcrumb" id="breadcrumb"></nav>
+
+<div class="privacy-policy">
+
+    <h1>Privacy Policy</h1>
+    <p><strong>Last Updated:</strong> January 2025</p>
+
+    <p>
+        This Privacy Policy explains how <strong>The Second Hand Company</strong> (“we,” “our,” or “us”) collects,
+        uses, and protects your personal information when you use our website, create an account, or make a purchase.
+        By using our services, you agree to the practices described here.
+    </p>
+
+    <section>
+        <h2>1. Information We Collect</h2>
+        <p>We may collect the following types of information:</p>
+
+        <h3>a) Information You Provide</h3>
+        <ul>
+            <li>Name and contact information (email, phone number, address)</li>
+            <li>Date of birth (for membership eligibility)</li>
+            <li>Login credentials (username + encrypted password)</li>
+            <li>Payment and billing details (handled securely by third-party processors)</li>
+            <li>Profile information saved for faster checkout</li>
+        </ul>
+
+        <h3>b) Automatically Collected Information</h3>
+        <ul>
+            <li>IP address</li>
+            <li>Browser type and device information</li>
+            <li>Pages visited and actions taken on the site</li>
+            <li>Shopping cart and browsing behavior</li>
+        </ul>
+
+        <h3>c) Cookies & Tracking Technologies</h3>
+        <p>
+            We use cookies to improve your experience, remember your preferences, process your cart,
+            and analyze website performance.
+        </p>
+    </section>
+
+    <section>
+        <h2>2. How We Use Your Information</h2>
+        <p>Your information may be used for the following purposes:</p>
+        <ul>
+            <li>Processing and delivering orders</li>
+            <li>Creating and managing your user account</li>
+            <li>Providing customer support</li>
+            <li>Sending order confirmations, updates, and security alerts</li>
+            <li>Improving website functionality and user experience</li>
+            <li>Offering promotions and membership benefits (optional)</li>
+            <li>Preventing fraud and maintaining security</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>3. How We Protect Your Data</h2>
+        <ul>
+            <li>We use encrypted connections (HTTPS)</li>
+            <li>Passwords are stored securely using hashed formats</li>
+            <li>Access to personal data is restricted to authorized staff</li>
+            <li>We never store full credit-card numbers on our servers</li>
+        </ul>
+        <p>While we take strong measures, no online system is 100% secure.</p>
+    </section>
+
+    <section>
+        <h2>4. Sharing Your Information</h2>
+        <p>Your information may be shared with trusted third parties only when necessary:</p>
+        <ul>
+            <li><strong>Payment processors</strong> (e.g., StrawberryPay, Visa, Mastercard)</li>
+            <li><strong>Shipping providers</strong> for delivering your order</li>
+            <li><strong>Analytics partners</strong> to understand site usage</li>
+            <li><strong>Legal authorities</strong> if required by law</li>
+        </ul>
+        <p>We never sell your personal information to advertisers or third-party marketers.</p>
+    </section>
+
+    <section>
+        <h2>5. Your Rights</h2>
+        <p>You have the right to:</p>
+        <ul>
+            <li>Access the information we store about you</li>
+            <li>Request corrections to inaccurate data</li>
+            <li>Delete your account and associated personal data</li>
+            <li>Withdraw consent for marketing emails at any time</li>
+            <li>Disable cookies through your browser settings</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>6. Data Retention</h2>
+        <p>
+            We retain personal data only as long as necessary to:
+        </p>
+        <ul>
+            <li>Complete your orders</li>
+            <li>Fulfill legal obligations</li>
+            <li>Maintain a functional user account</li>
+        </ul>
+        <p>You may request account deletion at any time.</p>
+    </section>
+
+    <section>
+        <h2>7. Children’s Privacy</h2>
+        <p>
+            Our services are not intended for children under 13.
+            We do not knowingly collect or store data from minors.
+        </p>
+    </section>
+
+    <section>
+        <h2>8. Updates to This Policy</h2>
+        <p>
+            We may update this Privacy Policy periodically. Updated versions will be posted on this page.
+            Continued use of the site after changes means you accept the revised policy.
+        </p>
+    </section>
+
+    <section>
+        <h2>9. Contact Us</h2>
+        <p>If you have any questions about this Privacy Policy, you can contact us at:</p>
+        <p>
+            📧 <a href="mailto:support@secondhandcompany.com">support@secondhandcompany.com</a><br>
+            📍 The Second Hand Company, Norway
+        </p>
+    </section>
+
+</div>
+
+    
+
+        <!-- member login modal -->
+        <!-- Modal will be dynamically created by JavaScript -->
+
+        <!-- Footer Section -->
+        <footer>
+            <div class="footer-content__top">
+                <div class="footer-content__left">
+                    <h4>About Us</h4>
+                    <p>The Second Hand Company is dedicated to promoting sustainable shopping by offering a wide range of high-quality second-hand products. Our mission is to reduce waste and encourage eco-friendly consumption.</p>
+                </div>
+                <span class="vr"></span>
+                <div class="footer-content__centera">
+                    <h4>Customer Service</h4>
+                       <ul>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="contactus.html">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="tos.html">Terms of Service</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Why choose pre-owned?</a></li>
+                        
+                    </ul>
+                </div>
+                <span class="vr"></span>
+                <div class="footer-content__centerb">  <h4>Shop</h4>
+                       <ul>
+                        <li><a href="#" data-category="fashion">Fashion</a></li>
+                        <li><a href="#" data-category="electronics">Electronics</a></li>
+                        <li><a href="#" data-category="health and beauty">Health & Beauty</a></li>
+                    </ul></div>
+                    <span class="vr"></span>
+                <div class="footer-content__right">
+                    <span class="footer-content__right__title"><h4>Connect</h4></span>
+                    <div class="footer-content__right__icons" aria-label="Social media links">
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fa-brands fa-tiktok"></i>
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <form id="newsletterForm">
+                        <label>Join our Newsletter</label>
+                        <input type="email" name="email" placeholder="Enter your email" autocomplete="on" id="newsletterEmail">
+                        <button class="main-btn" id="subscribeBtn" type="submit">Subscribe</button>
+                        <div id="toast" class="toast" role="status" aria-live="polite" ></div>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-content__bottom">
+                <div class="footer-content__bottom__top">
+                    <div class="footer-content__bottom__top__strawberry">
+                    <img src="../images/Strawberrypaylogo.svg" alt="Strawberry Pay Logo" class="footer-logo">
+                    </div>
+                    <div class="footer-content__bottom__top__mestercard">
+                    <img src="../images/Mestercardlogo.svg" alt="Mestercard Logo" class="footer-logo">
+                    </div>
+                    <div class="footer-content__bottom__top__visa">
+                    <img src="../images/Vusacardlogo.svg" alt="Vusa Logo" class="footer-logo">
+                    </div>
+                    <div class="footer-content__bottom__top__eco">
+                    <img src="../images/ecofriendlylogo.svg" alt="Eco Logo" class="footer-logo">
+                    </div>
+                </div>
+                <div class="footer-content__bottom__bottom">
+                    <p>&copy; 2025 The Second Hand Company. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+        <script type="module" src="../JS/components/cart.js"></script>
+        <script type="module" src="../JS/components/shoppingcart.js"></script>
+        <script type="module" src="../JS/components/hamburgermenuoverlay.js"></script>
+        <script type="module" src="../JS/components/loginusermodal.js"></script>
+        <script type="module" src="../JS/utils.js"></script>
+        <script type="module" src="../JS/global.js"></script>
+    </div>
+
+</body>
+</html>
