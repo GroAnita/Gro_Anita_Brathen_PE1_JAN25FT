@@ -23,15 +23,17 @@
 </head>
 <body>
     <div class="container">
-          <div class="header-topbar">
-                <div class="header-content__left-hamburger">   <button 
+            <div class="header-topbar">
+                <div class="header-content__left-hamburger"> 
+                    <button 
                         id="hamburgerMenuIcon"
                         class="hamburger-btn"
                         aria-controls="hamburgerMenu"
                         aria-expanded="false"
                         aria-label="Open menu">
                         <i class="fa-solid fa-bars"></i>
-                    </button></div>
+                    </button>
+                </div>
                 <div class="header-content__nav-center"><p>We <i class="fa-solid fa-heart"></i>pre-owned</p></div>
                 <div class="header-content__nav__right">
                     <i class="fas fa-user"></i>
@@ -39,6 +41,7 @@
                     <i class="fa-solid fa-bag-shopping" id="shoppingBagIcon"><span class="header-content__nav__right__cart-count">0</span></i>
                     </div>
                 </div>
+               
             </div>
         <header>
           
@@ -65,7 +68,7 @@
               
             </div> 
         </header>
-
+            <nav class="breadcrumb" id="breadcrumb"></nav>
         <div class="membership-content">
             <div class="membership-content__whyjoin">
                 <h2 class="membership-content__h2">Why Join Our Membership Program?</h2>
@@ -164,6 +167,8 @@
                         </ul>
                     </div>
                 </div>
+                <div id="registrationError" class="registration-error"></div>
+
 
                     <label for="checkbox" class="checkbox-label">
                         <input type="checkbox" id="checkbox" name="checkbox" required><p>
@@ -182,9 +187,10 @@
             <button class="close-btn" id="closeHamburgerMenu">&times;</button>
             <nav>
                 <ul class="hamburger-menu__links">
-                    <li><a href="#" data-category="fashion">Fashion</a></li>
-                    <li><a href="#" data-category="electronics">Electronics</a></li>
-                    <li><a href="#" data-category="health and beauty">Health & beauty</a></li>
+                    <li><a href="../index.html" data-category="home">Home</a></li>
+                    <li><a href="../index.html?category=fashion">Fashion</a></li>
+                    <li><a href="../index.html?category=electronics">Electronics</a></li>
+                    <li><a href="../index.html?category=health and beauty">Health & beauty</a></li>
                     <li><a href="#">About us</a></li>
                     <li><a href="#">Contact</a></li>
                     <li><a href="#">Privacy Policy</a></li>
@@ -297,5 +303,6 @@
         <script type="module" src="../JS/components/loginusermodal.js"></script>
         <script type="module" src="../JS/global.js"></script>
     </div>
+</div>
 </body>
 </html>

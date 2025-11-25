@@ -3,6 +3,8 @@
 import { initSearchComponent } from './components/searchComponent.js';
 import { backToTop, showToastMsg, initializeNewsletterForm } from './utils.js';
 import { updateLoginState } from './components/loginusermodal.js';
+import { renderBreadcrumb } from "./components/breadcrumbs.js";
+
 
 let globalProductsCache = [];
 let searchInitialized = false;
@@ -55,7 +57,6 @@ function initLoginState() {
 function initUI() {
     backToTop();
     initializeNewsletterForm();
-    showToastMsg();
 }
 
 /**
@@ -65,4 +66,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     await initGlobalSearch();
     initLoginState();
     initUI();
+    renderBreadcrumb();
 });

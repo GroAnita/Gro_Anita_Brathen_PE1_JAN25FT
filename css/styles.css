@@ -44,9 +44,8 @@ body {
     background-color: var(--font-color);
     height: 44px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    color: var(--background-color);
     z-index: 1000;
 }
 
@@ -148,8 +147,6 @@ body {
 }
 
 .search-wrapper input {
-    width: 100%;
-    height: 15px;
     padding: 8px 12px;
     border: 1px solid var(--border-color);
     border-radius: 4px;
@@ -201,7 +198,9 @@ body {
 }
 
 .search-result-item:hover {
-    background-color: #e0e0e0;
+    background-color: var(--tertiary-color);
+    color: var(--background-color) !important;
+   
 }
 
 .search-result-item img {
@@ -215,8 +214,6 @@ body {
     font-size: var(--font-size-small);
     color: var(--font-color);
 }
-
-
 
 .header-content__left-hamburger button{
     display:block;
@@ -490,7 +487,22 @@ body {
     pointer-events: auto;
 }
 
+#globalSearchMount {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 
+#globalSearchMount .search-wrapper {
+    margin-top: 8px;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+}
+
+#globalSearchMount .desktop-search-bar input {
+    max-width: 260px;
+}
 
 .desktop-search-bar{
         position: relative;
@@ -502,6 +514,27 @@ body {
 .mobile-search-icon, .mobile-search-bar{
         display: none;
     }
+
+.breadcrumb {
+    font-size: 14px;
+    padding: 10px 20px;
+    color: #555;
+}
+
+.breadcrumb a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb span {
+    margin: 0 5px;
+    color: #999;
+}
+
 /* media queries*/
 @media (max-width: 1024px) {
     .products-grid {
@@ -520,12 +553,7 @@ body {
     .container {
         max-width: 1024px;
     }
-      .header-content__nav-center p{
-        font-size: var(--font-size-xxsmall);
-        letter-spacing: 0.3em;
-        flex: 1;
-        text-align: end;
-    }
+
 
     .header-content i{
         display:none;
@@ -546,7 +574,7 @@ body {
 
     .desktop-search-bar input { 
     padding: 0.35rem 2rem 0.35rem 0.6rem;
-    border-radius: 9px;
+    border-radius: 4px;
     border: 1px solid var(--border-color, #ccc);
     font-size: 0.85rem;
     min-width: 180px;
@@ -666,7 +694,7 @@ body {
     .mobile-search-bar input {
         width: 100%;
         padding: 0.35rem 2rem 0.35rem 0.6rem;
-        border-radius: 999px;
+        border-radius: 4px;
         border: 1px solid var(--border-color, #ccc);
         font-size: 0.85rem; 
 }

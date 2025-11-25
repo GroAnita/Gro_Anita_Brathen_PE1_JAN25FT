@@ -135,9 +135,9 @@ function displayCheckoutItems() {
             <p class="checkout-product__item-price">$${(item.price * item.quantity).toFixed(2)}</p>
             <p class="checkout-product__item-size">${item.size || 'N/A'}</p>
             <div class="checkout-product__item-quantity">
-                <button class="decrease-btn" data-id="${item.id}" data-size="${item.size || ''}">-</button>
+                <button class="decrease-btn" data-id="${item.id}" data-size="${item.size || ''}"><i class="fa-solid fa-minus"></i></button>
                 <span>${item.quantity}</span>
-                <button class="increase-btn" data-id="${item.id}" data-size="${item.size || ''}">+</button>
+                <button class="increase-btn" data-id="${item.id}" data-size="${item.size || ''}"><i class="fa-regular fa-plus"></i></button>
             </div>
             <div class="checkout-product__remove-container">
                 <button class="remove-item" data-id="${item.id}" data-size="${item.size || ''}">

@@ -9,13 +9,10 @@ import {
 
 import { addToCart } from './components/cart.js';
 
-
 // GET PRODUCT ID FROM URL
 
 const urlParams = new URLSearchParams(window.location.search);
 const currentProductId = urlParams.get('id');
-
-
 
 // FETCH A SINGLE PRODUCT
 
@@ -35,8 +32,6 @@ async function fetchProductDetails(productId) {
         return null;
     }
 }
-
-
 
 // DISPLAY PRODUCT DETAILS
 
@@ -96,8 +91,6 @@ async function displayProductDetails() {
     setupAddToCartButton(productData);
 }
 
-
-
 // REVIEWS
 
 function calculateAverageRating(reviews) {
@@ -155,8 +148,6 @@ function displayReviews(reviews) {
     });
 }
 
-
-
 // ADD TO CART
 
 function setupAddToCartButton(productData) {
@@ -168,8 +159,6 @@ function setupAddToCartButton(productData) {
         addToCart(productData);
     });
 }
-
-
 
 // TABS (Reviews / Shipping Info)
 
@@ -189,8 +178,6 @@ function initializeTabs() {
         });
     });
 }
-
-
 
 // INIT PAGE
 

@@ -6,10 +6,11 @@ export function initSearchComponent(allProducts) {
         return;
     }
     
-    const container = document.querySelector(".header-topbar .header-content__nav__right");
+    let container = document.querySelector(".header-topbar .header-content__nav__right");
 
     if (!container) {
-        console.error("Search component: container .header-topbar .header-content__nav__right not found");
+        container = document.getElementById("globalSearchMount");
+       
         return;
     }
 

@@ -1,183 +1,172 @@
-// Import login functions to auto-login after registration
 import { updateLoginState } from './components/loginusermodal.js';
-import { initSearchComponent } from './components/searchComponent.js';
 
-let allProducts = [];
 
-async function fetchAllProducts() {
-    try {
-        const response = await fetch("https://v2.api.noroff.dev/online-shop");
-        const data = await response.json();
-        allProducts = data.data;
-    } catch (error) {
-        console.error("Search component: failed to fetch products", error);
-    }
+// PASSWORD VISIBILITY TOGGLE
+
+function setupPasswordToggle() {
+    const toggle = document.getElementById('passwordToggle');
+    const input = document.getElementById('password');
+
+    if (!toggle || !input) return;
+
+    toggle.addEventListener('click', () => {
+        const isHidden = input.type === 'password';
+        input.type = isHidden ? 'text' : 'password';
+        toggle.className = isHidden
+            ? 'fa-solid fa-eye password-toggle'
+            : 'fa-solid fa-eye-slash password-toggle';
+    });
 }
 
-/**
- * Initializes event listeners and handles registration logic.
- * Sets up password visibility toggle and form submission.
- */
-document.addEventListener('DOMContentLoaded', async () => {
+// HANDLE REGISTRATION
 
-    await fetchAllProducts();
-    if (allProducts.length > 0) {
-        initSearchComponent(allProducts);
-    }
-    
-    /** @type {HTMLButtonElement|null} */
-    const passwordToggle = document.getElementById('passwordToggle');
-    /** @type {HTMLInputElement|null} */
-    const passwordInput = document.getElementById('password');
+function showRegistrationError(message) {
+    const box = document.getElementById("registrationError");
+    if (!box) return;
+    box.textContent = message;
+    box.style.display = "block";
+}
 
-    if (passwordToggle && passwordInput) {
-        /**
-         * Toggles password visibility on the registration form.
-         * Switches between password and text input types.
-         */
-        passwordToggle.addEventListener('click', () => {
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                passwordToggle.className = 'fa-solid fa-eye password-toggle';
-            } else {
-                passwordInput.type = 'password';
-                passwordToggle.className = 'fa-solid fa-eye-slash password-toggle';
-            }
-        });
-    }
 
-    /** @type {HTMLFormElement|null} */
+async function handleRegistration() {
     const registrationForm = document.getElementById('membershipForm');
+    if (!registrationForm) return;
 
-    if (registrationForm) {
-        /**
-         * Handles registration form submission.
-         * Validates input, sends registration API request,
-         * automatically logs user in after successful registration.
-         *
-         * @param {SubmitEvent} e - The form submission event.
-         */
-        registrationForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
+    registrationForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-            const formData = new FormData(registrationForm);
-            const firstname = formData.get('firstname').trim();
-            const lastname = formData.get('lastname').trim();
-
-            /**
-             * Cleaned and formatted name for API.
-             * @type {string}
-             */
-            const name = `${firstname} ${lastname}`
-                .replace(/\s+/g, '_')
-                .replace(/[^a-zA-Z0-9_]/g, '');
-
-            const email = formData.get('email').trim().toLowerCase();
-            const password = formData.get('password');
-
-            // Basic validation
-            if (!firstname || !lastname || !email || !password) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-
-            if (name.length < 2 || name.length > 50) {
-                alert('Name must be between 2 and 50 characters.');
-                return;
-            }
-
-            console.log('Sending registration data:', {
-                name: name,
-                email: email,
-                passwordLength: password.length
-            });
-
-            try {
-                /**
-                 * Sends registration request to API.
-                 * @type {Response}
-                 */
-                const registerResponse = await fetch('https://v2.api.noroff.dev/auth/register', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, email, password })
-                });
-
-                const registerData = await registerResponse.json();
-
-                if (registerResponse.ok && registerData.data) {
-                    console.log('Registration successful:', registerData.data);
-                    alert('Registration successful! You will now be logged in.');
-
-                    try {
-                        /**
-                         * Logs the user in after successful registration.
-                         * @type {Response}
-                         */
-                        const loginResponse = await fetch('https://v2.api.noroff.dev/auth/login', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ email, password })
-                        });
-
-                        const loginData = await loginResponse.json();
-
-                        if (loginResponse.ok && loginData.data) {
-                            const { accessToken, name: userName, email: userEmail } = loginData.data;
-                            const displayName = userName || name || userEmail.split('@')[0];
-
-                            // Save login state
-                            localStorage.setItem('isLoggedIn', 'true');
-                            localStorage.setItem('userName', displayName);
-                            localStorage.setItem('authToken', accessToken);
-                            localStorage.setItem('userEmail', userEmail);
-
-                            /**
-                             * Saves profile info locally for autofill.
-                             * @type {Object}
-                             */
-                            const userProfile = {
-                                firstname: firstname,
-                                lastname: lastname,
-                                email: email,
-                                phone: formData.get('phone'),
-                                address: formData.get('address'),
-                                city: formData.get('city'),
-                                zip: formData.get('zip')
-                            };
-
-                            localStorage.setItem('userProfile', JSON.stringify(userProfile));
-
-                            updateLoginState(true, displayName);
-                            window.location.href = '../index.html';
-                        } else {
-                            alert('Registration successful! Please log in manually.');
-                            window.location.href = '../index.html';
-                        }
-                    } catch (loginError) {
-                        console.error('Auto-login failed:', loginError);
-                        alert('Registration successful! Please log in manually.');
-                        window.location.href = '../index.html';
-                    }
-                } else {
-                    console.error('Registration failed:', registerData);
-
-                    if (registerData.errors?.length > 0) {
-                        const errorMessages = registerData.errors.map(error => {
-                            if (typeof error === 'string') return error;
-                            if (error.message) return `${error.path ? error.path.join('.') + ': ' : ''}${error.message}`;
-                            return JSON.stringify(error);
-                        }).join('\n');
-
-                        alert(`Registration failed:\n${errorMessages}`);
-                    } else {
-                        alert(`Registration failed: ${registerData.status || 'Unknown error'}`);
-                    }
-                }
-            } catch (error) {
-                console.error('Registration network error:', error);
-                alert('Registration failed. Please check your connection and try again.');
-            }
-        });
+        const termsCheckbox = document.getElementById('checkbox');
+    if (!termsCheckbox || !termsCheckbox.checked) {
+        alert("You must agree to the Terms and Privacy Policy before signing up.");
+        return; // STOP registration
     }
+
+        const formData = new FormData(registrationForm);
+        const firstname = formData.get('firstname').trim();
+        const lastname = formData.get('lastname').trim();
+        const email = formData.get('email').trim().toLowerCase();
+        const password = formData.get('password');
+
+        showRegistrationError(""); // Clear previous errors
+        document.getElementById("registrationError").style.display = "none";
+
+        if (!firstname || !lastname || !email || !password) {
+            showRegistrationError("Please fill in all required fields.");
+            return;
+        }
+
+        const cleanedName = `${firstname} ${lastname}`
+            .replace(/\s+/g, "_")
+            .replace(/[^a-zA-Z0-9_]/g, "");
+
+        if (cleanedName.length < 2 || cleanedName.length > 50) {
+            showRegistrationError("Name must be between 2 and 50 characters.");
+            return;
+        }
+
+        // REGISTER USER
+ 
+        try {
+            const registerResponse = await fetch(
+                "https://v2.api.noroff.dev/auth/register",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name: cleanedName, email, password })
+                }
+            );
+
+            const registerData = await registerResponse.json();
+
+                   if (registerData?.errors?.length > 0) {
+                const apiMessage = registerData.errors[0].message;
+
+                if (apiMessage.includes("Email already registered")) {
+                    showRegistrationError(
+                        "This email is already registered. Please log in instead."
+                    );
+                    return;
+                }
+
+                // General errors
+                showRegistrationError(apiMessage || "Registration failed.");
+                return;
+            }
+
+            if (!(registerResponse.ok && registerData.data)) {
+                console.error("Registration error:", registerData);
+                showRegistrationError("Registration failed. Please try again.");
+                return;
+            }
+
+            alert("Registration successful! Logging you in...");
+           
+            // AUTO-LOGIN
+       
+            const loginResponse = await fetch(
+                "https://v2.api.noroff.dev/auth/login",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password })
+                }
+            );
+
+            const loginData = await loginResponse.json();
+
+            if (!(loginResponse.ok && loginData.data)) {
+                console.error("Auto-login failed:", loginData);
+                alert("Registration successful! Please log in manually.");
+                window.location.href = "../index.html";
+                return;
+            }
+
+            const {
+                accessToken,
+                name: userName,
+                email: userEmail
+            } = loginData.data;
+
+            const displayName =
+                userName || cleanedName || userEmail.split("@")[0];
+
+            // Save login state
+            localStorage.setItem("isLoggedIn", "true");
+            localStorage.setItem("userName", displayName);
+            localStorage.setItem("authToken", accessToken);
+            localStorage.setItem("userEmail", userEmail);
+
+            // Save profile for checkout autofill
+            const userProfile = {
+                firstname,
+                lastname,
+                email,
+                phone: formData.get("phone"),
+                address: formData.get("address"),
+                city: formData.get("city"),
+                zip: formData.get("zip"),
+            };
+
+            localStorage.setItem(
+                "userProfile",
+                JSON.stringify(userProfile)
+            );
+
+            updateLoginState(true, displayName);
+
+            window.location.href = "../index.html";
+
+        } catch (error) {
+            console.error("Network error during registration:", error);
+            showRegistrationError("Something went wrong. Please try again.");
+        }
+    });
+}
+
+// INIT PAGE
+
+document.addEventListener("DOMContentLoaded", () => {
+    setupPasswordToggle();
+    handleRegistration();
 });
+

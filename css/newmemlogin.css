@@ -209,7 +209,7 @@ html, body {
 
 /* Checkmark */
 .checkbox-label input[type="checkbox"]:checked::after {
-    content: '✓';
+    content:'\2713';
     position: absolute;
     left: -2px;
     top: -8px;
@@ -255,6 +255,17 @@ html, body {
 .password-toggle:hover {
     color: var(--font-color);
 }
+
+.registration-error {
+    color: #b00020;    
+    background: #ffe6e6;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: none;
+    font-size: 0.9rem;
+}
+
 
 /* Form grid layout - fields that span full width */
 .dob-field,
