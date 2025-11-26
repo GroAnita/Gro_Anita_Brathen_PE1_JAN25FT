@@ -177,14 +177,14 @@
     flex-direction: column;
     gap: 10px;
     margin-top: 0;
-}
+    }
 
     .slider-btn {
     margin-top: 10px;
     padding: 5px 5px;
     width: 150px;
     font-size: var(--font-size-xxsmall);
-}
+    }
 }
 
 @media (max-width: 480px) {

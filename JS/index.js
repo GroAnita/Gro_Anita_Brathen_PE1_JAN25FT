@@ -194,5 +194,18 @@ function createProductCard(product) {
     return card;
 }
 
+function setupCategoryActoveState() {
+    const categoryLinks = document.querySelectorAll('.filter-content__nav__links a[data-category]');
+
+    categoryLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+          
+            categoryLinks.forEach(l => l.classList.remove('active-link'));
+            this.classList.add('active-link');
+        });
+    });
+}
+setupCategoryActoveState();
 
 

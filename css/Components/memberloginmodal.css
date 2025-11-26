@@ -83,3 +83,10 @@
     text-decoration: underline;
     color: var(--input-focus-border-color);
 }
+
+@media (max-width: 500px) {
+    .login-modal .modal-content {
+        width: 80%;
+        padding: 20px;
+    }
+}

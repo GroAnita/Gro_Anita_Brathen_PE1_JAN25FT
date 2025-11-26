@@ -86,14 +86,6 @@ html, body {
 
 }
 
-.membership-content__image {
-    width: var(--image-small);
-    height: auto;
-    margin: 0 auto;
-}
-
-
-
 .membership-content__divider {
     width: 100%;
     max-width: 600px;
