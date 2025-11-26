@@ -27,7 +27,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "playfair-display-tshcs", sans-serif;
+  font-family: "Playfair Display", serif;
   background-color: var(--background-color);
   color: var(--font-color);
 }
@@ -69,14 +69,14 @@ body {
 
 .header-content__right {
     font-size: 62px;
-    font-family: "playfair-display-tshcs", serif;
+    font-family: "Playfair Display", serif;
     margin-left: 50px;
     margin-top: 20px;
 }
 
 .header-content__left__bottom {
     font-size: 62px;
-    font-family: "playfair-display-tshcs", serif;
+    font-family: "Playfair Display", serif;
     margin-right: 50px;
 }
 
@@ -96,7 +96,7 @@ body {
     align-items: center;
     justify-content: center;
     font-size: var(--font-size-large);
-    font-family: "playfair-display-tshc", sans-serif;
+    font-family: "Playfair Display", serif;
     text-decoration: none;
     width: 100%;
     color: var(--font-color);
@@ -219,7 +219,7 @@ body {
 }
 
 .search-result-title {
-    font-size: var(--font-size-small);
+    font-size: var(--font-size-xsmall);
     color: var(--font-color);
 }
 
@@ -264,14 +264,14 @@ body {
     background-color: var(--edit-add-button-background-color);
     color: var(--font-color);
     border-radius: 50%;
-    width: 15px;
-    height: 15px;
+    width: 10px;
+    height: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 5px;
-    font-size: var(--font-size-xxsmall);
-    font-family: "inter-tshc", sans-serif;
+    font-size: var(--font-size-xxxsmall);
+    font-family: "Inter", sans-serif;
 }
 
 .header-underline {
@@ -416,7 +416,7 @@ body {
 
 .header-content-mobile__text {
     font-size: 1.5rem;
-    font-family: "playfair-display-tshcs", serif;
+    font-family: "Playfair Display", serif;
     display: block;
     margin-bottom: 10px;
     color: var(--font-color);
@@ -620,7 +620,7 @@ body {
 }
     .header-content-mobile__text {
     font-size: 1.5rem;
-    font-family: "playfair-display-tshcs", serif;
+    font-family: "Playfair Display", serif;
     display: block;
     margin-bottom: 10px;
     color: var(--font-color);
@@ -770,7 +770,7 @@ body {
      }
      .header-content-mobile__text {
         font-size: 1.5rem;
-        font-family: "playfair-display-tshcs", serif;
+        font-family: "Playfair Display", serif;
         display: block;
         margin-bottom: 10px;
         color: var(--font-color);
@@ -778,5 +778,17 @@ body {
         font-weight: bold;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 

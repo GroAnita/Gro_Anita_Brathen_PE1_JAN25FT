@@ -1,84 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/Components/shoppingbag.css">
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/Components/hamburgermenu.css">
-    <link rel="stylesheet" href="css/Components/footer.css">
-    <link rel="stylesheet" href="css/Components/productslider.css">
-    <link rel="stylesheet" href="css/Components/pagination.css">
-    <link rel="stylesheet" href="css/Components/memberloginmodal.css">
-    <link rel="icon" type="image/svg+xml" href="images/horseheadlogo.svg">
-    <title>The Second Hand Company</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/Components/shoppingbag.css" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/Components/hamburgermenu.css" />
+    <link rel="stylesheet" href="css/Components/footer.css" />
+    <link rel="stylesheet" href="css/Components/productslider.css" />
+    <link rel="stylesheet" href="css/Components/pagination.css" />
+    <link rel="stylesheet" href="css/Components/memberloginmodal.css" />
+
+    <link rel="icon" type="image/svg+xml" href="images/horseheadlogo.svg" />
+
+    <title>Welcome to The Second Hand Company</title>
 </head>
 <body>
     <div class="container">
-          <div class="header-topbar">
-                <div class="header-content__left-hamburger"> 
-                    <button 
-                        id="hamburgerMenuIcon"
-                        class="hamburger-btn"
-                        aria-controls="hamburgerMenu"
-                        aria-expanded="false"
-                        aria-label="Open menu">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                </div>
-                <div class="header-content__nav-center"><p>We <i class="fa-solid fa-heart"></i>pre-owned</p></div>
-                <div class="header-content__nav__right">
-                    <i class="fas fa-user"></i>
-                    <div class="header-content__nav__shoppingbag">
-                    <i class="fa-solid fa-bag-shopping" id="shoppingBagIcon"><span class="header-content__nav__right__cart-count">0</span></i>
-                    </div>
+        <!-- Topbar -->
+        <div class="header-topbar">
+            <div class="header-content__left-hamburger">
+                <button
+                    id="hamburgerMenuIcon"
+                    class="hamburger-btn"
+                    aria-controls="hamburgerMenu"
+                    aria-expanded="false"
+                    aria-label="Open menu"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+            <div class="header-content__nav-center">
+                <p>We <i class="fa-solid fa-heart"></i> pre-owned</p>
+            </div>
+            <div class="header-content__nav__right">
+                <i class="fas fa-user"></i>
+                <div class="header-content__nav__shoppingbag">
+                    <i class="fa-solid fa-bag-shopping" id="shoppingBagIcon">
+                        <span class="header-content__nav__right__cart-count">0</span>
+                    </i>
                 </div>
             </div>
+        </div>
+
+        <!-- Header -->
         <header>
-          
-            <!-- Mobile Header -->
+            <!-- Mobile -->
             <div class="header-content-mobile">
                 <div class="header-content__logo__mobile">
-                    <img src="images/horseheadlogo.svg" alt="The Second Hand Company Logo" class="logo--mobile">
+                    <img src="images/horseheadlogo.svg" alt="The Second Hand Company Logo" class="logo--mobile" />
                 </div>
                 <span class="header-content-mobile__text">The Second Hand Company</span>
-            </div>  
-            <!-- Desktop Header -->
+            </div>
+
+            <!-- Desktop -->
             <div class="header-content">
                 <div class="header-content__left">
-                        <div class="header-content__left__top">The</div>
-                        <div class="header-content__left__bottom">Second Hand</div>
+                    <div class="header-content__left__top">The</div>
+                    <div class="header-content__left__bottom">Second Hand</div>
                 </div>
+
                 <div class="header-content__center">
-                <div class="header-content__center__logo">
-                    <img src="images/horseheadlogo.svg" alt="Logo" class="logo">
+                    <div class="header-content__center__logo">
+                        <img src="images/horseheadlogo.svg" alt="Logo" class="logo" />
+                    </div>
+                    <div class="header-content__center__text">2025</div>
                 </div>
-                <div class="header-content__center__text">2025</div>
-                </div>
+
                 <div class="header-content__right">Company</div>
-              
-            </div> 
+            </div>
         </header>
 
-        <div class="header-underline"><h2>Check out our new pre-owned arrivals</h2></div>
+        <div class="header-underline">
+            <h2>Check out our new pre-owned arrivals</h2>
+        </div>
 
-        <!--hamburger menu -->
+        <!-- Hamburger Menu -->
         <div class="hamburger-menu" id="hamburgerMenu" aria-modal="true" role="dialog" aria-hidden="true" tabindex="-1">
             <button class="close-btn" id="closeHamburgerMenu" aria-label="Close menu">&times;</button>
+
             <nav aria-label="Primary Navigation">
                 <ul class="hamburger-menu__links">
                     <li><a href="#" data-category="home">Home</a></li>
                     <li><a href="#" data-category="fashion">Fashion</a></li>
                     <li><a href="#" data-category="electronics">Electronics</a></li>
-                    <li><a href="#" data-category="health and beauty">Health & beauty</a></li>
+                    <li><a href="#" data-category="health and beauty">Health & Beauty</a></li>
                     <li><a href="pages/aboutus.html">About us</a></li>
                     <li><a href="pages/contactus.html">Contact</a></li>
                     <li><a href="pages/privacypolicy.html">Privacy Policy</a></li>
@@ -87,94 +104,94 @@
                     <li><a href="pages/newmemlogin.html">Become a member</a></li>
                     <li><a href="#" id="loginModalTrigger">Member Login</a></li>
                 </ul>
+
                 <div class="hamburger-menu__logo">
-                    <img src="images/horseheadlogo.svg" alt="Logo" class="logo">
+                    <img src="images/horseheadlogo.svg" alt="Logo" class="logo" />
                 </div>
+
                 <a class="hamburger-menu__h5" href="/pages/admindashboard.html">Admin login</a>
             </nav>
         </div>
-        
-        <!-- Hamburger overlay for dark background -->
-        <div class="hamburger-overlay" id="hamburgerOverlay" aria-hidden="true"></div>
-    
 
-        <!--Shopping cart sidebar-->
-            <div class="shopping_cart" id="shoppingCart" aria-modal="true" role="dialog" >
-                <div class="cart-header">
-                    <h2>Your Shopping Bag</h2>
-                    <button class="close-btn" id="closeShoppingCartBtn">&times;</button>
-                </div>
-                <hr class="shoppingbag-hr">
-                <div class="cart-items" id="shoppingCartItems">
-                    <!-- Cart items will be added here by JavaScript -->
-                </div>
-                <div class="cart-footer">
-                    <div class="cart-numbers">
-                    <div class="shipping">
-                        <p>Shipping: Free</p>
-                    </div>
-                    <div class="cart-total">
-                        <strong>Total: $<span id="shoppingCartTotal">0.00</span></strong>
-                    </div>
-                    </div>
-                    <button onClick="checkout()" class="checkout-btn main-btn" id="checkoutButton">Checkout</button>
-                </div>
-             </div>
+        <!-- Hamburger Overlay -->
+        <div class="hamburger-overlay" id="hamburgerOverlay"></div>
 
-
-      <!-- Product slider Section -->
-    <div class="slider-container" id="sliderContainer" aria-label="Featured Products Slider" role="region">
-        <div class="slider-controls">
-            <button class="prev-btn" aria-label="Previous slide"><i class="fa-solid fa-angle-left"></i></button>
-            <button class="next-btn" aria-label="Next slide"><i class="fa-solid fa-angle-right"></i></button>
-        </div>
-        <div class="slider-track" id="productSlider">
-        </div>
-
-        <div id="carouselDots" role="tablist"></div>
-    </div>
-<nav class="breadcrumb" id="breadcrumb"></nav>
-
-
-          <div class="filter-content__nav">
-                <nav>
-                    <ul class="filter-content__nav__links">
-                        <li><a href="#" data-category="all">All Products</a></li>
-                        <li><a href="#" data-category="fashion">Fashion</a></li>
-                        <li><a href="#" data-category="electronics">Electronics</a></li>
-                        <li><a href="#" data-category="health and beauty">Health & beauty</a></li>
-                    </ul>
-                </nav>
-                
+        <!-- Cart Sidebar -->
+        <div class="shopping_cart" id="shoppingCart" aria-modal="true" role="dialog">
+            <div class="cart-header">
+                <h2>Your Shopping Bag</h2>
+                <button class="close-btn" id="closeShoppingCartBtn">&times;</button>
             </div>
 
-        <!-- Product Grid Section -->
-        <section class="image-grid" aria-label="Product lisings">
-        <div class="container">
-            <div id="products-container" class="products-grid">
-                <!-- Products should be dynamically inserted here -->
+            <hr class="shoppingbag-hr" />
+
+            <div class="cart-items" id="shoppingCartItems"></div>
+
+            <div class="cart-footer">
+                <div class="cart-numbers">
+                    <div class="shipping"><p>Shipping: Free</p></div>
+                    <div class="cart-total"><strong>Total: $<span id="shoppingCartTotal">0.00</span></strong></div>
+                </div>
+                <button onclick="checkout()" class="checkout-btn main-btn" id="checkoutButton">Checkout</button>
             </div>
         </div>
+
+        <!-- Product Slider -->
+        <div class="slider-container" id="sliderContainer" aria-label="Featured Products Slider" role="region">
+            <div class="slider-controls">
+                <button class="prev-btn" aria-label="Previous slide"><i class="fa-solid fa-angle-left"></i></button>
+                <button class="next-btn" aria-label="Next slide"><i class="fa-solid fa-angle-right"></i></button>
+            </div>
+
+            <div class="slider-track" id="productSlider"></div>
+
+            <div id="carouselDots" role="tablist"></div>
+        </div>
+
+        <nav class="breadcrumb" id="breadcrumb"></nav>
+
+        <!-- Filter Navigation -->
+        <div class="filter-content__nav">
+            <nav>
+                <ul class="filter-content__nav__links">
+                    <li><a href="#" data-category="all">All Products</a></li>
+                    <li><a href="#" data-category="fashion">Fashion</a></li>
+                    <li><a href="#" data-category="electronics">Electronics</a></li>
+                    <li><a href="#" data-category="health and beauty">Health & Beauty</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Product Grid -->
+        <section class="image-grid" aria-label="Product listings">
+            <div class="container">
+                <div id="products-container" class="products-grid"></div>
+            </div>
         </section>
-        <!-- Pagination Section -->
-        <div class="pagination" id="paginationContainer">
-        </div>
-        <button id="backToTopBtn" class="back-to-top-btn" aria-label="Scroll back to top">'<i class="fa-solid fa-arrow-up"></i></button>
 
-        <!-- member login modal -->
-        <!-- Modal will be dynamically created by JavaScript -->
+        <!-- Pagination -->
+        <div class="pagination" id="paginationContainer"></div>
 
-        <!-- Footer Section -->
+        <button id="backToTopBtn" class="back-to-top-btn" aria-label="Scroll back to top">
+            <i class="fa-solid fa-arrow-up"></i>
+        </button>
+
+        <!-- Footer -->
         <footer>
             <div class="footer-content__top">
                 <div class="footer-content__left">
                     <h4>About Us</h4>
-                    <p>The Second Hand Company is dedicated to promoting sustainable shopping by offering a wide range of high-quality second-hand products. Our mission is to reduce waste and encourage eco-friendly consumption.</p>
+                    <p>
+                        The Second Hand Company is dedicated to promoting sustainable shopping by offering a wide range of high-quality second-hand products.
+                        Our mission is to reduce waste and encourage eco-friendly consumption.
+                    </p>
                 </div>
+
                 <span class="vr"></span>
+
                 <div class="footer-content__centera">
                     <h4>Customer Service</h4>
-                       <ul>
+                    <ul>
                         <li><a href="pages/aboutus.html">About us</a></li>
                         <li><a href="pages/contactus.html">Contact</a></li>
                         <li><a href="pages/privacypolicy.html">Privacy Policy</a></li>
@@ -182,52 +199,63 @@
                         <li><a href="pages/shippingpolicy.html">Shipping Policy</a></li>
                         <li><a href="pages/faq.html">FAQ</a></li>
                         <li><a href="pages/wcpreowned.html">Why choose pre-owned?</a></li>
-                        
                     </ul>
                 </div>
+
                 <span class="vr"></span>
-                <div class="footer-content__centerb">  <h4>Shop</h4>
-                       <ul>
+
+                <div class="footer-content__centerb">
+                    <h4>Shop</h4>
+                    <ul>
                         <li><a href="#" data-category="fashion">Fashion</a></li>
                         <li><a href="#" data-category="electronics">Electronics</a></li>
                         <li><a href="#" data-category="health and beauty">Health & Beauty</a></li>
-                    </ul></div>
-                    <span class="vr"></span>
+                    </ul>
+                </div>
+
+                <span class="vr"></span>
+
                 <div class="footer-content__right">
                     <span class="footer-content__right__title"><h4>Connect</h4></span>
+
                     <div class="footer-content__right__icons" aria-label="Social media links">
                         <i class="fab fa-facebook-f"></i>
                         <i class="fa-brands fa-tiktok"></i>
                         <i class="fab fa-instagram"></i>
                     </div>
+
                     <form id="newsletterForm">
                         <label>Join our Newsletter</label>
-                        <input type="email" name="email" placeholder="Enter your email" autocomplete="on" id="newsletterEmail">
+                        <input type="email" name="email" placeholder="Enter your email" autocomplete="on" id="newsletterEmail" />
                         <button class="main-btn" id="subscribeBtn" type="submit">Subscribe</button>
-                        <div id="toast" class="toast" role="status" aria-live="polite" ></div>
+                        <div id="toast" class="toast" role="status" aria-live="polite"></div>
                     </form>
                 </div>
             </div>
+
             <div class="footer-content__bottom">
                 <div class="footer-content__bottom__top">
                     <div class="footer-content__bottom__top__strawberry">
-                    <img src="images/Strawberrypaylogo.svg" alt="Strawberry Pay Logo" class="footer-logo">
+                        <img src="images/Strawberrypaylogo.svg" alt="Strawberry Pay Logo" class="footer-logo" />
                     </div>
                     <div class="footer-content__bottom__top__mestercard">
-                    <img src="images/Mestercardlogo.svg" alt="Mestercard Logo" class="footer-logo">
+                        <img src="images/Mestercardlogo.svg" alt="Mestercard Logo" class="footer-logo" />
                     </div>
                     <div class="footer-content__bottom__top__visa">
-                    <img src="images/Vusacardlogo.svg" alt="Vusa Logo" class="footer-logo">
+                        <img src="images/Vusacardlogo.svg" alt="Vusa Logo" class="footer-logo" />
                     </div>
                     <div class="footer-content__bottom__top__eco">
-                    <img src="images/ecofriendlylogo.svg" alt="Eco Logo" class="footer-logo">
+                        <img src="images/ecofriendlylogo.svg" alt="Eco Logo" class="footer-logo" />
                     </div>
                 </div>
+
                 <div class="footer-content__bottom__bottom">
                     <p>&copy; 2025 The Second Hand Company. All rights reserved.</p>
                 </div>
-            
+            </div>
         </footer>
+
+        <!-- Scripts -->
         <script type="module" src="JS/components/cart.js"></script>
         <script type="module" src="JS/index.js"></script>
         <script type="module" src="JS/components/shoppingcart.js"></script>
@@ -238,7 +266,7 @@
         <script type="module" src="JS/components/loginusermodal.js"></script>
         <script type="module" src="JS/utils.js"></script>
         <script type="module" src="JS/global.js"></script>
-    </div>
-</div>
+
+    </div> <!-- end .container -->
 </body>
 </html>

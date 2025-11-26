@@ -1,4 +1,4 @@
-
+/* Checkout Layout */
 .checkout-content {
     display: flex;
     flex-direction: column;
@@ -13,6 +13,7 @@
     align-items: center;
 }
 
+/* Checkout Form */
 .checkout-form label {
     display: flex;
     flex-direction: column;
@@ -20,7 +21,7 @@
     font-size: var(--font-size-xxsmall);
 }
 
-.checkout-form input{
+.checkout-form input {
     margin-bottom: 15px;
     width: 300px;
 }
@@ -30,32 +31,44 @@
     display: block;
 }
 
+/* Divider Bar */
+.checkout-span {
+    height: 30px;
+    background-color: var(--font-color);
+    color: #F4B400;
+    text-align: center;
+    padding-top: 10px;
+    margin: 20px 0;
+    width: 100%;
+}
+
+/* Accordion - Base */
 .accordion-checkbox {
-  display: none;
+    display: none;
 }
 
 .accordion-header {
-  display: flex;
-  background-color: var(--background-color);
-  border: 1px solid var(--importand-color);
-  cursor: pointer;
-  margin: 0;
-  position: relative;
-  align-items: center;
-  padding: 15px;
-  height: 80px;
-  width: 350px;
+    display: flex;
+    background-color: var(--background-color);
+    border: 1px solid var(--importand-color);
+    cursor: pointer;
+    margin: 0;
+    position: relative;
+    align-items: center;
+    padding: 15px;
+    height: 80px;
+    width: 350px;
 }
 
 .accordion-header::after {
-  content: '+';
-  font-size: 36px;
-  margin-left: auto;
-  padding-right: 10px;
+    content: '+';
+    font-size: 36px;
+    margin-left: auto;
+    padding-right: 10px;
 }
 
 .accordion-checkbox:checked + .accordion-header::after {
-  content: '-';
+    content: '-';
 }
 
 .accordion-content {
@@ -63,29 +76,34 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  background-color: var(--background-color);
-  border-bottom: 1px solid #ddd;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: var(--background-color);
+    border-bottom: 1px solid #ddd;
 }
 
 .accordion-content.active {
     padding: 15px;
-   
 }
 
-.strawberry-info, .mestercard-info, .vusacard-info {  
-    font-family: "inter", sans-serif;
+/* Payment Method Info Blocks */
+.strawberry-info,
+.mestercard-info,
+.vusacard-info {
+    font-family: "Inter", sans-serif;
     color: var(--font-color);
 }
 
-.vusacard-info, .mestercard-info input {
+/* Card Inputs */
+.vusacard-info,
+.mestercard-info input {
     width: 300px;
     padding: 8px;
     font-size: var(--font-size-xxxsmall);
 }
 
+/* Payment Text */
 .accordion-content h5 {
     margin-bottom: 5px;
     font-size: var(--font-size-xxsmall);
@@ -97,6 +115,7 @@
     font-weight: 500;
 }
 
+/* Payment Logos */
 .strawberryPaylogo {
     height: 130px;
     width: auto;
@@ -112,12 +131,14 @@
     width: auto;
 }
 
-.mestercard-info , .vusacard-info  {
+/* Layout for Payment Sections */
+.mestercard-info,
+.vusacard-info {
     display: flex;
     flex-direction: column;
-    
 }
 
+/* MesterCard Form */
 .mestercard-info form {
     display: flex;
     flex-direction: column;
@@ -126,28 +147,26 @@
     font-size: var(--font-size-xxxsmall);
 }
 
-#mestercard-number, #mestercard-expiry, #mestercard-cvc {
+#mestercard-number,
+#mestercard-expiry,
+#mestercard-cvc {
     padding: 8px;
     font-size: var(--font-size-xxxsmall);
     border: 1px solid var(--input-border-color);
 }
 
+/* Payment Buttons */
 .accordion-content button.main-btn {
     margin-top: 15px;
     align-self: center;
 }
 
-.accordion-content h5{
+/* Payment Section Headings */
+.accordion-content h5 {
     text-align: center;
-    
 }
 
-.checkout-product__summary-hr {
-    border: none;
-    border-top: 1px solid var(--input-border-color);
-    margin: 10px 0;
-}
-
+/* Vusa Card Form */
 .vusacard-info form {
     display: flex;
     flex-direction: column;
@@ -156,18 +175,7 @@
     margin-bottom: 12px;
 }
 
-
-.checkout-span {
-    height: 30px;
-    background-color: var(--font-color);
-    color: #F4B400;
-    text-align: center;
-    padding-top: 10px;
-    margin: 20px 0;
-    width: 100%;
-}
-
-
+/* Product Summary Container */
 .checkout-product__summary {
     display: grid;
     grid-template-columns: 1fr;
@@ -179,10 +187,23 @@
     border: 2px solid var(--input-border-color);
 }
 
+.checkout-product__summary-hr {
+    border: none;
+    border-top: 1px solid var(--input-border-color);
+    margin: 10px 0;
+}
+
+.checkout-product__total {
+    text-align: center;
+    margin-top: 15px;
+    font-size: var(--font-size-small);
+}
+
+/* Product Item Grid */
 .checkout-product__items {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr 1fr;
-    grid-template-areas: 
+    grid-template-areas:
         "name image price size quantity remove";
     gap: 15px;
     align-items: center;
@@ -192,18 +213,7 @@
     background-color: var(--background-color);
 }
 
-.checkout-product__items button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    height: 25px;
-    width: 25px;
-    border: none;
-    background: transparent;
-    font-size: 24px;
-}
-
+/* Product Name */
 .checkout-product__item-name {
     grid-area: name;
     font-size: var(--font-size-xxsmall);
@@ -212,6 +222,7 @@
     margin: 0;
 }
 
+/* Product Image */
 .checkout-product__image-container {
     grid-area: image;
     display: flex;
@@ -227,12 +238,7 @@
     border: 2px solid var(--input-border-color);
 }
 
-.checkout-product__total {
-    text-align: center;
-    margin-top: 15px;
-    font-size: var(--font-size-small);
-}
-
+/* Product Price */
 .checkout-product__item-price {
     grid-area: price;
     font-size: var(--font-size-xxsmall);
@@ -240,8 +246,10 @@
     color: var(--font-color);
     margin: 0;
     text-align: center;
+    font-family: "Inter", sans-serif;
 }
 
+/* Product Size */
 .checkout-product__item-size {
     grid-area: size;
     font-size: var(--font-size-xxsmall);
@@ -249,6 +257,7 @@
     text-align: center;
 }
 
+/* Quantity Controls */
 .checkout-product__item-quantity {
     grid-area: quantity;
     display: flex;
@@ -257,7 +266,17 @@
     gap: 8px;
 }
 
-.checkout-product__remove-container{
+.checkout-product__item-quantity button {
+    background-color: var(--background-color);
+    color: var(--font-color);
+    border: none;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    font-size: var(--font-size-small);
+}
+
+/* Remove Button */
+.checkout-product__remove-container {
     grid-area: remove;
     display: flex;
     flex-direction: column;
@@ -269,7 +288,7 @@
     padding: 5px;
 }
 
-.checkout-product__remove-container i{
+.checkout-product__remove-container i {
     background: none;
     border: 1px solid var(--input-border-color);
     border-radius: 4px;
@@ -285,34 +304,13 @@
     color: var(--background-color);
 }
 
-.checkout-product__remove-container p{
+.checkout-product__remove-container p {
     font-size: var(--font-size-xxxsmall);
     margin: 0;
     padding-left: 8px;
 }
 
-.checkout-product__item-size,
-.checkout-product__item-price {
-    font-size: var(--font-size-xxsmall);
-    margin: 0;
-    padding: 5px;
-}
-
-.checkout-product__item-price {
-    font-weight: bold;
-    color: var(--font-color);
-    font-family: "inter", sans-serif;
-}
-
-.checkout-product__item-quantity button {
-    background-color: var(--background-color);
-    color: var(--font-color);
-    cursor: pointer;
-    border: none;
-    font-family: "inter", sans-serif;
-    font-size: var(--font-size-small);
-}
-
+/* Shipping Options */
 .shipping-option {
     display: flex;
     flex-direction: row;
@@ -321,7 +319,6 @@
     gap: 12px;
 }
 
-/* Style radio buttons with accent color */
 .shipping-option input[type="radio"] {
     accent-color: green;
     width: 18px;
@@ -330,32 +327,32 @@
     margin-top: 18px;
 }
 
-/* Success Modal Styles */
+/* Success Modal Overlay */
 .alert-modal {
     display: none;
     position: fixed;
     z-index: 9999;
-    left: 0;
-    top: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(5px);
 }
 
+/* Modal Content */
 .alert-modal-content {
     position: relative;
     background-color: var(--background-color);
     margin: 10% auto;
     padding: 30px;
-    border: none;
-    border-radius: 15px;
     width: 90%;
     max-width: 500px;
+    border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     animation: modalFadeIn 0.3s ease-out;
 }
 
+/* Fade-in Animation */
 @keyframes modalFadeIn {
     from {
         opacity: 0;
@@ -367,6 +364,7 @@
     }
 }
 
+/* Close Button */
 .success-close {
     position: absolute;
     right: 15px;
@@ -383,29 +381,32 @@
     opacity: 1;
 }
 
+/* Success Icon */
 .success-icon {
     font-size: 4rem;
     text-align: center;
     margin-bottom: 20px;
 }
 
+/* Success Title */
 .success-modal h3 {
     text-align: center;
-    color: var(--importand-color);
+    color: var(--important-color);
     font-size: var(--font-size-large);
     margin-bottom: 20px;
     font-family: "Playfair Display", serif;
 }
 
+/* Info Text */
 .purchase-details {
     text-align: center;
     color: var(--font-color);
 }
 
+/* Purchase Info Box */
 .purchase-info {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: flex-start;
     background-color: var(--edit-add-button-hover-background-color);
     padding: 15px;
@@ -418,6 +419,7 @@
     font-size: var(--font-size-small);
 }
 
+/* Additional Success Text */
 .success-message {
     font-size: var(--font-size-small);
     color: var(--font-color);
@@ -425,11 +427,12 @@
     margin: 15px 0;
 }
 
+/* Success Button */
 .success-btn {
     display: block;
     margin: 20px auto 0;
     padding: 12px 30px;
-    background-color: var(--importand-color);
+    background-color: var(--important-color);
     color: var(--background-color);
     border: none;
     border-radius: 8px;
@@ -443,17 +446,20 @@
     background-color: var(--font-color);
 }
 
-/* Responsive design for smaller screens */
+
+/* RESPONSIVE BREAKPOINTS     */
+
+
 @media (max-width: 768px) {
-      .checkout-product__items {
-        display: grid;
-        grid-template-columns: auto 1fr auto; /* image | name | price */
+
+    /* Product Items Layout */
+    .checkout-product__items {
+        grid-template-columns: auto 1fr auto;
         grid-template-areas:
             "image name remove"
             "image name remove"
             "image quantity remove";
         gap: 10px;
-        align-items: center;
         text-align: left;
     }
 
@@ -468,5 +474,27 @@
 
     .checkout-product__item-size {
         display: none;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Even More Compact Layout */
+    .checkout-product__items {
+        gap: 8px;
+    }
+
+    .alert-modal-content {
+        padding: 20px;
+        max-width: 360px;
+    }
+
+    .success-modal h3 {
+        font-size: var(--font-size-medium);
+    }
+
+    .purchase-info p,
+    .success-message {
+        font-size: var(--font-size-xxsmall);
     }
 }

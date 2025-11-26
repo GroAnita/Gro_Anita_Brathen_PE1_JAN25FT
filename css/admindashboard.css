@@ -1,4 +1,7 @@
-/* Admin Dashboard Layout */
+/* 
+   ADMIN DASHBOARD LAYOUT
+*/
+
 .admin-dashboard {
     padding: 20px 0;
     background-color: var(--background-color);
@@ -14,7 +17,11 @@
     padding: 0 20px;
 }
 
-/* Admin Sidebar */
+
+/* 
+   SIDEBAR
+*/
+
 .admin-sidebar {
     background: var(--background-color-alt);
     border-radius: 8px;
@@ -36,6 +43,7 @@
     font-family: "Playfair Display", serif;
 }
 
+/* Sidebar Menu */
 .admin-menu ul {
     list-style: none;
     padding: 0;
@@ -62,7 +70,10 @@
     width: 16px;
 }
 
-/* Main Content Area */
+/*
+   MAIN CONTENT AREA
+*/
+
 .admin-main {
     background: var(--background-color);
     border-radius: 8px;
@@ -91,7 +102,11 @@
     gap: 8px;
 }
 
-/* Product Grid */
+
+/* 
+   PRODUCT GRID FRAME
+*/
+
 .admin-product-grid {
     width: 100%;
     border-radius: 8px;
@@ -99,7 +114,11 @@
     border: 1px solid var(--input-border-color);
 }
 
-/* Grid Header */
+
+/* 
+   GRID HEADER
+*/
+
 .grid-header {
     display: grid;
     grid-template-columns: 80px 2fr 1fr 1fr 80px 100px 120px;
@@ -119,9 +138,13 @@
     border-right: none;
 }
 
-/* Grid Body */
+
+/* 
+   GRID BODY (SCROLLABLE)
+*/
+
 .grid-body {
-    max-height: 600px; /* Limits to ~10 rows */
+    max-height: 600px;
     overflow-y: auto;
 }
 
@@ -140,6 +163,11 @@
     background-color: #fafafa;
 }
 
+
+/* 
+   GRID CELLS
+ */
+
 .grid-cell {
     padding: 12px 10px;
     text-align: center;
@@ -154,7 +182,11 @@
     border-right: none;
 }
 
-/* Product Image */
+
+/* 
+   PRODUCT IMAGE PREVIEW
+*/
+
 .admin-product-img {
     width: 50px;
     height: 50px;
@@ -163,7 +195,11 @@
     border: 1px solid var(--input-border-color);
 }
 
-/* Status Badge */
+
+/* 
+   STATUS BADGES
+ */
+
 .status-badge {
     padding: 4px 8px;
     border-radius: 4px;
@@ -187,7 +223,11 @@
     color: #212529;
 }
 
-/* Action Buttons */
+
+/* 
+   ACTION BUTTONS
+*/
+
 .action-btn {
     background: none;
     border: 1px solid var(--input-border-color);
@@ -210,7 +250,10 @@
     color: white;
     border-color: #dc3545;
 }
-/* Modal Mobile Styling  */
+
+/* 
+   MOBILE MODAL VISIBILITY
+*/
 
 #addProductModalMobile {
     display: none !important;
@@ -224,12 +267,21 @@
     border-radius: 10px;
 }
 
-/* Image grid base */
+
+/* 
+   MOBILE IMAGE GRID — BASE
+*/
+
 #addProductModalMobile .image-upload-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
 }
+
+
+/* 
+   OVERLAY + MAIN MODAL STYLING
+ */
 
 .modal-overlay {
     position: fixed;
@@ -257,6 +309,11 @@
     overflow-y: auto;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
+
+
+/* 
+   MODAL HEADER
+ */
 
 .modal-header {
     display: flex;
@@ -293,9 +350,19 @@
     background-color: rgba(0, 0, 0, 0.1);
 }
 
+
+/* 
+   MODAL BODY
+ */
+
 .modal-body {
     padding: 20px;
 }
+
+
+/*
+   FORM STRUCTURE
+ */
 
 .admin-form {
     display: flex;
@@ -320,6 +387,11 @@
     color: var(--font-color);
     font-size: var(--font-size-xxsmall);
 }
+
+
+/* 
+   FORM INPUTS
+*/
 
 .form-group input,
 .form-group select,
@@ -347,6 +419,11 @@
     min-height: 80px;
 }
 
+
+/* 
+   MODAL ACTION BUTTONS
+   */
+
 .modal-actions {
     display: flex;
     justify-content: flex-end;
@@ -372,7 +449,11 @@
     border-color: var(--input-border-color);
 }
 
-/* Image Upload Grid */
+
+/* 
+   IMAGE UPLOAD SECTION
+  */
+
 .image-upload-section {
     margin-bottom: 30px;
 }
@@ -468,6 +549,11 @@
     background: var(--delete-button-click-background-color);
 }
 
+
+/* 
+   FORM GRID
+  */
+
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -497,21 +583,27 @@
     grid-column: 1 / -1;
 }
 
+/* 
+   BREAKPOINT: MAX-WIDTH 1024px (TABLETS)
+  */
+
 @media (max-width: 1024px) {
+
     .admin-layout {
         grid-template-columns: 1fr;
         gap: 15px;
     }
-    
+
     .admin-sidebar {
         position: static;
     }
-    
+
+    /* Sidebar becomes horizontal */
     .admin-menu ul {
         display: flex;
         flex-wrap: wrap;
     }
-    
+
     .admin-menu__item {
         flex: 1;
         min-width: 120px;
@@ -521,8 +613,14 @@
     }
 }
 
+/*
+   BREAKPOINT: MAX-WIDTH 768px (MOBILE)
+   */
+
 @media (max-width: 768px) {
-     #addProductModalMobile .modal-content {
+
+    /* MOBILE MODAL */
+    #addProductModalMobile .modal-content {
         width: 95%;
         max-width: 450px;
         padding: 10px;
@@ -545,10 +643,8 @@
         font-size: 18px;
     }
 
-
     #addProductModal {
         display: none;
-
     }
 
     .admin-modal {
@@ -556,51 +652,59 @@
         margin: 20px;
         max-height: 85vh;
     }
-    
+
+
+    /* IMAGE UPLOAD GRID – SHRINK */
     .image-upload-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 8px;
     }
-    
+
+    /* FORM STACKING */
     .form-grid {
         grid-template-columns: 1fr;
         gap: 20px;
     }
-    
+
     .price-group {
         grid-template-columns: 1fr;
         gap: 12px;
     }
-    
+
     .form-row {
         grid-template-columns: 1fr;
     }
-    
+
+    /* MODAL PADDING SHRINK */
     .modal-header {
         padding: 15px;
     }
-    
+
     .modal-body {
         padding: 15px;
     }
 
+    /* ADMIN LAYOUT */
     .admin-layout {
         grid-template-columns: 1fr;
         gap: 15px;
     }
-    
+
     .admin-sidebar {
         position: static;
     }
 
+    /* REDUCE FORM SPACING */
     .admin-form {
         gap: 4px;
     }
 
-    .admin-form label, select, input, option{
+    .admin-form label,
+    select,
+    input,
+    option {
         font-size: 12px;
         margin: 0;
-       
     }
 
     .modal-actions {
@@ -609,12 +713,13 @@
         gap: 0;
         margin: 0;
     }
-    
+
+    /* Sidebar menu compress */
     .admin-menu ul {
         display: flex;
         flex-wrap: wrap;
     }
-    
+
     .admin-menu__item {
         flex: 1;
         min-width: 120px;
@@ -623,12 +728,14 @@
         border-bottom: none;
     }
 
+    /* HEADER SHRINK */
     .admin-header {
         flex-direction: column;
         gap: 10px;
         align-items: stretch;
     }
 
+    /* GRID SHRINK */
     .grid-header,
     .grid-row {
         grid-template-columns: 60px 1.5fr 1fr 1fr;
@@ -645,6 +752,7 @@
         height: 40px;
     }
 
+    /* Hide extra columns on mobile */
     .grid-row .cell-3,
     .grid-row .cell-4,
     .grid-row .cell-5,
@@ -659,6 +767,7 @@
         display: none;
     }
 
+    /* Fit container */
     .admin-product-grid,
     .admin-main,
     .admin-dashboard,
@@ -668,55 +777,57 @@
         max-width: 100%;
     }
 
-    .custom-select-wrapper {
-    position: relative;
-    width: 100%;
-    }
+    /* Custom dropdown tweaks */
+    .custom-select-wrapper { position: relative; width: 100%; }
+
     .custom-select__selected {
-    position: relative;
-    display: block;
-    padding-right: 24px; 
+        position: relative;
+        display: block;
+        padding-right: 24px;
     }
 
     .custom-select__selected::after {
-    content: '';
-    position: absolute;
-    right: 8px;
-    top: 50%;
-    width: 0;
-    height: 0;
-    pointer-events: none;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 6px solid #888; 
-    transform: translateY(-50%);
+        content: '';
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        width: 0;
+        height: 0;
+        pointer-events: none;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid #888;
+        transform: translateY(-50%);
     }
 
     .custom-select__options {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: var(--background-color);
-    border: 1px solid #ccc;
-    border-top: none;
-    z-index: 100;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--background-color);
+        border: 1px solid #ccc;
+        border-top: none;
+        z-index: 100;
+        list-style: none;
+        margin: 0;
+        padding: 0;
     }
 
     .custom-select__options li {
-    padding: 8px;
-    cursor: pointer;
+        padding: 8px;
+        cursor: pointer;
     }
 
     .custom-select__options li:hover,
     .custom-select__options li[aria-selected="true"] {
-    background: var(--input-border-color);
+        background: var(--input-border-color);
     }
-
 }
+
+/* 
+   BREAKPOINT: MAX-WIDTH 480px (SMALL MOBILE)
+ */
 
 @media (max-width: 480px) {
 
@@ -757,6 +868,7 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
+    /* Collapse grid further */
     .grid-header,
     .grid-row {
         grid-template-columns: 60px 1fr;
@@ -777,7 +889,9 @@
         display: none;
     }
 
+    /* Mobile modal becomes default */
     #addProductModalMobile {
         display: block;
+    }
 }
-}
+

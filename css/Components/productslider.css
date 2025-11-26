@@ -22,8 +22,6 @@
     cursor: grabbing;
 }
 
-
-
 .slide {
     width: 33.3333%; /* Each slide takes 1/3 of track */
     flex-shrink: 0;
@@ -127,7 +125,7 @@
     font-size: var(--font-size-xsmall);
 }
 
-
+/* Responsive Styles */
 
 @media (max-width: 1024px) {
   

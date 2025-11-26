@@ -1,58 +1,142 @@
+/* 
+   Shopping Cart Container
+*/
 .shopping_cart {
-   width: 400px;
-   background-color: var(--background-color);
-   color: var(--font-color);
-   padding: 16px;
-   border-radius: 8px;
-   position: fixed;
-   bottom: 0;
-   top: 0;
-   height: 95vh;
-   right: -400px;
-   display: flex;
-   flex-direction: column;
-   transition: .5s;
-   border: solid 5px var(--tertiary-color);
-   z-index: 1001;
-   visibility: hidden;
-   opacity: 0;
-}
+    width: 400px;
+    background-color: var(--background-color);
+    color: var(--font-color);
+    padding: 16px;
+    border-radius: 8px;
 
-.shopping_cart .close-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
-    border: none;
-    font-size: 40px;
-    cursor: pointer;
-    color: var(--important-color);
-    padding: 0;
-    width: 30px;
-    height: 30px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: -400px;
+
+    height: 95vh;
+
     display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: background-color 0.2s, color 0.2s;
-    
-}
-.shopping_cart .close-btn:hover {
-    color: var(--delete-button-hover-background-color);
+    flex-direction: column;
+
+    transition: 0.5s;
+    border: solid 5px var(--tertiary-color);
+
+    z-index: 1001;
+    visibility: hidden;
+    opacity: 0;
 }
 
+/* Visible when cart is opened */
 body.show-cart .shopping_cart {
     right: 0;
     visibility: visible;
     opacity: 1;
 }
 
+/* 
+   Close Button
+*/
+.shopping_cart .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    background: none;
+    border: none;
+
+    font-size: 40px;
+    cursor: pointer;
+    color: var(--important-color);
+
+    padding: 0;
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.shopping_cart .close-btn:hover {
+    color: var(--delete-button-hover-background-color);
+}
+
+/* 
+   Cart Header / Footer
+*/
+.cart-header {
+    flex-shrink: 0;
+    padding-bottom: 10px;
+    color: var(--font-color);
+}
+
+.cart-footer {
+    flex-shrink: 0;
+    margin-top: auto;
+
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-total {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-family: "Inter", sans-serif;
+}
+
+.cart-numbers {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* 
+   Cart Items
+*/
+.cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+}
+
+.cart-items li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px 0;
+    height: 100%;
+}
+
+.empty-cart {
+    text-align: center;
+    color: var(--font-color);
+    padding: 40px 20px;
+}
+
+/* Divider (currently hidden) */
 .shoppingbag-hr {
     border: none;
     border-top: 1px solid var(--input-background-color);
-    margin: 0px 0;
+    margin: 0;
     display: none;
 }
+
+/* 
+   Item Details / Quantity / Remove
+*/
 .cart-item-details {
     flex: 1;
     display: flex;
@@ -60,34 +144,15 @@ body.show-cart .shopping_cart {
     gap: 5px;
 }
 
-.cart-header {
-    flex-shrink: 0;
-    padding-bottom: 10px;
-    color: var(--font-color)
+.cart-item-title {
+    font-size: var(--font-size-xsmall);
+    font-weight: 500;
 }
 
-.cart-footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-top: 1px solid #ccc;
-    padding-top: 10px;
-    flex-shrink: 0;
-    margin-top: auto;
-}
-
-.cart-total {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.cart-numbers {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-   
+.cart-item-price {
+    font-size: var(--font-size-xxsmall);
+    color: var(--input-border-color);
+    font-family: "Inter", sans-serif;
 }
 
 .cart-item-quantity {
@@ -96,80 +161,59 @@ body.show-cart .shopping_cart {
     gap: 8px;
 }
 
-.cart-item-price {
-    color: var(--input-border-color);
-    font-size: var(--font-size-xxsmall);
-}
+.quantity-btn .decrease-btn,
+.quantity-btn .increase-btn {
+    width: 25px;
+    height: 25px;
 
-.cart-item-title {
-    font-size: var(--font-size-xsmall);
-    font-weight: 500;
-}
+    border: 1px solid var(--button-border-color);
+    background-color: var(--button-background-color);
 
-
-
-.quantity-btn .decrease-btn, .quantity-btn .increase-btn {
-width: 25px;
-height: 25px;
-border: 1px solid var(--button-border-color);
-background-color: var(--button-background-color);
-color: var(--font-color);
-border-radius: 4px;
-cursor: pointer;
+    color: var(--font-color);
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 .quantity-display {
-    font-size: var(--font-size-xxsmall);
-    font-weight: 500;
     min-width: 20px;
     text-align: center;
+    font-family: "Inter", sans-serif;
+    font-size: var(--font-size-xxsmall);
+    font-weight: 500;
 }
 
 .remove-item {
     cursor: pointer;
     font-size: 20px;
     color: var(--important-color);
+
     padding: 5px;
     margin-left: 10px;
 }
 
-/* Shopping Cart Background Overlay */
+/* 
+   Background Overlay
+*/
 body.show-cart::before {
     content: '';
     position: fixed;
+
     top: 0;
     left: 0;
+
     width: 100%;
     height: 100%;
+
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
+
     transition: opacity 0.3s ease;
 }
 
-.empty-cart {
-    text-align: center;
-    color: var(--font-color);
-    padding: 40px 20px;
-}
-.cart-items {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    overflow-y: auto;
-    flex: 1;
-    min-height: 0;
-}
-.cart-items li {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 0;
-    height: 100%;
-    
-}
-
+/* 
+   Responsive
+ */
 @media (max-width: 1024px) {
-  
     .shopping_cart {
         height: 95vh;
     }
