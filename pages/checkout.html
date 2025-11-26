@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/Components/shoppingbag.css">
@@ -17,227 +19,312 @@
     <link rel="stylesheet" href="../css/Components/footer.css">
     <link rel="stylesheet" href="../css/Components/memberloginmodal.css">
     <link rel="stylesheet" href="../css/checkout.css">
-    <link rel="icon" type="image/svg+xml" href="../images/horseheadlogo.svg">
 
-    <title>Become a member</title>
+    <link rel="icon" type="image/svg+xml" href="../images/horseheadlogo.svg">
+    <title>Checkout for The Second Hand Company</title>
 </head>
+
 <body>
     <div class="container">
-          <div class="header-topbar">
-                <div class="header-content__left-hamburger">   <button 
-                        id="hamburgerMenuIcon"
-                        class="hamburger-btn"
-                        aria-controls="hamburgerMenu"
-                        aria-expanded="false"
-                        aria-label="Open menu">
-                        <i class="fa-solid fa-bars"></i>
-                    </button></div>
-                <div class="header-content__nav-center"><p>We <i class="fa-solid fa-heart"></i>pre-owned</p></div>
-                <div class="header-content__nav__right">
-                  
-                    <i class="fas fa-user"></i>
-                    <div class="header-content__nav__shoppingbag">
-                    <i class="fa-solid fa-bag-shopping" id="shoppingBagIcon"><span class="header-content__nav__right__cart-count">0</span></i>
-                    </div>
+
+        <!-- TOP BAR -->
+        <div class="header-topbar">
+            <div class="header-content__left-hamburger">
+                <button 
+                    id="hamburgerMenuIcon"
+                    class="hamburger-btn"
+                    aria-controls="hamburgerMenu"
+                    aria-expanded="false"
+                    aria-label="Open menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+
+            <div class="header-content__nav-center">
+                <p>We <i class="fa-solid fa-heart"></i>pre-owned</p>
+            </div>
+
+            <div class="header-content__nav__right">
+                <i class="fas fa-user"></i>
+                <div class="header-content__nav__shoppingbag">
+                    <i class="fa-solid fa-bag-shopping" id="shoppingBagIcon">
+                        <span class="header-content__nav__right__cart-count">0</span>
+                    </i>
                 </div>
             </div>
+        </div>
+
+        <!-- HEADER -->
         <header>
-          
             <!-- Mobile Header -->
             <div class="header-content-mobile">
                 <div class="header-content__logo__mobile">
-                    <a href="index.html"><img src="../images/horseheadlogo.svg" alt="Logo" class="logo--mobile"></a>
+                    <a href="index.html">
+                        <img src="../images/horseheadlogo.svg" alt="Logo" class="logo--mobile">
+                    </a>
                 </div>
                 <span class="header-content-mobile__text">The Second Hand Company</span>
-            </div>  
+            </div>
+
             <!-- Desktop Header -->
             <div class="header-content">
                 <div class="header-content__left">
-                        <div class="header-content__left__top">The</div>
-                        <div class="header-content__left__bottom">Second Hand</div>
+                    <div class="header-content__left__top">The</div>
+                    <div class="header-content__left__bottom">Second Hand</div>
                 </div>
+
                 <div class="header-content__center">
-                <div class="header-content__center__logo">
-                   <a href="../index.html"><img src="../images/horseheadlogo.svg" alt="Logo" class="logo"></a>
+                    <div class="header-content__center__logo">
+                        <a href="../index.html">
+                            <img src="../images/horseheadlogo.svg" alt="Logo" class="logo">
+                        </a>
+                    </div>
+                    <div class="header-content__center__text">2025</div>
                 </div>
-                <div class="header-content__center__text">2025</div>
-                </div>
+
                 <div class="header-content__right">Company</div>
-              
-            </div> 
+            </div>
         </header>
-            <nav class="breadcrumb" id="breadcrumb"></nav>
+
+        <!-- BREADCRUMB -->
+        <nav class="breadcrumb" id="breadcrumb"></nav>
+
+        <!-- CHECKOUT CONTENT -->
         <div class="checkout-content">
-            <span class="checkout-span">1.Your Order Summary</span>
+
+            <!-- ORDER SUMMARY -->
+            <span class="checkout-span">1. Your Order Summary</span>
+
             <div class="checkout-product__summary">
                 <div class="checkout-product__items" id="checkoutProductItems">
-                    <!-- Product items will be added here by JavaScript -->
+                    <!-- Product items added by JS -->
                 </div>
-               
             </div>
-             <div class="checkout-product__total">
-                    <p class="checkout-product__shipping">Shipping cost: Free</p>
-                    <p class="checkout-product__total-text"><strong>Total: $<span id="checkoutTotal">0.00</span></strong></p>
-                    <button type="submit" class="main-btn" id="proceedToShippingInfoBtn">Proceed to Shipping info</button>
-                </div>
-            <span class="checkout-span" id="shippingInfoForm">2.Shipping Information</span>
+
+            <div class="checkout-product__total">
+                <p class="checkout-product__shipping">Shipping cost: Free</p>
+                <p class="checkout-product__total-text">
+                    <strong>Total: $<span id="checkoutTotal">0.00</span></strong>
+                </p>
+                <button type="submit" class="main-btn" id="proceedToShippingInfoBtn">
+                    Proceed to Shipping info
+                </button>
+            </div>
+
+            <!-- SHIPPING INFO SECTION -->
+            <span class="checkout-span" id="shippingInfoForm">2. Shipping Information</span>
+
             <div class="checkout-form__section">
-            <div class="checkout-form__container">
-                <h2 class="checkout-form__h2">Shipping Information</h2>
-                <form class="checkout-form" id="checkoutForm">
-                    <div class="form-fields">
-                        <div>
-                            <label for="firstname">First Name:</label>
-                            <input type="text" id="firstname" name="firstname" required>
-                        </div>
+                <div class="checkout-form__container">
+                    <h2 class="checkout-form__h2">Shipping Information</h2>
 
-                        <div>
-                            <label for="lastname">Last Name:</label>
-                            <input type="text" id="lastname" name="lastname" required>
-                        </div>
+                    <form class="checkout-form" id="checkoutForm">
+                        <div class="form-fields">
 
-                        <div class="address-field">
-                            <label for="address">Address:</label>
-                            <input type="text" id="address" name="address" required autocomplete="on">
-                        </div>
-
-                        <div class="address-row">
-                            <div class="form-group">
-                                <label for="zip">Zip Code:</label>
-                                <input type="text" id="zip" name="zip" required>
+                            <div>
+                                <label for="firstname">First Name:</label>
+                                <input type="text" id="firstname" name="firstname" required>
                             </div>
-                            <div class="form-group">
-                                <label for="city">City:</label>
-                                <input type="text" id="city" name="city" required>
+
+                            <div>
+                                <label for="lastname">Last Name:</label>
+                                <input type="text" id="lastname" name="lastname" required>
+                            </div>
+
+                            <div class="address-field">
+                                <label for="address">Address:</label>
+                                <input type="text" id="address" name="address" required autocomplete="on">
+                            </div>
+
+                            <div class="address-row">
+                                <div class="form-group">
+                                    <label for="zip">Zip Code:</label>
+                                    <input type="text" id="zip" name="zip" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="city">City:</label>
+                                    <input type="text" id="city" name="city" required>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="email">Email Address:</label>
+                                <input type="email" id="email" name="email" required autocomplete="on">
+                            </div>
+
+                            <div>
+                                <label for="phone">Phone Number:</label>
+                                <input type="tel" id="phone" name="phone" required autocomplete="on">
                             </div>
                         </div>
-                        <div>
-                            <label for="email">Email Address:</label>
-                            <input type="email" id="email" name="email" required autocomplete="on">
-                        </div>
-                        <div>
-                            <label for="phone">Phone Number:</label>
-                            <input type="tel" id="phone" name="phone" required autocomplete="on">
-                        </div>  
-                    </div>
-                    <button type="submit" class="main-btn" id="proceedToShippingBtn">Go to shipping</button>
-                </form>
-                </div>  
-                <span class="checkout-span" id="shippingInfo">3.Shipping </span>
+
+                        <button type="submit" class="main-btn" id="proceedToShippingBtn">
+                            Go to shipping
+                        </button>
+                    </form>
+                </div>
+
+                                <!-- SHIPPING SECTION -->
+                <span class="checkout-span" id="shippingInfo">3. Shipping</span>
+
                 <section class="checkout-shipping__options" id="shippingSection">
                     <div class="shipping-option">
                         <input type="radio" id="standardShipping" name="shipping" value="standard" checked>
                         <label for="standardShipping">
                             <h4>Standard Shipping</h4>
-                            <p>Delivery in 5-7 business days. Free of charge.</p>
+                            <p>Delivery in 5–7 business days. Free of charge.</p>
                         </label>
                     </div>
+
                     <div class="shipping-option">
                         <input type="radio" id="expressShipping" name="shipping" value="express">
                         <label for="expressShipping">
                             <h4>Express Shipping</h4>
-                            <p>Delivery in 2-3 business days. Additional $10.00 charge.<br> Free for purchases over $500.</p>
+                            <p>Delivery in 2–3 business days. Additional $10.00 charge.<br>Free for purchases over $500.</p>
                         </label>
                     </div>
-                    <button type="submit" class="main-btn" id="proceedToPaymentBtn">Go to payment</button>
-                </section>  
-                <span class="checkout-span" id="paymentInfo">4.Payment </span>
+
+                    <button type="submit" class="main-btn" id="proceedToPaymentBtn">
+                        Go to payment
+                    </button>
+                </section>
+
+                <!-- PAYMENT SECTION -->
+                <span class="checkout-span" id="paymentInfo">4. Payment</span>
+
                 <section class="accordion" id="paymentSection">
-  <section class="accordion-item" id="section1payment">
-    <input type="checkbox" id="section1" class="accordion-checkbox">
-    <label for="section1" class="accordion-header"><img src="../images/Strawberrypaylogo.svg" alt="Section 1 Image" class="strawberryPaylogo"></label>
-        <div class="accordion-content">
-            <div class="Strawberrycard-info">
-                    <h5>Strawberry Card</h5>
-                    <p>**** **** **** 1234</p>
-            </div>
-            <div class="Strawberry-contact">
-                <h5>Contact Information</h5>
-                <p>Email: strawberry@example.com</p>
-                <p>Phone: +1 234 567 8901</p>
-            </div>
-            <div class="Strawberry-shipto">
-                <h5>Shipping Address</h5>
-                <p>123 Strawberry Lane</p>
-                <p>Fruitville, CA 90210</p>
-            </div>
-            <div class="checkout-product__summary"> <h5>Complete Order</h5> 
-                <p>Shipping: Free</p>
-                <hr class="checkout-product__summary-hr">
-                <div class="total-amount">
-                <strong>Total: $<span id="totalAmount">0.00</span></strong>
-            </div>
 
-         <button type="submit" class="main-btn pay-now-btn">Pay Now</button>
-    </section>
+                    <!-- STRAWBERRYPAY -->
+                    <section class="accordion-item" id="section1payment">
+                        <input type="checkbox" id="section1" class="accordion-checkbox">
+                        <label for="section1" class="accordion-header">
+                            <img src="../images/Strawberrypaylogo.svg" alt="Strawberry Pay" class="strawberryPaylogo">
+                        </label>
 
-  <section class="accordion-item" id="section2payment">
-    <input type="checkbox" id="section2" class="accordion-checkbox">
-    <label for="section2" class="accordion-header"><img src="../images/Mestercardlogo.svg" alt="Section 2 Image" class="mestercardlogo"></label>
-    <div class="accordion-content">
-      <div class="mestercard-info">
-            <h5>MesterCard</h5>
-            <form>
-                <label for="mestercard-name">Cardholder Name:</label>
-                <input type="text" id="mestercard-name" name="mestercard-name" required>
-                <label for="mestercard-number">Card Number:</label>
-                <input type="text" id="mestercard-number" name="mestercard-number" placeholder="**** **** **** ****" maxlength="19" inputmode="numeric" required>
-                <label for="mestercard-expiry">Expiry Date:</label>
-                <input type="text" id="mestercard-expiry" name="mestercard-expiry" required>
-                <label for="mestercard-cvc">CVC:</label>
-                <input type="text" id="mestercard-cvc" name="mestercard-cvc" required>
-            </form>
-             <div class="checkout-product__summary"> <h5>Complete Order</h5> 
-                <p>Shipping: Free</p>
-                <hr class="checkout-product__summary-hr">
-                <div class="total-amount">
-                <strong>Total: $<span id="totalAmount">0.00</span></strong>
-            </div>
-            <button type="submit" class="main-btn pay-now-btn">Pay Now</button>
-        </div>
-            
-    </div>
-    </div>
-</section>
-    <section class="accordion-item" id="section3payment">
-    <input type="checkbox" id="section3" class="accordion-checkbox">
-    <label for="section3" class="accordion-header"><img src="../images/Vusacardlogo.svg" alt="Section 3 Image" class="Vusacardlogo"></label>
-    <div class="accordion-content">
-      <div class="vusacard-info">
-          <h5>Vusa</h5>
-            <form>
-                <label for="vusacard-name">Cardholder Name:</label>
-                <input type="text" id="vusacard-name" name="vusacard-name" required>
-                <label for="vusacard-number">Card Number:</label>
-                <input type="text" id="vusacard-number" name="vusacard-number" placeholder="**** **** **** ****" maxlength="19" inputmode="numeric" required>
-                <label for="vusacard-expiry">Expiry Date:</label>
-                <input type="text" id="vusacard-expiry" name="vusacard-expiry" required>
-                <label for="vusacard-cvc">CVC:</label>
-                <input type="text" id="vusacard-cvc" name="vusacard-cvc" required>
-            </form>
-    </div>
-     <div class="checkout-product__summary"> <h5>Complete Order</h5> 
-                <p>Shipping: Free</p>
-                <hr class="checkout-product__summary-hr">
-                <div class="total-amount">
-                <strong>Total: $<span id="totalAmount">0.00</span></strong>
-            </div>
-             <button type="submit" class="main-btn pay-now-btn">Pay Now</button>
-        </div>
-   
-    </div>
-    </section>
-  </div>
-</div>
-            </div>
-                </div>
-            </div>
-        </div>
-       
-        </div>
-        <!--hamburger menu -->
+                        <div class="accordion-content">
+                            <div class="Strawberrycard-info">
+                                <h5>Strawberry Card</h5>
+                                <p>**** **** **** 1234</p>
+                            </div>
+
+                            <div class="Strawberry-contact">
+                                <h5>Contact Information</h5>
+                                <p>Email: strawberry@example.com</p>
+                                <p>Phone: +1 234 567 8901</p>
+                            </div>
+
+                            <div class="Strawberry-shipto">
+                                <h5>Shipping Address</h5>
+                                <p>123 Strawberry Lane</p>
+                                <p>Fruitville, CA 90210</p>
+                            </div>
+
+                            <div class="checkout-product__summary">
+                                <h5>Complete Order</h5>
+                                <p>Shipping: Free</p>
+                                <hr class="checkout-product__summary-hr">
+
+                                <div class="total-amount">
+                                    <strong>Total: $<span id="totalAmount">0.00</span></strong>
+                                </div>
+
+                                <button type="submit" class="main-btn pay-now-btn">Pay Now</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- MESTERCARD -->
+                    <section class="accordion-item" id="section2payment">
+                        <input type="checkbox" id="section2" class="accordion-checkbox">
+                        <label for="section2" class="accordion-header">
+                            <img src="../images/Mestercardlogo.svg" alt="MesterCard" class="mestercardlogo">
+                        </label>
+
+                        <div class="accordion-content">
+                            <div class="mestercard-info">
+                                <h5>MesterCard</h5>
+
+                                <form>
+                                    <label for="mestercard-name">Cardholder Name:</label>
+                                    <input type="text" id="mestercard-name" name="mestercard-name" required>
+
+                                    <label for="mestercard-number">Card Number:</label>
+                                    <input type="text" id="mestercard-number" name="mestercard-number"
+                                           placeholder="**** **** **** ****" maxlength="19" inputmode="numeric" required>
+
+                                    <label for="mestercard-expiry">Expiry Date:</label>
+                                    <input type="text" id="mestercard-expiry" name="mestercard-expiry" required>
+
+                                    <label for="mestercard-cvc">CVC:</label>
+                                    <input type="text" id="mestercard-cvc" name="mestercard-cvc" required>
+                                </form>
+
+                                <div class="checkout-product__summary">
+                                    <h5>Complete Order</h5>
+                                    <p>Shipping: Free</p>
+                                    <hr class="checkout-product__summary-hr">
+
+                                    <div class="total-amount">
+                                        <strong>Total: $<span id="totalAmount">0.00</span></strong>
+                                    </div>
+
+                                    <button type="submit" class="main-btn pay-now-btn">Pay Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- VUSA -->
+                    <section class="accordion-item" id="section3payment">
+                        <input type="checkbox" id="section3" class="accordion-checkbox">
+                        <label for="section3" class="accordion-header">
+                            <img src="../images/Vusacardlogo.svg" alt="Vusa" class="Vusacardlogo">
+                        </label>
+
+                        <div class="accordion-content">
+                            <div class="vusacard-info">
+                                <h5>Vusa</h5>
+
+                                <form>
+                                    <label for="vusacard-name">Cardholder Name:</label>
+                                    <input type="text" id="vusacard-name" name="vusacard-name" required>
+
+                                    <label for="vusacard-number">Card Number:</label>
+                                    <input type="text" id="vusacard-number" name="vusacard-number"
+                                           placeholder="**** **** **** ****" maxlength="19" inputmode="numeric" required>
+
+                                    <label for="vusacard-expiry">Expiry Date:</label>
+                                    <input type="text" id="vusacard-expiry" name="vusacard-expiry" required>
+
+                                    <label for="vusacard-cvc">CVC:</label>
+                                    <input type="text" id="vusacard-cvc" name="vusacard-cvc" required>
+                                </form>
+                            </div>
+
+                            <div class="checkout-product__summary">
+                                <h5>Complete Order</h5>
+                                <p>Shipping: Free</p>
+                                <hr class="checkout-product__summary-hr">
+
+                                <div class="total-amount">
+                                    <strong>Total: $<span id="totalAmount">0.00</span></strong>
+                                </div>
+
+                                <button type="submit" class="main-btn pay-now-btn">Pay Now</button>
+                            </div>
+                        </div>
+                    </section>
+
+                </section> <!-- END accordion -->
+            </div> <!-- END checkout-form__section -->
+        </div> <!-- END checkout-content -->
+
+     
+                <!-- HAMBURGER MENU -->
         <div class="hamburger-menu" id="hamburgerMenu">
             <button class="close-btn" id="closeHamburgerMenu">&times;</button>
+
             <nav>
                 <ul class="hamburger-menu__links">
                     <li><a href="../index.html" data-category="home">Home</a></li>
@@ -252,50 +339,66 @@
                     <li><a href="newmemlogin.html">Become a member</a></li>
                     <li><a href="#" id="loginModalTrigger"><i class="fa-regular fa-user"></i> Member Login</a></li>
                 </ul>
+
                 <div class="hamburger-menu__logo">
                     <img src="../images/horseheadlogo.svg" alt="Logo" class="logo">
                 </div>
-                <a href="/pages/admindashboard.html"><h5 class="hamburger-menu__h5">Admin login</h5></a>
+
+                <a href="/pages/admindashboard.html">
+                    <h5 class="hamburger-menu__h5">Admin login</h5>
+                </a>
             </nav>
         </div>
-        
-        <!-- Hamburger overlay for dark background -->
-        <div class="hamburger-overlay" id="hamburgerOverlay"></div>
-        
 
-        <!--Shopping bag sidebar-->
-            <div class="shopping_cart" id="shoppingCart">
-                <div class="cart-header">
-                    <h2>Your Shopping Bag</h2>
-                    <button class="close-btn" id="closeShoppingCartBtn">&times;</button>
-                </div>
-                <hr class="shoppingbag-hr">
-                <div class="cart-items" id="shoppingCartItems">
-                    <!-- Cart items will be added here by JavaScript -->
-                </div>
-                <div class="cart-footer">
-                    <div class="cart-numbers">
+        <!-- HAMBURGER OVERLAY -->
+        <div class="hamburger-overlay" id="hamburgerOverlay"></div>
+
+        
+        <!-- SHOPPING CART SIDEBAR -->
+        <div class="shopping_cart" id="shoppingCart">
+            <div class="cart-header">
+                <h2>Your Shopping Bag</h2>
+                <button class="close-btn" id="closeShoppingCartBtn">&times;</button>
+            </div>
+
+            <hr class="shoppingbag-hr">
+
+            <div class="cart-items" id="shoppingCartItems">
+                <!-- Cart items dynamically added -->
+            </div>
+
+            <div class="cart-footer">
+                <div class="cart-numbers">
                     <div class="shipping">
                         <p>Shipping: Free</p>
                     </div>
+
                     <div class="cart-total">
                         <strong>Total: $<span id="shoppingCartTotal">0.00</span></strong>
                     </div>
-                    </div>
-                    <button onClick="checkout()" class="checkout-btn main-btn">Checkout</button>
                 </div>
-             </div>
 
-                   <footer>
+                <button onClick="checkout()" class="checkout-btn main-btn">
+                    Checkout
+                </button>
+            </div>
+        </div>
+
+
+        <!-- FOOTER -->
+        <footer>
             <div class="footer-content__top">
+
                 <div class="footer-content__left">
                     <h4>About Us</h4>
                     <p>The Second Hand Company is dedicated to promoting sustainable shopping by offering a wide range of high-quality second-hand products. Our mission is to reduce waste and encourage eco-friendly consumption.</p>
                 </div>
+
                 <span class="vr"></span>
+
                 <div class="footer-content__centera">
                     <h4>Customer Service</h4>
-                       <ul>
+                    <ul>
                         <li><a href="#">About us</a></li>
                         <li><a href="#">Contact</a></li>
                         <li><a href="#">Privacy Policy</a></li>
@@ -303,60 +406,85 @@
                         <li><a href="#">Shipping Policy</a></li>
                         <li><a href="#">FAQ</a></li>
                         <li><a href="#">Why choose pre-owned?</a></li>
-                        
                     </ul>
                 </div>
+
                 <span class="vr"></span>
-                <div class="footer-content__centerb">  <h4>Shop</h4>
-                       <ul>
+
+                <div class="footer-content__centerb">
+                    <h4>Shop</h4>
+                    <ul>
                         <li><a href="../index.html" data-category="home">Home</a></li>
-                    <li><a href="../index.html?category=fashion">Fashion</a></li>
-                    <li><a href="../index.html?category=electronics">Electronics</a></li>
-                    <li><a href="../index.html?category=health and beauty">Health & beauty</a></li>
-                    </ul></div>
-                    <span class="vr"></span>
+                        <li><a href="../index.html?category=fashion">Fashion</a></li>
+                        <li><a href="../index.html?category=electronics">Electronics</a></li>
+                        <li><a href="../index.html?category=health and beauty">Health & beauty</a></li>
+                    </ul>
+                </div>
+
+                <span class="vr"></span>
+
                 <div class="footer-content__right">
                     <span class="footer-content__right__title"><h4>Connect</h4></span>
+
                     <div class="footer-content__right__icons">
                         <i class="fab fa-facebook-f"></i>
                         <i class="fa-brands fa-tiktok"></i>
                         <i class="fab fa-instagram"></i>
                     </div>
+
                     <form id="newsletterForm">
                         <label>Join our Newsletter</label>
-                        <input type="email" name="email" placeholder="Enter your email" autocomplete="on" id="newsletterEmail">
-                        <button class="main-btn" id="subscribeBtn" type="submit">Subscribe</button>
-                        <div id="toast" class="toast" role="status" aria-live="polite" ></div>
+                        <input 
+                            type="email" 
+                            name="email" 
+                            placeholder="Enter your email" 
+                            autocomplete="on" 
+                            id="newsletterEmail"
+                        >
+                        <button class="main-btn" id="subscribeBtn" type="submit">
+                            Subscribe
+                        </button>
+                        <div id="toast" class="toast" role="status" aria-live="polite"></div>
                     </form>
                 </div>
             </div>
+
+            <!-- FOOTER BOTTOM -->
             <div class="footer-content__bottom">
+
                 <div class="footer-content__bottom__top">
                     <div class="footer-content__bottom__top__strawberry">
-                    <img src="../images/Strawberrypaylogo.svg" alt="Strawberry Pay Logo" class="footer-logo">
+                        <img src="../images/Strawberrypaylogo.svg" alt="Strawberry Pay Logo" class="footer-logo">
                     </div>
+
                     <div class="footer-content__bottom__top__mestercard">
-                    <img src="../images/Mestercardlogo.svg" alt="Mestercard Logo" class="footer-logo">
+                        <img src="../images/Mestercardlogo.svg" alt="Mestercard Logo" class="footer-logo">
                     </div>
+
                     <div class="footer-content__bottom__top__visa">
-                    <img src="../images/Vusacardlogo.svg" alt="Vusa Logo" class="footer-logo">
+                        <img src="../images/Vusacardlogo.svg" alt="Vusa Logo" class="footer-logo">
                     </div>
+
                     <div class="footer-content__bottom__top__eco">
-                    <img src="../images/ecofriendlylogo.svg" alt="Eco Logo" class="footer-logo">
+                        <img src="../images/ecofriendlylogo.svg" alt="Eco Logo" class="footer-logo">
                     </div>
                 </div>
+
                 <div class="footer-content__bottom__bottom">
                     <p>&copy; 2025 The Second Hand Company. All rights reserved.</p>
                 </div>
-            
+            </div>
         </footer>
+
       
+                <!-- SCRIPTS -->
         <script type="module" src="../JS/components/cart.js"></script>
         <script type="module" src="../JS/components/shoppingcart.js"></script>
         <script type="module" src="../JS/components/hamburgermenuoverlay.js"></script>
         <script type="module" src="../JS/components/loginusermodal.js"></script>
         <script type="module" src="../JS/checkout.js"></script>
-         <script type="module" src="../JS/global.js"></script>
-    </div>
+        <script type="module" src="../JS/global.js"></script>
+
+    </div> <!-- END .container -->
 </body>
 </html>

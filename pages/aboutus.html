@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/Components/shoppingbag.css">
@@ -17,59 +19,78 @@
     <link rel="stylesheet" href="../css/Components/footer.css">
     <link rel="stylesheet" href="../css/Components/memberloginmodal.css">
     <link rel="stylesheet" href="../css/documentpages.css">
+
     <link rel="icon" type="image/svg+xml" href="../images/horseheadlogo.svg">
-    <title>The Second Hand Company</title>
+    <title>About us here at The Second Hand Company</title>
 </head>
+
 <body>
     <div class="container">
-          <div class="header-topbar">
-                <div class="header-content__left-hamburger"> 
-                    <button 
-                        id="hamburgerMenuIcon"
-                        class="hamburger-btn"
-                        aria-controls="hamburgerMenu"
-                        aria-expanded="false"
-                        aria-label="Open menu">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                </div>
-                <div class="header-content__nav-center"><p>We <i class="fa-solid fa-heart"></i>pre-owned</p></div>
-                <div class="header-content__nav__right">
-                    <i class="fas fa-user"></i>
-                    <div class="header-content__nav__shoppingbag">
-                    <i class="fa-solid fa-bag-shopping" id="shoppingBagIcon"><span class="header-content__nav__right__cart-count">0</span></i>
-                    </div>
+
+        <div class="header-topbar">
+            <div class="header-content__left-hamburger">
+                <button 
+                    id="hamburgerMenuIcon"
+                    class="hamburger-btn"
+                    aria-controls="hamburgerMenu"
+                    aria-expanded="false"
+                    aria-label="Open menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+
+            <div class="header-content__nav-center">
+                <p>We <i class="fa-solid fa-heart"></i>pre-owned</p>
+            </div>
+
+            <div class="header-content__nav__right">
+                <i class="fas fa-user"></i>
+                <div class="header-content__nav__shoppingbag">
+                    <i class="fa-solid fa-bag-shopping" id="shoppingBagIcon">
+                        <span class="header-content__nav__right__cart-count">0</span>
+                    </i>
                 </div>
             </div>
+        </div>
+
         <header>
-          
             <!-- Mobile Header -->
             <div class="header-content-mobile">
                 <div class="header-content__logo__mobile">
                     <img src="../images/horseheadlogo.svg" alt="The Second Hand Company Logo" class="logo--mobile">
                 </div>
                 <span class="header-content-mobile__text">The Second Hand Company</span>
-            </div>  
+            </div>
+
             <!-- Desktop Header -->
             <div class="header-content">
                 <div class="header-content__left">
-                        <div class="header-content__left__top">The</div>
-                        <div class="header-content__left__bottom">Second Hand</div>
+                    <div class="header-content__left__top">The</div>
+                    <div class="header-content__left__bottom">Second Hand</div>
                 </div>
+
                 <div class="header-content__center">
-                <div class="header-content__center__logo">
-                    <img src="../images/horseheadlogo.svg" alt="Logo" class="logo">
+                    <div class="header-content__center__logo">
+                        <img src="../images/horseheadlogo.svg" alt="Logo" class="logo">
+                    </div>
+                    <div class="header-content__center__text">2025</div>
                 </div>
-                <div class="header-content__center__text">2025</div>
-                </div>
+
                 <div class="header-content__right">Company</div>
-              
-            </div> 
+            </div>
         </header>
 
-        <!--hamburger menu -->
-        <div class="hamburger-menu" id="hamburgerMenu" aria-modal="true" role="dialog" aria-hidden="true" tabindex="-1">
+        <!-- Hamburger menu -->
+        <div 
+            class="hamburger-menu" 
+            id="hamburgerMenu" 
+            aria-modal="true" 
+            role="dialog" 
+            aria-hidden="true" 
+            tabindex="-1"
+        >
             <button class="close-btn" id="closeHamburgerMenu" aria-label="Close menu">&times;</button>
+
             <nav aria-label="Primary Navigation">
                 <ul class="hamburger-menu__links">
                     <li><a href="../index.html" data-category="home">Home</a></li>
@@ -84,68 +105,85 @@
                     <li><a href="../pages/newmemlogin.html">Become a member</a></li>
                     <li><a href="#" id="loginModalTrigger">Member Login</a></li>
                 </ul>
+
                 <div class="hamburger-menu__logo">
                     <img src="../images/horseheadlogo.svg" alt="Logo" class="logo">
                 </div>
+
                 <a class="hamburger-menu__h5" href="/pages/admindashboard.html">Admin login</a>
             </nav>
         </div>
-        
-        <!-- Hamburger overlay for dark background -->
-        <div class="hamburger-overlay" id="hamburgerOverlay" aria-hidden="true"></div>
-    
 
-        <!--Shopping cart sidebar-->
-            <div class="shopping_cart" id="shoppingCart" aria-modal="true" role="dialog" >
-                <div class="cart-header">
-                    <h2>Your Shopping Bag</h2>
-                    <button class="close-btn" id="closeShoppingCartBtn">&times;</button>
-                </div>
-                <hr class="shoppingbag-hr">
-                <div class="cart-items" id="shoppingCartItems">
-                    <!-- Cart items will be added here by JavaScript -->
-                </div>
-                <div class="cart-footer">
-                    <div class="cart-numbers">
+        <!-- Hamburger overlay -->
+        <div class="hamburger-overlay" id="hamburgerOverlay" aria-hidden="true"></div>
+
+        <!-- Shopping cart sidebar -->
+        <div 
+            class="shopping_cart" 
+            id="shoppingCart" 
+            aria-modal="true" 
+            role="dialog"
+        >
+            <div class="cart-header">
+                <h2>Your Shopping Bag</h2>
+                <button class="close-btn" id="closeShoppingCartBtn">&times;</button>
+            </div>
+
+            <hr class="shoppingbag-hr">
+
+            <div class="cart-items" id="shoppingCartItems"></div>
+
+            <div class="cart-footer">
+                <div class="cart-numbers">
                     <div class="shipping">
                         <p>Shipping: Free</p>
                     </div>
                     <div class="cart-total">
                         <strong>Total: $<span id="shoppingCartTotal">0.00</span></strong>
                     </div>
-                    </div>
-                    <button onClick="checkout()" class="checkout-btn main-btn" id="checkoutButton">Checkout</button>
                 </div>
-             </div>
 
-<nav class="breadcrumb" id="breadcrumb"></nav>
+                <button 
+                    onClick="checkout()" 
+                    class="checkout-btn main-btn" 
+                    id="checkoutButton"
+                >
+                    Checkout
+                </button>
+            </div>
+        </div>
 
-          
+        <nav class="breadcrumb" id="breadcrumb"></nav>
+
+        <!-- MAIN CONTENT -->
         <main>
             <section class="aboutus-section">
                 <h1>About Us</h1>
+
                 <p>Welcome to The Second Hand Company! We are passionate about sustainability and believe in the power of pre-owned products to make a positive impact on the environment. Our mission is to provide high-quality second-hand items that are not only affordable but also help reduce waste and promote eco-friendly shopping habits.</p>
+
                 <p>At The Second Hand Company, we carefully curate our collection of products to ensure that each item meets our standards for quality and condition. From fashion to electronics, health and beauty products, we offer a diverse range of pre-owned goods that cater to various tastes and needs.</p>
+
                 <p>We are committed to providing excellent customer service and strive to create a seamless shopping experience for our customers. Whether you're a seasoned thrifter or new to the world of second-hand shopping, we are here to help you find the perfect items that align with your values.</p>
+
                 <p>Thank you for choosing The Second Hand Company. Together, we can make a difference by embracing sustainable shopping practices and giving pre-owned products a new life!</p>
             </section>
+        </main>
 
-    
-
-        <!-- member login modal -->
-        <!-- Modal will be dynamically created by JavaScript -->
-
-        <!-- Footer Section -->
+        <!-- Footer -->
         <footer>
             <div class="footer-content__top">
+
                 <div class="footer-content__left">
                     <h4>About Us</h4>
                     <p>The Second Hand Company is dedicated to promoting sustainable shopping by offering a wide range of high-quality second-hand products. Our mission is to reduce waste and encourage eco-friendly consumption.</p>
                 </div>
+
                 <span class="vr"></span>
+
                 <div class="footer-content__centera">
                     <h4>Customer Service</h4>
-                       <ul>
+                    <ul>
                         <li><a href="aboutus.html">About us</a></li>
                         <li><a href="contactus.html">Contact</a></li>
                         <li><a href="privacypolicy.html">Privacy Policy</a></li>
@@ -153,59 +191,84 @@
                         <li><a href="shippingpolicy.html">Shipping Policy</a></li>
                         <li><a href="faq.html">FAQ</a></li>
                         <li><a href="wcpreowned.html">Why choose pre-owned?</a></li>
-                        
                     </ul>
                 </div>
+
                 <span class="vr"></span>
-                <div class="footer-content__centerb">  <h4>Shop</h4>
-                       <ul>
-                       <li><a href="../index.html" data-category="home">Home</a></li>
-                    <li><a href="../index.html?category=fashion">Fashion</a></li>
-                    <li><a href="../index.html?category=electronics">Electronics</a></li>
-                    <li><a href="../index.html?category=health and beauty">Health & beauty</a></li>
-                    </ul></div>
-                    <span class="vr"></span>
+
+                <div class="footer-content__centerb">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="../index.html" data-category="home">Home</a></li>
+                        <li><a href="../index.html?category=fashion">Fashion</a></li>
+                        <li><a href="../index.html?category=electronics">Electronics</a></li>
+                        <li><a href="../index.html?category=health and beauty">Health & beauty</a></li>
+                    </ul>
+                </div>
+
+                <span class="vr"></span>
+
                 <div class="footer-content__right">
-                    <span class="footer-content__right__title"><h4>Connect</h4></span>
+                    <span class="footer-content__right__title">
+                        <h4>Connect</h4>
+                    </span>
+
                     <div class="footer-content__right__icons" aria-label="Social media links">
                         <i class="fab fa-facebook-f"></i>
                         <i class="fa-brands fa-tiktok"></i>
                         <i class="fab fa-instagram"></i>
                     </div>
+
                     <form id="newsletterForm">
                         <label>Join our Newsletter</label>
-                        <input type="email" name="email" placeholder="Enter your email" autocomplete="on" id="newsletterEmail">
+                        <input 
+                            type="email" 
+                            name="email" 
+                            placeholder="Enter your email" 
+                            autocomplete="on" 
+                            id="newsletterEmail"
+                        >
                         <button class="main-btn" id="subscribeBtn" type="submit">Subscribe</button>
-                        <div id="toast" class="toast" role="status" aria-live="polite" ></div>
+                        <div id="toast" class="toast" role="status" aria-live="polite"></div>
                     </form>
                 </div>
             </div>
+
             <div class="footer-content__bottom">
+
                 <div class="footer-content__bottom__top">
                     <div class="footer-content__bottom__top__strawberry">
-                    <img src="../images/Strawberrypaylogo.svg" alt="Strawberry Pay Logo" class="footer-logo">
+                        <img src="../images/Strawberrypaylogo.svg" alt="Strawberry Pay Logo" class="footer-logo">
                     </div>
+
                     <div class="footer-content__bottom__top__mestercard">
-                    <img src="../images/Mestercardlogo.svg" alt="Mestercard Logo" class="footer-logo">
+                        <img src="../images/Mestercardlogo.svg" alt="Mestercard Logo" class="footer-logo">
                     </div>
+
                     <div class="footer-content__bottom__top__visa">
-                    <img src="../images/Vusacardlogo.svg" alt="Vusa Logo" class="footer-logo">
+                        <img src="../images/Vusacardlogo.svg" alt="Vusa Logo" class="footer-logo">
                     </div>
+
                     <div class="footer-content__bottom__top__eco">
-                    <img src="../images/ecofriendlylogo.svg" alt="Eco Logo" class="footer-logo">
+                        <img src="../images/ecofriendlylogo.svg" alt="Eco Logo" class="footer-logo">
                     </div>
                 </div>
+
                 <div class="footer-content__bottom__bottom">
                     <p>&copy; 2025 The Second Hand Company. All rights reserved.</p>
                 </div>
-            
+
+            </div>
         </footer>
+
+        <!-- Scripts -->
         <script type="module" src="../JS/components/cart.js"></script>
         <script type="module" src="../JS/components/shoppingcart.js"></script>
         <script type="module" src="../JS/components/hamburgermenuoverlay.js"></script>
         <script type="module" src="../JS/components/loginusermodal.js"></script>
         <script type="module" src="../JS/utils.js"></script>
         <script type="module" src="../JS/global.js"></script>
+
     </div>
 </body>
 </html>

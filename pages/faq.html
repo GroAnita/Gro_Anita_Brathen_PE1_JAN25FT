@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/Components/shoppingbag.css">
@@ -18,59 +20,78 @@
     <link rel="stylesheet" href="../css/Components/memberloginmodal.css">
     <link rel="stylesheet" href="../css/contactus.css">
     <link rel="stylesheet" href="../css/documentpages.css">
+
     <link rel="icon" type="image/svg+xml" href="../images/horseheadlogo.svg">
-    <title>The Second Hand Company</title>
+    <title>FAQ - The Second Hand Company</title>
 </head>
+
 <body>
     <div class="container">
-          <div class="header-topbar">
-                <div class="header-content__left-hamburger"> 
-                    <button 
-                        id="hamburgerMenuIcon"
-                        class="hamburger-btn"
-                        aria-controls="hamburgerMenu"
-                        aria-expanded="false"
-                        aria-label="Open menu">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                </div>
-                <div class="header-content__nav-center"><p>We <i class="fa-solid fa-heart"></i>pre-owned</p></div>
-                <div class="header-content__nav__right">
-                    <i class="fas fa-user"></i>
-                    <div class="header-content__nav__shoppingbag">
-                    <i class="fa-solid fa-bag-shopping" id="shoppingBagIcon"><span class="header-content__nav__right__cart-count">0</span></i>
-                    </div>
+
+        <div class="header-topbar">
+            <div class="header-content__left-hamburger">
+                <button
+                    id="hamburgerMenuIcon"
+                    class="hamburger-btn"
+                    aria-controls="hamburgerMenu"
+                    aria-expanded="false"
+                    aria-label="Open menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+
+            <div class="header-content__nav-center">
+                <p>We <i class="fa-solid fa-heart"></i>pre-owned</p>
+            </div>
+
+            <div class="header-content__nav__right">
+                <i class="fas fa-user"></i>
+                <div class="header-content__nav__shoppingbag">
+                    <i class="fa-solid fa-bag-shopping" id="shoppingBagIcon">
+                        <span class="header-content__nav__right__cart-count">0</span>
+                    </i>
                 </div>
             </div>
+        </div>
+
         <header>
-          
             <!-- Mobile Header -->
             <div class="header-content-mobile">
                 <div class="header-content__logo__mobile">
                     <img src="../images/horseheadlogo.svg" alt="The Second Hand Company Logo" class="logo--mobile">
                 </div>
                 <span class="header-content-mobile__text">The Second Hand Company</span>
-            </div>  
+            </div>
+
             <!-- Desktop Header -->
             <div class="header-content">
                 <div class="header-content__left">
-                        <div class="header-content__left__top">The</div>
-                        <div class="header-content__left__bottom">Second Hand</div>
+                    <div class="header-content__left__top">The</div>
+                    <div class="header-content__left__bottom">Second Hand</div>
                 </div>
+
                 <div class="header-content__center">
-                <div class="header-content__center__logo">
-                    <img src="../images/horseheadlogo.svg" alt="Logo" class="logo">
+                    <div class="header-content__center__logo">
+                        <img src="../images/horseheadlogo.svg" alt="Logo" class="logo">
+                    </div>
+                    <div class="header-content__center__text">2025</div>
                 </div>
-                <div class="header-content__center__text">2025</div>
-                </div>
+
                 <div class="header-content__right">Company</div>
-              
-            </div> 
+            </div>
         </header>
 
-        <!--hamburger menu -->
-        <div class="hamburger-menu" id="hamburgerMenu" aria-modal="true" role="dialog" aria-hidden="true" tabindex="-1">
+        <!-- Hamburger menu -->
+        <div
+            class="hamburger-menu"
+            id="hamburgerMenu"
+            aria-modal="true"
+            role="dialog"
+            aria-hidden="true"
+            tabindex="-1">
+
             <button class="close-btn" id="closeHamburgerMenu" aria-label="Close menu">&times;</button>
+
             <nav aria-label="Primary Navigation">
                 <ul class="hamburger-menu__links">
                     <li><a href="../index.html" data-category="home">Home</a></li>
@@ -85,127 +106,149 @@
                     <li><a href="../pages/newmemlogin.html">Become a member</a></li>
                     <li><a href="#" id="loginModalTrigger">Member Login</a></li>
                 </ul>
+
                 <div class="hamburger-menu__logo">
                     <img src="../images/horseheadlogo.svg" alt="Logo" class="logo">
                 </div>
+
                 <a class="hamburger-menu__h5" href="/pages/admindashboard.html">Admin login</a>
             </nav>
         </div>
-        
-        <!-- Hamburger overlay for dark background -->
+
+        <!-- Dark overlay -->
         <div class="hamburger-overlay" id="hamburgerOverlay" aria-hidden="true"></div>
+
     
 
-        <!--Shopping cart sidebar-->
-            <div class="shopping_cart" id="shoppingCart" aria-modal="true" role="dialog" >
-                <div class="cart-header">
-                    <h2>Your Shopping Bag</h2>
-                    <button class="close-btn" id="closeShoppingCartBtn">&times;</button>
-                </div>
-                <hr class="shoppingbag-hr">
-                <div class="cart-items" id="shoppingCartItems">
-                    <!-- Cart items will be added here by JavaScript -->
-                </div>
-                <div class="cart-footer">
-                    <div class="cart-numbers">
+               <!-- Shopping cart sidebar -->
+        <div
+            class="shopping_cart"
+            id="shoppingCart"
+            aria-modal="true"
+            role="dialog">
+
+            <div class="cart-header">
+                <h2>Your Shopping Bag</h2>
+                <button class="close-btn" id="closeShoppingCartBtn">&times;</button>
+            </div>
+
+            <hr class="shoppingbag-hr">
+
+            <div class="cart-items" id="shoppingCartItems">
+                <!-- Cart items inserted by JavaScript -->
+            </div>
+
+            <div class="cart-footer">
+                <div class="cart-numbers">
                     <div class="shipping">
                         <p>Shipping: Free</p>
                     </div>
                     <div class="cart-total">
                         <strong>Total: $<span id="shoppingCartTotal">0.00</span></strong>
                     </div>
-                    </div>
-                    <button onClick="checkout()" class="checkout-btn main-btn" id="checkoutButton">Checkout</button>
                 </div>
-             </div>
 
-<nav class="breadcrumb" id="breadcrumb"></nav>
+                <button
+                    onClick="checkout()"
+                    class="checkout-btn main-btn"
+                    id="checkoutButton">
+                    Checkout
+                </button>
+            </div>
+        </div>
 
-          <div class="faq-container">
-    
-    <h1>Frequently Asked Questions</h1>
-    <p>Find answers to the most common questions from our community of pre-loved shoppers.</p>
+        <nav class="breadcrumb" id="breadcrumb"></nav>
 
-    <div class="faq-item">
-        <h3>1. What is The Second Hand Company?</h3>
-        <p>
-            We are a sustainable online shop dedicated to giving quality pre-loved items a new life.
-            By choosing second-hand, you help reduce waste and support an eco-friendly lifestyle.
-        </p>
-    </div>
+        <!-- FAQ Section -->
+        <div class="faq-container">
 
-    <div class="faq-item">
-        <h3>2. Are your products cleaned and inspected?</h3>
-        <p>
-            Yes! Every item goes through a careful inspection and cleaning process before being listed.
-            We make sure the condition is clearly described so you know exactly what you're getting.
-        </p>
-    </div>
+            <h1>Frequently Asked Questions</h1>
+            <p>Find answers to the most common questions from our community of pre-loved shoppers.</p>
 
-    <div class="faq-item">
-        <h3>3. Do you offer free shipping?</h3>
-        <p>
-            Yes — all orders over <strong>$100</strong> qualify for <strong>FREE standard shipping</strong>.
-            The discount is applied automatically at checkout.
-        </p>
-    </div>
+            <div class="faq-item">
+                <h3>1. What is The Second Hand Company?</h3>
+                <p>
+                    We are a sustainable online shop dedicated to giving quality pre-loved items a new life.
+                    By choosing second-hand, you help reduce waste and support an eco-friendly lifestyle.
+                </p>
+            </div>
 
-    <div class="faq-item">
-        <h3>4. How long does shipping take?</h3>
-        <p>
-            Standard shipping usually takes <strong>3–7 business days</strong>, depending on your location.
-            Express options are also available at checkout.
-        </p>
-    </div>
+            <div class="faq-item">
+                <h3>2. Are your products cleaned and inspected?</h3>
+                <p>
+                    Yes! Every item goes through a careful inspection and cleaning process before being listed.
+                    We make sure the condition is clearly described so you know exactly what you're getting.
+                </p>
+            </div>
 
-    <div class="faq-item">
-        <h3>5. Can I return an item?</h3>
-        <p>
-            Members enjoy a <strong>30-day return policy</strong>.  
-            Non-members have a 14-day window for returns, provided the item is in its original condition.
-        </p>
-    </div>
+            <div class="faq-item">
+                <h3>3. Do you offer free shipping?</h3>
+                <p>
+                    Yes — all orders over <strong>$100</strong> qualify for
+                    <strong>FREE standard shipping</strong>.  
+                    The discount is applied automatically at checkout.
+                </p>
+            </div>
 
-    <div class="faq-item">
-        <h3>6. Do you accept international orders?</h3>
-        <p>
-            Yes! We ship to select international destinations.  
-            Customs fees, taxes, or import duties may apply and are the responsibility of the buyer.
-        </p>
-    </div>
+            <div class="faq-item">
+                <h3>4. How long does shipping take?</h3>
+                <p>
+                    Standard shipping usually takes <strong>3–7 business days</strong>,
+                    depending on your location.
+                    Express options are also available at checkout.
+                </p>
+            </div>
 
-    <div class="faq-item">
-        <h3>7. How do I track my order?</h3>
-        <p>
-            Once your order ships, you will receive an email with a tracking link.  
-            You can follow your package in real time from there.
-        </p>
-    </div>
+            <div class="faq-item">
+                <h3>5. Can I return an item?</h3>
+                <p>
+                    Members enjoy a <strong>30-day return policy</strong>.  
+                    Non-members have a 14-day window for returns, provided the item is in its original condition.
+                </p>
+            </div>
 
-    <div class="faq-item">
-        <h3>8. What payment methods do you accept?</h3>
-        <p>
-            We accept Visa, Mestercard, StrawberryPay, and several secure digital wallet options.
-        </p>
-    </div>
+            <div class="faq-item">
+                <h3>6. Do you accept international orders?</h3>
+                <p>
+                    Yes! We ship to select international destinations.  
+                    Customs fees, taxes, or import duties may apply and are the responsibility of the buyer.
+                </p>
+            </div>
 
-    <div class="faq-item">
-        <h3>9. Can I reserve an item?</h3>
-        <p>
-            Unfortunately, we do not currently offer item reservations.  
-            Items sell quickly — if you love something, we recommend grabbing it before it’s gone!
-        </p>
-    </div>
+            <div class="faq-item">
+                <h3>7. How do I track my order?</h3>
+                <p>
+                    Once your order ships, you will receive an email with a tracking link.  
+                    You can follow your package in real time from there.
+                </p>
+            </div>
 
-    <div class="faq-item">
-        <h3>10. How do I become a member?</h3>
-        <p>
-            You can join through our <a href="newmemlogin.html"><strong>Become a Member</strong></a> page.  
-            Membership includes perks like free shipping, early access to drops, and extended return periods.
-        </p>
-    </div>
+            <div class="faq-item">
+                <h3>8. What payment methods do you accept?</h3>
+                <p>
+                    We accept Visa, Mestercard, StrawberryPay, and several secure digital wallet options.
+                </p>
+            </div>
 
-</div>
+            <div class="faq-item">
+                <h3>9. Can I reserve an item?</h3>
+                <p>
+                    Unfortunately, we do not currently offer item reservations.  
+                    Items sell quickly — if you love something, we recommend grabbing it before it’s gone!
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <h3>10. How do I become a member?</h3>
+                <p>
+                    You can join through our
+                    <a href="newmemlogin.html"><strong>Become a Member</strong></a> page.  
+                    Membership includes perks like free shipping, early access to drops, and extended return periods.
+                </p>
+            </div>
+
+        </div>
+
 
   
     
@@ -213,17 +256,24 @@
         <!-- member login modal -->
         <!-- Modal will be dynamically created by JavaScript -->
 
-        <!-- Footer Section -->
+               <!-- Footer Section -->
         <footer>
             <div class="footer-content__top">
+
                 <div class="footer-content__left">
                     <h4>About Us</h4>
-                    <p>The Second Hand Company is dedicated to promoting sustainable shopping by offering a wide range of high-quality second-hand products. Our mission is to reduce waste and encourage eco-friendly consumption.</p>
+                    <p>
+                        The Second Hand Company is dedicated to promoting sustainable shopping by offering a wide
+                        range of high-quality second-hand products. Our mission is to reduce waste and encourage
+                        eco-friendly consumption.
+                    </p>
                 </div>
+
                 <span class="vr"></span>
+
                 <div class="footer-content__centera">
                     <h4>Customer Service</h4>
-                       <ul>
+                    <ul>
                         <li><a href="aboutus.html">About us</a></li>
                         <li><a href="contactus.html">Contact</a></li>
                         <li><a href="privacypolicy.html">Privacy Policy</a></li>
@@ -231,53 +281,81 @@
                         <li><a href="shippingpolicy.html">Shipping Policy</a></li>
                         <li><a href="faq.html">FAQ</a></li>
                         <li><a href="wcpreowned.html">Why choose pre-owned?</a></li>
-                        
                     </ul>
                 </div>
+
                 <span class="vr"></span>
-                <div class="footer-content__centerb">  <h4>Shop</h4>
-                       <ul>
+
+                <div class="footer-content__centerb">
+                    <h4>Shop</h4>
+                    <ul>
                         <li><a href="../index.html" data-category="home">Home</a></li>
-                    <li><a href="../index.html?category=fashion">Fashion</a></li>
-                    <li><a href="../index.html?category=electronics">Electronics</a></li>
-                    <li><a href="../index.html?category=health and beauty">Health & beauty</a></li>
-                    </ul></div>
-                    <span class="vr"></span>
+                        <li><a href="../index.html?category=fashion">Fashion</a></li>
+                        <li><a href="../index.html?category=electronics">Electronics</a></li>
+                        <li><a href="../index.html?category=health and beauty">Health & beauty</a></li>
+                    </ul>
+                </div>
+
+                <span class="vr"></span>
+
                 <div class="footer-content__right">
-                    <span class="footer-content__right__title"><h4>Connect</h4></span>
+
+                    <span class="footer-content__right__title">
+                        <h4>Connect</h4>
+                    </span>
+
                     <div class="footer-content__right__icons" aria-label="Social media links">
                         <i class="fab fa-facebook-f"></i>
                         <i class="fa-brands fa-tiktok"></i>
                         <i class="fab fa-instagram"></i>
                     </div>
+
                     <form id="newsletterForm">
                         <label>Join our Newsletter</label>
-                        <input type="email" name="email" placeholder="Enter your email" autocomplete="on" id="newsletterEmail">
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            autocomplete="on"
+                            id="newsletterEmail"
+                        >
                         <button class="main-btn" id="subscribeBtn" type="submit">Subscribe</button>
-                        <div id="toast" class="toast" role="status" aria-live="polite" ></div>
+
+                        <div id="toast" class="toast" role="status" aria-live="polite"></div>
                     </form>
+
                 </div>
+
             </div>
+
             <div class="footer-content__bottom">
+
                 <div class="footer-content__bottom__top">
                     <div class="footer-content__bottom__top__strawberry">
-                    <img src="../images/Strawberrypaylogo.svg" alt="Strawberry Pay Logo" class="footer-logo">
+                        <img src="../images/Strawberrypaylogo.svg" alt="Strawberry Pay Logo" class="footer-logo">
                     </div>
+
                     <div class="footer-content__bottom__top__mestercard">
-                    <img src="../images/Mestercardlogo.svg" alt="Mestercard Logo" class="footer-logo">
+                        <img src="../images/Mestercardlogo.svg" alt="Mestercard Logo" class="footer-logo">
                     </div>
+
                     <div class="footer-content__bottom__top__visa">
-                    <img src="../images/Vusacardlogo.svg" alt="Vusa Logo" class="footer-logo">
+                        <img src="../images/Vusacardlogo.svg" alt="Vusa Logo" class="footer-logo">
                     </div>
+
                     <div class="footer-content__bottom__top__eco">
-                    <img src="../images/ecofriendlylogo.svg" alt="Eco Logo" class="footer-logo">
+                        <img src="../images/ecofriendlylogo.svg" alt="Eco Logo" class="footer-logo">
                     </div>
                 </div>
+
                 <div class="footer-content__bottom__bottom">
                     <p>&copy; 2025 The Second Hand Company. All rights reserved.</p>
                 </div>
+
             </div>
         </footer>
+
+                <!-- Scripts -->
         <script type="module" src="../JS/components/cart.js"></script>
         <script type="module" src="../JS/components/shoppingcart.js"></script>
         <script type="module" src="../JS/components/hamburgermenuoverlay.js"></script>

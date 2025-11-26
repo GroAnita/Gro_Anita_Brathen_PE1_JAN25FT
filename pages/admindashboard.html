@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/Components/shoppingbag.css">
     <link rel="stylesheet" href="../css/variables.css">
@@ -19,54 +23,74 @@
     <link rel="stylesheet" href="../css/Components/pagination.css">
     <link rel="stylesheet" href="../css/Components/memberloginmodal.css">
     <link rel="stylesheet" href="../css/admindashboard.css">
+
     <link rel="icon" type="image/svg+xml" href="../images/horseheadlogo.svg">
-    <title>The Second Hand Company</title>
+    <title>Admin Dashboard</title>
 </head>
+
 <body>
     <div class="container">
-          <div class="header-topbar">
-                <div class="header-content__left-hamburger"> <!--mobile hamburgermenu--><i class="fa-solid fa-bars" id="hamburgerMenuIcon"></i></div>
-                <div class="header-content__nav-center"><p>We <i class="fa-solid fa-heart"></i>pre-owned</p></div>
-                <div class="header-content__nav__right">
-                    <i class="fas fa-search"></i>
-                    <i class="fas fa-user"></i>
-                    <div class="header-content__nav__shoppingbag">
-                    <i class="fa-solid fa-bag-shopping" id="shoppingBagIcon"><span class="header-content__nav__right__cart-count">0</span></i>
-                    </div>
+
+        <!-- Topbar -->
+        <div class="header-topbar">
+            <div class="header-content__left-hamburger">
+                <!-- Mobile hamburger menu -->
+                <i class="fa-solid fa-bars" id="hamburgerMenuIcon"></i>
+            </div>
+
+            <div class="header-content__nav-center">
+                <p>We <i class="fa-solid fa-heart"></i>pre-owned</p>
+            </div>
+
+            <div class="header-content__nav__right">
+                <i class="fas fa-search"></i>
+                <i class="fas fa-user"></i>
+                <div class="header-content__nav__shoppingbag">
+                    <i class="fa-solid fa-bag-shopping" id="shoppingBagIcon">
+                        <span class="header-content__nav__right__cart-count">0</span>
+                    </i>
                 </div>
             </div>
+        </div>
+
+        <!-- Header -->
         <header>
-          
+
             <!-- Mobile Header -->
             <div class="header-content-mobile">
                 <div class="header-content__logo__mobile">
                     <img src="../images/horseheadlogo.svg" alt="Logo" class="logo--mobile">
                 </div>
                 <span class="header-content-mobile__text">The Second Hand Company</span>
-            </div>  
+            </div>
+
             <!-- Desktop Header -->
             <div class="header-content">
                 <div class="header-content__left">
-                        <div class="header-content__left__top">The</div>
-                        <div class="header-content__left__bottom">Second Hand</div>
+                    <div class="header-content__left__top">The</div>
+                    <div class="header-content__left__bottom">Second Hand</div>
                 </div>
+
                 <div class="header-content__center">
-                <div class="header-content__center__logo">
-                    <a href="../index.html"><img src="../images/horseheadlogo.svg" alt="Logo" class="logo"></a>
-                </div>  
-                <div class="header-content__center__text">2025</div>
+                    <div class="header-content__center__logo">
+                        <a href="../index.html">
+                            <img src="../images/horseheadlogo.svg" alt="Logo" class="logo">
+                        </a>
+                    </div>
+                    <div class="header-content__center__text">2025</div>
                 </div>
+
                 <div class="header-content__right">Company</div>
-              
-            </div> 
+            </div>
         </header>
 
-      <nav class="breadcrumb" id="breadcrumb"></nav>
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" id="breadcrumb"></nav>
 
-
-        <!--hamburger menu -->
+        <!-- Hamburger Menu -->
         <div class="hamburger-menu" id="hamburgerMenu">
             <button class="close-btn" id="closeHamburgerMenu">&times;</button>
+
             <nav>
                 <ul class="hamburger-menu__links">
                     <li><a href="../index.html" data-category="home">Home</a></li>
@@ -75,87 +99,107 @@
                     <li><a href="../index.html?category=health and beauty">Health & beauty</a></li>
                     <li><a href="aboutus.html">About us</a></li>
                     <li><a href="contactus.html">Contact</a></li>
-                    <li><a href="privacypolicy.html">Privacy Policy</a></li>
-                    <li><a href="tos.html">Terms of Service</a></li>
-                    <li><a href="wcpreowned.html">Why choose pre-owned?</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Why choose pre-owned?</a></li>
                     <li><a href="../pages/newmemlogin.html">Become a member</a></li>
                     <li><a href="#" id="loginModalTrigger">Member Login</a></li>
                 </ul>
+
                 <div class="hamburger-menu__logo">
                     <img src="../images/horseheadlogo.svg" alt="Logo" class="logo">
                 </div>
-                <a href="/pages/admindashboard.html"><h5 class="hamburger-menu__h5">Admin login</h5></a>
+
+                <a href="/pages/admindashboard.html">
+                    <h5 class="hamburger-menu__h5">Admin login</h5>
+                </a>
             </nav>
         </div>
-        
-        <!-- Hamburger overlay for dark background -->
-        <div class="hamburger-overlay" id="hamburgerOverlay"></div>
-    
 
-        <!--Shopping cart sidebar-->
-            <div class="shopping_cart" id="shoppingCart">
-                <div class="cart-header">
-                    <h2>Your Shopping Bag</h2>
-                    <button class="close-btn" id="closeShoppingCartBtn">&times;</button>
-                </div>
-                <hr class="shoppingbag-hr">
-                <div class="cart-items" id="shoppingCartItems">
-                    <!-- Cart items will be added here by JavaScript -->
-                </div>
-                <div class="cart-footer">
-                    <div class="cart-numbers">
+        <!-- Hamburger Overlay -->
+        <div class="hamburger-overlay" id="hamburgerOverlay"></div>
+
+        <!-- Shopping Cart Sidebar -->
+        <div class="shopping_cart" id="shoppingCart">
+            <div class="cart-header">
+                <h2>Your Shopping Bag</h2>
+                <button class="close-btn" id="closeShoppingCartBtn">&times;</button>
+            </div>
+
+            <hr class="shoppingbag-hr">
+
+            <div class="cart-items" id="shoppingCartItems"></div>
+
+            <div class="cart-footer">
+                <div class="cart-numbers">
                     <div class="shipping">
                         <p>Shipping: Free</p>
                     </div>
                     <div class="cart-total">
                         <strong>Total: $<span id="shoppingCartTotal">0.00</span></strong>
                     </div>
-                    </div>
-                    <button onClick="checkout()" class="checkout-btn main-btn" id="checkoutButton">Checkout</button>
                 </div>
-             </div>
 
+                <button onClick="checkout()" class="checkout-btn main-btn" id="checkoutButton">
+                    Checkout
+                </button>
+            </div>
+        </div>
 
-        <!-- Admin Dashboard Grid Section -->
+        <!-- Admin Dashboard -->
         <section class="admin-dashboard">
             <div class="admin-layout">
-                <!-- Left Sidebar Menu -->
+
+                <!-- Sidebar -->
                 <aside class="admin-sidebar">
                     <div class="admin-sidebar__header">
                         <h3>Admin Panel</h3>
                     </div>
+
                     <nav class="admin-menu">
                         <ul>
-                            <li><a href="#" class="admin-menu__item active" data-section="products">
-                                <i class="fas fa-box"></i> Products
-                            </a></li>
-                            <li><a href="#" class="admin-menu__item" data-section="orders">
-                                <i class="fas fa-shopping-cart"></i> Orders
-                            </a></li>
-                            <li><a href="#" class="admin-menu__item" data-section="users">
-                                <i class="fas fa-users"></i> Users
-                            </a></li>
-                            <li><a href="#" class="admin-menu__item" data-section="analytics">
-                                <i class="fas fa-chart-bar"></i> Analytics
-                            </a></li>
-                            <li><a href="#" class="admin-menu__item" data-section="settings">
-                                <i class="fas fa-cog"></i> Settings
-                            </a></li>
+                            <li>
+                                <a href="#" class="admin-menu__item active" data-section="products">
+                                    <i class="fas fa-box"></i> Products
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="admin-menu__item" data-section="orders">
+                                    <i class="fas fa-shopping-cart"></i> Orders
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="admin-menu__item" data-section="users">
+                                    <i class="fas fa-users"></i> Users
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="admin-menu__item" data-section="analytics">
+                                    <i class="fas fa-chart-bar"></i> Analytics
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="admin-menu__item" data-section="settings">
+                                    <i class="fas fa-cog"></i> Settings
+                                </a>
+                            </li>
                         </ul>
                     </nav>
                 </aside>
-                
-                <!-- Main Content Area -->
+
+                <!-- Main Admin Content -->
                 <main class="admin-main">
+
                     <div class="admin-header">
                         <h1>Product Management</h1>
                         <button class="main-btn add-product-btn">
                             <i class="fas fa-plus"></i> Add New Product
                         </button>
                     </div>
-                    
-                    <!-- Product Grid with 7 columns -->
+
+                    <!-- Product Grid -->
                     <div class="admin-product-grid">
+
                         <!-- Grid Header -->
                         <div class="grid-header">
                             <div class="grid-header__item">Image</div>
@@ -166,110 +210,61 @@
                             <div class="grid-header__item">Status</div>
                             <div class="grid-header__item">Actions</div>
                         </div>
-                        
-                        <!-- Grid Body - Products will be populated here -->
+
+                        <!-- Product Rows -->
                         <div class="grid-body" id="adminProductGrid">
-                            <!-- Products will be dynamically inserted here -->
-                            <!-- Example row structure: -->
+
+                            <!-- Example Row Structure -->
                             <div class="grid-row">
                                 <div class="grid-cell"></div>
                                 <div class="grid-cell">Example Product</div>
                                 <div class="grid-cell">Fashion</div>
                                 <div class="grid-cell">$99.99</div>
                                 <div class="grid-cell">15</div>
-                                <div class="grid-cell"><span class="status-badge active">Active</span></div>
                                 <div class="grid-cell">
-                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                                    <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                    <span class="status-badge active">Active</span>
+                                </div>
+                                <div class="grid-cell">
+                                    <button class="action-btn edit-btn">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn delete-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </main>
             </div>
         </section>
-        <!-- Pagination Section -->
-        <div class="pagination" id="paginationContainer">
-        </div>
 
-        <!-- member login modal -->
-        <!-- Modal will be dynamically created by JavaScript -->
+        <!-- Pagination -->
+        <div class="pagination" id="paginationContainer"></div>
 
-        <!-- Footer Section -->
-        <footer>
-            <div class="footer-content__top">
-                <div class="footer-content__left">
-                    <h4>About Us</h4>
-                    <p>The Second Hand Company is dedicated to promoting sustainable shopping by offering a wide range of high-quality second-hand products. Our mission is to reduce waste and encourage eco-friendly consumption.</p>
-                </div>
-                <span class="vr"></span>
-                <div class="footer-content__centera">
-                    <h4>Customer Service</h4>
-                       <ul>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Shipping Policy</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Why choose pre-owned?</a></li>
-                        
-                    </ul>
-                </div>
-                <span class="vr"></span>
-                <div class="footer-content__centerb">  <h4>Shop</h4>
-                       <ul>
-                        <li><a href="#" data-category="fashion">Fashion</a></li>
-                        <li><a href="#" data-category="electronics">Electronics</a></li>
-                        <li><a href="#" data-category="health and beauty">Health & Beauty</a></li>
-                    </ul></div>
-                    <span class="vr"></span>
-                <div class="footer-content__right">
-                    <span class="footer-content__right__title"><h4>Connect</h4></span>
-                    <div class="footer-content__right__icons">
-                        <i class="fab fa-facebook-f"></i>
-                        <i class="fa-brands fa-tiktok"></i>
-                        <i class="fab fa-instagram"></i>
-                    </div>
-                        <label>Join our Newsletter</label>
-                        <input type="email" name="email" placeholder="Enter your email" autocomplete="on">
-                        <button class="main-btn" type="submit">Subscribe</button>
-                </div>
-            </div>
-            <div class="footer-content__bottom">
-                <div class="footer-content__bottom__top">
-                    <div class="footer-content__bottom__top__strawberry">
-                    <img src="../images/Strawberrypaylogo.svg" alt="Strawberry Pay Logo" class="footer-logo">
-                    </div>
-                    <div class="footer-content__bottom__top__mestercard">
-                    <img src="../images/Mestercardlogo.svg" alt="Mestercard Logo" class="footer-logo">
-                    </div>
-                    <div class="footer-content__bottom__top__visa">
-                    <img src="../images/Vusacardlogo.svg" alt="Vusa Logo" class="footer-logo">
-                    </div>
-                    <div class="footer-content__bottom__top__eco">
-                    <img src="../images/ecofriendlylogo.svg" alt="Eco Logo" class="footer-logo">
-                    </div>
-                </div>
-                <div class="footer-content__bottom__bottom">
-                    <p>&copy; 2025 The Second Hand Company. All rights reserved.</p>
-                </div>
-            
-        </footer>
-        
         <!-- Add Product Modal -->
         <div class="modal-overlay" id="addProductModal">
             <div class="modal-content admin-modal">
+
                 <div class="modal-header">
                     <h3>Add New Product</h3>
                     <button class="modal-close" id="closeAddProductModal">&times;</button>
                 </div>
+
                 <div class="modal-body">
+
                     <form id="addProductForm" class="admin-form">
+
                         <!-- Image Upload Grid -->
                         <div class="image-upload-section">
                             <h4>Product Images</h4>
+
                             <div class="image-upload-grid">
+
+                                <!-- 6 image upload boxes -->
+                                <!-- Repeated structure preserved -->
+
                                 <div class="image-upload-box" data-index="0">
                                     <input type="file" class="image-input" accept="image/*" id="image0">
                                     <div class="upload-placeholder">
@@ -281,6 +276,7 @@
                                         <i class="fas fa-times"></i>
                                     </button>
                                 </div>
+
                                 <div class="image-upload-box" data-index="1">
                                     <input type="file" class="image-input" accept="image/*" id="image1">
                                     <div class="upload-placeholder">
@@ -292,6 +288,7 @@
                                         <i class="fas fa-times"></i>
                                     </button>
                                 </div>
+
                                 <div class="image-upload-box" data-index="2">
                                     <input type="file" class="image-input" accept="image/*" id="image2">
                                     <div class="upload-placeholder">
@@ -303,6 +300,7 @@
                                         <i class="fas fa-times"></i>
                                     </button>
                                 </div>
+
                                 <div class="image-upload-box" data-index="3">
                                     <input type="file" class="image-input" accept="image/*" id="image3">
                                     <div class="upload-placeholder">
@@ -314,6 +312,7 @@
                                         <i class="fas fa-times"></i>
                                     </button>
                                 </div>
+
                                 <div class="image-upload-box" data-index="4">
                                     <input type="file" class="image-input" accept="image/*" id="image4">
                                     <div class="upload-placeholder">
@@ -325,6 +324,7 @@
                                         <i class="fas fa-times"></i>
                                     </button>
                                 </div>
+
                                 <div class="image-upload-box" data-index="5">
                                     <input type="file" class="image-input" accept="image/*" id="image5">
                                     <div class="upload-placeholder">
@@ -336,23 +336,26 @@
                                         <i class="fas fa-times"></i>
                                     </button>
                                 </div>
+
                             </div>
                         </div>
-                        
-                        <!-- Two Column Form Grid -->
+
+                        <!-- Form Grid -->
                         <div class="form-grid">
-                            <!-- Left Column -->
+
+                            <!-- LEFT COLUMN -->
                             <div class="form-column">
+
                                 <div class="form-group">
                                     <label for="productName">Product Name *</label>
                                     <input type="text" id="productName" name="title" required>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="productId">Product ID *</label>
                                     <input type="text" id="productId" name="productId" required>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="productCategory">Product Category *</label>
                                     <select id="productCategory" name="category" required>
@@ -360,196 +363,213 @@
                                         <option value="fashion">Fashion</option>
                                         <option value="electronics">Electronics</option>
                                         <option value="health-beauty">Health & Beauty</option>
-                                    
                                     </select>
                                 </div>
-                                
+
                                 <div class="price-group">
+
                                     <div class="form-group">
                                         <label for="productPrice">Product Price *</label>
                                         <input type="number" id="productPrice" name="price" step="0.01" min="0" required>
                                     </div>
+
                                     <div class="form-group discount-group">
                                         <label for="discountPercent">Discount %</label>
                                         <input type="number" id="discountPercent" name="discountPercent" min="0" max="100" step="1">
                                     </div>
+
                                     <div class="form-group">
                                         <label for="discountedPrice">Discounted Price</label>
                                         <input type="number" id="discountedPrice" name="discountedPrice" step="0.01" min="0" readonly>
                                     </div>
+
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="productBrand">Product Brand</label>
                                     <input type="text" id="productBrand" name="brand">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="purchasedFrom">Purchased From</label>
                                     <input type="text" id="purchasedFrom" name="purchasedFrom" placeholder="Store/Seller name">
                                 </div>
+
                             </div>
-                            
-                            <!-- Right Column -->
+
+                            <!-- RIGHT COLUMN -->
                             <div class="form-column">
+
                                 <div class="form-group">
                                     <label for="inStock">In Stock *</label>
                                     <input type="number" id="inStock" name="stock" min="0" required>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="productSize">Size</label>
                                     <input type="text" id="productSize" name="size" placeholder="e.g., XL, 42, One Size">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="purchasedFor">Purchased For</label>
                                     <input type="number" id="purchasedFor" name="purchasedFor" step="0.01" min="0" placeholder="Original purchase price">
                                 </div>
-                                
+
                                 <div class="form-group full-width">
                                     <label for="productDescription">Product Description *</label>
-                                    <textarea id="productDescription" name="description" rows="8" required placeholder="Detailed product description..."></textarea>
+                                    <textarea id="productDescription" name="description" rows="8" required></textarea>
                                 </div>
+
                             </div>
                         </div>
-                        
+
                         <div class="modal-actions">
                             <button type="button" class="btn-secondary" id="cancelAddProduct">Cancel</button>
                             <button type="submit" class="main-btn">Add Product</button>
                         </div>
+
                     </form>
                 </div>
             </div>
         </div>
 
-        <!-- add product modal mobile-->
-     <div class="modal-overlay" id="addProductModalMobile">
-    <div class="modal-content admin-modal">
-        <div class="modal-header">
-            <h3>Add New Product</h3>
-            <button class="modal-close" id="closeAddProductModalMobile">&times;</button>
-        </div>
+        <!-- Mobile Add Product Modal -->
+        <div class="modal-overlay" id="addProductModalMobile">
+            <div class="modal-content admin-modal">
 
-        <div class="modal-body">
-
-            <form id="addProductFormMobile" class="admin-form">
-
-                <!-- Image Upload Grid -->
-                <div class="image-upload-section">
-                    <h4>Product Images</h4>
-                    <div class="image-upload-grid">
-                        <!-- 4 image upload boxes -->
-                        <div class="image-upload-box" data-index="0">
-                            <input type="file" class="image-input" accept="image/*" id="image0Mobile">
-                            <div class="upload-placeholder">
-                                <i class="fas fa-plus"></i><span>Add Image</span>
-                            </div>
-                            <img class="preview-image" style="display: none;">
-                            <button type="button" class="remove-image" style="display: none;">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-
-                        <div class="image-upload-box" data-index="1">
-                            <input type="file" class="image-input" accept="image/*" id="image1Mobile">
-                            <div class="upload-placeholder">
-                                <i class="fas fa-plus"></i><span>Add Image</span>
-                            </div>
-                            <img class="preview-image" style="display: none;">
-                            <button type="button" class="remove-image" style="display: none;">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-
-                        <div class="image-upload-box" data-index="2">
-                            <input type="file" class="image-input" accept="image/*" id="image2Mobile">
-                            <div class="upload-placeholder">
-                                <i class="fas fa-plus"></i><span>Add Image</span>
-                            </div>
-                            <img class="preview-image" style="display: none;">
-                            <button type="button" class="remove-image" style="display: none;">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-
-                        <div class="image-upload-box" data-index="3">
-                            <input type="file" class="image-input" accept="image/*" id="image3Mobile">
-                            <div class="upload-placeholder">
-                                <i class="fas fa-plus"></i><span>Add Image</span>
-                            </div>
-                            <img class="preview-image" style="display: none;">
-                            <button type="button" class="remove-image" style="display: none;">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
+                <div class="modal-header">
+                    <h3>Add New Product</h3>
+                    <button class="modal-close" id="closeAddProductModalMobile">&times;</button>
                 </div>
 
-                <!-- Form Fields -->
-                <label for="productNameMobile">Product Name *</label>
-                <input type="text" id="productNameMobile" name="title" required>
+                <div class="modal-body">
 
-                <label for="productIdMobile">Product ID *</label>
-                <input type="text" id="productIdMobile" name="productId" required>
+                    <form id="addProductFormMobile" class="admin-form">
 
-                <div class="custom-select-wrapper">
-  <label for="productCategoryCustom">Product Category *</label>
-  <div class="custom-select" tabindex="0" id="productCategoryCustom">
-    <span class="custom-select__selected">Select Category</span>
-    <ul class="custom-select__options" hidden>
-      <li data-value="fashion">Fashion</li>
-      <li data-value="electronics">Electronics</li>
-      <li data-value="health-beauty">Health & Beauty</li>
-    </ul>
-  </div>
-  <input type="hidden" name="category" id="productCategoryMobile" required>
-</div>
+                        <!-- Mobile Image Upload Grid -->
+                        <div class="image-upload-section">
+                            <h4>Product Images</h4>
 
-                <label for="productPriceMobile">Product Price *</label>
-                <input type="number" id="productPriceMobile" name="price" step="0.01" min="0" required>
+                            <div class="image-upload-grid">
 
-                <label for="discountPercentMobile">Discount %</label>
-                <input type="number" id="discountPercentMobile" name="discountPercent" min="0" max="100" step="1">
+                                <!-- 4 upload boxes -->
 
-                <label for="discountedPriceMobile">Discounted Price</label>
-                <input type="number" id="discountedPriceMobile" name="discountedPrice" step="0.01" min="0" readonly>
+                                <div class="image-upload-box" data-index="0">
+                                    <input type="file" class="image-input" accept="image/*" id="image0Mobile">
+                                    <div class="upload-placeholder">
+                                        <i class="fas fa-plus"></i>
+                                        <span>Add Image</span>
+                                    </div>
+                                    <img class="preview-image" style="display: none;">
+                                    <button type="button" class="remove-image" style="display: none;">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
 
-                <label for="productBrandMobile">Product Brand</label>
-                <input type="text" id="productBrandMobile" name="brand">
+                                <div class="image-upload-box" data-index="1">
+                                    <input type="file" class="image-input" accept="image/*" id="image1Mobile">
+                                    <div class="upload-placeholder">
+                                        <i class="fas fa-plus"></i>
+                                        <span>Add Image</span>
+                                    </div>
+                                    <img class="preview-image" style="display: none;">
+                                    <button type="button" class="remove-image" style="display: none;">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
 
-                <label for="purchasedFromMobile">Purchased From</label>
-                <input type="text" id="purchasedFromMobile" name="purchasedFrom" placeholder="Store/Seller name">
+                                <div class="image-upload-box" data-index="2">
+                                    <input type="file" class="image-input" accept="image/*" id="image2Mobile">
+                                    <div class="upload-placeholder">
+                                        <i class="fas fa-plus"></i>
+                                        <span>Add Image</span>
+                                    </div>
+                                    <img class="preview-image" style="display: none;">
+                                    <button type="button" class="remove-image" style="display: none;">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
 
-                <label for="inStockMobile">In Stock *</label>
-                <input type="number" id="inStockMobile" name="stock" min="0" required>
+                                <div class="image-upload-box" data-index="3">
+                                    <input type="file" class="image-input" accept="image/*" id="image3Mobile">
+                                    <div class="upload-placeholder">
+                                        <i class="fas fa-plus"></i>
+                                        <span>Add Image</span>
+                                    </div>
+                                    <img class="preview-image" style="display: none;">
+                                    <button type="button" class="remove-image" style="display: none;">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
 
-                <label for="productSizeMobile">Size</label>
-                <input type="text" id="productSizeMobile" name="size" placeholder="e.g., XL, 42, One Size">
+                        <!-- Mobile Form Fields -->
+                        <label for="productNameMobile">Product Name *</label>
+                        <input type="text" id="productNameMobile" name="title" required>
 
-                <label for="purchasedForMobile">Purchased For</label>
-                <input type="number" id="purchasedForMobile" name="purchasedFor" step="0.01" min="0" placeholder="Original purchase price">
+                        <label for="productIdMobile">Product ID *</label>
+                        <input type="text" id="productIdMobile" name="productId" required>
 
-                <label for="productDescriptionMobile">Product Description *</label>
-                <textarea id="productDescriptionMobile" name="description" rows="8" required></textarea>
+                        <!-- Custom Select -->
+                        <div class="custom-select-wrapper">
+                            <label for="productCategoryCustom">Product Category *</label>
 
-                <div class="modal-actions">
-                    <button type="button" class="btn-secondary" id="cancelAddProductMobile">Cancel</button>
-                    <button type="submit" class="main-btn">Add Product</button>
+                            <div class="custom-select" tabindex="0" id="productCategoryCustom">
+                                <span class="custom-select__selected">Select Category</span>
+                                <ul class="custom-select__options" hidden>
+                                    <li data-value="fashion">Fashion</li>
+                                    <li data-value="electronics">Electronics</li>
+                                    <li data-value="health-beauty">Health & Beauty</li>
+                                </ul>
+                            </div>
+
+                            <input type="hidden" name="category" id="productCategoryMobile" required>
+                        </div>
+
+                        <label for="productPriceMobile">Product Price *</label>
+                        <input type="number" id="productPriceMobile" name="price" step="0.01" min="0" required>
+
+                        <label for="discountPercentMobile">Discount %</label>
+                        <input type="number" id="discountPercentMobile" name="discountPercent" min="0" max="100" step="1">
+
+                        <label for="discountedPriceMobile">Discounted Price</label>
+                        <input type="number" id="discountedPriceMobile" name="discountedPrice" step="0.01" min="0" readonly>
+
+                        <label for="productBrandMobile">Product Brand</label>
+                        <input type="text" id="productBrandMobile" name="brand">
+
+                        <label for="purchasedFromMobile">Purchased From</label>
+                        <input type="text" id="purchasedFromMobile" name="purchasedFrom" placeholder="Store/Seller name">
+
+                        <label for="inStockMobile">In Stock *</label>
+                        <input type="number" id="inStockMobile" name="stock" min="0" required>
+
+                        <label for="productSizeMobile">Size</label>
+                        <input type="text" id="productSizeMobile" name="size" placeholder="e.g., XL, 42, One Size">
+
+                        <label for="purchasedForMobile">Purchased For</label>
+                        <input type="number" id="purchasedForMobile" name="purchasedFor" step="0.01" min="0" placeholder="Original purchase price">
+
+                        <label for="productDescriptionMobile">Product Description *</label>
+                        <textarea id="productDescriptionMobile" name="description" rows="8" required></textarea>
+
+                        <div class="modal-actions">
+                            <button type="button" class="btn-secondary" id="cancelAddProductMobile">Cancel</button>
+                            <button type="submit" class="main-btn">Add Product</button>
+                        </div>
+
+                    </form>
                 </div>
-
-            </form>
+            </div>
         </div>
-    </div>
-</div>
 
-     
-
-        
+        <!-- Scripts -->
         <script type="module" src="../JS/admindash.js"></script>
         <script type="module" src="../JS/components/loginusermodal.js"></script>
         <script type="module" src="../JS/components/stockmanager.js"></script>
         <script type="module" src="../JS/global.js"></script>
+
     </div>
 </body>
 </html>
