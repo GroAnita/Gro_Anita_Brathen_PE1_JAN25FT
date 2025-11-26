@@ -79,6 +79,19 @@ export function renderBreadcrumb() {
         });
     }
 
+     if (path.includes("contactus.html")) {
+        crumbs.push({
+            label: "Contact Us",
+            href: "#"
+        });
+    }
+      if (path.includes("aboutus.html")) {
+        crumbs.push({
+            label: "About Us",
+            href: "#"
+        });
+    }
+
     container.innerHTML = crumbs
         .map((c, i) => {
             if (i === crumbs.length - 1) {
