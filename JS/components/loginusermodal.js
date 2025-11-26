@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // Set up hamburger menu login triggers
-    const loginTriggers = document.querySelectorAll('#loginModalTrigger');
+    const loginTriggers = document.querySelectorAll('#loginModalTrigger, #loginModalTriggerHeader');
     loginTriggers.forEach(trigger => {
         if (localStorage.getItem('isLoggedIn') !== 'true') {
             trigger.addEventListener('click', (e) => {

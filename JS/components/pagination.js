@@ -40,6 +40,14 @@ export function setupPagination(totalProducts, onPageChange) {
             document.querySelectorAll('.pagination-button').forEach(btn => btn.classList.remove('active'));
             pageButton.classList.add('active');
             onPageChange(currentPage);
+
+            const productContainer = document.querySelector('#products-container');
+    if (productContainer) {
+        productContainer.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
         });
 
         paginationContainer.appendChild(pageButton);

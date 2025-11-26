@@ -6,7 +6,7 @@
  *  - Supports navigation dots + arrows
  *  - Provides global Add-to-Cart handler that survives cloning
  */
-import { formatProductPrice, hasDiscount, createSalesBanner } from '../utils.js';
+import { formatProductPrice, hasDiscount, createSalesBanner, shareButtonSetup } from '../utils.js';
 import { addToCart } from './cart.js';
 
 /**
@@ -28,6 +28,17 @@ document.addEventListener("click", (e) => {
 
     addToCart(slide._product);
 });
+
+document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".slider-btn.main-btn"); 
+    if (!btn) return;
+
+    const productId = btn.getAttribute("data-product-id");
+    if (!productId) return;
+
+    window.location.href = `pages/productpage.html?id=${productId}`;
+});
+
 
 /**
  * Fetches a random subset of products from the API.
@@ -81,9 +92,12 @@ async function createSliderWithAPIProducts() {
                 <h2>${product.title}</h2>
                 <p>${product.description || 'Featured product'}</p>
                 ${formatProductPrice(product)}
-                <button class="add-to-cart-btn" data-product-id="${product.id}">
+                <div class="slider-buttons">
+                <button class="main-btn slider-btn" data-product-id="${product.id}">Go to product</button>
+                <button class="add-to-cart-btn slider-btn" data-product-id="${product.id}">
                     Add to Cart
                 </button>
+                </div>
             </div>
         `;
 
@@ -212,6 +226,7 @@ function addTouchControls() {
      */
     function dragStart(e) {
         if (e.target.closest('.add-to-cart-btn')) return;
+        if (e.target.closest('.main-btn')) return;
         if (e.target.tagName === 'IMG' && e.target.hasAttribute('data-product-id')) return;
 
         isDragging = true;
@@ -359,6 +374,8 @@ function debounce(fn, delay) {
         timer = setTimeout(fn, delay);
     };
 }
+
+
 
 /**
  * Initializes slider on DOMContentLoaded.
