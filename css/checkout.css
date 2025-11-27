@@ -405,12 +405,13 @@
     position: absolute;
     right: 15px;
     top: 15px;
-    font-size: 28px;
+    font-size: var(--font-size-largeplus);
     font-weight: bold;
     cursor: pointer;
     color: var(--font-color);
     opacity: 0.6;
     transition: opacity 0.3s;
+    font-family: "Inter", sans-serif;
 }
 
 .success-close:hover {
@@ -422,6 +423,7 @@
     font-size: 4rem;
     text-align: center;
     margin-bottom: 20px;
+    color: var(--edit-add-button-click-background-color)
 }
 
 /* Success Title */
@@ -437,6 +439,7 @@
 .purchase-details {
     text-align: center;
     color: var(--font-color);
+    font-family: "Inter", sans-serif;
 }
 
 /* Purchase Info Box */
@@ -468,9 +471,9 @@
     display: block;
     margin: 20px auto 0;
     padding: 12px 30px;
-    background-color: var(--important-color);
-    color: var(--background-color);
-    border: none;
+    background-color: var(--secondary-color);
+    color: var(--font-color);
+    border: 1px solid var(--font-color);
     border-radius: 8px;
     cursor: pointer;
     font-size: var(--font-size-small);

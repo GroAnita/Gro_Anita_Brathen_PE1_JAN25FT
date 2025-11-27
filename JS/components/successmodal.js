@@ -5,7 +5,7 @@ const successModalHTML = `
     <div id="purchaseSuccessModal" class="alert-modal">
         <div class="alert-modal-content success-modal">
             <span class="success-close">&times;</span>
-            <div class="success-icon">✅</div>
+            <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
             <h3>Purchase Confirmed!</h3>
             <div class="purchase-details">
                 <p><strong>Thank you for your purchase!</strong></p>
