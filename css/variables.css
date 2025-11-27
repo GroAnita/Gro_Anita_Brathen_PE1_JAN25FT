@@ -30,11 +30,11 @@
 
     /*special Button colors*/
     /*delete button*/
-    --delete-button-background-color: #FF0000;
+    --delete-button-background-color: #CC5027;
     --delete-button-text-color: #FFFFFF;
     --delete-button-border-color: #707070;
     --delete-button-hover-background-color: #F54505;
-    --delete-button-click-background-color: #E80000;
+    --delete-button-click-background-color: #CC5027;
 
     /*edit and add button*/
     --edit-add-button-background-color: #04C721;
@@ -48,7 +48,7 @@
     --input-text-color: #707070;
     --input-border-color: #707070;
     --input-focus-border-color: #e802e8;
-    --input-error-border-color: #FF0000;
+    --input-error-border-color: #CC5027;
     --input-placeholder-color: #A9A9A9;
 
     /*margin and padding sizes*/

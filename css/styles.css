@@ -523,7 +523,7 @@ body {
 
 .breadcrumb span {
     margin: 0 5px;
-    color: #999;
+    color: var(edit-add-button-border-color);
 }
 
 /* media queries*/
