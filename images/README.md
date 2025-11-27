@@ -45,21 +45,25 @@ To get a local copy up and running, follow these steps:
 ### Installation
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/GroAnita/Gro_Anita_Brathen_PE1_JAN25FT.git
    ```
 
 2. **Navigate into your project folder:**
+
    ```bash
    cd Gro_Anita_Brathen_PE1_JAN25FT
    ```
 
 3. **Open the project in VS Code (optional):**
+
    ```bash
    code .
    ```
 
 4. **Run using Live Server:**
+
    - Right-click `index.html` and choose **"Open with Live Server"**  
      _or_  
    - Run the Live Server extension from the status bar in VS Code.
