@@ -87,6 +87,41 @@
     padding: 15px;
 }
 
+.checkout-shipping__options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+    justify-content: center;
+    align-items: center;
+}
+.shipping-label {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    font-family: "Inter", sans-serif;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.shipping-label .label-title {
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: "Inter", sans-serif;
+    width: 200px;
+    margin-top: 5px;
+}
+
+.shipping-label .label-description {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    font-family: "Inter", sans-serif;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+
 /* Payment Method Info Blocks */
 .strawberry-info,
 .mestercard-info,
@@ -314,9 +349,10 @@
 .shipping-option {
     display: flex;
     flex-direction: row;
-    width: 300px;
+    width: 350px;
     font-size: var(--font-size-xxsmall);
     gap: 12px;
+    border: 2px solid var(--input-border-color);
 }
 
 .shipping-option input[type="radio"] {

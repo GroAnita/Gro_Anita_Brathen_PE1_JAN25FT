@@ -171,18 +171,25 @@
                 <section class="checkout-shipping__options" id="shippingSection">
                     <div class="shipping-option">
                         <input type="radio" id="standardShipping" name="shipping" value="standard" checked>
-                        <label for="standardShipping">
-                            <h4>Standard Shipping</h4>
-                            <p>Delivery in 5–7 business days. Free of charge.</p>
-                        </label>
+                        <label for="standardShipping" class="shipping-label">
+                        <span class="label-title">Standard Shipping</span>
+                        <span class="label-description">Delivery in 5–7 business days. Free of charge.</span>
+                    </label>
+
                     </div>
 
                     <div class="shipping-option">
-                        <input type="radio" id="expressShipping" name="shipping" value="express">
-                        <label for="expressShipping">
-                            <h4>Express Shipping</h4>
-                            <p>Delivery in 2–3 business days. Additional $10.00 charge.<br>Free for purchases over $500.</p>
+                       <label class="shipping-label">
+                            <input type="radio" id="expressShipping" name="shipping" value="express">
+
+                            <span class="label-title">Express Shipping</span>
+
+                            <span class="label-description">
+                                Delivery in 2–3 business days. Additional $10.00 charge.<br>
+                                Free for purchases over $500.
+                            </span>
                         </label>
+
                     </div>
 
                     <button type="submit" class="main-btn" id="proceedToPaymentBtn">
@@ -226,7 +233,7 @@
                                 <hr class="checkout-product__summary-hr">
 
                                 <div class="total-amount">
-                                    <strong>Total: $<span id="totalAmount">0.00</span></strong>
+                                    <strong>Total: $<span class="totalAmount">0.00</span></strong>
                                 </div>
 
                                 <button type="submit" class="main-btn pay-now-btn">Pay Now</button>
@@ -266,7 +273,7 @@
                                     <hr class="checkout-product__summary-hr">
 
                                     <div class="total-amount">
-                                        <strong>Total: $<span id="totalAmount">0.00</span></strong>
+                                        <strong>Total: $<span class="totalAmount">0.00</span></strong>
                                     </div>
 
                                     <button type="submit" class="main-btn pay-now-btn">Pay Now</button>
@@ -308,7 +315,7 @@
                                 <hr class="checkout-product__summary-hr">
 
                                 <div class="total-amount">
-                                    <strong>Total: $<span id="totalAmount">0.00</span></strong>
+                                    <strong>Total: $<span class="totalAmount">0.00</span></strong>
                                 </div>
 
                                 <button type="submit" class="main-btn pay-now-btn">Pay Now</button>

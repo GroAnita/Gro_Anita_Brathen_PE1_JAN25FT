@@ -204,7 +204,7 @@ function addCheckoutEventListeners() {
 function updateCheckoutTotal() {
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-    document.querySelectorAll('#totalAmount').forEach(el => el.textContent = total.toFixed(2));
+    document.querySelectorAll('.totalAmount').forEach(el => el.textContent = total.toFixed(2));
     document.querySelectorAll('.subtotal-amount').forEach(el => el.textContent = `$${total.toFixed(2)}`);
 
     const checkoutTotal = document.getElementById('checkoutTotal');
