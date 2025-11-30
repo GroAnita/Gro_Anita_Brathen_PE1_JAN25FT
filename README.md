@@ -22,6 +22,13 @@ A web application for a second hand store.
 This web application is my first-year project exam at Noroff.  
 It is a simple, modern site for a second hand store—allowing users to browse, search, and interact with listings.
 
+**Image Credits:**
+
+There are 2 images in this project (used on `wcpreowned.html`) that were not provided by Noroff. Both are free images from Pixabay:
+
+- [Disposal Dump Garbage Junk](https://pixabay.com/photos/disposal-dump-garbage-junk-1846033/)
+- [Hands Macro Plant Soil Grow Life](https://pixabay.com/photos/hands-macro-plant-soil-grow-life-1838658/)
+
 ---
 
 ## Built With
