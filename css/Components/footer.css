@@ -42,6 +42,22 @@
     padding: 10px;
 }
 
+.footer-content__right__icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.footer-content__right__icons i{
+    font-size: var(--font-size-large);
+    color: var( --font-color);
+    margin: 8px;
+}
+
+.footer-content__right__icons i:hover {
+    color: var(--button-click-background-color);
+    scale: 1.2;
+}
 /*input field styles*/
 
 .footer-content__right form {
@@ -159,8 +175,8 @@ footer li a{
 
 footer li a:hover{
     text-decoration: underline;
-    color: var(--button-hover-background-color);
-    transform: scale(1.10);
+    color: var(--edit-add-button-click-background-color);
+    transform: scale(1.05);
 }
 
 footer li{

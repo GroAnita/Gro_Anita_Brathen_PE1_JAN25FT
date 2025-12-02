@@ -140,11 +140,11 @@ function updateLoginState(isLoggedIn, userName = '') {
         // Update header icon - change to green and different icon
         if (headerUserIcon) {
             headerUserIcon.className = 'fas fa-user-check';
-            headerUserIcon.style.color = '#4CAF50'; // Green color
+            headerUserIcon.style.color = '#04C721'; 
             headerUserIcon.style.cursor = 'pointer';
             
-            // Add click handler for logout
-            headerUserIcon.replaceWith(headerUserIcon.cloneNode(true)); // Remove old listeners
+            // Adds click handler for logout
+            headerUserIcon.replaceWith(headerUserIcon.cloneNode(true)); // Remove the old listeners
             const newIcon = document.querySelector('.header-content__nav__right .fas.fa-user-check');
             if (newIcon) {
                 newIcon.addEventListener('click', showLogoutOptions);
@@ -153,7 +153,7 @@ function updateLoginState(isLoggedIn, userName = '') {
         
         // Update hamburger menu text
         loginTriggers.forEach(trigger => {
-            trigger.innerHTML = `<i class="fa-solid fa-user-check" style="color: #4CAF50;"></i> Welcome, ${userName}!`;
+            trigger.innerHTML = `<i class="fa-solid fa-user-check" style="color: #04C721;"></i> Welcome, ${userName}!`;
             trigger.removeEventListener('click', showLoginModal);
             trigger.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -210,16 +210,16 @@ function logout() {
     localStorage.removeItem('userName');
     localStorage.removeItem('authToken');
     localStorage.removeItem('userEmail');
-    localStorage.removeItem('userProfile'); // Clear profile data too
+    localStorage.removeItem('userProfile'); 
     
-    // Update UI to logged out state
+    // Update UI to be the logged out state
     updateLoginState(false);
     
     console.log('User logged out');
 }
 
 /**
- * Checks localStorage to determine if the user is logged in and restores UI state accordingly.
+ * Checks localStorage to determine if the user is logged in and restores UI state if so.
  */
 function checkLoginState() {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
@@ -235,7 +235,7 @@ function checkLoginState() {
 document.addEventListener('DOMContentLoaded', () => {
     checkLoginState();
     
-    // Set up initial login handlers if not logged in
+    // Sets up initial login handlers if not logged in
     const loginIcon = document.querySelector('.fas.fa-user');
     if (loginIcon && localStorage.getItem('isLoggedIn') !== 'true') {
         loginIcon.addEventListener('click', (e) => {
@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Set up hamburger menu login triggers
+    // Sets up hamburger menu login triggers
     const loginTriggers = document.querySelectorAll('#loginModalTrigger, #loginModalTriggerHeader');
     loginTriggers.forEach(trigger => {
         if (localStorage.getItem('isLoggedIn') !== 'true') {
