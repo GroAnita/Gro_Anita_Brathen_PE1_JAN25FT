@@ -10,6 +10,10 @@ html, body {
     box-sizing: inherit;
 }
 
+.header-content__nav__right__cart-count {
+    box-sizing: content-box;
+}
+
 .membership-content {
     max-width: 1400px;
     margin: 0 auto;
@@ -70,7 +74,7 @@ html, body {
 }
 
 .membership-content__whyjoing-ul li:before {
-  content: '✓';
+  content: '\2713';
   color: green;
   font: 1.5em sans-serif;
   margin-right: 8px;

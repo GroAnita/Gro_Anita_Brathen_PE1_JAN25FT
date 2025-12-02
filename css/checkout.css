@@ -98,6 +98,12 @@
     align-items: center;
     height: 700px;
 }
+
+.checkout-shipping__options i {
+    font-size: var(--font-size-xlarge);
+    color: var(--font-color);
+    margin-bottom: 20px;
+}
 .shipping-label {
     display: flex;
     flex-direction: row;

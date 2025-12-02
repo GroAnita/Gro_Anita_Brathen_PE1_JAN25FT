@@ -291,7 +291,7 @@
 }
 
 .productpage-otherinfo-infobox ul li:before {
-  content: '✓';
+  content: '\2713';
   color: green;
   font: 2em sans-serif;
 }
@@ -299,6 +299,7 @@
 
 
 @media (max-width: 768px) {
+   
     .productpage-box {
         flex-direction: column;
         align-items: center;
@@ -312,7 +313,7 @@
         height: auto;
     }
     .product-tabs {
-        width: 100%;
+        width: 90%;
     }
 
     .productpage-otherinfo-box {

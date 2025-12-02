@@ -113,9 +113,39 @@
 }
 
 @media (max-width: 480px) {
+    .hamburger-menu__links a {
+        font-size: var(--font-size-xxsmall);
+    }
+    .hamburger-menu__links i {
+        font-size: var(--font-size-xxsmall);
+    }
+    .hamburger-menu__logo img{
+        width: 100px;
+        height: auto;
+        margin-left: 20px;
+    }
+    .hamburger-menu__h5{
+        font-size: var(--font-size-xxsmall);
+    }
+}
+
+@media (max-width: 375px) {
     .hamburger-menu {
         width: 90%;
-        left: -110%;
-        z-index: 20000;
+        left: -120%;
+    }
+    .hamburger-menu__links a {
+        font-size: var(--font-size-xsmall);
+    }
+    .hamburger-menu__links i {
+        font-size: var(--font-size-xxsmall);
+    }
+    .hamburger-menu__logo img{
+        width: 100px;
+        height: auto;
+        margin-left: 20px;
+    }
+    .hamburger-menu__h5{
+        font-size: var(--font-size-xxsmall);
     }
 }

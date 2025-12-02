@@ -87,7 +87,8 @@ body {
 /*Filter navigation styles*/
 
 .filter-content__nav {
-    width: 1400px;
+    max-width: 1400px;
+    width: 100%;
 }
 
 .filter-content__nav__links {
@@ -121,7 +122,8 @@ body {
 .header-content__nav__right {
     display: flex;
     align-items: center;
-    width: 400px;
+    max-width: 400px;
+    width: 100%;
     justify-content: flex-end;
     gap: 0.75rem;
     font-size: 20px;
@@ -696,14 +698,17 @@ body {
     .products-grid {
         grid-template-columns: 1fr;
     }
+    .filter-content__nav {
+        width: 100%;
+    }
     .header-content__nav-center p{
          color: var(--tertiary-color);
          width: 100%;
          font-size: var(--font-size-xxxsmall);
 
     }
-    .header-content__nav__links {
-        font-size: var(--font-size-xxxsmall);
+    .filter-content__nav__links {
+        font-size: var(--font-size-xxxxsmall);
         flex-direction: row;
         gap: 10px;
         font-weight: bold;
@@ -716,18 +721,22 @@ body {
      .header-underline h1 {
         font-size: var(--font-size-xxsmall);
      }
-  
 }
 
 @media (max-width: 375px) {
+    .filter-content__nav {
+        max-width: 100%;
+        width: 100%;
+    }
 
-.container {
-        max-width: 375px;
+    .container {
+        max-width: 100%;
         margin: auto;
+      
     }
 
     .header-topbar {
-        width: 374px;
+        width: 100%;
     }
     .header-content__nav-center p{
          font-size: var(--font-size-xxxsmall);
@@ -735,13 +744,14 @@ body {
     }
 
     .product-card {
-        max-width: 370px;
+        max-width: 100%;
         margin: auto;
     }
 
-    .header-content__nav__links a{
+    .filter-content__nav__links {
          font-size: var(--font-size-xxxsmall);
          font-weight: bold;
+         width: 100%;
      }
 
      .header-content-mobile__text {
@@ -758,11 +768,11 @@ body {
      }
 
      .header-content {
-        max-width: 374px;
+        max-width: 100%;
      }
 
      .vr {
-        max-width: 374px;
+        max-width: 100%;
      }
 
      .header-content__nav__right i{
