@@ -16,11 +16,12 @@ import {
 ---------------------------- */
 
 document.addEventListener('DOMContentLoaded', () => {
-    initializeSuccessModal(); // modal setup
-    displayCheckoutItems();   // load items on page
-    autoFillShippingInfo();   // autofill user details
+    initializeSuccessModal(); 
+    displayCheckoutItems();  
+    autoFillShippingInfo();   
     setupAccordionListeners();
     setupPaymentButtons();
+    setupCheckoutNavigation();
 });
 
 /* ---------------------------
@@ -55,9 +56,7 @@ export function processOrder() {
     }, 2000);
 }
 
-/* ---------------------------
-   UTILITY HELPERS
----------------------------- */
+
 
 function getVal(id) {
     return document.getElementById(id)?.value || "";
@@ -245,4 +244,43 @@ function autoFillShippingInfo() {
         const field = document.getElementById(key);
         if (field && profile[key]) field.value = profile[key];
     });
+}
+
+function setupCheckoutNavigation() {
+    const proceedToShippingInfoBtn = document.getElementById('proceedToShippingInfoBtn');
+    const proceedToShippingBtn = document.getElementById('proceedToShippingBtn');
+    const proceedToPaymentBtn = document.getElementById('proceedToPaymentBtn');
+
+    if (proceedToShippingInfoBtn) {
+        proceedToShippingInfoBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const shippingInfoSection = document.getElementById('shippingInfoForm');
+            if (shippingInfoSection) {
+                shippingInfoSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                setTimeout(() => window.scrollBy({ top: -50, behavior: 'smooth' }), );
+            }
+        });
+    }
+
+    if (proceedToShippingBtn) {
+        proceedToShippingBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const shippingSection = document.getElementById('shippingInfo');
+            if (proceedToShippingBtn) {
+                proceedToShippingBtn.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                setTimeout(() => window.scrollBy({ top: -50, behavior: 'smooth' }), );
+            }
+        });
+    }
+
+    if (proceedToPaymentBtn) {
+        proceedToPaymentBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const paymentSection = document.getElementById('paymentInfo');
+            if (paymentSection) {
+                paymentSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                setTimeout(() => window.scrollBy({ top: -50, behavior: 'smooth' }), );
+            }
+        });
+    }
 }
