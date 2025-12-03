@@ -365,8 +365,8 @@ body {
 }
 
 .main-btn:hover {
-    background-color: var(--button-background-color);
-    color: var(--button-click-background-color)
+    background-color: var(--button-click-background-color);
+    color: var(--font-color);
 }
 
 .main-btn:active {
@@ -536,7 +536,7 @@ body {
     top: 10px;
     left: 10px;
     font-size: 24px;
-    color: var(--delete-button-click-background-color);
+    color: #ff0000;
     cursor: pointer;
     transition: color 0.3s ease;
     z-index: 10;

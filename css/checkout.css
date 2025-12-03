@@ -36,12 +36,14 @@
 .checkout-span {
     height: 30px;
     background-color: var(--font-color);
-    color: #F4B400;
+    color:var(--background-color);
     text-align: center;
     padding-top: 10px;
     margin: 20px 0;
     width: 100%;
     font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: var(--font-size-medium);
 }
 
 /* Accordion - Base */
@@ -58,8 +60,8 @@
     position: relative;
     align-items: center;
     padding: 15px;
-    height: 80px;
-    width: 350px;
+    height: 100px;
+    width: 600px;
 }
 
 .accordion-header::after {
@@ -87,6 +89,8 @@
 
 .accordion-content.active {
     padding: 15px;
+    max-height: 800px;
+    transition: max-height 0.5s ease;
 }
 
 .checkout-shipping__options {
@@ -149,14 +153,28 @@
 
 /* Payment Text */
 .accordion-content h5 {
-    margin-bottom: 5px;
-    font-size: var(--font-size-xxsmall);
+    margin: 15px;
+    font-size: var(--font-size-largeplus);
+    text-align: center;
+}
+.accordion-content h6 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: var(--font-size-medium);
+    text-align: center;
+    display:block
 }
 
+.accordion-content-hr {
+   height: 2px;
+   width: 90% ;
+   color: var(--font-color)
+}
 .accordion-content p {
     font-size: var(--font-size-xxsmall);
     color: var(--font-color);
     font-weight: 500;
+    margin: 0;
 }
 
 /* Payment Logos */
@@ -176,6 +194,11 @@
 }
 
 /* Layout for Payment Sections */
+.strawberry-info p{
+    font-family: "Inter", sans-serif;
+    margin: auto;
+}
+
 .mestercard-info,
 .vusacard-info {
     display: flex;
@@ -205,11 +228,6 @@
     align-self: center;
 }
 
-/* Payment Section Headings */
-.accordion-content h5 {
-    text-align: center;
-}
-
 /* Vusa Card Form */
 .vusacard-info form {
     display: flex;
@@ -227,8 +245,14 @@
     padding: 20px;
     background-color: var(--background-color);
     max-width: 1440px;
-    margin: 0 auto;
-    border: 2px solid var(--input-border-color);
+    margin: 10 auto;
+    border-top: 2px solid var(--input-border-color);
+}
+
+.checkout-product__summary h5 {
+    text-align: center;
+    font-size: var(--font-size-medium);
+    margin: 0;
 }
 
 .checkout-product__summary-hr {
@@ -522,6 +546,13 @@
 
     .checkout-product__item-size {
         display: none;
+    }
+    .accordion-header {
+        width: 100%;
+        height: 120px;
+    }
+    .accordion-content {
+        width: 350px;
     }
 }
 

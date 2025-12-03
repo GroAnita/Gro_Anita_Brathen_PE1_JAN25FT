@@ -184,6 +184,10 @@
     width: 150px;
     font-size: var(--font-size-xxsmall);
     }
+    .image-box i {
+        left: 5px;
+        top: 5px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -256,5 +260,14 @@
     }
     .image-box {
         margin-bottom: 100px;
+    }
+     .image-box i {
+        left: 5px;
+        top: 5px;
+        font-size: var(--font-size-xsmall);
+    }
+    .header-content__nav__right__cart-count{
+        font-size: 8px;
+        padding: 5px 5px;
     }
 }
