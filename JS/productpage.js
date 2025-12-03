@@ -6,6 +6,7 @@ import {
     shareButtonSetup,
     getProductTags
 } from './utils.js';
+import { favoriteHeart, toggleFavorite } from './global.js';
 
 import { addToCart } from './components/cart.js';
 
@@ -50,11 +51,13 @@ async function displayProductDetails() {
     const imageUrl = productData.image?.url || '/images/placeholder-product.jpg';
     const priceHTML = formatProductPrice(productData);
     const tags = getProductTags(productData);
+    
 
     productPageBox.innerHTML = `
         <div class="productpage-image">
             <div class="image-wrapper">
                 <img class="product-image" src="${imageUrl}" alt="${productData.title}">
+                ${favoriteHeart(productData.id)}
             </div>
             <div class="product-tags">
                 ${tags.map(tag => `<span class="tag"> - ${tag}</span>`).join('')}
@@ -83,6 +86,18 @@ async function displayProductDetails() {
 
     // Add share button
     shareButtonSetup('.image-wrapper', window.location.href, productData.title);
+
+    // add heart icon functionality (MUST be last to ensure element exists)
+    setTimeout(() => {
+        const heartIcon = document.querySelector('.product-favorite-icon');
+        if (heartIcon) {
+            heartIcon.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const productId = heartIcon.dataset.productId;
+                toggleFavorite(productId, heartIcon);
+            });
+        }
+    }, 0);
 
     // Load reviews
     displayReviews(productData.reviews || []);

@@ -528,6 +528,20 @@ body {
     color: var(edit-add-button-border-color);
 }
 
+.product-image-container {
+    position: relative;
+}
+.product-favorite-icon{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    color: var(--delete-button-click-background-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 10;
+}
+
 /* media queries*/
 @media (max-width: 1024px) {
     .products-grid {
@@ -688,6 +702,11 @@ body {
         border-radius: 4px;
         border: 1px solid var(--border-color, #ccc);
         font-size: 0.85rem; 
+}
+    .product-favorite-icon{
+    top: 10px;
+    left: 35px;
+    font-size: 24px;
 }
 }
 

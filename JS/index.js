@@ -1,5 +1,7 @@
 import { setupPagination, getPaginatedProducts, resetPagination } from './components/pagination.js';
 import { addToCart } from './components/cart.js';
+import { toggleFavorite } from './global.js';
+import { favoriteHeart } from './global.js';
 
 const API_URL = 'https://v2.api.noroff.dev/online-shop';
 
@@ -28,7 +30,7 @@ function applyCategoryFromURL() {
     const params = new URLSearchParams(window.location.search);
     const category = params.get("category");
 
-    if (!category) return; // No category in the URL → do nothing
+    if (!category) return; // No category in the URL = do nothing
 
     resetPagination();
 
@@ -163,7 +165,11 @@ function createProductCard(product) {
     card.className = 'product-card';
 
     card.innerHTML = `
+        <div class="product-image-container">
         <img src="${product.image.url}" alt="${product.title}" class="product-image">
+        ${favoriteHeart(product.id)}
+    </div>
+        
         <h3>${product.title}</h3>
         <div class="price-container">
             ${product.discountedPrice && product.discountedPrice < product.price
@@ -189,6 +195,15 @@ function createProductCard(product) {
         saleBanner.className = 'sale-banner';
         saleBanner.innerText = 'ON SALE';
         card.appendChild(saleBanner);
+    }
+
+    const heartIcon = card.querySelector('.fa-heart');
+    if (heartIcon) {
+        heartIcon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const productId = heartIcon.dataset.productId;
+            toggleFavorite(productId, heartIcon);
+        });
     }
 
     return card;

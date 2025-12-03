@@ -8,6 +8,7 @@
  */
 import { formatProductPrice, hasDiscount, createSalesBanner, shareButtonSetup } from '../utils.js';
 import { addToCart } from './cart.js';
+import { favoriteHeart, toggleFavorite } from '../global.js';
 
 /**
  * Global event listener for Add-to-Cart buttons.
@@ -87,6 +88,7 @@ async function createSliderWithAPIProducts() {
                     class="slider-image"
                     data-product-id="${product.id}"
                 >
+                ${favoriteHeart(product.id)}
             </div>
             <div class="slide-content">
                 <h2>${product.title}</h2>
@@ -106,6 +108,16 @@ async function createSliderWithAPIProducts() {
         if (hasDiscount(product)) {
             const saleBanner = createSalesBanner();
             slide.querySelector('.image-box').appendChild(saleBanner);
+        }
+
+        // Add heart icon event listener
+        const heartIcon = slide.querySelector('.fa-heart');
+        if (heartIcon) {
+            heartIcon.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const productId = heartIcon.dataset.productId;
+                toggleFavorite(productId, heartIcon);
+            });
         }
     });
 

@@ -68,3 +68,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     initUI();
     renderBreadcrumb();
 });
+
+export function favoriteHeart(productId) {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const html = `<i class="fa-${favorites.includes(productId) ? 'solid' : 'regular'} fa-heart product-favorite-icon" data-product-id="${productId}"></i>`;
+    return html;
+}
+
+export function toggleFavorite(productId, heartIcon) {
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    if (favorites.includes(productId)) {
+        favorites = favorites.filter(id => id !== productId);
+        heartIcon.classList.remove('fa-solid');
+        heartIcon.classList.add('fa-regular');
+    } else {
+        favorites.push(productId);
+        heartIcon.classList.remove('fa-regular');
+        heartIcon.classList.add('fa-solid');
+    }
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+}
