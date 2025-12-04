@@ -92,6 +92,12 @@ export function renderBreadcrumb() {
         });
     }
 
+        if (path.includes("admindashboard.html")) {
+        crumbs.push({
+            label: "Admin Dashboard",
+            href: "#"
+        });
+    }
     container.innerHTML = crumbs
         .map((c, i) => {
             if (i === crumbs.length - 1) {

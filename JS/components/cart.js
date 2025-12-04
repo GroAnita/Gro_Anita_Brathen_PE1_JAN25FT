@@ -225,7 +225,7 @@ function showAddToCartNotification(productTitle) {
         position: fixed;
         top: 100px;
         right: 20px;
-        background: #4CAF50;
+        background: #029A12;
         color: white;
         padding: 15px 20px;
         border-radius: 5px;
