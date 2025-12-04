@@ -524,7 +524,7 @@
 }
 
 .success-btn:hover {
-    background-color: var(--font-color);
+    background-color: var(--button-hover-background-color);
 }
 
 

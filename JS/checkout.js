@@ -228,6 +228,13 @@ function setupPaymentButtons() {
     document.querySelectorAll('.pay-now-btn').forEach(btn => {
         btn.addEventListener('click', e => {
             e.preventDefault();
+
+            const parentAccordion = btn.closest('.accordion-content');
+            const form = parentAccordion.querySelector('form');
+            if (form && !form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
             processOrder();
         });
     });

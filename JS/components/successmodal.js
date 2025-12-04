@@ -14,6 +14,7 @@ const successModalHTML = `
                     <p><strong>Estimated Delivery:</strong> <span id="deliveryDate">7-10 business days</span></p>
                 </div>
                 <p class="success-message">Your order has been successfully processed and will be shipped soon.</p>
+                <p class="success-message">You will receive a confirmation email with your order details.</p>
             </div>
             <button id="successOkBtn" class="alert-btn success-btn">Continue Shopping</button>
         </div>
