@@ -543,6 +543,7 @@ body {
     z-index: 10;
 }
 
+
 /* media queries*/
 @media (max-width: 1024px) {
     .products-grid {

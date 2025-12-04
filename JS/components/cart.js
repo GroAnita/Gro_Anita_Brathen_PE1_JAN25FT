@@ -1,4 +1,4 @@
-//import { getAvailableStock, updateReservedStock } from '../components/stockManager.js';
+import { showCheckoutLoginModal } from "../global.js";    
 /** 
  * @typedef {Object} CartItem
  * @property {string} id - The product ID.
@@ -260,6 +260,21 @@ function checkout() {
         return;
     }
 
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    
+    if (!isLoggedIn) {
+        showCheckoutLoginModal();
+        return; // Stop here until user chooses
+    }
+
+    // Proceed to checkout if logged in
+    proceedToCheckout();
+}
+
+/**
+ * Redirects to checkout page after login check passes
+ */
+function proceedToCheckout() {
     const currentPath = window.location.pathname;
     let checkoutPath = currentPath.includes('/pages/')
         ? 'checkout.html'
@@ -281,6 +296,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+
+
 window.checkout = checkout;
 
 export { 
@@ -292,5 +309,6 @@ export {
     saveCartToStorage,
     loadCartFromStorage,
     cart,
-    checkout
+    checkout,
+    proceedToCheckout
 };

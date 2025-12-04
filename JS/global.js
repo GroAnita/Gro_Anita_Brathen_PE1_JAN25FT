@@ -4,6 +4,7 @@ import { initSearchComponent } from './components/searchComponent.js';
 import { backToTop, showToastMsg, initializeNewsletterForm } from './utils.js';
 import { updateLoginState } from './components/loginusermodal.js';
 import { renderBreadcrumb } from "./components/breadcrumbs.js";
+import { proceedToCheckout } from './components/cart.js';
 
 
 let globalProductsCache = [];
@@ -87,4 +88,20 @@ export function toggleFavorite(productId, heartIcon) {
         heartIcon.classList.add('fa-solid');
     }
     localStorage.setItem('favorites', JSON.stringify(favorites));
+}
+
+export function showCheckoutLoginModal() {
+    const modal = document.getElementById('checkoutLoginModal');
+    modal.style.display = 'flex';
+    
+    document.getElementById('loginBeforeCheckout').onclick = () => {
+        modal.style.display = 'none';
+        // Trigger your existing login modal
+        document.getElementById('loginModalTrigger').click();
+    };
+    
+    document.getElementById('continueAsGuest').onclick = () => {
+        modal.style.display = 'none';
+        proceedToCheckout(); // New function with just the redirect logic
+    };
 }
