@@ -265,9 +265,17 @@ function setupCheckoutNavigation() {
     if (proceedToShippingBtn) {
         proceedToShippingBtn.addEventListener('click', (e) => {
             e.preventDefault();
+            
+            // Validate the form before proceeding
+            const form = document.getElementById('checkoutForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            
             const shippingSection = document.getElementById('shippingInfo');
-            if (proceedToShippingBtn) {
-                proceedToShippingBtn.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (shippingSection) {
+                shippingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 setTimeout(() => window.scrollBy({ top: -50, behavior: 'smooth' }), );
             }
         });
