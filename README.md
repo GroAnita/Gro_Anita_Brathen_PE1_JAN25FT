@@ -22,6 +22,18 @@ A web application for a second hand store.
 This web application is my first-year project exam at Noroff.  
 It is a simple, modern site for a second hand store—allowing users to browse, search, and interact with listings.
 
+## About the Clients
+
+The Second Hand Company was founded by three passionate women who share one mission: to reduce waste and give quality items a second life. As long-time advocates for sustainability, they built their brand around the belief that pre-owned goods can be both beautiful and responsible.
+
+Their goal is simple — make sustainable shopping accessible, stylish, and enjoyable. By curating pre-loved items and promoting reuse over disposal, they hope to inspire more people to choose environmentally friendly options.
+
+To support their growing vision, they commissioned a modern, user-friendly website that reflects their values and helps customers discover high-quality second-hand products with ease.
+
+## Admin dashboard
+
+A small side project showing how I would like to see a admindashboard for this site. its a dummy page.
+
 **Image Credits:**
 
 There are 2 images in this project (used on `wcpreowned.html`) that were not provided by Noroff. Both are free images from Pixabay:

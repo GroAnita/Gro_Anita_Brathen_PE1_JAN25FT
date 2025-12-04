@@ -40,8 +40,15 @@
         <!-- Topbar -->
         <div class="header-topbar">
             <div class="header-content__left-hamburger">
-                <!-- Mobile hamburger menu -->
-                <i class="fa-solid fa-bars" id="hamburgerMenuIcon"></i>
+                <button
+                    id="hamburgerMenuIcon"
+                    class="hamburger-btn"
+                    aria-controls="hamburgerMenu"
+                    aria-expanded="false"
+                    aria-label="Open menu"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
 
             <div class="header-content__nav-center">
@@ -585,8 +592,11 @@
 
         <!-- Scripts -->
         <script type="module" src="../JS/admindash.js"></script>
+        <script type="module" src="../JS/components/cart.js"></script>
+        <script type="module" src="../JS/components/shoppingcart.js"></script>
         <script type="module" src="../JS/components/loginusermodal.js"></script>
         <script type="module" src="../JS/components/stockmanager.js"></script>
+        <script type="module" src="../JS/components/hamburgermenuoverlay.js"></script>
         <script type="module" src="../JS/global.js"></script>
 
     </div>
