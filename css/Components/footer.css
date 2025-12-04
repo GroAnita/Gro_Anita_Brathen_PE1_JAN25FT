@@ -175,8 +175,6 @@ footer li a{
 
 footer li a:hover{
     text-decoration: underline;
-    color: var(--edit-add-button-click-background-color);
-    transform: scale(1.05);
 }
 
 footer li{
