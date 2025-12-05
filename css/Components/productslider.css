@@ -124,6 +124,7 @@
     padding: 5px 5px;
     width: 200px;
     font-size: var(--font-size-xsmall);
+    font-family: "Playfair Display", serif;
 }
 
 /* Responsive Styles */

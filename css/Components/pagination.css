@@ -14,6 +14,7 @@
     cursor: pointer;
     color: var(--font-color);
     transition: background-color 0.3s;
+    font-family: "inter", sans-serif;
 }
 
 .pagination-button:hover {

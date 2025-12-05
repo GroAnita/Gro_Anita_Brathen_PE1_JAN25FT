@@ -373,6 +373,7 @@ body {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     margin-top: 10px;
     width: 250px;
+    font-family: "Playfair Display", serif;
 }
 .add-to-cart-btn:hover {
     background-color: var(--button-hover-background-color);
