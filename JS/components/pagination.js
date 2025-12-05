@@ -72,3 +72,5 @@ export function getPaginatedProducts(products) {
 export function resetPagination() {
     currentPage = 1;
 }   
+
+/*my inspiration for pagination because I have not done that before, but I have just taken the idea and made it my own :  https://www.youtube.com/watch?v=zmuh4wtpG6A */

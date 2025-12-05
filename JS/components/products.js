@@ -1,8 +1,8 @@
 
 /**
 * A mapping between product IDs and their assigned categories.
-* Each product ID corresponds to an array of category names.
-*
+* Each product ID corresponds to an array of category names. This is because I wanted to use my own categories to fit in with my design.
+*Also an idea I got from seeing how this designer did something similar, but I made it my own : https://www.youtube.com/watch?v=zmuh4wtpG6A
 * @constant
 * @type {Object.<string, string[]>}
 */

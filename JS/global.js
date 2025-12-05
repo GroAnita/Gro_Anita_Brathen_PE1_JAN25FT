@@ -1,17 +1,19 @@
-
-
 import { initSearchComponent } from './components/searchComponent.js';
 import { backToTop, showToastMsg, initializeNewsletterForm } from './utils.js';
 import { updateLoginState } from './components/loginusermodal.js';
 import { renderBreadcrumb } from "./components/breadcrumbs.js";
 import { proceedToCheckout } from './components/cart.js';
 
-
 let globalProductsCache = [];
 let searchInitialized = false;
 
 /**
- * Fetch products ONE TIME and cache them
+ * Loads product data from the API only once and saves the result
+ * to prevent unnecessary repeated network requests.
+ *
+ * @async
+ * @function loadProductsOnce
+ * @returns {Promise<Array>} Returns a Promise that resolves to an array of product objects.
  */
 async function loadProductsOnce() {
     if (globalProductsCache.length > 0) {
@@ -30,7 +32,12 @@ async function loadProductsOnce() {
 }
 
 /**
- * Initialize the global search bar
+ * Initializes the global search bar component.
+ * Makes sure that search is only initialized once per page load.
+ *
+ * @async
+ * @function initGlobalSearch
+ * @returns {Promise<void>}
  */
 async function initGlobalSearch() {
     if (searchInitialized) return;
@@ -43,7 +50,13 @@ async function initGlobalSearch() {
 }
 
 /**
- * Restore login state across pages
+ * Checks if user is logged in and updates the interface accordingly.
+ * Checks localStorage for:
+ * - isLoggedIn
+ * - userName
+ *
+ * @function initLoginState
+ * @returns {void}
  */
 function initLoginState() {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
@@ -53,7 +66,12 @@ function initLoginState() {
 }
 
 /**
- * Initialize common UI components across all pages
+ * Sets up UI features that appear on every page:
+ * - Back-to-top button
+ * - Newsletter form logic
+ *
+ * @function initUI
+ * @returns {void}
  */
 function initUI() {
     backToTop();
@@ -61,7 +79,13 @@ function initUI() {
 }
 
 /**
- * GLOBAL ENTRY POINT
+ * Main page initializer — runs all shared features once the page loads:
+ * - Search
+ * - Login UI
+ * - UI elements
+ * - Breadcrumb navigation
+ *
+ * @event DOMContentLoaded
  */
 document.addEventListener("DOMContentLoaded", async () => {
     await initGlobalSearch();
@@ -70,14 +94,31 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderBreadcrumb();
 });
 
+/**
+ * Generates the HTML for a heart icon representing favoriting status.
+ *
+ * @function favoriteHeart
+ * @param {string} productId - The ID of the product.
+ * @returns {string} HTML string for the correct heart icon (solid or regular).
+ */
 export function favoriteHeart(productId) {
     const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     const html = `<i class="fa-${favorites.includes(productId) ? 'solid' : 'regular'} fa-heart product-favorite-icon" data-product-id="${productId}"></i>`;
     return html;
 }
 
+/**
+ * Toggles the favorite state of a given product.
+ * Updates both the UI (heart icon style) and localStorage.
+ *
+ * @function toggleFavorite
+ * @param {string} productId - The ID of the product being toggled.
+ * @param {HTMLElement} heartIcon - The heart icon element to visually update.
+ * @returns {void}
+ */
 export function toggleFavorite(productId, heartIcon) {
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
     if (favorites.includes(productId)) {
         favorites = favorites.filter(id => id !== productId);
         heartIcon.classList.remove('fa-solid');
@@ -87,21 +128,31 @@ export function toggleFavorite(productId, heartIcon) {
         heartIcon.classList.remove('fa-regular');
         heartIcon.classList.add('fa-solid');
     }
+
     localStorage.setItem('favorites', JSON.stringify(favorites));
 }
 
+/**
+ * Displays the login-or-guest modal during checkout.
+ * Allows the user to:
+ * - Log in before checkout
+ * - Continue as a guest
+ *
+ * @function showCheckoutLoginModal
+ * @returns {void}
+ */
 export function showCheckoutLoginModal() {
     const modal = document.getElementById('checkoutLoginModal');
     modal.style.display = 'flex';
     
     document.getElementById('loginBeforeCheckout').onclick = () => {
         modal.style.display = 'none';
-        // Trigger your existing login modal
+        // Trigger existing login modal
         document.getElementById('loginModalTrigger').click();
     };
     
     document.getElementById('continueAsGuest').onclick = () => {
         modal.style.display = 'none';
-        proceedToCheckout(); // New function with just the redirect logic
+        proceedToCheckout(); // Only redirect logic
     };
 }

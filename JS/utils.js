@@ -204,9 +204,8 @@ function shareButtonSetup(imageContainerSelector, urlToShare, productTitle = 'Ch
 
 export { shareButtonSetup };
 
-// ---------------------------
-// Member Login Modal Module
-// ---------------------------
+
+/* Member Login Modal Module*/
 
 /**
  * Module for controlling the member login modal.
@@ -219,7 +218,7 @@ const memberLoginModal = (() => {
 
     const modal = document.getElementById('loginModal');
     
-    // Handle missing modal gracefully
+    // Handle missing modal
     if (!modal) {
         return {
             open: () => console.warn('Login modal not available'),
@@ -287,6 +286,8 @@ function backToTop() {
 }
 
 export { backToTop };
+
+/* Shows a toast message subscribing to newsletter */
 
 export function showToastMsg(message) {
 

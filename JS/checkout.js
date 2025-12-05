@@ -45,7 +45,7 @@ import {
 /* PAGE INITIALIZATION */
 
 /**
- * Initializes checkout page behavior when DOM is loaded:
+ * Initializes checkout page behavior when the DOM is loaded:
  * - Success modal
  * - Checkout items display
  * - Autofill shipping info
@@ -76,11 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /**
  * Processes the current order:
- * - Generates order ID and delivery date
- * - Builds customer data
- * - Shows "processing" state
- * - Clears cart and saves order history after a delay
- * - Shows success modal
+ * - Generates an order ID and delivery date
+ * - Builds the customer data
+ * - Shows a "processing" state
+ * - Clears the cart and saves order history after a delay
+ * - Shows the success modal
  *
  * @returns {void}
  */
@@ -119,7 +119,7 @@ export function processOrder() {
  * Returns the value of an input element by its ID.
  *
  * @param {string} id - The ID of the input element.
- * @returns {string} The input value or an empty string if not found.
+ * @returns {string} The input value or an empty string if it is not found.
  */
 function getVal(id) {
     return document.getElementById(id)?.value || "";
@@ -138,7 +138,7 @@ function generateOrderId() {
 /**
  * Calculates a delivery date 10 days from now.
  *
- * @returns {string} Readable delivery date (e.g. "January 1, 2025").
+ * @returns {string} Readable delivery date (like "January 1, 2025").
  */
 function calculateDeliveryDate() {
     const date = new Date();
@@ -257,7 +257,7 @@ function displayCheckoutItems() {
 }
 
 /**
- * Attaches event listeners to the checkout item controls:
+ * Attaches the event listeners to the checkout item controls:
  * - Increase the quantity
  * - Decrease the quantity
  * - Remove the item
@@ -311,7 +311,7 @@ function addCheckoutEventListeners() {
 }
 
 /**
- * Calculate and update the checkout total and subtotal values
+ * Calculates and updates the checkout total and subtotal values
  * in all the relevant UI locations.
  *
  * @returns {void}
@@ -400,7 +400,7 @@ function autoFillShippingInfo() {
 }
 
 /**
- * Sets up navigation buttons that smoothly scroll the user
+ * Sets up navigation buttons that scroll the user
  * between checkout sections (order summary to shipping info to payment).
  *
  * @returns {void}
@@ -428,7 +428,7 @@ function setupCheckoutNavigation() {
         proceedToShippingBtn.addEventListener('click', (e) => {
             e.preventDefault();
             
-            // Validate the form before proceeding
+            // Validates the form before proceeding
             const form = document.getElementById('checkoutForm');
             if (!form.checkValidity()) {
                 form.reportValidity();

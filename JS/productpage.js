@@ -6,17 +6,22 @@ import {
     shareButtonSetup,
     getProductTags
 } from './utils.js';
-import { favoriteHeart, toggleFavorite } from './global.js';
 
+import { favoriteHeart, toggleFavorite } from './global.js';
 import { addToCart } from './components/cart.js';
 
 // GET PRODUCT ID FROM URL
-
 const urlParams = new URLSearchParams(window.location.search);
 const currentProductId = urlParams.get('id');
 
-// FETCH A SINGLE PRODUCT
-
+/**
+ * Fetch detailed information about a single product from the API.
+ *
+ * @async
+ * @function fetchProductDetails
+ * @param {string} productId - The ID of the product to load.
+ * @returns {Promise<Object|null>} The product data object, or null if the request failed.
+ */
 async function fetchProductDetails(productId) {
     try {
         const response = await fetch(`https://v2.api.noroff.dev/online-shop/${productId}`);
@@ -34,8 +39,23 @@ async function fetchProductDetails(productId) {
     }
 }
 
-// DISPLAY PRODUCT DETAILS
-
+/**
+ * Gets product data and renders the full product page:
+ * - Product image
+ * - Price block (including the discount handling)
+ * - Tags
+ * - Favorite icon
+ * - Reviews section
+ * - Add-to-cart button
+ * - Share button
+ * - Image magnifier
+ *
+ * Also initializes all interactive elements such as tabs and favorite toggles.
+ *
+ * @async
+ * @function displayProductDetails
+ * @returns {Promise<void>}
+ */
 async function displayProductDetails() {
     if (!currentProductId) {
         console.error("No product ID in URL");
@@ -51,7 +71,6 @@ async function displayProductDetails() {
     const imageUrl = productData.image?.url || '/images/placeholder-product.jpg';
     const priceHTML = formatProductPrice(productData);
     const tags = getProductTags(productData);
-    
 
     productPageBox.innerHTML = `
         <div class="productpage-image">
@@ -59,6 +78,7 @@ async function displayProductDetails() {
                 <img class="product-image" src="${imageUrl}" alt="${productData.title}">
                 ${favoriteHeart(productData.id)}
             </div>
+
             <div class="product-tags">
                 ${tags.map(tag => `<span class="tag"> - ${tag}</span>`).join('')}
             </div>
@@ -75,19 +95,16 @@ async function displayProductDetails() {
         </div>
     `;
 
-    // Add magnifier
     magnifyProductImage('.image-wrapper', 1.25);
 
-    // Add sale banner
     if (hasDiscount(productData)) {
         const banner = createSalesBanner();
         document.querySelector('.image-wrapper').appendChild(banner);
     }
 
-    // Add share button
     shareButtonSetup('.image-wrapper', window.location.href, productData.title);
 
-    // add heart icon functionality (MUST be last to ensure element exists)
+    // Heart icon setup (placed in timeout to ensure DOM is updated)
     setTimeout(() => {
         const heartIcon = document.querySelector('.product-favorite-icon');
         if (heartIcon) {
@@ -99,21 +116,31 @@ async function displayProductDetails() {
         }
     }, 0);
 
-    // Load reviews
     displayReviews(productData.reviews || []);
-
-    // Enable add to cart
     setupAddToCartButton(productData);
 }
 
-// REVIEWS
-
+/**
+ * Calculates the average star rating from a list of reviews.
+ *
+ * @function calculateAverageRating
+ * @param {Array<{rating: number}>} reviews - List of review objects.
+ * @returns {number} The average rating, rounded to one decimal place.
+ */
 function calculateAverageRating(reviews) {
     if (!reviews.length) return 0;
     const total = reviews.reduce((sum, r) => sum + r.rating, 0);
     return Number((total / reviews.length).toFixed(1));
 }
 
+/**
+ * Generates HTML for star-rating.
+ *
+ * @function createStarRating
+ * @param {number} rating - Rating value between 0–5.
+ * @param {boolean} [showDecimal=false] - Whether to show "(4.5)" after the stars.
+ * @returns {string} HTML markup for star icons.
+ */
 function createStarRating(rating, showDecimal = false) {
     const full = Math.floor(rating);
     const half = rating % 1 >= 0.5;
@@ -129,6 +156,16 @@ function createStarRating(rating, showDecimal = false) {
     return html;
 }
 
+/**
+ * Renders the list of product reviews and updates:
+ * - Star rating badge
+ * - Review count
+ * - Review items in the list
+ *
+ * @function displayReviews
+ * @param {Array<Object>} reviews - List of review objects.
+ * @returns {void}
+ */
 function displayReviews(reviews) {
     const list = document.getElementById('reviewsList');
     const ratingEl = document.getElementById('productRating');
@@ -150,6 +187,7 @@ function displayReviews(reviews) {
     reviews.forEach(r => {
         const item = document.createElement('div');
         item.className = 'review-item';
+
         item.innerHTML = `
             <div class="review-header">
                 <strong>${r.username}</strong>
@@ -159,12 +197,17 @@ function displayReviews(reviews) {
                 <p>${r.description}</p>
             </div>
         `;
+
         list.appendChild(item);
     });
 }
 
-// ADD TO CART
-
+/**
+ * Connects the "Add to Cart" button to the cart.
+ * @function setupAddToCartButton
+ * @param {Object} productData - The full product object to be added to the cart.
+ * @returns {void}
+ */
 function setupAddToCartButton(productData) {
     const btn = document.querySelector('.add-to-cart-btn');
     if (!btn) return;
@@ -175,8 +218,16 @@ function setupAddToCartButton(productData) {
     });
 }
 
-// TABS (Reviews / Shipping Info)
-
+/**
+ * Initializes my product page tabs:
+ * - "Reviews"
+ * - "Shipping Information"
+ *
+ * Handles switching the active state of tabs and panes.
+ *
+ * @function initializeTabs
+ * @returns {void}
+ */
 function initializeTabs() {
     const buttons = document.querySelectorAll('.tab-btn');
     const panes = document.querySelectorAll('.tab-pane');
@@ -194,10 +245,16 @@ function initializeTabs() {
     });
 }
 
-// INIT PAGE
-
+/**
+ * Entry point for the product page.
+ * Loads:
+ * - Product details
+ * - Reviews
+ * - Tabs
+ *
+ * @event DOMContentLoaded
+ */
 document.addEventListener('DOMContentLoaded', () => {
     displayProductDetails();
     initializeTabs();
 });
-

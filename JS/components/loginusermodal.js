@@ -30,7 +30,7 @@ function createLoginModal() {
     // Checking if modal already should exist
     if (document.getElementById('loginModal')) return;
     
-    // Create and append the modal<
+    // Create and append the modal
     document.body.insertAdjacentHTML('beforeend', loginModalTemplate);
     
     // Adding event listeners
@@ -40,7 +40,7 @@ function createLoginModal() {
 /**
  * Assigns event listeners to login modal elements:
  * - Close button
- * - Outside click closing
+ * - Close when clicking outside modal
  * - Form submission (login API)
  */
 function setupLoginModalEventListeners() {
@@ -55,14 +55,14 @@ function setupLoginModalEventListeners() {
         });
     }
     
-    // Close on outside click
+    // Close when clicking outside modal
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
             modal.style.display = 'none';
         }
     });
     
-    // Handle form submission
+    // Handle the form submission
     const loginForm = modal.querySelector('#loginForm');
     if (loginForm) {
         loginForm.addEventListener('submit', async (e) => {
@@ -86,11 +86,11 @@ function setupLoginModalEventListeners() {
                 const response = await loginData.json();
 
                 if (loginData.ok && response.data) {
-                    // Extract user info and token from API response
+                    // Extract the user info and token from API response
                     const { accessToken, name, email: userEmail } = response.data;
                     const userName = name || userEmail.split('@')[0];
                     
-                    // Save login state and token to localStorage
+                    // Save the login state and token to localStorage
                     localStorage.setItem('isLoggedIn', 'true');
                     localStorage.setItem('userName', userName);
                     localStorage.setItem('authToken', accessToken);
@@ -119,7 +119,7 @@ function setupLoginModalEventListeners() {
 }
 
 /**
- * Opens the login modal. Creates the modal if it does not exist.
+ * Opens the login modal. And Creates the modal if it does not exist.
  */
 function showLoginModal() {
     createLoginModal(); // Creates if doesn't exist
@@ -161,13 +161,13 @@ function updateLoginState(isLoggedIn, userName = '') {
             });
         });
     } else {
-        // Reset to logged out state
+        // Resets to logged out state
         if (headerUserIcon) {
             headerUserIcon.className = 'fas fa-user';
             headerUserIcon.style.color = '';
             headerUserIcon.style.cursor = '';
             
-            // Add click handler for login
+            // Adding click handler for the login
             headerUserIcon.replaceWith(headerUserIcon.cloneNode(true));
             const newIcon = document.querySelector('.header-content__nav__right .fas.fa-user');
             if (newIcon) {
@@ -178,7 +178,7 @@ function updateLoginState(isLoggedIn, userName = '') {
             }
         }
         
-        // Reset hamburger menu text
+        // Resets hamburger menu text
         loginTriggers.forEach(trigger => {
             trigger.innerHTML = `<i class="fa-regular fa-user"></i> Member Login`;
             trigger.removeEventListener('click', showLogoutOptions);
@@ -202,24 +202,24 @@ function showLogoutOptions() {
 }
 
 /**
- * Logs out the user by removing saved session data and updating the UI.
+ * Logs out the user by removing the saved session data and updating the UI.
  */
 function logout() {
-    // Clear all login data from localStorage
+    // Clears all login data from localStorage
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('userName');
     localStorage.removeItem('authToken');
     localStorage.removeItem('userEmail');
     localStorage.removeItem('userProfile'); 
     
-    // Update UI to be the logged out state
+    // Updates UI to be the logged out state
     updateLoginState(false);
     
     console.log('User logged out');
 }
 
 /**
- * Checks localStorage to determine if the user is logged in and restores UI state if so.
+ * Checks localStorage to determine if the user is logged in and restores UI state if so is true.
  */
 function checkLoginState() {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
@@ -235,7 +235,7 @@ function checkLoginState() {
 document.addEventListener('DOMContentLoaded', () => {
     checkLoginState();
     
-    // Sets up initial login handlers if not logged in
+    // Sets up initial login handlers if not user logged in
     const loginIcon = document.querySelector('.fas.fa-user');
     if (loginIcon && localStorage.getItem('isLoggedIn') !== 'true') {
         loginIcon.addEventListener('click', (e) => {

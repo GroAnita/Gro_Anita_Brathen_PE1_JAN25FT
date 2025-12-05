@@ -13,7 +13,7 @@ import {
 
 /**
  * Enables toggling the password visibility in <input type="password"> fields.
- * Swaps between text/password and updates the eye icon.
+ * Changes between text/password and updates the eye icon.
  *
  * @returns {void}
  */
@@ -35,7 +35,7 @@ function setupPasswordToggle() {
 /* REGISTRATION HANDLER */
 
 /**
- * Displays a error message in the registration error box.
+ * Displays an error message in the registration error box.
  *
  * @param {string} message - Message to display.
  * @returns {void}
@@ -48,14 +48,14 @@ function showRegistrationError(message) {
 }
 
 /**
- * Handles form submission for user registration:
- * - Validates required fields
- * - Validates email format
- * - Validates phone number format
- * - Validates zip/post code format
+ * Handles the form submission for user registration:
+ * - Validates all required fields
+ * - Validates the email format
+ * - Validates the phone number format
+ * - Validates the zip/post code format
  * - Registers user with API
  * - Logs in automatically on success
- * - Saves user profile to localStorage
+ * - Saves the user profile to localStorage
  *
  * @returns {void}
  */
@@ -66,7 +66,7 @@ async function handleRegistration() {
     registrationForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        // Terms of service check
+        // Terms of service checkbox 
         const termsCheckbox = document.getElementById('checkbox');
         if (!termsCheckbox || !termsCheckbox.checked) {
             alert("You must agree to the Terms and Privacy Policy before signing up.");
@@ -85,7 +85,7 @@ async function handleRegistration() {
         const password = formData.get('password');
         const phoneRaw = formData.get("phone")?.trim() || "";
 
-        // Clear old errors
+        // Clear the old errors
         showRegistrationError("");
         const errorBox = document.getElementById("registrationError");
         if (errorBox) errorBox.style.display = "none";
@@ -96,7 +96,7 @@ async function handleRegistration() {
             return;
         }
 
-        // Name cleaning
+        // Name cleaning and combining name
         const cleanedName = `${firstname} ${lastname}`
             .replace(/\s+/g, "_")
             .replace(/[^a-zA-Z0-9_]/g, "");
@@ -124,7 +124,7 @@ async function handleRegistration() {
             return;
         }
 
-        // REGISTER USER
+        // REGISTER USER with cleanedName due to API restrictions
         try {
             const registerResponse = await fetch(
                 "https://v2.api.noroff.dev/auth/register",
@@ -221,7 +221,7 @@ async function handleRegistration() {
 
 
 /* 
-   PAGE INIT
+   PAGE INITIALIZING
 */
 
 /**
