@@ -289,20 +289,55 @@
                             <div class="mestercard-info">
                                 <h5>MesterCard</h5>
 
-                                <form>
+                                <form id="mestercardForm">
                                     <label for="mestercard-name">Cardholder Name:</label>
-                                    <input type="text" id="mestercard-name" name="mestercard-name" required>
+                                    <div class="input-with-icon">
+                                        <input type="text" id="mestercard-name" name="mestercard-name" required>
+                                        <span id="mestercardNameCheck" class="icon-valid hidden">&#10003;</span>
+                                        <span id="mestercardNameInvalid" class="icon-invalid hidden">&#10007;</span>
+                                    </div>
 
                                     <label for="mestercard-number">Card Number:</label>
-                                    <input type="text" id="mestercard-number" name="mestercard-number"
-                                           placeholder="**** **** **** ****" maxlength="19" inputmode="numeric" required>
+                                    <div class="input-with-icon">
+                                        <input type="text"
+                                            id="mestercard-number"
+                                            name="mestercard-number"
+                                            placeholder="0000 0000 0000 0000"
+                                            maxlength="19"
+                                            inputmode="numeric"
+                                            required>
+                                        <span id="mestercardNumberCheck" class="icon-valid hidden">&#10003;</span>
+                                        <span id="mestercardNumberInvalid" class="icon-invalid hidden">&#10007;</span>
+                                    </div>
 
                                     <label for="mestercard-expiry">Expiry Date:</label>
-                                    <input type="text" id="mestercard-expiry" name="mestercard-expiry" required>
+                                    <div class="input-with-icon">
+                                        <input type="text"
+                                            id="mestercard-expiry"
+                                            name="mestercard-expiry"
+                                            placeholder="MM/YY"
+                                            maxlength="5"
+                                            inputmode="numeric"
+                                            required>
+                                        <span id="mestercardExpiryCheck" class="icon-valid hidden">&#10003;</span>
+                                        <span id="mestercardExpiryInvalid" class="icon-invalid hidden">&#10007;</span>
+                                    </div>
 
                                     <label for="mestercard-cvc">CVC:</label>
-                                    <input type="text" id="mestercard-cvc" name="mestercard-cvc" required>
+                                    <div class="input-with-icon">
+                                        <input type="text"
+                                            id="mestercard-cvc"
+                                            name="mestercard-cvc"
+                                            placeholder="123"
+                                            maxlength="3"
+                                            inputmode="numeric"
+                                            required>
+                                        <span id="mestercardCvcCheck" class="icon-valid hidden">&#10003;</span>
+                                        <span id="mestercardCvcInvalid" class="icon-invalid hidden">&#10007;</span>
+                                    </div>
+
                                 </form>
+
 
                                 <div class="checkout-product__summary">
                                     <h5>Complete Order</h5>
@@ -332,17 +367,40 @@
 
                                 <form>
                                     <label for="vusacard-name">Cardholder Name:</label>
+                                    <div class="input-with-icon">
                                     <input type="text" id="vusacard-name" name="vusacard-name" required>
-
+                                    <span id="vusacardNameCheck" class="icon-valid hidden">&#10003;</span>
+                                    <span id="vusacardNameInvalid" class="icon-invalid hidden">&#10007;</span>  
+                                    </div>  
                                     <label for="vusacard-number">Card Number:</label>
+                                    <div class="input-with-icon">
                                     <input type="text" id="vusacard-number" name="vusacard-number"
-                                           placeholder="**** **** **** ****" maxlength="19" inputmode="numeric" required>
-
+                                           placeholder="0000 0000 0000 0000" maxlength="19" inputmode="numeric" required>
+                                    <span id="vusacardNumberCheck" class="icon-valid hidden">&#10003;</span>
+                                    <span id="vusacardNumberInvalid" class="icon-invalid hidden">&#10007;</span>  
+                                    </div>
+                                    
                                     <label for="vusacard-expiry">Expiry Date:</label>
-                                    <input type="text" id="vusacard-expiry" name="vusacard-expiry" required>
+                                    <div class="input-with-icon">
+                                    <input type="text" id="vusacard-expiry" name="vusacard-expiry"
+                                    placeholder="MM/YY"
+                                    maxlength="5"
+                                    inputmode="numeric"
+                                     required>
+                                    <span id="vusacardExpiryCheck" class="icon-valid hidden">&#10003;</span>
+                                    <span id="vusacardExpiryInvalid" class="icon-invalid hidden">&#10007;</span>  
+                                    </div>
 
                                     <label for="vusacard-cvc">CVC:</label>
-                                    <input type="text" id="vusacard-cvc" name="vusacard-cvc" required>
+                                    <div class="input-with-icon">
+                                    <input type="text" id="vusacard-cvc" name="vusacard-cvc"
+                                    placeholder="123"
+                                    maxlength="3"
+                                    inputmode="numeric"
+                                     required>
+                                    <span id="vusacardCvcCheck" class="icon-valid hidden">&#10003;</span>
+                                    <span id="vusacardCvcInvalid" class="icon-invalid hidden">&#10007;</span>  
+                                    </div>
                                 </form>
                             </div> <!-- END vusacard-info -->
 

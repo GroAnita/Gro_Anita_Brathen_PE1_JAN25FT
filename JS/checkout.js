@@ -16,7 +16,8 @@ import {
     isValidNorwegianPhone,
     isValidPostcode,
     isNonEmpty,
-    attachInputIconValidation
+    attachInputIconValidation,
+    initPaymentValidation
 } from './components/formValidation.js';
 
 /**
@@ -61,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupAccordionListeners();
     setupPaymentButtons();
     setupCheckoutNavigation();
+    initPaymentValidation();
 
     // Real-time validation with the checkmarks
     attachInputIconValidation("firstname", isNonEmpty);

@@ -216,13 +216,6 @@
     font-size: var(--font-size-xxxsmall);
 }
 
-#mestercard-number,
-#mestercard-expiry,
-#mestercard-cvc {
-    padding: 8px;
-    font-size: var(--font-size-xxxsmall);
-    border: 1px solid var(--input-border-color);
-}
 
 /* Payment Buttons */
 .accordion-content button.main-btn {
@@ -236,7 +229,13 @@
     flex-direction: column;
     gap: 10px;
     font-size: var(--font-size-xxxsmall);
-    margin-bottom: 12px;
+    margin-bottom: 12px; 
+}
+
+.vusacard-info input {
+    padding: 8px;
+    font-size: var(--font-size-xxxsmall);
+    border: 1px solid var(--input-border-color);
 }
 
 /* Product Summary Container */
