@@ -348,6 +348,7 @@ body {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     width: 250px;
     font-weight: 600;
+    font-family: "Playfair Display", serif;
 }
 
 .main-btn:hover {

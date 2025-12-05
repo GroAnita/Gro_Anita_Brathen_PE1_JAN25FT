@@ -647,4 +647,10 @@
     .success-message {
         font-size: var(--font-size-xxsmall);
     }
+
+    .accordion-header{
+        height: 140px;
+        width: 374px;
+        padding: 0;
+    }
 }
