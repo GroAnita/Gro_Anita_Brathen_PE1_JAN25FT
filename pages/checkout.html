@@ -129,47 +129,76 @@
 
                             <div>
                                 <label for="firstname">First Name:</label>
+                                <div class="input-with-icon">
                                 <input type="text" id="firstname" name="firstname" required>
+                                <span id="nameCheck" class="icon-valid hidden">&#10003;</span>
+                                <span id="nameInvalid" class="icon-invalid hidden">&#10007;</span>  
+                                </div>
                             </div>
 
                             <div>
                                 <label for="lastname">Last Name:</label>
+                                <div class="input-with-icon">
                                 <input type="text" id="lastname" name="lastname" required>
+                                <span id="nameCheck" class="icon-valid hidden">&#10003;</span>
+                                <span id="nameInvalid" class="icon-invalid hidden">&#10007;</span>  
+                                </div>
+                            
                             </div>
 
                             <div class="address-field">
                                 <label for="address">Address:</label>
+                                <div class="input-with-icon">
                                 <input type="text" id="address" name="address" required autocomplete="on">
+                                <span id="addressCheck" class="icon-valid hidden">&#10003;</span>
+                                <span id="addressInvalid" class="icon-invalid hidden">&#10007;</span>  
+                                </div>
                             </div>
 
                             <div class="address-row">
                                 <div class="form-group">
                                     <label for="zip">Zip Code:</label>
+                                    <div class="input-with-icon">
                                     <input type="text" id="zip" name="zip" required>
+                                    <span id="zipCheck" class="icon-valid hidden">&#10003;</span>
+                                    <span id="zipInvalid" class="icon-invalid hidden">&#10007;</span>  
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="city">City:</label>
+                                    <div class="input-with-icon">
                                     <input type="text" id="city" name="city" required>
+                                    <span id="cityCheck" class="icon-valid hidden">&#10003;</span>
+                                    <span id="cityInvalid" class="icon-invalid hidden">&#10007;</span>
+                                    </div>
                                 </div>
                             </div>
 
                             <div>
                                 <label for="email">Email Address:</label>
+                                <div class="input-with-icon">
                                 <input type="email" id="email" name="email" required autocomplete="on">
+                                <span id="emailCheck" class="icon-valid hidden">&#10003;</span>
+                                <span id="emailInvalid" class="icon-invalid hidden">&#10007;</span>  
+                                </div>
                             </div>
 
                             <div>
                                 <label for="phone">Phone Number:</label>
+                                <div class="input-with-icon">
                                 <input type="tel" id="phone" name="phone" required autocomplete="on">
+                                <span id="phoneCheck" class="icon-valid hidden">&#10003;</span>
+                                <span id="phoneInvalid" class="icon-invalid hidden">&#10007;</span>  
+                                </div>
                             </div>
-                        </div>
 
                         <button type="submit" class="main-btn" id="proceedToShippingBtn">
                             Go to shipping
                         </button>
                     </form>
                 </div>
+            </div>
 
                                 <!-- SHIPPING SECTION -->
                 <span class="checkout-span" id="shippingInfo">3. Shipping</span>
@@ -184,7 +213,7 @@
                     </label>
 
                     </div>
-
+            
                     <div class="shipping-option">
                        <label class="shipping-label">
                             <input type="radio" id="expressShipping" name="shipping" value="express">
@@ -315,7 +344,7 @@
                                     <label for="vusacard-cvc">CVC:</label>
                                     <input type="text" id="vusacard-cvc" name="vusacard-cvc" required>
                                 </form>
-                            </div>
+                            </div> <!-- END vusacard-info -->
 
                             <div class="checkout-product__summary">
                                 <h5>Complete Order</h5>

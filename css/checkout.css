@@ -527,6 +527,68 @@
     background-color: var(--button-hover-background-color);
 }
 
+/* Valid state */
+.password-requirements .valid {
+    color: var(--edit-add-button-hover-background-color); /* green */
+    font-weight: 600;
+}
+
+.password-requirements .valid::before {
+    content: "\2713";
+    color: var(--edit-add-button-hover-background-color);
+    font-size: 0.8rem;
+}
+
+.password-requirements .invalid::before {
+    content: "\2717";
+    color: var(--input-error-border-color);
+    font-size: 0.8rem;
+}
+
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-icon input {
+    width: 100%;
+    padding-right: 2rem; /* space for the checkmark */
+}
+
+.icon-valid,
+.icon-invalid {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 1.1rem;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.icon-valid {
+    color: var(--edit-add-button-hover-background-color);
+}
+
+.icon-invalid {
+    color: var(--input-error-border-color);
+}
+
+.address-field .input-with-icon .icon-valid,
+.address-field .input-with-icon .icon-invalid,
+.address-row .input-with-icon .icon-valid,
+.address-row .input-with-icon .icon-invalid {
+    right: 10px;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+.visible {
+    opacity: 1;
+}
+
 
 /* RESPONSIVE BREAKPOINTS     */
 

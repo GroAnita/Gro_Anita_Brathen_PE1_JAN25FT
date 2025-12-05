@@ -11,10 +11,49 @@ import {
     showSuccessModal
 } from './components/successmodal.js';
 
-/* ---------------------------
-   PAGE INITIALIZATION
----------------------------- */
+import { 
+    isValidEmail,
+    isValidNorwegianPhone,
+    isValidPostcode,
+    isNonEmpty,
+    attachInputIconValidation
+} from './components/formValidation.js';
 
+/**
+ * @typedef {Object} CartItem
+ * @property {string} id - Product ID.
+ * @property {string} title - Product title.
+ * @property {number} price - Unit price of the product.
+ * @property {number} quantity - Quantity of this product in the cart.
+ * @property {string|null} [size] - Selected size (if applicable).
+ * @property {{url: string}|string|null} [image] - Image object or URL string.
+ */
+
+/**
+ * @typedef {Object} OrderData
+ * @property {string} name - Customer name.
+ * @property {string} email - Customer email.
+ * @property {string} address - Shipping address.
+ * @property {string} phone - Customer phone number.
+ * @property {string} orderId - Unique ID for this order.
+ * @property {CartItem[]} items - Items included in the order.
+ * @property {number} total - Total price of the order.
+ * @property {string} orderDate - ISO string of order creation time.
+ * @property {string} deliveryDate - Human-readable delivery date.
+ */
+
+/* PAGE INITIALIZATION */
+
+/**
+ * Initializes checkout page behavior when DOM is loaded:
+ * - Success modal
+ * - Checkout items display
+ * - Autofill shipping info
+ * - Accordion behavior
+ * - Payment buttons
+ * - Navigation between sections
+ * - Input validation with checkmarks
+ */
 document.addEventListener('DOMContentLoaded', () => {
     initializeSuccessModal(); 
     displayCheckoutItems();  
@@ -22,19 +61,39 @@ document.addEventListener('DOMContentLoaded', () => {
     setupAccordionListeners();
     setupPaymentButtons();
     setupCheckoutNavigation();
+
+    // Real-time validation with the checkmarks
+    attachInputIconValidation("firstname", isNonEmpty);
+    attachInputIconValidation("lastname", isNonEmpty);
+    attachInputIconValidation("address", isNonEmpty);
+    attachInputIconValidation("city", isNonEmpty);
+    attachInputIconValidation("email", isValidEmail);
+    attachInputIconValidation("phone", isValidNorwegianPhone);
+    attachInputIconValidation("zip", isValidPostcode);
 });
 
-/* ---------------------------
-   CHECKOUT ORDER PROCESSING
----------------------------- */
+/* CHECKOUT ORDER PROCESSING */
 
+/**
+ * Processes the current order:
+ * - Generates order ID and delivery date
+ * - Builds customer data
+ * - Shows "processing" state
+ * - Clears cart and saves order history after a delay
+ * - Shows success modal
+ *
+ * @returns {void}
+ */
 export function processOrder() {
     const orderId = generateOrderId();
     const deliveryDate = calculateDeliveryDate();
 
-    const totalAmount = cart.reduce((sum, item) =>
-        sum + (item.price * item.quantity), 0);
+    const totalAmount = cart.reduce(
+        (sum, item) => sum + (item.price * item.quantity),
+        0
+    );
 
+    /** @type {OrderData} */
     const customerData = {
         name: getVal("name"),
         email: getVal("email"),
@@ -56,17 +115,31 @@ export function processOrder() {
     }, 2000);
 }
 
-
-
+/**
+ * Returns the value of an input element by its ID.
+ *
+ * @param {string} id - The ID of the input element.
+ * @returns {string} The input value or an empty string if not found.
+ */
 function getVal(id) {
     return document.getElementById(id)?.value || "";
 }
 
+/**
+ * Generates a order ID based on timestamp and random number.
+ *
+ * @returns {string} A unique order ID, e.g. "#RD-<timestamp>-12345".
+ */
 function generateOrderId() {
     const randomPart = Math.floor(Math.random() * 90000) + 10000;
     return `#RD-${Date.now()}-${randomPart}`;
 }
 
+/**
+ * Calculates a delivery date 10 days from now.
+ *
+ * @returns {string} Readable delivery date (e.g. "January 1, 2025").
+ */
 function calculateDeliveryDate() {
     const date = new Date();
     date.setDate(date.getDate() + 10);
@@ -78,8 +151,13 @@ function calculateDeliveryDate() {
     });
 }
 
+/**
+ * Shows a "Processing Order..." state on all payment buttons
+ * and disables them to prevent double submissions.
+ *
+ * @returns {void}
+ */
 function showOrderProcessing() {
-    
     const submitButtons = document.querySelectorAll(".pay-now-btn");
     if (!submitButtons) return;
 
@@ -89,6 +167,16 @@ function showOrderProcessing() {
     });
 }
 
+/**
+ * Clears the cart data:
+ * - Empties the cart array
+ * - Updates localStorage
+ * - Updates cart counter
+ * - Clears checkout items UI
+ * - Resets checkout total
+ *
+ * @returns {void}
+ */
 function clearCart() {
     cart.length = 0;
     saveCartToStorage();
@@ -101,16 +189,32 @@ function clearCart() {
     if (totalEl) totalEl.textContent = "0.00";
 }
 
+/**
+ * Saves an order to order history in localStorage.
+ *
+ * @param {OrderData} orderData - Data for the completed order.
+ * @returns {void}
+ */
 function saveOrderHistory(orderData) {
     const orderHistory = JSON.parse(localStorage.getItem("orderHistory") || "[]");
     orderHistory.push(orderData);
     localStorage.setItem("orderHistory", JSON.stringify(orderHistory));
 }
 
+/* CHECKOUT ITEMS DISPLAY & CART CONTROLS */
 
+/**
+ * Renders the items from the cart into the checkout summary section.
+ * If the cart is empty, it shows an "empty" message.
+ *
+ * @returns {void}
+ */
 function displayCheckoutItems() {
     const container = document.querySelector('.checkout-product__summary');
-    if (!container) return console.error('Checkout container not found');
+    if (!container) {
+        console.error('Checkout container not found');
+        return;
+    }
 
     container.innerHTML = '';
 
@@ -152,7 +256,14 @@ function displayCheckoutItems() {
     updateCheckoutTotal();
 }
 
-
+/**
+ * Attaches event listeners to the checkout item controls:
+ * - Increase the quantity
+ * - Decrease the quantity
+ * - Remove the item
+ *
+ * @returns {void}
+ */
 function addCheckoutEventListeners() {
     document.querySelectorAll('.checkout-product__summary .decrease-btn').forEach(btn => {
         btn.addEventListener('click', e => {
@@ -199,38 +310,66 @@ function addCheckoutEventListeners() {
     });
 }
 
-
+/**
+ * Calculate and update the checkout total and subtotal values
+ * in all the relevant UI locations.
+ *
+ * @returns {void}
+ */
 function updateCheckoutTotal() {
-    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const total = cart.reduce(
+        (sum, item) => sum + (item.price * item.quantity),
+        0
+    );
 
-    document.querySelectorAll('.totalAmount').forEach(el => el.textContent = total.toFixed(2));
-    document.querySelectorAll('.subtotal-amount').forEach(el => el.textContent = `$${total.toFixed(2)}`);
+    document.querySelectorAll('.totalAmount').forEach(el => {
+        el.textContent = total.toFixed(2);
+    });
+
+    document.querySelectorAll('.subtotal-amount').forEach(el => {
+        el.textContent = `$${total.toFixed(2)}`;
+    });
 
     const checkoutTotal = document.getElementById('checkoutTotal');
     if (checkoutTotal) checkoutTotal.textContent = total.toFixed(2);
 }
 
+/* ACCORDION & PAYMENT BEHAVIOR */
 
-
+/**
+ * Sets up accordion behavior for sections that use checkboxes
+ * and to expand/collapse content.
+ *
+ * @returns {void}
+ */
 function setupAccordionListeners() {
     const checkboxes = document.querySelectorAll('.accordion-checkbox');
 
     checkboxes.forEach(cb => {
         cb.addEventListener('change', () => {
-            const content = cb.nextElementSibling.nextElementSibling;
-            content.style.maxHeight = cb.checked ? content.scrollHeight + 300 + 'px' : '0px';
+            const content = cb.nextElementSibling?.nextElementSibling;
+            if (!content) return;
+            content.style.maxHeight = cb.checked
+                ? content.scrollHeight + 300 + 'px'
+                : '0px';
         });
     });
 }
 
-
+/**
+ * Attaches click handlers to all ".pay-now-btn" elements:
+ * - Validates the nearest form
+ * - Calls processOrder() if its valid
+ *
+ * @returns {void}
+ */
 function setupPaymentButtons() {
     document.querySelectorAll('.pay-now-btn').forEach(btn => {
         btn.addEventListener('click', e => {
             e.preventDefault();
 
             const parentAccordion = btn.closest('.accordion-content');
-            const form = parentAccordion.querySelector('form');
+            const form = parentAccordion?.querySelector('form');
             if (form && !form.checkValidity()) {
                 form.reportValidity();
                 return;
@@ -240,7 +379,14 @@ function setupPaymentButtons() {
     });
 }
 
+/* SHIPPING AUTOFILL & NAVIGATION */
 
+/**
+ * Autofills shipping input fields with stored user profile data from localStorage
+ * if the user is logged in and a profile exists in localStorage.
+ *
+ * @returns {void}
+ */
 function autoFillShippingInfo() {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     const profile = JSON.parse(localStorage.getItem('userProfile') || 'null');
@@ -253,6 +399,12 @@ function autoFillShippingInfo() {
     });
 }
 
+/**
+ * Sets up navigation buttons that smoothly scroll the user
+ * between checkout sections (order summary to shipping info to payment).
+ *
+ * @returns {void}
+ */
 function setupCheckoutNavigation() {
     const proceedToShippingInfoBtn = document.getElementById('proceedToShippingInfoBtn');
     const proceedToShippingBtn = document.getElementById('proceedToShippingBtn');
@@ -264,7 +416,10 @@ function setupCheckoutNavigation() {
             const shippingInfoSection = document.getElementById('shippingInfoForm');
             if (shippingInfoSection) {
                 shippingInfoSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                setTimeout(() => window.scrollBy({ top: -50, behavior: 'smooth' }), );
+                setTimeout(
+                    () => window.scrollBy({ top: -50, behavior: 'smooth' }),
+                    0
+                );
             }
         });
     }
@@ -283,7 +438,10 @@ function setupCheckoutNavigation() {
             const shippingSection = document.getElementById('shippingInfo');
             if (shippingSection) {
                 shippingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                setTimeout(() => window.scrollBy({ top: -50, behavior: 'smooth' }), );
+                setTimeout(
+                    () => window.scrollBy({ top: -50, behavior: 'smooth' }),
+                    0
+                );
             }
         });
     }
@@ -294,7 +452,10 @@ function setupCheckoutNavigation() {
             const paymentSection = document.getElementById('paymentInfo');
             if (paymentSection) {
                 paymentSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                setTimeout(() => window.scrollBy({ top: -50, behavior: 'smooth' }), );
+                setTimeout(
+                    () => window.scrollBy({ top: -50, behavior: 'smooth' }),
+                    0
+                );
             }
         });
     }

@@ -123,48 +123,84 @@
 
                         <div class="form-div dob-field">
                             <label for="dob">Date of Birth:</label>
+                            <div class="input-with-icon">
                             <input type="date" id="dob" name="dob" required>
+                            <span id="dobCheck" class="icon-valid hidden">&#10003;</span>
+                            <span id="dobInvalid" class="icon-invalid hidden">&#10007;</span>   
+                            </div>
                         </div>
 
                         <div class="form-div">
                             <label for="firstname">First Name:</label>
+                            <div class="input-with-icon">
                             <input type="text" id="firstname" name="firstname" required>
+                            <span id="firstnameCheck" class="icon-valid hidden">&#10003;</span>
+                            <span id="firstnameInvalid" class="icon-invalid hidden">&#10007;</span>
+                            </div>
                         </div>
 
                         <div class="form-div">
                             <label for="lastname">Last Name:</label>
+                            <div class="input-with-icon">
                             <input type="text" id="lastname" name="lastname" required>
+                            <span id="lastnameCheck" class="icon-valid hidden">&#10003;</span>
+                            <span id="lastnameInvalid" class="icon-invalid hidden">&#10007;</span>
+                            </div>
                         </div>
 
                         <div class="form-div address-field">
                             <label for="address">Address:</label>
+                            <div class="input-with-icon">
                             <input type="text" id="address" name="address" required>
+                            <span id="addressCheck" class="icon-valid hidden">&#10003;</span>
+                            <span id="addressInvalid" class="icon-invalid hidden">&#10007;</span>
+                            </div>
                         </div>
 
                         <div class="form-div address-row">
                             <div class="form-group">
                                 <label for="zip">Zip Code:</label>
-                                <input type="text" id="zip" name="zip" required>
+                                <div class="input-with-icon">
+                                <input type="text" id="zip" name="zip" maxlength="4" required>
+                                <span id="zipCheck" class="icon-valid hidden">&#10003;</span>
+                                <span id="zipInvalid" class="icon-invalid hidden">&#10007;</span>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="city">City:</label>
+                                <div class="input-with-icon">
                                 <input type="text" id="city" name="city" required>
+                                <span id="cityCheck" class="icon-valid hidden">&#10003;</span>
+                                <span id="cityInvalid" class="icon-invalid hidden">&#10007;</span>
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-div">
                             <label for="email">Email Address:</label>
+                            <div class="input-with-icon">   
                             <input type="email" id="email" name="email" required>
+                            <span id="emailCheck" class="icon-valid hidden">&#10003;</span>
+                            <span id="emailInvalid" class="icon-invalid hidden">&#10007;</span>
+                            </div>
                         </div>
 
                         <div class="form-div">
                             <label for="phone">Phone Number:</label>
+                            <div class="input-with-icon">
                             <input type="tel" id="phone" name="phone" required>
+                            <span id="phoneCheck" class="icon-valid hidden">&#10003;</span>
+                            <span id="phoneInvalid" class="icon-invalid hidden">&#10007;</span>
+                            </div>
                         </div>
 
                         <div class="form-div">
                             <label for="username">Username:</label>
+                            <div class="input-with-icon">
                             <input type="text" id="username" name="username" required>
+                            <span id="usernameCheck" class="icon-valid hidden">&#10003;</span>
+                            <span id="usernameInvalid" class="icon-invalid hidden">&#10007;</span>
+                            </div>
                         </div>
 
                         <div class="form-div">
@@ -268,7 +304,7 @@
             </div>
         </div>
     </div>
-    
+
         <!-- Footer -->
                    <footer>
             <div class="footer-content__top">

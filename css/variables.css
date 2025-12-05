@@ -16,10 +16,12 @@
     --font-size-xsmall: 16px; /*labels*/
     --font-size-small: 18px;
     --font-size-medium: 20px;
-    --font-size-large: 24px; /*headers and main 
+    --font-size-large: clamp(1.25rem, 1.5vw + 1rem, 1.5rem);          /* ~24px */; /*headers and main 
     links*/
-    --font-size-largeplus: 32px; /*section headers*/
-    --font-size-xlarge: 64px; /*header logo font size*/
+    --font-size-largeplus: clamp(1.75rem, 2.5vw + 1.2rem, 2rem);      /* ~32px */
+ /*section headers*/
+    --font-size-xlarge: clamp(2.5rem, 5vw + 1rem, 4rem);              /* ~64px */
+ /*header logo font size*/
 
 
     /*Main Button colors*/
